@@ -1,18 +1,1 @@
 
-.button {
-  position: relative;
-  padding: 15px 50px;
-  @include font-size(22px);
-  border-radius: 40px;
-  background-color: $white;
-  color: $black;
-  font-weight: 700;
-  border: 1px solid $black;
-  text-align: center;
-  align-self: flex-start;
-
-  &--dark {
-    background-color: $black;
-    color: $white;
-  }
-}
