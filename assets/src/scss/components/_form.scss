@@ -1,1 +1,18 @@
 
+.responsys-test {
+
+  label {
+    position: relative;
+    min-width: 150px;
+    display: inline-block;
+  }
+
+  form > div {
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  input {
+    padding: 4px;
+  }
+}

@@ -1,7 +1,8 @@
 import '@babel/polyfill';
 import 'whatwg-fetch';
 
-import sampleJs from './components/sample.component';
+//import sampleJs from './components/sample.component';
+import responsysTest from './components/form.test';
 
 function documentReady(fn) {
   if (document.readyState != 'loading') {
@@ -18,6 +19,6 @@ function documentReady(fn) {
 
 documentReady( function() {
 
-  sampleJs();
+  responsysTest();
 
 });
