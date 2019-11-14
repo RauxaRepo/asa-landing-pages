@@ -1,0 +1,65 @@
+
+// Global app/site styles
+//=================================
+// =================================
+// We use normalize.css for the bulk of our 'reset'
+
+@import '../../../node_modules/normalize-scss/sass/normalize';
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+@include normalize;
+
+* {
+  // sass-lint:disable no-vendor-prefixes
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: transparent;
+  font-family: $font-standard;
+  font-weight: 400;
+  padding-top: 106px;
+}
+
+a,
+button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+p {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.container {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  padding: 0 5%;
+}
+
+.background-color-black {
+  background-color: $black;
+}
+
+.text-color-white {
+  color: $white;
+}

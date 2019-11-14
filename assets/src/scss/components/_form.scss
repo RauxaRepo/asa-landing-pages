@@ -1,0 +1,103 @@
+
+
+.form {
+
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  &__header {
+    @include font-size(30px);
+    line-height: calc(38/30);
+    margin: 0;
+  }
+
+  &__subheader {
+    @include font-size(18px);
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  form {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 1176px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  &__legend {
+    @include font-size(13px);
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  &__submit-holder {
+    position: relative;
+    width: 100%;
+    padding-top: 100px;
+    display: inline-block;
+  }
+
+  &__submit {
+    display: inline-block;
+  }
+
+  &__input {
+    position: relative;
+    width: 100%;
+
+    @include bp(md) {
+      width: calc(50% - 10px);
+      margin-right: 20px;
+    }
+
+    label {
+      @include font-size(15px);
+      display: block;
+      margin: 10px 0;
+    }
+
+    input {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 2px solid $gray-light;
+      border-bottom: 2px solid $black;
+      padding: 10px;
+      transition: border .5s ease;
+
+      &:focus {
+        border: 2px solid $black;
+        outline: none;
+      }
+    }
+
+    &:nth-child(2n) {
+
+      @include bp(md) {
+        margin-right: 0;
+      }
+    }
+
+    &--error {
+      position: relative;
+      margin: 0;
+      color: $red;
+      padding: 5px 7px;
+      @include font-size(13px);
+      visibility: hidden;
+    }
+
+    &--invalid {
+
+      .form__input--error {
+        visibility: visible;
+      }
+    }
+
+  }
+
+}

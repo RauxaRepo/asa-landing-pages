@@ -1,0 +1,29 @@
+
+.footer {
+
+  position: relative;
+  background-color: $black;
+  padding-top: 20px;
+  padding-bottom: 100px;
+  color: $white;
+
+  &-logo {
+    position: relative;
+    max-width: 200px;
+    height: auto;
+  }
+
+  p {
+    @include font-size(14px);
+    line-height: calc(20/14);
+    margin-top: 20px;
+
+    sup {
+      @include font-size(8px);
+    }
+
+    span {
+      display: block;
+    }
+  }
+}

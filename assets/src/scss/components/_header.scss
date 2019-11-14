@@ -1,0 +1,47 @@
+
+.header {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+
+  @include bp(md) {
+    background-image: url('../images/VAB33797_hero_background.jpg');
+    background-position: bottom 0 right 0;
+    background-size: cover;
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+  }
+
+  &__title {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    max-width: 450px;
+    @include font-size(45px);
+    line-height: calc(48/45);
+  }
+
+  &__cta {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: 30px;
+  }
+
+  &__image {
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    @include bp(md) {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+
+}

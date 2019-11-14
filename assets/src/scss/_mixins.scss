@@ -1,0 +1,43 @@
+
+// PLACEHOLDER 
+// ===========
+@mixin placeholder {
+  // sass-lint:disable no-vendor-prefixes
+  &.placeholder { @content }
+  &:-moz-placeholder { @content }
+  &::-webkit-input-placeholder { @content }
+}
+
+@function transparent-color ($color, $opacity) {
+  $trans-color: rgba($color, $opacity);
+  @return $trans-color;
+}
+
+// FONT TO REM
+// ===========
+
+@function calculate-rem($size) {
+  $rem-size: $size / $base-fontsize;
+  @return #{$rem-size}rem;
+}
+
+@mixin font-size($size) {
+  font-size: calculate-rem($size);
+}
+
+// BREAKPOINT
+// ==========
+@mixin bp($breakpoint) {
+
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+
+  } @else {
+    @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`. Please make sure it is defined in `$breakpoints` map.';
+  }
+
+}
+
