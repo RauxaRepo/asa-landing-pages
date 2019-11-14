@@ -110,7 +110,7 @@ __webpack_require__.r(__webpack_exports__);
     request.setRequestHeader('Access-Control-Allow-Origin', '*');
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     request.setRequestHeader("Access-Control-Allow-Origin", '*');
-    request.hsetRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    request.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
     request.setRequestHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     request.send();
     respSubmitted.innerHTML = respAction;
