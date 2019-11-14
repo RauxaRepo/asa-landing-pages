@@ -24,7 +24,8 @@ export default function () {
         request.open('POST', respAction, true);
         request.setRequestHeader('Access-Control-Allow-Origin','*');
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        request.setRequestHeader('Access-Control-Allow-Methods','POST');
+        request.setRequestHeader('Access-Control-Allow-Methods','GET; POST');
+        request.setRequestHeader('Access-Control-Allow-Headers','Origin;Content-Type; X-Auth-Token');
         request.send();
 
         respSubmitted.innerHTML = respAction;
