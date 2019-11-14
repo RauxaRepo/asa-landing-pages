@@ -4,7 +4,7 @@
 # Dependencies
 # - Node modules directory. comment this line to commit them.
 node_modules
-app/*
+
 assets/dist/*
 
 # OS or Editor folders
