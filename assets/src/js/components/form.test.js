@@ -22,7 +22,7 @@ export default function () {
 
         var request = new XMLHttpRequest();
         request.open('POST', respAction, true);
-        request.setRequestHeader('Access-Control-Allow-Origin','*');
+        request.setRequestHeader('Access-Control-Allow-Origin','https://develop.d1h39gcn59q95s.amplifyapp.com');
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.setRequestHeader('Access-Control-Allow-Methods','GET; POST');
         request.setRequestHeader('Access-Control-Allow-Headers','Content-Type; Authorization');

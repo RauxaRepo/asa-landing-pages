@@ -107,7 +107,7 @@ __webpack_require__.r(__webpack_exports__);
     var respAction = "https://ifly.alaskaair.com/pub/sf/ResponseForm?CUSTOMER_ID_=".concat(customerId.value, "&OFFER_CODE=").concat(offerCode.value, "&OFFER_AUTHORIZATION=").concat(offerAuth.value);
     var request = new XMLHttpRequest();
     request.open('POST', respAction, true);
-    request.setRequestHeader('Access-Control-Allow-Origin', '*');
+    request.setRequestHeader('Access-Control-Allow-Origin', 'https://develop.d1h39gcn59q95s.amplifyapp.com');
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     request.setRequestHeader('Access-Control-Allow-Methods', 'GET; POST');
     request.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type; Authorization');
