@@ -24,11 +24,9 @@ export default function () {
         request.open('POST', respAction, true);
         request.setRequestHeader('Access-Control-Allow-Origin','*');
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        request.setRequestHeader('Access-Control-Allow-Methods','GET; POST');
-        request.setRequestHeader('Access-Control-Allow-Headers','Content-Type; Authorization');
-        request.header("Access-Control-Allow-Origin", '*');
-        request.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-        request.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+        request.setRequestHeader("Access-Control-Allow-Origin", '*');
+        request.hsetRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+        request.setRequestHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, Authorization");
         request.send();
 
         respSubmitted.innerHTML = respAction;
