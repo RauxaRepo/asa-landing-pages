@@ -117,7 +117,7 @@ __webpack_require__.r(__webpack_exports__);
       method: "POST",
       //body: new FormData(document.getElementById("inputform")),
       // -- or --
-      mode: 'cors',
+      mode: 'no-cors',
       // no-cors, *cors, same-origin
       headers: {
         'Content-Type': 'application/json' // 'Content-Type': 'application/x-www-form-urlencoded',

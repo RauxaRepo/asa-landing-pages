@@ -32,7 +32,7 @@ export default function () {
             method : "POST",
             //body: new FormData(document.getElementById("inputform")),
             // -- or --
-            mode: 'cors', // no-cors, *cors, same-origin
+            mode: 'no-cors', // no-cors, *cors, same-origin
             headers: {
                 'Content-Type': 'application/json'
                 // 'Content-Type': 'application/x-www-form-urlencoded',
