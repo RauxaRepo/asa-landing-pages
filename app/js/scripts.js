@@ -104,16 +104,33 @@ __webpack_require__.r(__webpack_exports__);
     var customerId = document.querySelector('input[name="id"]');
     var offerCode = document.querySelector('input[name="offer"]');
     var offerAuth = document.querySelector('input[name="auth"]');
-    var respAction = "https://ifly.alaskaair.com/pub/sf/ResponseForm?CUSTOMER_ID_=".concat(customerId.value, "&OFFER_CODE=").concat(offerCode.value, "&OFFER_AUTHORIZATION=").concat(offerAuth.value);
-    var request = new XMLHttpRequest();
-    request.open('POST', respAction, true);
-    request.setRequestHeader('Access-Control-Allow-Origin', '*');
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    request.setRequestHeader("Access-Control-Allow-Origin", '*');
-    request.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    request.setRequestHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    request.send();
-    respSubmitted.innerHTML = respAction;
+    var respAction = "https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGpFzeG4zazfzed7zdDL54OnzaWLJPK52h8zcdFwp9jULOVXMtX%3DYQpglLjHJlYQGn3dtPkhRvhvfuuBUzeJlzbze1K52h8zcdFwp9jULO&_ei_=EufVZXM4FV0kRZ9aOTZMMUw";
+    var respParms = {
+      CUSTOMER_ID_: customerId.value,
+      OFFER_CODE: offerCode.value,
+      OFFER_AUTHORIZATION: offerAuth.value
+    };
+    respSubmitted.innerHTML = JSON.stringify(respParms, undefined, 2);
+    ;
+    var url = respAction;
+    fetch(url, {
+      method: "POST",
+      //body: new FormData(document.getElementById("inputform")),
+      // -- or --
+      mode: 'cors',
+      // no-cors, *cors, same-origin
+      headers: {
+        'Content-Type': 'application/json' // 'Content-Type': 'application/x-www-form-urlencoded',
+
+      },
+      body: JSON.stringify(respParms)
+    }).then(function (response) {
+      return response.text();
+    } // .json(), etc.
+    // same as function(response) {return response.text();}
+    ).then(function (html) {
+      return console.log(html);
+    });
   });
 });
 
