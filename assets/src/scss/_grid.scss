@@ -100,6 +100,49 @@ $column-padding: (
       align-items: stretch;
     }
 
+    // Row-Reverse
+    // ==================
+    &.row-reverse-small {
+      flex-direction: column-reverse;
+
+      @include bp(medium) {
+        flex-direction: row;
+      }
+    }
+
+    &.row-reverse-medium {
+      @include bp(medium) {
+        flex-direction: row-reverse;
+      }
+    }
+
+    &.row-reverse-large {
+      @include bp(large) {
+        flex-direction: row-reverse;
+      }
+    }
+
+
+
+
+    // COLUMNS
+    // ==================
+
+    .column {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 map-deep-get($gridconfig, 'small', 'col-padding');
+      position: relative;
+
+      @include bp(medium) {
+        padding: 0 map-deep-get($gridconfig, 'medium', 'col-padding');
+      }
+
+
+    }
+
   }
 
 }
