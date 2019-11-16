@@ -52,18 +52,21 @@ export default function () {
         respSubmitted.innerHTML = JSON.stringify(respParms, undefined, 2);;
 
         const url = respAction;
+   
         fetch(url, {
             method : "POST",
-            mode: 'no-cors', // no-cors, *cors, same-origin
+            mode: 'cors', // no-cors, *cors, same-origin
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
               },
             body : JSON.stringify(respParms)
-        }).then(
-            response => response.text() // .json(), etc.
-            // same as function(response) {return response.text();}
-        ).then(
+        })
+        .then( response => {
+            console.log(response.status);
+            return response.json()
+        })
+        .then(
             html => console.log(html)
         );
     });

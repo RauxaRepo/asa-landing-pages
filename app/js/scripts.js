@@ -129,18 +129,17 @@ __webpack_require__.r(__webpack_exports__);
     var url = respAction;
     fetch(url, {
       method: "POST",
-      mode: 'no-cors',
+      mode: 'cors',
       // no-cors, *cors, same-origin
       headers: {
-        'Content-Type': 'application/json' // 'Content-Type': 'application/x-www-form-urlencoded',
-
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(respParms)
     }).then(function (response) {
-      return response.text();
-    } // .json(), etc.
-    // same as function(response) {return response.text();}
-    ).then(function (html) {
+      console.log(response.status);
+      return response.json();
+    }).then(function (html) {
       return console.log(html);
     });
   });
