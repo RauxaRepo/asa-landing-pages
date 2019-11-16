@@ -107,3 +107,45 @@
 
 // map-deep-get($header-styles, small, h1, font-size)
 // based on Headers _variables.scsvs
+
+// =============
+
+
+
+
+
+// Mixin doing a loop of object and adding property to go with value
+// $map - object to loop
+// $index - boolean to use index of item or 'key' as the name
+// $prop - property to add to css
+@mixin item-list($map, $index: false, $prop: 'none') {
+
+  @each $item-name, $item in $map {
+
+    @if not map-has-key($map, $item-name) {
+
+      @warn ''#{$item-name}' is not a valid icon name';
+
+    } @else {
+
+      @if $prop == 'none' {
+        @warn 'property option not included, please add property';
+      } @else {
+
+        @if $index == false {
+
+          &-#{$item-name} {
+            #{$prop}: $item;
+          }
+
+        } @else {
+
+          &-#{index($map, $item-name $item)} {
+            #{$prop}: $item;
+          }
+        }
+      }
+    }
+  }
+}
+

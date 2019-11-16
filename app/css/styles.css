@@ -294,6 +294,361 @@ p{
   display:table;
 }
 
+.row{
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+      flex-wrap:wrap;
+  margin:0 auto;
+  padding:0;
+  position:relative;
+  width:100%;
+}
+
+.row::before{
+  content:' ';
+  display:table;
+}
+
+.row::after{
+  content:' ';
+  display:table;
+}
+
+.row.align-left{
+  -webkit-box-pack:start;
+      -ms-flex-pack:start;
+          justify-content:flex-start;
+}
+
+.row.align-right{
+  -webkit-box-pack:end;
+      -ms-flex-pack:end;
+          justify-content:flex-end;
+}
+
+.row.align-center{
+  -webkit-box-pack:center;
+      -ms-flex-pack:center;
+          justify-content:center;
+}
+
+.row.align-justify{
+  -webkit-box-pack:justify;
+      -ms-flex-pack:justify;
+          justify-content:space-between;
+}
+
+.row.align-spaced{
+  -ms-flex-pack:distribute;
+      justify-content:space-around;
+}
+
+.row.align-top{
+  -webkit-box-align:start;
+      -ms-flex-align:start;
+          align-items:flex-start;
+}
+
+.row.align-middle{
+  -webkit-box-align:center;
+      -ms-flex-align:center;
+          align-items:center;
+}
+
+.row.align-bottom{
+  -webkit-box-align:end;
+      -ms-flex-align:end;
+          align-items:flex-end;
+}
+
+.row.align-stretch{
+  -webkit-box-align:stretch;
+      -ms-flex-align:stretch;
+          align-items:stretch;
+}
+
+.row.row-reverse-small{
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:reverse;
+      -ms-flex-direction:column-reverse;
+          flex-direction:column-reverse;
+}
+
+@media (min-width: 768px){
+  .row.row-reverse-small{
+    -webkit-box-orient:horizontal;
+    -webkit-box-direction:normal;
+        -ms-flex-direction:row;
+            flex-direction:row;
+  }
+}
+
+@media (min-width: 768px){
+  .row.row-reverse-medium{
+    -webkit-box-orient:horizontal;
+    -webkit-box-direction:reverse;
+        -ms-flex-direction:row-reverse;
+            flex-direction:row-reverse;
+  }
+}
+
+@media (min-width: 992px){
+  .row.row-reverse-large{
+    -webkit-box-orient:horizontal;
+    -webkit-box-direction:reverse;
+        -ms-flex-direction:row-reverse;
+            flex-direction:row-reverse;
+  }
+}
+
+.row .column{
+  -webkit-box-align:center;
+      -ms-flex-align:center;
+          align-items:center;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+      -ms-flex-direction:column;
+          flex-direction:column;
+  -webkit-box-pack:left;
+      -ms-flex-pack:left;
+          justify-content:left;
+  padding:0 12px;
+  position:relative;
+}
+
+@media (min-width: 768px){
+  .row .column{
+    padding:0 12px;
+  }
+}
+
+.row .column.align-left{
+  -webkit-box-align:start;
+      -ms-flex-align:start;
+          align-items:flex-start;
+}
+
+.row .column.align-right{
+  -webkit-box-align:end;
+      -ms-flex-align:end;
+          align-items:flex-end;
+}
+
+@media (min-width: 768px){
+  .row .column.align-right-medium-up{
+    -webkit-box-align:end;
+        -ms-flex-align:end;
+            align-items:flex-end;
+  }
+}
+
+.row .column.align-middle{
+  -webkit-box-align:center;
+      -ms-flex-align:center;
+          align-items:center;
+}
+
+.row .column.align-top{
+  -webkit-box-pack:start;
+      -ms-flex-pack:start;
+          justify-content:flex-start;
+}
+
+.row .column.align-bottom{
+  -webkit-box-pack:end;
+      -ms-flex-pack:end;
+          justify-content:flex-end;
+}
+
+.row .column.align-center{
+  -webkit-box-pack:center;
+      -ms-flex-pack:center;
+          justify-content:center;
+}
+
+.row .column.column-row{
+  -webkit-box-orient:horizontal;
+  -webkit-box-direction:normal;
+      -ms-flex-direction:row;
+          flex-direction:row;
+  -ms-flex-wrap:wrap;
+      flex-wrap:wrap;
+}
+
+.row .column.no-padding{
+  padding:0;
+}
+
+.row .column.sm-1{
+  width:8.33333%;
+}
+
+.row .column.sm-2{
+  width:16.66667%;
+}
+
+.row .column.sm-3{
+  width:25%;
+}
+
+.row .column.sm-4{
+  width:33.33333%;
+}
+
+.row .column.sm-5{
+  width:41.66667%;
+}
+
+.row .column.sm-6{
+  width:50%;
+}
+
+.row .column.sm-7{
+  width:58.33333%;
+}
+
+.row .column.sm-8{
+  width:66.66667%;
+}
+
+.row .column.sm-9{
+  width:75%;
+}
+
+.row .column.sm-10{
+  width:83.03333%;
+}
+
+.row .column.sm-11{
+  width:91.66667%;
+}
+
+.row .column.sm-12{
+  width:100%;
+}
+
+@media (min-width: 768px){
+  .row .column.md-1{
+    width:8.33333%;
+  }
+  .row .column.md-2{
+    width:16.66667%;
+  }
+  .row .column.md-3{
+    width:25%;
+  }
+  .row .column.md-4{
+    width:33.33333%;
+  }
+  .row .column.md-5{
+    width:41.66667%;
+  }
+  .row .column.md-6{
+    width:50%;
+  }
+  .row .column.md-7{
+    width:58.33333%;
+  }
+  .row .column.md-8{
+    width:66.66667%;
+  }
+  .row .column.md-9{
+    width:75%;
+  }
+  .row .column.md-10{
+    width:83.03333%;
+  }
+  .row .column.md-11{
+    width:91.66667%;
+  }
+  .row .column.md-12{
+    width:100%;
+  }
+}
+
+@media (min-width: 992px){
+  .row .column.lg-1{
+    width:8.33333%;
+  }
+  .row .column.lg-2{
+    width:16.66667%;
+  }
+  .row .column.lg-3{
+    width:25%;
+  }
+  .row .column.lg-4{
+    width:33.33333%;
+  }
+  .row .column.lg-5{
+    width:41.66667%;
+  }
+  .row .column.lg-6{
+    width:50%;
+  }
+  .row .column.lg-7{
+    width:58.33333%;
+  }
+  .row .column.lg-8{
+    width:66.66667%;
+  }
+  .row .column.lg-9{
+    width:75%;
+  }
+  .row .column.lg-10{
+    width:83.03333%;
+  }
+  .row .column.lg-11{
+    width:91.66667%;
+  }
+  .row .column.lg-12{
+    width:100%;
+  }
+}
+
+@media (min-width: 1200px){
+  .row .column.xl-1{
+    width:8.33333%;
+  }
+  .row .column.xl-2{
+    width:16.66667%;
+  }
+  .row .column.xl-3{
+    width:25%;
+  }
+  .row .column.xl-4{
+    width:33.33333%;
+  }
+  .row .column.xl-5{
+    width:41.66667%;
+  }
+  .row .column.xl-6{
+    width:50%;
+  }
+  .row .column.xl-7{
+    width:58.33333%;
+  }
+  .row .column.xl-8{
+    width:66.66667%;
+  }
+  .row .column.xl-9{
+    width:75%;
+  }
+  .row .column.xl-10{
+    width:83.03333%;
+  }
+  .row .column.xl-11{
+    width:91.66667%;
+  }
+  .row .column.xl-12{
+    width:100%;
+  }
+}
+
 .responsys-test label{
   position:relative;
   min-width:150px;
