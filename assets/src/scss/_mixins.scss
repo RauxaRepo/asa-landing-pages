@@ -11,14 +11,37 @@
   }
 }
 
+// HOW TO USE :
 
+// input {
+//   @include placeholder {
+//     /* styles for placeholder here */
+//   }
+// }
+
+// ===========
+
+
+// TRANSPARENT COLOR 
+// ===========
 @function transparent-color ($color, $opacity) {
   $trans-color: rgba($color, $opacity);
   @return $trans-color;
 }
 
+// HOW TO USE :
+
+// div {
+//  background-color: transparent-color($black, .5);
+// }
+
+// ===========
+
+
+
 // FONT TO REM
 // ===========
+
 @function calculate-rem($size) {
   $rem-size: $size / $base-fontsize;
   @return #{$rem-size}rem;
@@ -27,6 +50,17 @@
 @mixin font-size($size) {
   font-size: calculate-rem($size);
 }
+
+// HOW TO USE:
+
+// p {
+//  @include font-size(16px);
+// }
+
+// ===========
+
+
+
 
 // BREAKPOINT
 // ==========
@@ -41,8 +75,15 @@
   } @else {
     @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`. Please make sure it is defined in `$breakpoints` map.';
   }
-
 }
 
+// HOW TO USE:
 
+// div {
+//  @include bp(medium) {
+//    your css...
+//  }
+// }
+
+// ===========
 
