@@ -9,8 +9,16 @@ $breakpoints: (
   xl: 1200px
 );
 
+$column-padding: (
+  xs: ('col-padding': 12px),
+  sm: ('col-padding': 12px),
+  md: ('col-padding': 12px),
+  lg: ('col-padding': 12px),
+  xl: ('col-padding': 12px)
+);
 
-@function grid-create($new-break-points: $breakpoints) {
+
+@mixin grid-create($new-break-points: $breakpoints) {
 
   $grid-breakpoints: $new-break-points;
 
@@ -28,5 +36,70 @@ $breakpoints: (
     11: 91.66666667%,
     12: 100%
   );
+
+
+  // ROWS
+  // ==================
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    width: 100%;
+
+    &::before {
+      content: ' ';
+      display: table;
+    }
+
+    &::after {
+      content: ' ';
+      display: table;
+    }
+
+    // Horizontal Aligmnent | with flex-direction row
+    // ==================
+
+    &.align-left {
+      justify-content: flex-start;
+    }
+
+    &.align-right {
+      justify-content: flex-end;
+    }
+
+    &.align-center {
+      justify-content: center;
+    }
+
+    &.align-justify {
+      justify-content: space-between;
+    }
+
+    &.align-spaced {
+      justify-content: space-around;
+    }
+
+    // Vertical Aligmnent | with flex-direction row
+    // ==================
+    &.align-top {
+      align-items: flex-start;
+    }
+
+    &.align-middle {
+      align-items: center;
+    }
+
+    &.align-bottom {
+      align-items: flex-end;
+    }
+
+    &.align-stretch {
+      align-items: stretch;
+    }
+
+  }
 
 }

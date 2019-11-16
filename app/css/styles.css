@@ -246,15 +246,8 @@ button{
 }
 
 p{
-  margin-top:30px;
+  margin-top:0;
   margin-bottom:0;
-}
-
-.container{
-  position:relative;
-  margin:0;
-  width:100%;
-  padding:0 5%;
 }
 
 .background-color-black{
@@ -263,6 +256,42 @@ p{
 
 .text-color-white{
   color:#fff;
+}
+
+.section{
+  display:block;
+  position:relative;
+  width:100%;
+}
+
+.container{
+  position:relative;
+  margin:0 auto;
+  width:100%;
+  padding:0;
+  max-width:1440px;
+}
+
+.row{
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+      flex-wrap:wrap;
+  margin:0 auto;
+  padding:0;
+  position:relative;
+  width:100%;
+}
+
+.row::before{
+  content:' ';
+  display:table;
+}
+
+.row::after{
+  content:' ';
+  display:table;
 }
 
 .responsys-test label{
