@@ -96,15 +96,29 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var respForm = document.querySelector('.responsys-test form');
+  var respAction = "https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0";
   var respSubmitBtn = document.querySelector('.submit-btn');
   var respSubmitted = document.querySelector('.submitted-params');
+  var landingUrl = window.location.href;
+  var customerId = document.querySelector('input[name="id"]');
+  var offerCode = document.querySelector('input[name="offer"]');
+  var offerAuth = document.querySelector('input[name="auth"]'); // function to grab params from url
+
+  var urlVars = function urlVars() {
+    var vars = {};
+    var parts = landingUrl.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+      vars[key] = value;
+    });
+    return vars;
+  }; // setting inputs based on url params
+
+
+  customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
+  offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
+  offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : ''; // submitting function
+
   respSubmitBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    var customerId = document.querySelector('input[name="id"]');
-    var offerCode = document.querySelector('input[name="offer"]');
-    var offerAuth = document.querySelector('input[name="auth"]');
-    var respAction = "https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGpFzeG4zazfzed7zdDL54OnzaWLJPK52h8zcdFwp9jULOVXMtX%3DYQpglLjHJlYQGn3dtPkhRvhvfuuBUzeJlzbze1K52h8zcdFwp9jULO&_ei_=EufVZXM4FV0kRZ9aOTZMMUw";
     var respParms = {
       CUSTOMER_ID_: customerId.value,
       OFFER_CODE: offerCode.value,
@@ -115,8 +129,6 @@ __webpack_require__.r(__webpack_exports__);
     var url = respAction;
     fetch(url, {
       method: "POST",
-      //body: new FormData(document.getElementById("inputform")),
-      // -- or --
       mode: 'no-cors',
       // no-cors, *cors, same-origin
       headers: {
