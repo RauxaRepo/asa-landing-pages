@@ -1,12 +1,16 @@
 
 // PLACEHOLDER 
 // ===========
+// sass-lint:disable no-vendor-prefixes
 @mixin placeholder {
-  // sass-lint:disable no-vendor-prefixes
-  &.placeholder { @content }
-  &:-moz-placeholder { @content }
-  &::-webkit-input-placeholder { @content }
+  $placeholders: ':-webkit-input' ':-moz' '-moz' '-ms-input';
+  @each $placeholder in $placeholders {
+    &:#{$placeholder}-placeholder {
+      @content;
+    }
+  }
 }
+
 
 @function transparent-color ($color, $opacity) {
   $trans-color: rgba($color, $opacity);
@@ -15,7 +19,6 @@
 
 // FONT TO REM
 // ===========
-
 @function calculate-rem($size) {
   $rem-size: $size / $base-fontsize;
   @return #{$rem-size}rem;
@@ -40,4 +43,6 @@
   }
 
 }
+
+
 
