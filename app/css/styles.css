@@ -236,6 +236,7 @@ template{
 body{
   background-color:transparent;
   font-family:Helvetica, Arial, sans-serif;
+  min-width:320px;
 }
 
 a,

@@ -34,7 +34,7 @@ img {
 body {
   background-color: transparent;
   font-family: $font-standard;
-
+  min-width: $layout-min-width;
 }
 
 a,

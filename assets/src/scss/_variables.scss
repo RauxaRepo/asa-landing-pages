@@ -5,11 +5,7 @@ $base-fontsize: 16px;
 //fonts 
 $font-standard: Helvetica, Arial, sans-serif;
 
-//breakpoints
-$breakpoints: (
-  xs: 320px,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px
-);
+// Setup layout max-width
+$layout-margin: 0;
+$layout-max-width: 1440px;
+$layout-min-width: 320px;

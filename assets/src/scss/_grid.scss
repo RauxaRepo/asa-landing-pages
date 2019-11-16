@@ -1,0 +1,32 @@
+
+
+//breakpoints
+$breakpoints: (
+  xs: 320px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+
+@function grid-create($new-break-points: $breakpoints) {
+
+  $grid-breakpoints: $new-break-points;
+
+  $grid-columns: (
+    1: 08.333333333%,
+    2: 16.66666667%,
+    3: 25%,
+    4: 33.33333333%,
+    5: 41.66666667%,
+    6: 50%,
+    7: 58.33333333%,
+    8: 66.66666667%,
+    9: 75%,
+    10: 83.033333333%,
+    11: 91.66666667%,
+    12: 100%
+  );
+
+}
