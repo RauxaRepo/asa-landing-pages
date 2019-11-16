@@ -3,7 +3,7 @@ export default function () {
 
 
 
-    let respAction = `https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0`;
+    let respAction = `http://cors-anywhere.herokuapp.com/https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0`;
 
 
     let respSubmitBtn = document.querySelector('.submit-btn');
@@ -64,7 +64,8 @@ export default function () {
         })
         .then( response => {
             console.log(response.status);
-            return response.json()
+            console.log(response);
+            //return response.json()
         })
         .then(
             html => console.log(html)
