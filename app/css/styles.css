@@ -258,7 +258,7 @@ p{
   color:#fff;
 }
 
-.section{
+section{
   display:block;
   position:relative;
   width:100%;
@@ -308,12 +308,12 @@ p{
 
 .row::before{
   content:' ';
-  display:table;
+  display:none;
 }
 
 .row::after{
   content:' ';
-  display:table;
+  display:none;
 }
 
 .row.align-left{
@@ -404,9 +404,6 @@ p{
 }
 
 .row .column{
-  -webkit-box-align:center;
-      -ms-flex-align:center;
-          align-items:center;
   display:-webkit-box;
   display:-ms-flexbox;
   display:flex;
@@ -414,9 +411,12 @@ p{
   -webkit-box-direction:normal;
       -ms-flex-direction:column;
           flex-direction:column;
-  -webkit-box-pack:left;
-      -ms-flex-pack:left;
-          justify-content:left;
+  -webkit-box-pack:start;
+      -ms-flex-pack:start;
+          justify-content:flex-start;
+  -webkit-box-align:start;
+      -ms-flex-align:start;
+          align-items:flex-start;
   padding:0 12px;
   position:relative;
 }
@@ -693,6 +693,41 @@ main{
       -ms-flex-pack:center;
           justify-content:center;
   background-color:#f1f1f1;
+}
+
+.guide main{
+  background-color:#fff;
+  display:block;
+}
+
+.guide .row{
+  background-color:#000;
+  padding:10px 0;
+}
+
+.guide .row.guide_row{
+  background-color:#fff;
+}
+
+.guide .row.guide_row .guide_row--title{
+  font-size:2.5rem;
+  margin:50px 0 0;
+}
+
+.guide .row.guide_row .guide_row--desc{
+  font-size:1.125rem;
+  line-height:1.25;
+  margin-top:15px;
+}
+
+.guide .row.guide_row .column{
+  background-color:#fff;
+  background-clip:padding-box;
+}
+
+.guide .column{
+  background-color:#f1f1f1;
+  background-clip:content-box;
 }
 
 /*# sourceMappingURL=main.css.map */

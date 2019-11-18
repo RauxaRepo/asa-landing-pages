@@ -49,12 +49,12 @@ $column-padding: (
 
     &::before {
       content: ' ';
-      display: table;
+      display: none;
     }
 
     &::after {
       content: ' ';
-      display: table;
+      display: none;
     }
 
     // Horizontal Aligmnent | with flex-direction row
@@ -129,10 +129,10 @@ $column-padding: (
     //
 
     .column {
-      align-items: center;
       display: flex;
       flex-direction: column;
-      justify-content: left;
+      justify-content: flex-start; // vert
+      align-items: flex-start; // hori
       padding: 0 map-deep-get($column-padding, sm, 'col-padding');
       position: relative;
 

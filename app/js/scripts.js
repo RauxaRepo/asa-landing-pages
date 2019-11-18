@@ -96,7 +96,6 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var respAction = "https://cors-anywhere.herokuapp.com/https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0";
   var respSubmitBtn = document.querySelector('.submit-btn');
   var respSubmitted = document.querySelector('.submitted-params');
   var landingUrl = window.location.href;
@@ -126,6 +125,12 @@ __webpack_require__.r(__webpack_exports__);
     };
     respSubmitted.innerHTML = JSON.stringify(respParms, undefined, 2);
     ;
+    /*
+      body: 'firstName=Nikhil&favColor=blue&password=easytoguess',
+      headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+    */
+
+    var respAction = "https://cors-anywhere.herokuapp.com/https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0&CUSTOMER_ID_=".concat(customerId.value, "&OFFER_CODE=").concat(offerCode.value, "&OFFER_AUTHORIZATION=").concat(offerAuth.value);
     var url = respAction;
     fetch(url, {
       method: "POST",
@@ -135,7 +140,8 @@ __webpack_require__.r(__webpack_exports__);
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(respParms)
+      body: JSON.stringify(respParms) //body: `CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`,
+
     }).then(function (response) {
       console.log(response.status);
       console.log(response); //return response.json()

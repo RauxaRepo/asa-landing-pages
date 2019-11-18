@@ -3,7 +3,7 @@ export default function () {
 
 
 
-    let respAction = `https://cors-anywhere.herokuapp.com/https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0`;
+
 
 
     let respSubmitBtn = document.querySelector('.submit-btn');
@@ -51,8 +51,16 @@ export default function () {
 
         respSubmitted.innerHTML = JSON.stringify(respParms, undefined, 2);;
 
+        
+
+        /*
+          body: 'firstName=Nikhil&favColor=blue&password=easytoguess',
+          headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+        */
+
+        let respAction = `https://cors-anywhere.herokuapp.com/https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0&CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`;
         const url = respAction;
-   
+        
         fetch(url, {
             method : "POST",
             mode: 'cors', // no-cors, *cors, same-origin
@@ -61,6 +69,7 @@ export default function () {
                 'Content-Type': 'application/json'
               },
             body : JSON.stringify(respParms)
+            //body: `CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`,
         })
         .then( response => {
             console.log(response.status);
