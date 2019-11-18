@@ -1,4 +1,4 @@
-# --------------
+
 
 ## getting started
 i prefer Yarn but you can also use NPM  

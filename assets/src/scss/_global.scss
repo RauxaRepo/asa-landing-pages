@@ -34,7 +34,7 @@ img {
 body {
   background-color: transparent;
   font-family: $font-standard;
-
+  min-width: $layout-min-width;
 }
 
 a,
@@ -44,16 +44,11 @@ button {
 }
 
 p {
-  margin-top: 30px;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
-.container {
-  position: relative;
-  margin: 0;
-  width: 100%;
-  padding: 0 5%;
-}
+
 
 .background-color-black {
   background-color: $black;
@@ -62,3 +57,45 @@ p {
 .text-color-white {
   color: $white;
 }
+
+
+
+// CONTAINERS
+// ==========
+
+section {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0;
+  max-width: $layout-max-width;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: ' ';
+    display: table;
+  }
+
+  &::after {
+    content: ' ';
+    display: table;
+  }
+
+}
+
+
+@include grid-create;

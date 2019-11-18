@@ -1,0 +1,220 @@
+
+//breakpoints
+$breakpoints: (
+  xs: 320px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+$column-padding: (
+  xs: ('col-padding': 12px),
+  sm: ('col-padding': 12px),
+  md: ('col-padding': 12px),
+  lg: ('col-padding': 12px),
+  xl: ('col-padding': 12px)
+);
+
+@mixin grid-create($new-break-points: $breakpoints) {
+
+  $grid-breakpoints: $new-break-points;
+
+  $grid-columns: (
+    1: 08.333333333%,
+    2: 16.66666667%,
+    3: 25%,
+    4: 33.33333333%,
+    5: 41.66666667%,
+    6: 50%,
+    7: 58.33333333%,
+    8: 66.66666667%,
+    9: 75%,
+    10: 83.033333333%,
+    11: 91.66666667%,
+    12: 100%
+  );
+
+
+  // ROWS
+  // ==================
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    width: 100%;
+
+    &::before {
+      content: ' ';
+      display: none;
+    }
+
+    &::after {
+      content: ' ';
+      display: none;
+    }
+
+    // Horizontal Aligmnent | with flex-direction row
+    // ==================
+
+    &.align-left {
+      justify-content: flex-start;
+    }
+
+    &.align-right {
+      justify-content: flex-end;
+    }
+
+    &.align-center {
+      justify-content: center;
+    }
+
+    &.align-justify {
+      justify-content: space-between;
+    }
+
+    &.align-spaced {
+      justify-content: space-around;
+    }
+
+    // Vertical Aligmnent | with flex-direction row
+    // ==================
+    &.align-top {
+      align-items: flex-start;
+    }
+
+    &.align-middle {
+      align-items: center;
+    }
+
+    &.align-bottom {
+      align-items: flex-end;
+    }
+
+    &.align-stretch {
+      align-items: stretch;
+    }
+
+    // Row-Reverse
+    // ==================
+    &.row-reverse-small {
+      flex-direction: column-reverse;
+
+      @include bp(md) {
+        flex-direction: row;
+      }
+    }
+
+    &.row-reverse-medium {
+      @include bp(md) {
+        flex-direction: row-reverse;
+      }
+    }
+
+    &.row-reverse-large {
+      @include bp(lg) {
+        flex-direction: row-reverse;
+      }
+    }
+
+
+
+
+    // COLUMNS
+    // ==================
+    // columns are set to content left by default
+    //
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; // vert
+      align-items: flex-start; // hori
+      padding: 0 map-deep-get($column-padding, sm, 'col-padding');
+      position: relative;
+
+      @include bp(md) {
+        padding: 0 map-deep-get($column-padding, md, 'col-padding');
+      }
+
+
+      // COLUMN | horizontal alignment
+      // =======
+
+      &.align-left {
+        align-items: flex-start;
+      }
+
+      &.align-right {
+        align-items: flex-end;
+      }
+
+      &.align-right-medium-up {
+        @media (min-width: #{map-get($breakpoints, md)}) {
+          align-items: flex-end;
+        }
+      }
+
+      &.align-middle {
+        align-items: center;
+      }
+
+      // COLUMN | vertical alignment
+      // =======
+
+      &.align-top {
+        justify-content: flex-start;
+      }
+
+      &.align-bottom {
+        justify-content: flex-end;
+      }
+
+      &.align-center {
+        justify-content: center;
+      }
+
+      // COLUMN DIRECTION ROW
+      &.column-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+
+      // UTILITIES | no padding
+      &.no-padding {
+        padding: 0;
+      }
+
+
+
+      &.sm {
+        @include item-list($grid-columns, false, width);
+      }
+
+      &.md {
+        @include bp(md) {
+          @include item-list($grid-columns, false, width);
+        }
+      }
+
+      &.lg {
+        @include bp(lg) {
+          @include item-list($grid-columns, false, width);
+        }
+      }
+
+      &.xl {
+        @include bp(xl) {
+          @include item-list($grid-columns, false, width);
+        }
+      }
+
+    }
+
+  }
+
+}
