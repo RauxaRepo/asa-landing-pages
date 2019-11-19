@@ -484,6 +484,10 @@ section{
   padding:0;
 }
 
+.row .column.sm-6{
+  width:50%;
+}
+
 .row .column.sm-1{
   width:8.33333%;
 }

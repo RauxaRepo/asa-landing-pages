@@ -192,6 +192,9 @@ $column-padding: (
 
 
       &.sm {
+        &-6{
+          width: 50%;
+        }
         @include item-list($grid-columns, false, width);
       }
 

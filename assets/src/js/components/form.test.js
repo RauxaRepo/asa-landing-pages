@@ -1,3 +1,7 @@
+
+const config = require('../../../../.gb/config');
+const base64 = require('base-64');
+
 export default function () {
 
 
@@ -12,6 +16,10 @@ export default function () {
     let customerId = document.querySelector('input[name="id"]');
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
+
+    let getTokenUrl = `https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=${config.creds.user}&password=${config.creds.pass}&auth_type=password`;
+
+    //
 
 
 
@@ -39,46 +47,28 @@ export default function () {
 
     // submitting function
     respSubmitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+        e.preventDefault(base64.encode(config.creds.user));
 
-
-        let respParms = {
-            CUSTOMER_ID_ : customerId.value,
-            OFFER_CODE : offerCode.value,
-            OFFER_AUTHORIZATION : offerAuth.value
+        let tokenParms = {
+            user_name : config.creds.user,
+            password : config.creds.pass,
+            auth_type : 'password'
         };
 
 
-        respSubmitted.innerHTML = JSON.stringify(respParms, undefined, 2);;
-
-        
-
-        /*
-          body: 'firstName=Nikhil&favColor=blue&password=easytoguess',
-          headers: { 'Content-type': 'application/x-www-form-urlencoded' }
-        */
-
-        let respAction = `https://cors-anywhere.herokuapp.com/https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0&CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`;
-        const url = respAction;
-        
-        fetch(url, {
+        fetch(getTokenUrl, {
             method : "POST",
             mode: 'cors', // no-cors, *cors, same-origin
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
               },
-            body : JSON.stringify(respParms)
+           // body : JSON.stringify(tokenParms)
             //body: `CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`,
         })
-        .then( response => {
-            console.log(response.status);
-            console.log(response);
-            //return response.json()
-        })
-        .then(
-            html => console.log(html)
-        );
+        .then(response => response.json())
+        .then(json => console.log(json));
+        
     });
 
 

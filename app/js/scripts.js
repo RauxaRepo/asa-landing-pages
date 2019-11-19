@@ -95,13 +95,19 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var config = __webpack_require__(/*! ../../../../.gb/config */ "./config.js");
+
+var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.js");
+
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var respSubmitBtn = document.querySelector('.submit-btn');
   var respSubmitted = document.querySelector('.submitted-params');
   var landingUrl = window.location.href;
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
-  var offerAuth = document.querySelector('input[name="auth"]'); // function to grab params from url
+  var offerAuth = document.querySelector('input[name="auth"]');
+  var getTokenUrl = "https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=".concat(config.creds.user, "&password=").concat(config.creds.pass, "&auth_type=password"); //
+  // function to grab params from url
 
   var urlVars = function urlVars() {
     var vars = {};
@@ -117,36 +123,26 @@ __webpack_require__.r(__webpack_exports__);
   offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : ''; // submitting function
 
   respSubmitBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    var respParms = {
-      CUSTOMER_ID_: customerId.value,
-      OFFER_CODE: offerCode.value,
-      OFFER_AUTHORIZATION: offerAuth.value
+    e.preventDefault(base64.encode(config.creds.user));
+    var tokenParms = {
+      user_name: config.creds.user,
+      password: config.creds.pass,
+      auth_type: 'password'
     };
-    respSubmitted.innerHTML = JSON.stringify(respParms, undefined, 2);
-    ;
-    /*
-      body: 'firstName=Nikhil&favColor=blue&password=easytoguess',
-      headers: { 'Content-type': 'application/x-www-form-urlencoded' }
-    */
-
-    var respAction = "https://cors-anywhere.herokuapp.com/https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0&CUSTOMER_ID_=".concat(customerId.value, "&OFFER_CODE=").concat(offerCode.value, "&OFFER_AUTHORIZATION=").concat(offerAuth.value);
-    var url = respAction;
-    fetch(url, {
+    fetch(getTokenUrl, {
       method: "POST",
       mode: 'cors',
       // no-cors, *cors, same-origin
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(respParms) //body: `CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      } // body : JSON.stringify(tokenParms)
+      //body: `CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`,
 
     }).then(function (response) {
-      console.log(response.status);
-      console.log(response); //return response.json()
-    }).then(function (html) {
-      return console.log(html);
+      return response.json();
+    }).then(function (json) {
+      return console.log(json);
     });
   });
 });
@@ -254,6 +250,163 @@ __webpack_require__(/*! core-js/fn/promise/finally */ "../node_modules/core-js/f
 __webpack_require__(/*! core-js/web */ "../node_modules/core-js/web/index.js");
 
 __webpack_require__(/*! regenerator-runtime/runtime */ "../node_modules/regenerator-runtime/runtime.js");
+
+/***/ }),
+
+/***/ "../node_modules/base-64/base64.js":
+/*!*****************************************!*\
+  !*** ../node_modules/base-64/base64.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/*! http://mths.be/base64 v0.1.0 by @mathias | MIT license */
+;
+
+(function (root) {
+  // Detect free variables `exports`.
+  var freeExports = ( false ? undefined : _typeof(exports)) == 'object' && exports; // Detect free variable `module`.
+
+  var freeModule = ( false ? undefined : _typeof(module)) == 'object' && module && module.exports == freeExports && module; // Detect free variable `global`, from Node.js or Browserified code, and use
+  // it as `root`.
+
+  var freeGlobal = (typeof global === "undefined" ? "undefined" : _typeof(global)) == 'object' && global;
+
+  if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
+    root = freeGlobal;
+  }
+  /*--------------------------------------------------------------------------*/
+
+
+  var InvalidCharacterError = function InvalidCharacterError(message) {
+    this.message = message;
+  };
+
+  InvalidCharacterError.prototype = new Error();
+  InvalidCharacterError.prototype.name = 'InvalidCharacterError';
+
+  var error = function error(message) {
+    // Note: the error messages used throughout this file match those used by
+    // the native `atob`/`btoa` implementation in Chromium.
+    throw new InvalidCharacterError(message);
+  };
+
+  var TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'; // http://whatwg.org/html/common-microsyntaxes.html#space-character
+
+  var REGEX_SPACE_CHARACTERS = /[\t\n\f\r ]/g; // `decode` is designed to be fully compatible with `atob` as described in the
+  // HTML Standard. http://whatwg.org/html/webappapis.html#dom-windowbase64-atob
+  // The optimized base64-decoding algorithm used is based on @atk’s excellent
+  // implementation. https://gist.github.com/atk/1020396
+
+  var decode = function decode(input) {
+    input = String(input).replace(REGEX_SPACE_CHARACTERS, '');
+    var length = input.length;
+
+    if (length % 4 == 0) {
+      input = input.replace(/==?$/, '');
+      length = input.length;
+    }
+
+    if (length % 4 == 1 || // http://whatwg.org/C#alphanumeric-ascii-characters
+    /[^+a-zA-Z0-9/]/.test(input)) {
+      error('Invalid character: the string to be decoded is not correctly encoded.');
+    }
+
+    var bitCounter = 0;
+    var bitStorage;
+    var buffer;
+    var output = '';
+    var position = -1;
+
+    while (++position < length) {
+      buffer = TABLE.indexOf(input.charAt(position));
+      bitStorage = bitCounter % 4 ? bitStorage * 64 + buffer : buffer; // Unless this is the first of a group of 4 characters…
+
+      if (bitCounter++ % 4) {
+        // …convert the first 8 bits to a single ASCII character.
+        output += String.fromCharCode(0xFF & bitStorage >> (-2 * bitCounter & 6));
+      }
+    }
+
+    return output;
+  }; // `encode` is designed to be fully compatible with `btoa` as described in the
+  // HTML Standard: http://whatwg.org/html/webappapis.html#dom-windowbase64-btoa
+
+
+  var encode = function encode(input) {
+    input = String(input);
+
+    if (/[^\0-\xFF]/.test(input)) {
+      // Note: no need to special-case astral symbols here, as surrogates are
+      // matched, and the input is supposed to only contain ASCII anyway.
+      error('The string to be encoded contains characters outside of the ' + 'Latin1 range.');
+    }
+
+    var padding = input.length % 3;
+    var output = '';
+    var position = -1;
+    var a;
+    var b;
+    var c;
+    var d;
+    var buffer; // Make sure any padding is handled outside of the loop.
+
+    var length = input.length - padding;
+
+    while (++position < length) {
+      // Read three bytes, i.e. 24 bits.
+      a = input.charCodeAt(position) << 16;
+      b = input.charCodeAt(++position) << 8;
+      c = input.charCodeAt(++position);
+      buffer = a + b + c; // Turn the 24 bits into four chunks of 6 bits each, and append the
+      // matching character for each of them to the output.
+
+      output += TABLE.charAt(buffer >> 18 & 0x3F) + TABLE.charAt(buffer >> 12 & 0x3F) + TABLE.charAt(buffer >> 6 & 0x3F) + TABLE.charAt(buffer & 0x3F);
+    }
+
+    if (padding == 2) {
+      a = input.charCodeAt(position) << 8;
+      b = input.charCodeAt(++position);
+      buffer = a + b;
+      output += TABLE.charAt(buffer >> 10) + TABLE.charAt(buffer >> 4 & 0x3F) + TABLE.charAt(buffer << 2 & 0x3F) + '=';
+    } else if (padding == 1) {
+      buffer = input.charCodeAt(position);
+      output += TABLE.charAt(buffer >> 2) + TABLE.charAt(buffer << 4 & 0x3F) + '==';
+    }
+
+    return output;
+  };
+
+  var base64 = {
+    'encode': encode,
+    'decode': decode,
+    'version': '0.1.0'
+  }; // Some AMD build optimizers, like r.js, check for specific condition patterns
+  // like the following:
+
+  if ( true && _typeof(__webpack_require__(/*! !webpack amd options */ "../node_modules/webpack/buildin/amd-options.js")) == 'object' && __webpack_require__(/*! !webpack amd options */ "../node_modules/webpack/buildin/amd-options.js")) {
+    !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+      return base64;
+    }).call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (freeExports && !freeExports.nodeType) {
+    if (freeModule) {
+      // in Node.js or RingoJS v0.8.0+
+      freeModule.exports = base64;
+    } else {
+      // in Narwhal or RingoJS v0.7.0-
+      for (var key in base64) {
+        base64.hasOwnProperty(key) && (freeExports[key] = base64[key]);
+      }
+    }
+  } else {
+    // in Rhino or a web browser
+    root.base64 = base64;
+  }
+})(this);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "../node_modules/webpack/buildin/module.js")(module), __webpack_require__(/*! ./../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -11644,6 +11797,50 @@ try {
 
 /***/ }),
 
+/***/ "../node_modules/webpack/buildin/amd-options.js":
+/*!******************************************************!*\
+  !*** ../node_modules/webpack/buildin/amd-options.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
+module.exports = __webpack_amd_options__;
+
+/* WEBPACK VAR INJECTION */}.call(this, {}))
+
+/***/ }),
+
+/***/ "../node_modules/webpack/buildin/global.js":
+/*!*************************************************!*\
+  !*** ../node_modules/webpack/buildin/global.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var g; // This works in non-strict mode
+
+g = function () {
+  return this;
+}();
+
+try {
+  // This works if eval is allowed (see CSP)
+  g = g || new Function("return this")();
+} catch (e) {
+  // This works if the window reference is available
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) === "object") g = window;
+} // g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+
+module.exports = g;
+
+/***/ }),
+
 /***/ "../node_modules/webpack/buildin/module.js":
 /*!*************************************************!*\
   !*** ../node_modules/webpack/buildin/module.js ***!
@@ -12220,6 +12417,95 @@ if (!self.fetch) {
   self.Request = Request;
   self.Response = Response;
 }
+
+/***/ }),
+
+/***/ "../package.json":
+/*!***********************!*\
+  !*** ../package.json ***!
+  \***********************/
+/*! exports provided: name, version, description, scripts, babel, homepage, repository, author, license, browserslist, dependencies, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"name\":\"gulp-boostrap\",\"version\":\"0.0.1\",\"description\":\"gulp process to generate static pages for templates\",\"scripts\":{\"devbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks devbuild\",\"prodbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks prodbuild\"},\"babel\":{\"presets\":[\"env\"],\"babelrc\":false},\"homepage\":\"http://\",\"repository\":{\"type\":\"git\",\"url\":\"https://\"},\"author\":\"FJ\",\"license\":\"MIT\",\"browserslist\":[\"ie >= 11\",\"last 2 version\",\"> 5%\"],\"dependencies\":{\"@babel/core\":\"^7.4.5\",\"@babel/polyfill\":\"^7.4.4\",\"@babel/preset-env\":\"^7.4.5\",\"babel-core\":\"^6.26.3\",\"babel-loader\":\"^8.0.6\",\"babel-preset-env\":\"^1.7.0\",\"base-64\":\"^0.1.0\",\"browser-sync\":\"^2.26.7\",\"cssnano\":\"^4.1.10\",\"gulp\":\"^4.0.2\",\"gulp-autoprefixer\":\"^6.1.0\",\"gulp-babel\":\"^8.0.0\",\"gulp-clean\":\"^0.4.0\",\"gulp-postcss\":\"^8.0.0\",\"gulp-rename\":\"^1.4.0\",\"gulp-sass\":\"^4.0.2\",\"gulp-sass-lint\":\"^1.4.0\",\"gulp-server-livereload\":\"^1.9.2\",\"gulp-sourcemaps\":\"^2.6.5\",\"merge-stream\":\"^2.0.0\",\"normalize-scss\":\"^7.0.1\",\"postcss-discard-comments\":\"^4.0.2\",\"webpack\":\"^4.35.0\",\"webpack-stream\":\"^5.2.1\",\"whatwg-fetch\":\"^3.0.0\"}}");
+
+/***/ }),
+
+/***/ "./config.js":
+/*!*******************!*\
+  !*** ./config.js ***!
+  \*******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+
+ .----------------.  .----------------.  .----------------.   .----------------.  .----------------. 
+| .--------------. || .--------------. || .--------------. | | .--------------. || .--------------. |
+| |  ____  ____  | || |     _____    | || |  _______     | | | |     __       | || |    ______    | |
+| | |_  _||_  _| | || |    |_   _|   | || | |_   __ \    | | | |    /  |      | || |  .' ____ '.  | |
+| |   \ \  / /   | || |      | |     | || |   | |__) |   | | | |    `| |      | || |  | (____) |  | |
+| |    \ \/ /    | || |      | |     | || |   |  __ /    | | | |     | |      | || |  '_.____. |  | |
+| |    _|  |_    | || |     _| |_    | || |  _| |  \ \_  | | | |    _| |_     | || |  | \____| |  | |
+| |   |______|   | || |    |_____|   | || | |____| |___| | | | |   |_____|    | || |   \______,'  | |
+| |              | || |              | || |              | | | |              | || |              | |
+| '--------------' || '--------------' || '--------------' | | '--------------' || '--------------' |
+ '----------------'  '----------------'  '----------------'   '----------------'  '----------------' 
+
+*/
+var pkg = __webpack_require__(/*! ../package */ "../package.json");
+
+var ConfigOptions = function ConfigOptions() {
+  var config = this; // source directory 
+
+  config.srcDir = '../assets/src'; // dist directory
+
+  config.distDir = '../assets/dist'; // local development : for local testing
+
+  config.localDir = '../app';
+  /*
+    Local directories
+    ===================================
+  */
+
+  config.local = {
+    imagesDir: "".concat(config.srcDir, "/images/*.**"),
+    viewsDir: "".concat(config.srcDir, "/views/*.html"),
+    appcss: "".concat(config.localDir, "/css"),
+    appjs: "".concat(config.localDir, "/js"),
+    appimg: "".concat(config.localDir, "/images")
+  };
+  /*
+   Framework Scss/css directories
+   ===================================
+   scssDir : location of all scss files
+   distDir : location of unminified css
+  */
+
+  config.css = {
+    scssDir: "".concat(config.srcDir, "/scss"),
+    distDir: "".concat(config.distDir, "/css")
+  };
+  /*
+   Framework Javascript directories
+   ===================================
+   srcDir : source javascript
+   distDir : compiled javascript
+  */
+
+  config.js = {
+    srcDir: "".concat(config.srcDir, "/js"),
+    // config.js.srcDir
+    distDir: "".concat(config.distDir, "/js") // config.js.distDir
+
+  };
+  config.creds = {
+    user: 'CSAlaskaAPI',
+    pass: '@Lze1nIuDW'
+  };
+};
+
+module.exports = new ConfigOptions();
 
 /***/ })
 
