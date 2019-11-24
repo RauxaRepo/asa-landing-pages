@@ -18,7 +18,13 @@ $column-padding: (
 
 @mixin grid-create($new-break-points: $breakpoints) {
 
-  $grid-breakpoints: $new-break-points;
+  $grid-breakpoints: '';
+
+  @if ($new-break-points != $breakpoints) {
+    $grid-breakpoints: $new-break-points;
+  } @else {
+    $grid-breakpoints: $breakpoints;
+  }
 
   $grid-columns: (
     1: 08.333333333%,
@@ -190,29 +196,11 @@ $column-padding: (
       }
 
 
-
-      &.sm {
-        &-6{
-          width: 50%;
-        }
-        @include item-list($grid-columns, false, width);
-      }
-
-      &.md {
-        @include bp(md) {
-          @include item-list($grid-columns, false, width);
-        }
-      }
-
-      &.lg {
-        @include bp(lg) {
-          @include item-list($grid-columns, false, width);
-        }
-      }
-
-      &.xl {
-        @include bp(xl) {
-          @include item-list($grid-columns, false, width);
+      @each $break-size, $break-px in $grid-breakpoints {
+        &.#{$break-size} {
+          @include bp($break-size) {
+            @include item-list($grid-columns, false, width);
+          }
         }
       }
 

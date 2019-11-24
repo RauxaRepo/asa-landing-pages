@@ -16,7 +16,11 @@ export default function () {
     let customerId = document.querySelector('input[name="id"]');
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
-
+    
+    let campaignName = 'Offercode_Email';
+    let emailName = 'email';
+    let getToken;
+    let getEndpoint;
     let getTokenUrl = `https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=${config.creds.user}&password=${config.creds.pass}&auth_type=password`;
 
     //
@@ -41,34 +45,74 @@ export default function () {
 
 
 
-    
 
 
 
-    // submitting function
-    respSubmitBtn.addEventListener('click', (e) => {
-        e.preventDefault(base64.encode(config.creds.user));
+    let respTriggerEmail = function(authToken, endPoint) {
+        let url = `https://cors-anywhere.herokuapp.com/${endPoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
 
-        let tokenParms = {
-            user_name : config.creds.user,
-            password : config.creds.pass,
-            auth_type : 'password'
-        };
-
-
-        fetch(getTokenUrl, {
+        fetch(url, {
             method : "POST",
             mode: 'cors', // no-cors, *cors, same-origin
             headers: {
-                'Accept': 'application/json',
+                'Authorization': authToken, 
                 'Content-Type': 'application/x-www-form-urlencoded'
               },
-           // body : JSON.stringify(tokenParms)
-            //body: `CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`,
+            body : JSON.stringify(respParms)
         })
         .then(response => response.json())
         .then(json => console.log(json));
+    }
+
+
+
+    // getting Token
+    respSubmitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        let respParms = {
+            CUSTOMER_ID_ : customerId.value,
+            OFFER_CODE : offerCode.value,
+            OFFER_AUTHORIZATION : offerAuth.value
+        };
+
+        console.log(respParms);
+        console.log(getToken);
+        console.log(getEndpoint);
+
+        let url = `https://cors-anywhere.herokuapp.com/${getEndpoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
+
+        fetch(url, {
+            method : "POST",
+            mode: 'cors', // no-cors, *cors, same-origin
+            headers: {
+                'Authorization': getToken, 
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+            body : JSON.stringify(respParms)
+        })
+        .then(response => response.json())
+        .then(json => console.log(json));
+
         
+    });
+
+
+    fetch(getTokenUrl, {
+        method : "POST",
+        mode: 'cors', // no-cors, *cors, same-origin
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        //respTriggerEmail(json.authToken,json.endPoint);
+        getToken = json.authToken;
+        getEndpoint = json.endPoint;
+
     });
 
 
