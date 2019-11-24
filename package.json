@@ -5,7 +5,7 @@
   "scripts": {
     "devbuild": "gulp --require babel-register --gulpfile ./.gb/tasks devbuild",
     "qabuild" : "gulp --require babel-register --gulpfile ./.gb/tasks qabuild",
-    "prodbuild": "gulp --require babel-register --gulpfile ./.gb/tasks prodbuild"
+    "prodbuild": "gulp --require babel-register --gulpfile ./.gb/tasks prodbuild --production"
   },
   "babel": {
     "presets": [
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://"
   },
-  "author": "FJ",
+  "author": "Rauxa",
   "license": "MIT",
   "browserslist": [
     "ie >= 11",

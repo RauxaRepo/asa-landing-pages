@@ -20,7 +20,7 @@ export function sassCompile(){
     discardcomments()
   ];
 
-  let cssOutputStyle = argv.production ? 'compressed' : 'compressed';
+  let cssOutputStyle = argv.production ? 'compressed' : 'expanded';
 
   return gulpMerge(
 
@@ -37,20 +37,10 @@ export function sassCompile(){
     .pipe(gulpif(argv.production, postcss(plugins)))
 
     .pipe(gulpif(!argv.production, sourcemaps.write('./')))
-    // adding name
-   // .pipe(rename({basename: 'styles'}))
+
     // sends to local app folder
-    .pipe(dest(config.local.appcss)),
-
-    src(templateSass)
-    .pipe(sass({ outputStyle: 'compressed'}).on('error',sass.logError))
-    .pipe(postcss(plugins))
-    // adding name
-    //.pipe(rename({basename: 'styles'}))
-    // sends to dist folder
+    .pipe(dest(config.local.appcss))
     .pipe(dest(config.css.distDir)),
-
-
 
   );
   
