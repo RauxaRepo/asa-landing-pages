@@ -6,18 +6,21 @@ const sass = require('gulp-sass');
 const rename = require("gulp-rename");
 const discardcomments = require('postcss-discard-comments');
 const sourcemaps = require('gulp-sourcemaps');
-const  autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer');
+const gulpif = require('gulp-if');
+const argv = require('yargs').argv;
 const config = require('../config');
 
 
 export function sassCompile(){ 
 
-  let templateSass = `${config.css.scssDir}/main.scss`;
-  let bootstrap = `${config.css.scssDir}/bootstrap.scss`;
+  let templateSass = `${config.css.scssDir}/styles.scss`;
   let plugins = [
     autoprefixer (),
     discardcomments()
   ];
+
+  let cssOutputStyle = argv.production ? 'compressed' : 'compressed';
 
   return gulpMerge(
 
@@ -27,12 +30,15 @@ export function sassCompile(){
     .pipe(sasslint.failOnError()),
 
     src(templateSass)
-    .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(sass({ outputStyle: 'expanded' }).on('error',sass.logError))
-    .pipe(postcss(plugins))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpif(!argv.production, sourcemaps.init({loadMaps: true})))
+
+    .pipe(sass({ outputStyle: cssOutputStyle }).on('error',sass.logError))
+
+    .pipe(gulpif(argv.production, postcss(plugins)))
+
+    .pipe(gulpif(!argv.production, sourcemaps.write('./')))
     // adding name
-    .pipe(rename({basename: 'styles'}))
+   // .pipe(rename({basename: 'styles'}))
     // sends to local app folder
     .pipe(dest(config.local.appcss)),
 
@@ -40,29 +46,11 @@ export function sassCompile(){
     .pipe(sass({ outputStyle: 'compressed'}).on('error',sass.logError))
     .pipe(postcss(plugins))
     // adding name
-    .pipe(rename({basename: 'styles'}))
+    //.pipe(rename({basename: 'styles'}))
     // sends to dist folder
     .pipe(dest(config.css.distDir)),
 
-    /*
-    src(bootstrap)
-    .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error',sass.logError))
-    .pipe(postcss(plugins))
-    .pipe(sourcemaps.write('.'))
-    // adding name
-    .pipe(rename({basename: 'bootstrap'}))
-    // sends to local app folder
-    .pipe(dest(config.local.appcss)),
 
-    src(bootstrap)
-    .pipe(sass({ outputStyle: 'compressed'}).on('error',sass.logError))
-    .pipe(postcss(plugins))
-    // adding name
-    .pipe(rename({basename: 'bootstrap'}))
-    // sends to dist folder
-    .pipe(dest(config.css.distDir))
-    */
 
   );
   
