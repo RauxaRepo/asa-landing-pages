@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "gulp process to generate static pages for templates",
   "scripts": {
+    "localbuild": "gulp --require babel-register --gulpfile ./.gb/tasks localbuild",
     "devbuild": "gulp --require babel-register --gulpfile ./.gb/tasks devbuild",
     "qabuild" : "gulp --require babel-register --gulpfile ./.gb/tasks qabuild",
     "prodbuild": "gulp --require babel-register --gulpfile ./.gb/tasks prodbuild --production"
