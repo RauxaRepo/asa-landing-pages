@@ -50,8 +50,7 @@ let watchers = function() {
 
 }
 
-
-exports.devbuild = series(
+exports.localbuild = series(
   sassCompile,
   jsCompile,
   parallel(
@@ -62,21 +61,32 @@ exports.devbuild = series(
   watchers
 );
 
-exports.qabuild = series(
-  sassCompile,
-  jsCompileMin,
+exports.devbuild = series(
   parallel(
     localViews,
     localImages,
-  )
+  ),
+  sassCompile,
+  jsCompile
+
+);
+
+exports.qabuild = series(
+  parallel(
+    localViews,
+    localImages,
+  ),
+  sassCompile,
+  jsCompileMin
+
 );
 
 exports.prodbuild = series(
-  sassCompile,
-  jsCompileMin,
   parallel(
     localViews,
     localImages,
-  )
+  ),
+  sassCompile,
+  jsCompileMin
 );
 
