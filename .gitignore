@@ -1,0 +1,25 @@
+# Comment these if we are building js/Sass on the server
+**/*.map
+
+# Dependencies
+# - Node modules directory. comment this line to commit them.
+node_modules
+
+assets/dist/*
+
+# OS or Editor folders
+._*
+.cache
+.DS_Store
+.idea
+.out
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-*
+.vscode
+nbproject
+Thumbs.db
+logs
+*.log

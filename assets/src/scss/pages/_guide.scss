@@ -1,0 +1,41 @@
+
+
+.guide {
+
+
+  main {
+    background-color: $white;
+    display: block;
+  }
+
+  .row {
+    background-color: $black;
+    padding: 10px 0;
+
+    &.guide_row {
+      background-color: $white;
+
+      .guide_row--title {
+        @include font-size(40px);
+        margin: 50px 0 0;
+      }
+
+      .guide_row--desc {
+        @include font-size(18px);
+        line-height: 1.25;
+        margin-top: 15px;
+      }
+
+      .column {
+        background-color: $white;
+        background-clip: padding-box;
+      }
+    }
+  }
+
+  .column {
+    background-color: $off-white;
+    background-clip: content-box;
+  }
+
+}

@@ -1,0 +1,100 @@
+
+// Global app/site styles
+//=================================
+// =================================
+// We use normalize.css for the bulk of our 'reset'
+
+@import '../../../node_modules/normalize-scss/sass/normalize';
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+@include normalize;
+
+* {
+  // sass-lint:disable no-vendor-prefixes
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: transparent;
+  font-family: $font-standard;
+  min-width: $layout-min-width;
+}
+
+a,
+button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+
+.background-color-black {
+  background-color: $black;
+}
+
+.text-color-white {
+  color: $white;
+}
+
+
+
+// CONTAINERS
+// ==========
+
+section {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0;
+  max-width: $layout-max-width;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: ' ';
+    display: table;
+  }
+
+  &::after {
+    content: ' ';
+    display: table;
+  }
+
+}
+
+@include grid-create;
