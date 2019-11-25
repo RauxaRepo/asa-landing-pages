@@ -65,7 +65,13 @@ const ConfigOptions = function () {
 		srcDir: `${config.srcDir}/js`, // config.js.srcDir
 		distDir: `${config.distDir}/js`, // config.js.distDir
 	};
-	
+  
+  
+  config.creds = {
+    user : 'CSAlaskaAPI',
+    pass : '@Lze1nIuDW'
+
+  }
 
 };
 

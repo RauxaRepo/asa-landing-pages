@@ -1,3 +1,7 @@
+
+const config = require('../../../../.gb/config');
+const base64 = require('base-64');
+
 export default function () {
 
 
@@ -12,6 +16,14 @@ export default function () {
     let customerId = document.querySelector('input[name="id"]');
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
+    
+    let campaignName = 'Offercode_Email';
+    let emailName = 'email';
+    let getToken;
+    let getEndpoint;
+    let getTokenUrl = `https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=${config.creds.user}&password=${config.creds.pass}&auth_type=password`;
+
+    //
 
 
 
@@ -33,14 +45,30 @@ export default function () {
 
 
 
-    
 
 
 
-    // submitting function
+    let respTriggerEmail = function(authToken, endPoint) {
+        let url = `https://cors-anywhere.herokuapp.com/${endPoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
+
+        fetch(url, {
+            method : "POST",
+            mode: 'cors', // no-cors, *cors, same-origin
+            headers: {
+                'Authorization': authToken, 
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+            body : JSON.stringify(respParms)
+        })
+        .then(response => response.json())
+        .then(json => console.log(json));
+    }
+
+
+
+    // getting Token
     respSubmitBtn.addEventListener('click', (e) => {
         e.preventDefault();
-
 
         let respParms = {
             CUSTOMER_ID_ : customerId.value,
@@ -48,37 +76,43 @@ export default function () {
             OFFER_AUTHORIZATION : offerAuth.value
         };
 
+        console.log(respParms);
+        console.log(getToken);
+        console.log(getEndpoint);
 
-        respSubmitted.innerHTML = JSON.stringify(respParms, undefined, 2);;
+        let url = `https://cors-anywhere.herokuapp.com/${getEndpoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
 
-        
-
-        /*
-          body: 'firstName=Nikhil&favColor=blue&password=easytoguess',
-          headers: { 'Content-type': 'application/x-www-form-urlencoded' }
-        */
-
-        let respAction = `https://cors-anywhere.herokuapp.com/https://ifly.alaskaair.com/pub/sf/ResponseForm?_ri_=X0Gzc2X%3DYQpglLjHJlYQGgFos36gBzgXMh14GamwWrizcK2EI1U763lif3vfVXMtX%3DYQpglLjHJlYQGuzfTJhUEIT8siRmEjhuGmsUK2EI1U763lif3vf&_ei_=Ekj8HyAXXpL_SzLhl5oqKZ0&CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`;
-        const url = respAction;
-        
         fetch(url, {
             method : "POST",
             mode: 'cors', // no-cors, *cors, same-origin
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Authorization': getToken, 
+                'Content-Type': 'application/x-www-form-urlencoded'
               },
             body : JSON.stringify(respParms)
-            //body: `CUSTOMER_ID_=${customerId.value}&OFFER_CODE=${offerCode.value}&OFFER_AUTHORIZATION=${offerAuth.value}`,
         })
-        .then( response => {
-            console.log(response.status);
-            console.log(response);
-            //return response.json()
-        })
-        .then(
-            html => console.log(html)
-        );
+        .then(response => response.json())
+        .then(json => console.log(json));
+
+        
+    });
+
+
+    fetch(getTokenUrl, {
+        method : "POST",
+        mode: 'cors', // no-cors, *cors, same-origin
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        //respTriggerEmail(json.authToken,json.endPoint);
+        getToken = json.authToken;
+        getEndpoint = json.endPoint;
+
     });
 
 

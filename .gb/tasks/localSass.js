@@ -21,11 +21,7 @@ export function localSass() {
   
   .pipe(sourcemaps.init())
   .pipe(sass({ outputStyle: 'expanded' }).on('error',sass.logError))
-
-
   .pipe(postcss(plugins))
-
-  
   .pipe(sourcemaps.write('.'))
 
   // sends to local app folder

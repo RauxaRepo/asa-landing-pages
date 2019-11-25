@@ -62,6 +62,15 @@ exports.devbuild = series(
   watchers
 );
 
+exports.qabuild = series(
+  sassCompile,
+  jsCompileMin,
+  parallel(
+    localViews,
+    localImages,
+  )
+);
+
 exports.prodbuild = series(
   sassCompile,
   jsCompileMin,

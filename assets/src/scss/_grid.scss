@@ -17,8 +17,14 @@ $column-padding: (
 );
 
 @mixin grid-create($new-break-points: $breakpoints) {
-
-  $grid-breakpoints: $new-break-points;
+  // defining grid breakpoints
+  $grid-breakpoints: '';
+  // checking for default
+  @if ($new-break-points != $breakpoints) {
+    $grid-breakpoints: $new-break-points;
+  } @else {
+    $grid-breakpoints: $breakpoints;
+  }
 
   $grid-columns: (
     1: 08.333333333%,
@@ -189,28 +195,26 @@ $column-padding: (
         padding: 0;
       }
 
+      // loops thru breakpoint objec and renders based amount of keys
+      // the first key will be treated as smallest breakpoint
+      @each $break-size, $break-px in $grid-breakpoints {
 
+        $i: nth(map-keys($grid-breakpoints), 1);
 
-      &.sm {
-        @include item-list($grid-columns, false, width);
-      }
+        @if($break-size == $i) {
+          &.#{$break-size} {
+            @include item-list($grid-columns, false, width);
+          }
 
-      &.md {
-        @include bp(md) {
-          @include item-list($grid-columns, false, width);
+        } @else {
+          &.#{$break-size} {
+            @include bp($break-size) {
+              @include item-list($grid-columns, false, width);
+            }
+          }
+
         }
-      }
 
-      &.lg {
-        @include bp(lg) {
-          @include item-list($grid-columns, false, width);
-        }
-      }
-
-      &.xl {
-        @include bp(xl) {
-          @include item-list($grid-columns, false, width);
-        }
       }
 
     }
