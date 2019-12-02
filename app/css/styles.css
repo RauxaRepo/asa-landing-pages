@@ -638,7 +638,7 @@ section {
   }
 }
 
-.row .column.align-middle {
+.row .column.align-center {
   align-items: center;
 }
 
@@ -650,7 +650,7 @@ section {
   justify-content: flex-end;
 }
 
-.row .column.align-center {
+.row .column.align-middle {
   justify-content: center;
 }
 
@@ -894,8 +894,7 @@ section {
 main {
   position: relative;
   width: 100%;
-  height: 100vh;
-  display: flex;
+  height: auto;
   align-items: center;
   justify-content: center;
   background-color: #f1f1f1;
