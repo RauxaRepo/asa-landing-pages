@@ -914,6 +914,133 @@ main {
   background-color: #f1f1f1;
 }
 
+.main-page {
+  background-color: transparent;
+}
+
+.main-page-header {
+  background-color: #2774ae;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  font-size: 12px;
+  height: 61px;
+  padding: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.main-page-header p {
+  padding: 20px 0 0;
+  width: 100%;
+}
+
+.main-page-outer {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+.main-page-inner {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .main-page-inner {
+    min-width: 1800px;
+  }
+}
+
+.main-page-column {
+  width: 20%;
+}
+
+.main-page-card {
+  background-size: contain;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  height: 0;
+  padding-bottom: 160%;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.main-page-card-container {
+  display: block;
+  float: left;
+  height: 100%;
+  position: relative;
+  width: 240px;
+}
+
+.main-page-card-center {
+  margin: auto 0;
+}
+
+.main-page-card-title {
+  background-image: url("../images/cards/Title_Card.png");
+}
+
+.main-page-card-atlas {
+  background-image: url("../images/cards/Atlas.gif");
+}
+
+.main-page-card-breezeCard {
+  background-image: url("../images/cards/breezeCard.gif");
+}
+
+.main-page-card-palm {
+  background-image: url("../images/cards/palm.gif");
+}
+
+.main-page-card-tropical {
+  background-image: url("../images/cards/tropical.gif");
+}
+
+.main-page-card-midnight {
+  background-image: url("../images/cards/midnight.gif");
+}
+
+/*FOOTER*/
+.main-page-footer {
+  background-color: #e9e9e9;
+  bottom: 0;
+  color: #656565;
+  font-size: 10px;
+  height: 141px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.main-page-footer p {
+  line-height: 17px;
+  margin: 0;
+  padding: 0 24px;
+}
+
+.main-page-footer a {
+  text-decoration: underline;
+  color: #656565;
+}
+
+.main-page-footer p:nth-child(1) {
+  padding-top: 40px;
+}
+
+.main-page-footer p:nth-child(:last-child) {
+  padding-bottom: 40px;
+}
+
 .guide main {
   background-color: #fff;
   display: block;
