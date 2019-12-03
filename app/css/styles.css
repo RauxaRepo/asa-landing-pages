@@ -925,18 +925,46 @@ span {
 }
 
 .main-page-header p {
-  padding: 20px 0 0 0;
+  padding: 20px 0 0;
   width: 100%;
+}
+
+.main-page-outer {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+.main-page-inner {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .main-page-inner {
+    min-width: 1800px;
+  }
+}
+
+.main-page-column {
+  width: 20%;
 }
 
 .main-page-card {
   background-size: contain;
   border-radius: 10px;
+  background-repeat: no-repeat;
   display: block;
   float: left;
-  height: 400px;
+  height: 0;
+  padding-bottom: 160%;
   margin: 10px 0;
-  width: 240px;
+  width: 100%;
 }
 
 .main-page-card-container {
@@ -948,23 +976,27 @@ span {
 }
 
 .main-page-card-title {
-  background-image: url("../images/Title_Card.png");
+  background-image: url("../images/cards/Title_Card.png");
 }
 
 .main-page-card-atlas {
-  background-image: url("../images/Atlas.gif");
+  background-image: url("../images/cards/Atlas.gif");
 }
 
 .main-page-card-breezeCard {
-  background-image: url("../images/breezeCard.gif");
+  background-image: url("../images/cards/breezeCard.gif");
 }
 
 .main-page-card-palm {
-  background-image: url("../images/palm.gif");
+  background-image: url("../images/cards/palm.gif");
 }
 
 .main-page-card-tropical {
-  background-image: url("../images/tropical.gif");
+  background-image: url("../images/cards/tropical.gif");
+}
+
+.main-page-card-midnight {
+  background-image: url("../images/cards/midnight.gif");
 }
 
 /*FOOTER*/
@@ -974,7 +1006,7 @@ span {
   color: #656565;
   font-size: 10px;
   height: 141px;
-  position: fixed;
+  position: relative;
   text-align: center;
   width: 100%;
 }
