@@ -3,6 +3,7 @@ import 'whatwg-fetch';
 
 //import sampleJs from './components/sample.component';
 import responsysTest from './components/form.test';
+import  intoAnimation from './components/intro-animation';
 
 function documentReady(fn) {
   if (document.readyState != 'loading') {
@@ -19,6 +20,7 @@ function documentReady(fn) {
 
 documentReady( function() {
 
-  responsysTest();
+  //responsysTest();
+  intoAnimation();
 
 });
