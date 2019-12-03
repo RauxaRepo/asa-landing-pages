@@ -1,3 +1,17 @@
+@font-face {
+  font-family: Circular;
+  src: url("https://resource.alaskaair.net/stylesheets/circular/ASCircularWeb-Book.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Circular;
+  src: url("https://resource.alaskaair.net/stylesheets/circular/ASCircularWeb-Book.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
