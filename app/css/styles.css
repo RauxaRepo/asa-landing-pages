@@ -940,6 +940,8 @@ span {
 }
 
 .main-page-card-container {
+  display: block;
+  float: left;
   height: 100%;
   position: relative;
   width: 240px;
@@ -953,20 +955,32 @@ span {
   background-image: url("../images/Atlas.gif");
 }
 
+.main-page-card-breezeCard {
+  background-image: url("../images/breezeCard.gif");
+}
+
+.main-page-card-palm {
+  background-image: url("../images/palm.gif");
+}
+
+.main-page-card-tropical {
+  background-image: url("../images/tropical.gif");
+}
+
 /*FOOTER*/
 .main-page-footer {
   background-color: #e9e9e9;
   bottom: 0;
   color: #656565;
   font-size: 10px;
-  height: 70px;
+  height: 141px;
   position: fixed;
   text-align: center;
   width: 100%;
 }
 
 .main-page-footer p {
-  line-height: 12px;
+  line-height: 17px;
   margin: 0;
   padding: 0 24px;
 }
@@ -977,7 +991,11 @@ span {
 }
 
 .main-page-footer p:nth-child(1) {
-  padding-top: 14px;
+  padding-top: 40px;
+}
+
+.main-page-footer p:nth-child(:last-child) {
+  padding-bottom: 40px;
 }
 
 .guide main {

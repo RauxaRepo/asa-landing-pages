@@ -54,17 +54,29 @@ span {
   width: 240px;//360px;
 
   &-container {
+    display: block;
+    float: left;
     height: 100%;
     position: relative;
     width: 240px;
   }
 }
 
+//Seperate Cards
 .main-page-card-title {
   background-image: url('../images/Title_Card.png');
 }
 .main-page-card-atlas {
   background-image: url('../images/Atlas.gif');
+}
+.main-page-card-breezeCard {
+  background-image: url('../images/breezeCard.gif');
+}
+.main-page-card-palm {
+  background-image: url('../images/palm.gif');
+}
+.main-page-card-tropical {
+  background-image: url('../images/tropical.gif');
 }
 
 
@@ -74,13 +86,13 @@ span {
 	bottom: 0;
 	color: $footertextcolor;
 	font-size: 10px;
-	height: 70px;
+	height: 141px;
 	position: fixed;
 	text-align: center;
   width: 100%;
 
 	p {
-		line-height: 12px;
+		line-height: 17px;
 		margin: 0;
 		padding: 0 24px;
 	}
@@ -91,7 +103,10 @@ span {
 	}
 
 	p:nth-child(1) {
-		padding-top: 14px;
+		padding-top: 40px;
+  }
+  p:nth-child(:last-child) {
+		padding-bottom: 40px;
 	}
 }
 
