@@ -900,13 +900,6 @@ main {
   background-color: #f1f1f1;
 }
 
-div,
-img,
-table,
-span {
-  outline: 1px solid #f00;
-}
-
 .main-page {
   background-color: transparent;
 }
@@ -1023,7 +1016,7 @@ span {
 
 .main-page-footer a {
   text-decoration: underline;
-  color: #656565 !important;
+  color: #656565;
 }
 
 .main-page-footer p:nth-child(1) {
