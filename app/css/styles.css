@@ -1,3 +1,17 @@
+@font-face {
+  font-family: Circular;
+  src: url("../fonts/ASCircularWeb-Book.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Circular;
+  src: url("../fonts/ASCircularWeb-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -476,7 +490,7 @@ template {
 
 body {
   background-color: transparent;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Circular, Helvetica, Arial, sans-serif;
   min-width: 320px;
 }
 
