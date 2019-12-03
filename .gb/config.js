@@ -33,7 +33,7 @@ const ConfigOptions = function () {
     ===================================
   */
 	config.local = {
-    imagesDir: `${config.srcDir}/images/*.**`,
+    imagesDir: `${config.srcDir}/images/**/*`,
     viewsDir: `${config.srcDir}/views/*.html`,
 
     appcss: `${config.localDir}/css`,
