@@ -42,6 +42,8 @@ export default function () {
     customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
     offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
     offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
+    //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
+    /// need to add UTM 
 
 
 

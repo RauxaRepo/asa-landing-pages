@@ -124,7 +124,8 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 
   customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
   offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-  offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
+  offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : ''; //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
+  /// need to add UTM 
 
   var respTriggerEmail = function respTriggerEmail(authToken, endPoint) {
     var url = "https://cors-anywhere.herokuapp.com/".concat(endPoint, "/rest/api/v1.3/campaigns/").concat(campaignName, "/").concat(emailName);
