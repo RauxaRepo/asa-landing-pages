@@ -31,6 +31,7 @@ $footertextcolor: #656565;
   text-align: center;
   width: 100%;
   z-index: 2;
+
   p {
     padding: 20px 0 0;
     width: 100%;
@@ -51,15 +52,15 @@ $footertextcolor: #656565;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   width: 100%;
-  @include bp(md){
-  min-width: 1800px;
+  @include bp(md) {
+    min-width: 1800px;
   }
 }
 
 .main-page-column {
-width: 20%;
+  width: 20%;
 }
 
 .main-page-card {
@@ -73,17 +74,17 @@ width: 20%;
   margin: 10px 0;
   width: 100%;
 
-&-container {
-  display: block;
-  float: left;
-  height: 100%;
-  position: relative;
-  width: 240px;
-}
+  &-container {
+    display: block;
+    float: left;
+    height: 100%;
+    position: relative;
+    width: 240px;
+  }
 
-&-center {
-  margin: auto 0;
-}
+  &-center {
+    margin: auto 0;
+  }
 }
 
 //Seperate Cards
@@ -111,8 +112,7 @@ width: 20%;
   background-image: url('../images/cards/midnight.gif');
 }
 
-
-/*FOOTER*/
+// FOOTER
 .main-page-footer {
   background-color: $footercolor;
   bottom: 0;
