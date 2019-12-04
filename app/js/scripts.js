@@ -204,10 +204,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var titleCard = document.querySelector('.main-page-card-title'),
-      tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+  //Vars
+  var titleCard = document.querySelector('.card-one-title'),
+      titleCardA = document.querySelector('.card-one-a'),
+      titleCardB = document.querySelector('.card-one-b'),
+      time = 1,
+      //
+  tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
     repeatDelay: 0
+  }); //tl  = new TimelineMax({repeat:0, repeatDelay:0}),
+  //Fade in Title-Card
+
+  tl.to(titleCard, {
+    opacity: 1,
+    delay: time - 0.5,
+    duration: time,
+    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
+  });
+  tl.to(titleCardA, {
+    opacity: 1,
+    delay: -0.5,
+    duration: time,
+    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
+  });
+  tl.to(titleCardB, {
+    opacity: 1,
+    delay: -0.5,
+    duration: time,
+    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
   }); //gsap.set(titleCard, {opacity: 0});
   //console.log('RUNNING')
 });

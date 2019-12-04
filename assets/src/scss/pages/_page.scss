@@ -8,14 +8,20 @@ main {
   background-color: $off-white;
 }
 
-
-//Set page layout
 $flightlblue: #2774ae;
 $white: #fff;
 $footercolor: #e9e9e9;
 $footertextcolor: #656565;
+$red: #f00000;
+
+//div,
+//img,
+//span {
+//  outline: 1px solid $red;
+//}
 
 
+//Set page layout
 .main-page {
   background-color: transparent;
 }
@@ -110,6 +116,15 @@ $footertextcolor: #656565;
 
 .main-page-card-midnight {
   background-image: url('../images/cards/midnight.gif');
+}
+
+//Seperate Cards
+.card-one {
+  &-title,
+  &-a,
+  &-b {
+    opacity: 0;
+  }
 }
 
 // FOOTER
