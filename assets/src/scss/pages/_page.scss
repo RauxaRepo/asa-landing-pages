@@ -1,128 +1,165 @@
 
 main {
-position: relative;
-width: 100%;
-height: auto;
-align-items: center;
-justify-content: center;
-background-color: $off-white;
+  position: relative;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  background-color: $off-white;
 }
 
-
-//Set page layout
 $flightlblue: #2774ae;
 $white: #fff;
 $footercolor: #e9e9e9;
 $footertextcolor: #656565;
+$red: #f00000;
+
+//div,
+//img,
+//span {
+//  outline: 1px solid $red;
+//}
 
 
+//Set page layout
 .main-page {
-background-color: transparent;
+  background-color: transparent;
 }
 
 .main-page-header {
-background-color: $flightlblue;
-border-bottom: 2px solid $white;
-color: $white;
-font-size: 12px;
-height: 61px;
-padding: 0;
-position: fixed;
-text-align: center;
-width: 100%;
-z-index: 2;
+  background-color: $flightlblue;
+  border-bottom: 2px solid $white;
+  color: $white;
+  font-size: 12px;
+  height: 61px;
+  padding: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
 
-p {
-padding: 20px 0 0;
-width: 100%;
-}
+  p {
+    padding: 20px 0 0;
+    width: 100%;
+  }
 }
 
 //Outer Div - Position Relative
 .main-page-outer {
-position: relative;
-height: 100vh;
-overflow: hidden;
-width: 100%;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
 }
 
 //Inner Div - Position Absolute
 .main-page-inner {
-display: flex;
-position: absolute;
-left: 50%;
-top: 50%;
-transform: translate(-50%,-50%);
-width: 100%;
-@include bp(md){
-min-width: 1800px;
-}
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  @include bp(md) {
+    min-width: 1800px;
+  }
 }
 
 .main-page-column {
-width: 20%;
+  position: relative;
+  width: 20%;
 }
 
 .main-page-card {
-background-size: contain;
-border-radius: 10px;
-background-repeat: no-repeat;
-display: block;
-float: left;
-height: 0;
-padding-bottom: 160%;
-margin: 10px 0;
-width: 100%;
+  background-size: contain;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  height: 0;
+  padding-bottom: 160%;
+  margin: 10px 0;
+  width: 100%;
+  //for intro animation
+  opacity: 0;
 
-&-container {
-display: block;
-float: left;
-height: 100%;
-position: relative;
-width: 240px;
+  &-container {
+    display: block;
+    float: left;
+    height: 100%;
+    position: relative;
+    width: 240px;
+  }
+
+  &-center {
+    margin: auto 0;
+  }
+
+  &-wrapper {
+    top: -10%;
+}
 }
 
-&-center {
-margin: auto 0;
-}
+.main-page-card-wrapper,
+.main-page-card-wrapper-two,
+.main-page-card-wrapper-three,
+.main-page-card-wrapper-four {
+  left: 0;
+  position: absolute;
+  transform: translateY(-50%);
+  width: 100%;
 }
 
-//Seperate Cards
+.main-page-card-wrapper-two {
+  top: -20%;
+}
+
+.main-page-card-wrapper-three {
+  top: -30%;
+}
+
+.main-page-card-wrapper-four {
+  top: -40%;
+}
+
+//Card Designs
 .main-page-card-title {
-background-image: url('../images/cards/Title_Card.png');
+  background-image: url('../images/cards/Title_Card.png');
+  cursor: pointer;
 }
 
 .main-page-card-atlas {
-background-image: url('../images/cards/Atlas.gif');
+  background-image: url('../images/cards/Atlas.gif');
 }
 
 .main-page-card-breezeCard {
-background-image: url('../images/cards/breezeCard.gif');
+  background-image: url('../images/cards/breezeCard.gif');
 }
 
 .main-page-card-palm {
-background-image: url('../images/cards/palm.gif');
+  background-image: url('../images/cards/palm.gif');
 }
 
 .main-page-card-tropical {
-background-image: url('../images/cards/tropical.gif');
+  background-image: url('../images/cards/tropical.gif');
 }
 
 .main-page-card-midnight {
-background-image: url('../images/cards/midnight.gif');
+  background-image: url('../images/cards/midnight.gif');
 }
 
 
-/*FOOTER*/
+
+// FOOTER
 .main-page-footer {
-background-color: $footercolor;
-bottom: 0;
-color: $footertextcolor;
-font-size: 10px;
-height: 141px;
-position: relative;
-text-align: center;
-width: 100%;
+  background-color: $footercolor;
+  bottom: 0;
+  color: $footertextcolor;
+  font-size: 10px;
+  height: 141px;
+  position: relative;
+  text-align: center;
+  width: 100%;
 
   p {
     line-height: 17px;
