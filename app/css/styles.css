@@ -959,6 +959,7 @@ main {
 }
 
 .main-page-column {
+  position: relative;
   width: 20%;
 }
 
@@ -985,6 +986,32 @@ main {
 
 .main-page-card-center {
   margin: auto 0;
+}
+
+.main-page-card-wrapper {
+  top: -10%;
+}
+
+.main-page-card-wrapper,
+.main-page-card-wrapper-two,
+.main-page-card-wrapper-three,
+.main-page-card-wrapper-four {
+  left: 0;
+  position: absolute;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.main-page-card-wrapper-two {
+  top: -20%;
+}
+
+.main-page-card-wrapper-three {
+  top: -30%;
+}
+
+.main-page-card-wrapper-four {
+  top: -40%;
 }
 
 .main-page-card-title {

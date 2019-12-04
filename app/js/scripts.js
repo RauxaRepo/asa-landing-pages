@@ -230,14 +230,30 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //Title Cards
   titleCard = document.querySelector('.card-one-title'),
       //Left Cards
-  cardleftone = document.querySelector('.card-left-one'),
-      cardlefttwo = document.querySelector('.card-left-two'),
+  cardLeftOne = document.querySelector('.card-left-one'),
+      cardLeftTwo = document.querySelector('.card-left-two'),
       //Right Cards
-  cardrightone = document.querySelector('.card-right-one'),
-      cardrighttwo = document.querySelector('.card-right-two'),
+  cardrRightOne = document.querySelector('.card-right-one'),
+      cardrRightTwo = document.querySelector('.card-right-two'),
       //
   tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
+    repeatDelay: 0
+  }),
+      tlScroll = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    repeat: -1,
+    repeatDelay: 0
+  }),
+      tlScrollTwo = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    repeat: -1,
+    repeatDelay: 0
+  }),
+      tlScrollThree = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    repeat: -1,
+    repeatDelay: 0
+  }),
+      tlScrollFour = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    repeat: -1,
     repeatDelay: 0
   }); //Fade in Title-Card and other Cards
 
@@ -245,13 +261,29 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     opacity: 1,
     delay: time - 0.5,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  }).staggerTo(allCards, time, {
+  }) //.05, = stagger amount//'0.25' time between animation for cards
+  .staggerTo(allCards, time, {
     opacity: 1,
     delay: Math.random() * time,
-    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  }, .05, '0.25'); //.05, = stagger amount//'0.25' time between animation for cards
-
-  console.log(allCards);
+    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
+    onComplete: function onComplete() {}
+  }, .05, '0.25');
+  tlScroll.to('.main-page-card-wrapper', 10, {
+    top: '90.25%',
+    ease: 'none'
+  });
+  tlScrollTwo.to('.main-page-card-wrapper-two', 15, {
+    top: '80.25%',
+    ease: 'none'
+  });
+  tlScrollThree.to('.main-page-card-wrapper-three', 10, {
+    top: '70.25%',
+    ease: 'none'
+  });
+  tlScrollFour.to('.main-page-card-wrapper-four', 17, {
+    top: '60.25%',
+    ease: 'none'
+  }); //console.log(allCards);
 });
 
 /***/ }),
