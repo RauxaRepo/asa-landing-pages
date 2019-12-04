@@ -202,39 +202,56 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   //Vars
-  var titleCard = document.querySelector('.card-one-title'),
-      titleCardA = document.querySelector('.card-one-a'),
-      titleCardB = document.querySelector('.card-one-b'),
-      time = 1,
-      //
+  //*Randomize Array and place all Cards in the Array*//
+  //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+  var allCardsshuffle = function allCardsshuffle(array) {
+    return array.sort(function () {
+      return Math.random() - 0.5;
+    });
+  }; //*Place all Cards except Title card in the Array*//
+
+
+  var allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title)')));
+  var time = 1,
+      //Title Cards
+  titleCard = document.querySelector('.card-one-title'),
+
+  /*titleCardA = document.querySelector('.card-one-a'),
+  titleCardB = document.querySelector('.card-one-b'),
+  //Left Cards
+  cardleftone = document.querySelector('.card-left-one'),
+  cardlefttwo = document.querySelector('.card-left-two'),
+  //Right Cards
+  cardrightone = document.querySelector('.card-right-one'),
+  cardrighttwo = document.querySelector('.card-right-two'),*/
+  //
   tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
     repeatDelay: 0
-  }); //tl  = new TimelineMax({repeat:0, repeatDelay:0}),
-  //Fade in Title-Card
+  }); //Fade in Title-Card and other Cards
 
-  tl.to(titleCard, {
+  tl.to(titleCard, time, {
     opacity: 1,
     delay: time - 0.5,
-    duration: time,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  });
-  tl.to(titleCardA, {
+  }).staggerTo(allCards, .25, {
     opacity: 1,
-    delay: -0.5,
-    duration: time,
+    delay: time - 0.5,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  });
-  tl.to(titleCardB, {
-    opacity: 1,
-    delay: -0.5,
-    duration: time,
-    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  }); //gsap.set(titleCard, {opacity: 0});
-  //console.log('RUNNING')
+  }, .05, '0.25'); //.05, = stagger amount//'0.25' time between animation for cards
+
+  console.log(allCards);
 });
 
 /***/ }),

@@ -79,6 +79,8 @@ $red: #f00000;
   padding-bottom: 160%;
   margin: 10px 0;
   width: 100%;
+  //for intro animation
+  opacity: 0;
 
   &-container {
     display: block;
@@ -118,14 +120,21 @@ $red: #f00000;
   background-image: url('../images/cards/midnight.gif');
 }
 
-//Seperate Cards
-.card-one {
-  &-title,
-  &-a,
-  &-b {
-    opacity: 0;
-  }
-}
+//Title Cards
+//.card-one {
+//  &-title,
+//  &-a,
+//  &-b {
+//    opacity: 0;
+//  }
+//}
+
+//.card-left {
+// &-one,
+//  &-two {
+//
+//  }
+//}
 
 // FOOTER
 .main-page-footer {

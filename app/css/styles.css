@@ -972,6 +972,7 @@ main {
   padding-bottom: 160%;
   margin: 10px 0;
   width: 100%;
+  opacity: 0;
 }
 
 .main-page-card-container {
@@ -1008,10 +1009,6 @@ main {
 
 .main-page-card-midnight {
   background-image: url("../images/cards/midnight.gif");
-}
-
-.card-one-title, .card-one-a, .card-one-b {
-  opacity: 0;
 }
 
 .main-page-footer {

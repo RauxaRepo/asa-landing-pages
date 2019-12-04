@@ -1,21 +1,33 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear} from 'gsap';
 
 export default function () {
-    //Vars
-    let titleCard = document.querySelector('.card-one-title'),
-        titleCardA = document.querySelector('.card-one-a'),
-        titleCardB = document.querySelector('.card-one-b'),
-        time = 1,
-        //
-        tl = gsap.timeline({repeat: 0, repeatDelay: 0});
-        //tl  = new TimelineMax({repeat:0, repeatDelay:0}),
+  //Vars
+
+	//*Randomize Array and place all Cards in the Array*//
+	//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5);
+	//*Place all Cards except Title card in the Array*//
+	let allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title)')]);
+
+	let time = 1,
+		//Title Cards
+		titleCard = document.querySelector('.card-one-title'),
+		/*titleCardA = document.querySelector('.card-one-a'),
+		titleCardB = document.querySelector('.card-one-b'),
+		//Left Cards
+		cardleftone = document.querySelector('.card-left-one'),
+		cardlefttwo = document.querySelector('.card-left-two'),
+		//Right Cards
+		cardrightone = document.querySelector('.card-right-one'),
+		cardrighttwo = document.querySelector('.card-right-two'),*/
+		//
+		tl = gsap.timeline({repeat: 0, repeatDelay: 0});
 
 
-        //Fade in Title-Card
-        tl.to(titleCard, {opacity:1, delay:time-0.5, duration: time, ease:Linear})
-        tl.to(titleCardA,{opacity:1, delay:-0.5, duration: time, ease:Linear})
-        tl.to(titleCardB,{opacity:1, delay:-0.5, duration: time, ease:Linear})
-        //gsap.set(titleCard, {opacity: 0});
-        //console.log('RUNNING')
+		//Fade in Title-Card and other Cards
+		tl
+		.to(titleCard, time,{opacity:1, delay:time-0.5, ease:Linear})
+		.staggerTo(allCards, .25,{opacity:1, delay:time-0.5, ease:Linear},.05,'0.25');//.05, = stagger amount//'0.25' time between animation for cards
+		console.log(allCards);
 }
 
