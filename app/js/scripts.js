@@ -267,7 +267,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     delay: Math.random() * time,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
     onComplete: function onComplete() {}
-  }, .05, '0.25');
+  }, .05, '0.25'); //Slider the Cards	
+
   tlScroll.to('.main-page-card-wrapper', 10, {
     top: '90.25%',
     ease: 'none'
