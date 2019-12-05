@@ -1,0 +1,75 @@
+.main-page-card--question {
+  opacity: 1;
+  border-radius: 10px;
+  display: block;
+  float: left;
+  height: 0;
+  padding-bottom: 160%; 
+  margin: 10px 0;
+  width: 100%;
+  overflow: hidden;
+
+  // targets main-page-card--question-wrapper;
+  &-wrapper {
+    background-color: $white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 0 40px;
+
+    // specific to question 1
+    img {
+      width: 109px;
+      height: auto;
+      padding-top: 65px;
+    }
+
+    .q1 {
+      color: $blue;
+    }
+  }
+
+  // master button styles
+  &-wrapper--button {
+    margin-top: 15px;
+    width: 300px;
+    height: 47px;
+    background-color: $blue;
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+
+    // centering text vertically within cta
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+
+    a { 
+      color: $white;
+      text-decoration: none;
+    }
+  }
+
+}
+
+
+
+
+// GENERAL STYLES for all card types
+
+// These need to be organized/named better using scss conventions.. help?
+// I couldn't get the scss to compile correctly when i tried to mimic the &-wrapper method above
+
+.q_bodycopy {
+padding-top: 40px;
+padding-bottom: 15px;
+font-size: 24px;
+line-height: 30px;
+text-align: center;
+font-weight: bold;
+}
