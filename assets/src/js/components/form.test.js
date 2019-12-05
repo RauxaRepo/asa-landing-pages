@@ -10,9 +10,10 @@ export default function () {
 
 
 
-    let respSubmitBtn = document.querySelector('.submit-btn');
-    let respSubmitted = document.querySelector('.submitted-params');
+   //let respSubmitBtn = document.querySelector('.submit-btn');
+   // let respSubmitted = document.querySelector('.submitted-params');
     let landingUrl = window.location.href;
+    let disctountRibbon = document.querySelector('.main-page-header');
     let customerId = document.querySelector('input[name="id"]');
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
@@ -38,12 +39,16 @@ export default function () {
         return vars;
     }
 
+    if(urlVars()['CUSTOMER_ID_'] != undefined ) {
+        disctountRibbon.classList.add('active');
+    }
+
     // setting inputs based on url params
-    customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
-    offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-    offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
+    //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
+    //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
+    //offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
     //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
-    /// need to add UTM 
+    /// need to add UTM |
 
 
 
@@ -69,6 +74,7 @@ export default function () {
 
 
     // getting Token
+    /*
     respSubmitBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
@@ -98,7 +104,7 @@ export default function () {
 
         
     });
-
+    */
 
     fetch(getTokenUrl, {
         method : "POST",

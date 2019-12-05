@@ -100,9 +100,10 @@ var config = __webpack_require__(/*! ../../../../.gb/config */ "./config.js");
 var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var respSubmitBtn = document.querySelector('.submit-btn');
-  var respSubmitted = document.querySelector('.submitted-params');
+  //let respSubmitBtn = document.querySelector('.submit-btn');
+  // let respSubmitted = document.querySelector('.submitted-params');
   var landingUrl = window.location.href;
+  var disctountRibbon = document.querySelector('.main-page-header');
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');
@@ -119,13 +120,17 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
       vars[key] = value;
     });
     return vars;
-  }; // setting inputs based on url params
+  };
 
+  if (urlVars()['CUSTOMER_ID_'] != undefined) {
+    disctountRibbon.classList.add('active');
+  } // setting inputs based on url params
+  //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
+  //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
+  //offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
+  //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
+  /// need to add UTM |
 
-  customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
-  offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-  offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : ''; //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
-  /// need to add UTM 
 
   var respTriggerEmail = function respTriggerEmail(authToken, endPoint) {
     var url = "https://cors-anywhere.herokuapp.com/".concat(endPoint, "/rest/api/v1.3/campaigns/").concat(campaignName, "/").concat(emailName);
@@ -145,33 +150,34 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     });
   }; // getting Token
 
-
-  respSubmitBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    var respParms = {
-      CUSTOMER_ID_: customerId.value,
-      OFFER_CODE: offerCode.value,
-      OFFER_AUTHORIZATION: offerAuth.value
-    };
-    console.log(respParms);
-    console.log(getToken);
-    console.log(getEndpoint);
-    var url = "https://cors-anywhere.herokuapp.com/".concat(getEndpoint, "/rest/api/v1.3/campaigns/").concat(campaignName, "/").concat(emailName);
-    fetch(url, {
-      method: "POST",
-      mode: 'cors',
-      // no-cors, *cors, same-origin
-      headers: {
-        'Authorization': getToken,
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: JSON.stringify(respParms)
-    }).then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      return console.log(json);
-    });
+  /*
+  respSubmitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+       let respParms = {
+          CUSTOMER_ID_ : customerId.value,
+          OFFER_CODE : offerCode.value,
+          OFFER_AUTHORIZATION : offerAuth.value
+      };
+       console.log(respParms);
+      console.log(getToken);
+      console.log(getEndpoint);
+       let url = `https://cors-anywhere.herokuapp.com/${getEndpoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
+       fetch(url, {
+          method : "POST",
+          mode: 'cors', // no-cors, *cors, same-origin
+          headers: {
+              'Authorization': getToken, 
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+          body : JSON.stringify(respParms)
+      })
+      .then(response => response.json())
+      .then(json => console.log(json));
+       
   });
+  */
+
+
   fetch(getTokenUrl, {
     method: "POST",
     mode: 'cors',
@@ -322,7 +328,7 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  //responsysTest();
+  Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
 
