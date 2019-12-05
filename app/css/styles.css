@@ -989,7 +989,7 @@ main {
 }
 
 .main-page-card-wrapper {
-  top: -10%;
+  top: 100%;
 }
 
 .main-page-card-wrapper,
@@ -1003,15 +1003,15 @@ main {
 }
 
 .main-page-card-wrapper-two {
-  top: -20%;
+  top: -2%;
 }
 
 .main-page-card-wrapper-three {
-  top: -30%;
+  top: 103%;
 }
 
 .main-page-card-wrapper-four {
-  top: -40%;
+  top: -5%;
 }
 
 .main-page-card-title {

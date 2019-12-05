@@ -2,15 +2,14 @@ import {gsap, TweenMax, TimelineMax, Power, Linear} from 'gsap';
 import { AST_SymbolMethod } from 'terser';
 
 export default function () {
-  //Vars
 
 	//*Randomize Array and place all Cards in the Array*//
 	//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
-	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5);
-	//*Place all Cards except Title card in the Array*//
-	let allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title)')]);
-
-	let time = 1,
+	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
+		//*Place all Cards except Title card in the Array*//
+		allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title)')]),
+		
+		time = 1,
 		//Title Cards
 		titleCard = document.querySelector('.card-one-title'),
 		//Left Cards
@@ -34,11 +33,16 @@ export default function () {
 			
 			}},.05,'0.25');
 
-		//Slider the Cards	
-		tlScroll.to('.main-page-card-wrapper',10,{top:'90.25%', ease:'none'});
-		tlScrollTwo.to('.main-page-card-wrapper-two',15,{top:'80.25%', ease:'none'});
-		tlScrollThree.to('.main-page-card-wrapper-three',10,{top:'70.25%', ease:'none'});
-		tlScrollFour.to('.main-page-card-wrapper-four',17,{top:'60.25%', ease:'none'});
+		//Slide the Cards	
+		/*///
+		Please Note:
+		1) each div that conatins a set of cards is set to a percentage
+		2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
+		///*/
+		tlScroll.to('.main-page-card-wrapper',10,{top:'-34%', ease:'none'});
+		tlScrollTwo.to('.main-page-card-wrapper-two',12,{top:'131%', ease:'none'});
+		tlScrollThree.to('.main-page-card-wrapper-three',10,{top:'-30%', ease:'none'});
+		tlScrollFour.to('.main-page-card-wrapper-four',17,{top:'128%', ease:'none'});
 		
 		//console.log(allCards);
 }

@@ -215,18 +215,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  //Vars
   //*Randomize Array and place all Cards in the Array*//
   //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
   var allCardsshuffle = function allCardsshuffle(array) {
     return array.sort(function () {
       return Math.random() - 0.5;
     });
-  }; //*Place all Cards except Title card in the Array*//
-
-
-  var allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title)')));
-  var time = 1,
+  },
+      //*Place all Cards except Title card in the Array*//
+  allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title)'))),
+      time = 1,
       //Title Cards
   titleCard = document.querySelector('.card-one-title'),
       //Left Cards
@@ -257,6 +255,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     repeatDelay: 0
   }); //Fade in Title-Card and other Cards
 
+
   tl.to(titleCard, time, {
     opacity: 1,
     delay: time - 0.5,
@@ -267,22 +266,28 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     delay: Math.random() * time,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
     onComplete: function onComplete() {}
-  }, .05, '0.25'); //Slider the Cards	
+  }, .05, '0.25'); //Slide the Cards	
+
+  /*///
+  Please Note:
+  1) each div that conatins a set of cards is set to a percentage
+  2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
+  ///*/
 
   tlScroll.to('.main-page-card-wrapper', 10, {
-    top: '90.25%',
+    top: '-34%',
     ease: 'none'
   });
-  tlScrollTwo.to('.main-page-card-wrapper-two', 15, {
-    top: '80.25%',
+  tlScrollTwo.to('.main-page-card-wrapper-two', 12, {
+    top: '131%',
     ease: 'none'
   });
   tlScrollThree.to('.main-page-card-wrapper-three', 10, {
-    top: '70.25%',
+    top: '-30%',
     ease: 'none'
   });
   tlScrollFour.to('.main-page-card-wrapper-four', 17, {
-    top: '60.25%',
+    top: '128%',
     ease: 'none'
   }); //console.log(allCards);
 });
