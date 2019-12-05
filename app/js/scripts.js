@@ -353,7 +353,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   } //MOBILE WINDOW CONTROL
 
 
-  var mq = window.matchMedia('(max-width: 768px');
+  var mq = window.matchMedia('(max-width: 576px');
 
   function switchSize(e) {
     if (e.matches) {

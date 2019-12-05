@@ -65,7 +65,7 @@ export default function () {
 
 
 		//MOBILE WINDOW CONTROL
-		var mq = window.matchMedia('(max-width: 768px');
+		var mq = window.matchMedia('(max-width: 576px');
 
 		function switchSize(e) {
 			if (e.matches) {
