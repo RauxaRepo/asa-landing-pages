@@ -5,6 +5,7 @@ import 'whatwg-fetch';
 import responsysTest from './components/form.test';
 import  intoAnimation from './components/intro-animation';
 import metaTags from './components/meta.tags';
+import socialSet from './components/social.set';
 
 function documentReady(fn) {
   if (document.readyState != 'loading') {
@@ -20,8 +21,8 @@ function documentReady(fn) {
 }
 
 documentReady( function() {
+  socialSet();
   metaTags();
   responsysTest();
   intoAnimation();
-
 });
