@@ -881,6 +881,14 @@ section {
   }
 }
 
+.social-test {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  border: 1px solid #000;
+}
+
 .responsys-test label {
   position: relative;
   min-width: 150px;
