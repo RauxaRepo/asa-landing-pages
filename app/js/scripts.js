@@ -263,8 +263,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title)'))),
       time = 1,
       timeInterval,
+      //main page--Child div
+  mainPageInner = document.querySelector('.main-page-inner'),
       //Footer
-  theFooter = document.querySelector('.main-page-footer-slide'),
+  theFooterSlide = document.querySelector('.main-page-footer-slide'),
+      theFooter = document.querySelector('.main-page-footer'),
       //Title Cards
   titleCard = document.querySelector('.card-one-title'),
       //Left Cards
@@ -336,7 +339,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function raiseFooter() {
     console.log("Footer Slide In");
     clearInterval(timeInterval);
-    tl.to(theFooter, time, {
+    tl.to(theFooterSlide, time, {
       bottom: 0,
       delay: time - 0.5,
       ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
@@ -347,7 +350,26 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         tlScrollFour.pause();
       }
     });
+  } //MOBILE WINDOW CONTROL
+
+
+  var mq = window.matchMedia('(max-width: 768px');
+
+  function switchSize(e) {
+    if (e.matches) {
+      /* the viewport is mq pixels wide or less */
+      mainPageInner.classList.add('main-page-inner-mobile');
+      theFooter.classList.add('main-page-footer-mobile');
+      console.log('mobile');
+    } else {
+      //Do something
+      mainPageInner.classList.remove('main-page-inner-mobile');
+      theFooter.classList.remove('main-page-footer-mobile');
+    }
   }
+
+  switchSize(mq);
+  mq.addListener(switchSize);
 });
 
 /***/ }),

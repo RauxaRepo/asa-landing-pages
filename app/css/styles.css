@@ -972,6 +972,11 @@ main {
   }
 }
 
+.main-page-inner-mobile {
+  top: 40%;
+  width: 280%;
+}
+
 .main-page-column {
   position: relative;
   width: 20%;
@@ -1087,6 +1092,14 @@ main {
   bottom: -141px;
   position: fixed;
   width: 100%;
+}
+
+.main-page-footer-mobile p:nth-child(1) {
+  padding-top: 8%;
+}
+
+.main-page-footer-mobile p {
+  line-height: 14px;
 }
 
 .guide main {

@@ -12,8 +12,11 @@ export default function () {
 		
 		time = 1,
 		timeInterval,
+		//main page--Child div
+		mainPageInner = document.querySelector('.main-page-inner'),
 		//Footer
-		theFooter = document.querySelector('.main-page-footer-slide'),
+		theFooterSlide = document.querySelector('.main-page-footer-slide'),
+		theFooter = document.querySelector('.main-page-footer'),
 		//Title Cards
 		titleCard = document.querySelector('.card-one-title'),
 		//Left Cards
@@ -46,18 +49,38 @@ export default function () {
 		tlScrollThree.to('.main-page-card-wrapper-three',15,{y:'-30%', ease:'none'});
 		tlScrollFour.to('.main-page-card-wrapper-four',17,{y:'128%', ease:'none'});
 		
+
 		//SLIDE IN FOOTER & STOP CARD ANIMATION
 		timeInterval = setInterval(raiseFooter, 5000);
 		function raiseFooter(){
 			console.log("Footer Slide In");
 			clearInterval(timeInterval);
-			tl.to(theFooter, time,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
+			tl.to(theFooterSlide, time,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
 				tlScroll.pause();
 				tlScrollTwo.pause();
 				tlScrollThree.pause();
 				tlScrollFour.pause();
 			}})
 		}
+
+
+		//MOBILE WINDOW CONTROL
+		var mq = window.matchMedia('(max-width: 768px');
+
+		function switchSize(e) {
+			if (e.matches) {
+				/* the viewport is mq pixels wide or less */
+				mainPageInner.classList.add('main-page-inner-mobile');
+				theFooter.classList.add('main-page-footer-mobile');
+				console.log('mobile');
+			} else {
+				//Do something
+				mainPageInner.classList.remove('main-page-inner-mobile');
+				theFooter.classList.remove('main-page-footer-mobile');
+			}
+		}
+		switchSize(mq);
+		mq.addListener(switchSize);
 	
 }
 
