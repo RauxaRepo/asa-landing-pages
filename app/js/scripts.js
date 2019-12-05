@@ -86,6 +86,29 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../assets/src/js/components/breakpoints.js":
+/*!**************************************************!*\
+  !*** ../assets/src/js/components/breakpoints.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function (breakpoint) {
+  var breakpoints = {
+    // default breakpoints from bootstrap
+    xs: '320px',
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px'
+  };
+  return breakpoints[breakpoint];
+});
+
+/***/ }),
+
 /***/ "../assets/src/js/components/form.test.js":
 /*!************************************************!*\
   !*** ../assets/src/js/components/form.test.js ***!
@@ -216,6 +239,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -225,19 +249,25 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
+ //getBreakpoint('md');
+
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  //Vars
-  //*Randomize Array and place all Cards in the Array*//
+  //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
   //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
   var allCardsshuffle = function allCardsshuffle(array) {
     return array.sort(function () {
       return Math.random() - 0.5;
     });
-  }; //*Place all Cards except Title card in the Array*//
-
-
-  var allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title)')));
-  var time = 1,
+  },
+      //*Place all Cards except Title card in the Array*//
+  allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title)'))),
+      time = 1,
+      timeInterval,
+      //main page--Child div
+  mainPageInner = document.querySelector('.main-page-inner'),
+      //Footer
+  theFooterSlide = document.querySelector('.main-page-footer-slide'),
+      theFooter = document.querySelector('.main-page-footer'),
       //Title Cards
   titleCard = document.querySelector('.card-one-title'),
       //Left Cards
@@ -266,36 +296,80 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       tlScrollFour = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: -1,
     repeatDelay: 0
-  }); //Fade in Title-Card and other Cards
+  }); //FADE IN TITLE CARDS AND OTHER CARDS
+
 
   tl.to(titleCard, time, {
     opacity: 1,
     delay: time - 0.5,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  }) //.05, = stagger amount//'0.25' time between animation for cards
+  })
+  /*///.05, = stagger amount//'0.25' time between animation for cards///*/
   .staggerTo(allCards, time, {
     opacity: 1,
     delay: Math.random() * time,
-    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
-    onComplete: function onComplete() {}
-  }, .05, '0.25'); //Slider the Cards	
+    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
+  }, .05, '0.25'); //SLIDE THE CARDS
 
-  tlScroll.to('.main-page-card-wrapper', 10, {
-    top: '90.25%',
+  /*///
+  Please Note:
+  1) each div that conatins a set of cards is set to a percentage
+  2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
+  ///*/
+
+  tlScroll.to('.main-page-card-wrapper', 13, {
+    y: '-34%',
     ease: 'none'
   });
-  tlScrollTwo.to('.main-page-card-wrapper-two', 15, {
-    top: '80.25%',
+  tlScrollTwo.to('.main-page-card-wrapper-two', 19, {
+    y: '131%',
     ease: 'none'
   });
-  tlScrollThree.to('.main-page-card-wrapper-three', 10, {
-    top: '70.25%',
+  tlScrollThree.to('.main-page-card-wrapper-three', 15, {
+    y: '-30%',
     ease: 'none'
   });
   tlScrollFour.to('.main-page-card-wrapper-four', 17, {
-    top: '60.25%',
+    y: '128%',
     ease: 'none'
-  }); //console.log(allCards);
+  }); //SLIDE IN FOOTER & STOP CARD ANIMATION
+
+  timeInterval = setInterval(raiseFooter, 5000);
+
+  function raiseFooter() {
+    console.log("Footer Slide In");
+    clearInterval(timeInterval);
+    tl.to(theFooterSlide, time, {
+      bottom: 0,
+      delay: time - 0.5,
+      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
+      onComplete: function onComplete() {
+        tlScroll.pause();
+        tlScrollTwo.pause();
+        tlScrollThree.pause();
+        tlScrollFour.pause();
+      }
+    });
+  } //MOBILE WINDOW CONTROL
+
+
+  var mq = window.matchMedia('(max-width: 576px');
+
+  function switchSize(e) {
+    if (e.matches) {
+      /* the viewport is mq pixels wide or less */
+      mainPageInner.classList.add('main-page-inner-mobile');
+      theFooter.classList.add('main-page-footer-mobile');
+      console.log('mobile');
+    } else {
+      //Do something
+      mainPageInner.classList.remove('main-page-inner-mobile');
+      theFooter.classList.remove('main-page-footer-mobile');
+    }
+  }
+
+  switchSize(mq);
+  mq.addListener(switchSize);
 });
 
 /***/ }),
