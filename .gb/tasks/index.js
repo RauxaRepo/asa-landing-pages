@@ -52,13 +52,14 @@ let watchers = function() {
 }
 
 exports.localbuild = series(
+
+  sassCompile,
+  jsCompile,
   parallel(
     fonts,
     localViews,
     localImages,
   ),
-  sassCompile,
-  jsCompile,
   localServe,
   watchers
 );

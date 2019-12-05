@@ -33902,7 +33902,9 @@ var ConfigOptions = function ConfigOptions() {
   config.local = {
     imagesDir: "".concat(config.srcDir, "/images/**/*"),
     viewsDir: "".concat(config.srcDir, "/views/*.html"),
+    fontsDir: "".concat(config.srcDir, "/fonts/**/*"),
     appcss: "".concat(config.localDir, "/css"),
+    appfonts: "".concat(config.localDir, "/css/fonts"),
     appjs: "".concat(config.localDir, "/js"),
     appimg: "".concat(config.localDir, "/images")
   };
