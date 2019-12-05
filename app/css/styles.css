@@ -1085,8 +1085,8 @@ main {
 
 .main-page-footer-slide {
   bottom: -141px;
-  display: none;
-  position: relative;
+  position: fixed;
+  width: 100%;
 }
 
 .guide main {

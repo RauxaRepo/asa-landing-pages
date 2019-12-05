@@ -1,4 +1,6 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear} from 'gsap';
+import getBreakpoint from './breakpoints';
+//getBreakpoint('md');
 
 export default function () {
 
@@ -31,9 +33,7 @@ export default function () {
 		//FADE IN TITLE CARDS AND OTHER CARDS
 		tl.to(titleCard, time,{opacity:1, delay:time-0.5, ease:Linear})
 			/*///.05, = stagger amount//'0.25' time between animation for cards///*/
-			.staggerTo(allCards, time,{opacity:1, delay:Math.random() * time, ease:Linear, onComplete:function(){
-				//timeInterval = setInterval(raiseFooter, 7000);
-			}},.05,'0.25');
+			.staggerTo(allCards, time,{opacity:1, delay:Math.random() * time, ease:Linear},.05,'0.25');
 
 		//SLIDE THE CARDS
 		/*///
@@ -41,15 +41,22 @@ export default function () {
 		1) each div that conatins a set of cards is set to a percentage
 		2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
 		///*/
-		tlScroll.to('.main-page-card-wrapper',10,{top:'-34%', ease:'none'});
-		tlScrollTwo.to('.main-page-card-wrapper-two',12,{top:'131%', ease:'none'});
-		tlScrollThree.to('.main-page-card-wrapper-three',10,{top:'-30%', ease:'none'});
-		tlScrollFour.to('.main-page-card-wrapper-four',17,{top:'128%', ease:'none'});
+		tlScroll.to('.main-page-card-wrapper',13,{y:'-34%', ease:'none'});
+		tlScrollTwo.to('.main-page-card-wrapper-two',19,{y:'131%', ease:'none'});
+		tlScrollThree.to('.main-page-card-wrapper-three',15,{y:'-30%', ease:'none'});
+		tlScrollFour.to('.main-page-card-wrapper-four',17,{y:'128%', ease:'none'});
 		
-		//SLIDE IN FOOTER
+		//SLIDE IN FOOTER & STOP CARD ANIMATION
+		timeInterval = setInterval(raiseFooter, 5000);
 		function raiseFooter(){
-			//theFooter.style.display = 'block';
-			//tl.to(theFooter, time,{bottom:0, delay:time-0.5, ease:Linear})
+			console.log("Footer Slide In");
+			clearInterval(timeInterval);
+			tl.to(theFooter, time,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
+				tlScroll.pause();
+				tlScrollTwo.pause();
+				tlScrollThree.pause();
+				tlScrollFour.pause();
+			}})
 		}
 	
 }
