@@ -3,13 +3,16 @@ import { AST_SymbolMethod } from 'terser';
 
 export default function () {
 
-	//*Randomize Array and place all Cards in the Array*//
+	//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
 	//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
 	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
 		//*Place all Cards except Title card in the Array*//
 		allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title)')]),
 		
 		time = 1,
+		timeInterval,
+		//Footer
+		theFooter = document.querySelector('.main-page-footer-slide'),
 		//Title Cards
 		titleCard = document.querySelector('.card-one-title'),
 		//Left Cards
@@ -26,14 +29,14 @@ export default function () {
 		tlScrollFour = gsap.timeline({repeat: -1, repeatDelay: 0});
 
 
-		//Fade in Title-Card and other Cards
+		//FADE IN TITLE CARDS AND OTHER CARDS
 		tl.to(titleCard, time,{opacity:1, delay:time-0.5, ease:Linear})
-			//.05, = stagger amount//'0.25' time between animation for cards
+			/*///.05, = stagger amount//'0.25' time between animation for cards///*/
 			.staggerTo(allCards, time,{opacity:1, delay:Math.random() * time, ease:Linear, onComplete:function(){
-			
+				//timeInterval = setInterval(raiseFooter, 7000);
 			}},.05,'0.25');
 
-		//Slide the Cards	
+		//SLIDE THE CARDS
 		/*///
 		Please Note:
 		1) each div that conatins a set of cards is set to a percentage
@@ -44,6 +47,11 @@ export default function () {
 		tlScrollThree.to('.main-page-card-wrapper-three',10,{top:'-30%', ease:'none'});
 		tlScrollFour.to('.main-page-card-wrapper-four',17,{top:'128%', ease:'none'});
 		
-		//console.log(allCards);
+		//SLIDE IN FOOTER
+		function raiseFooter(){
+			//theFooter.style.display = 'block';
+			//tl.to(theFooter, time,{bottom:0, delay:time-0.5, ease:Linear})
+		}
+	
 }
 

@@ -215,7 +215,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  //*Randomize Array and place all Cards in the Array*//
+  //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
   //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
   var allCardsshuffle = function allCardsshuffle(array) {
     return array.sort(function () {
@@ -225,6 +225,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //*Place all Cards except Title card in the Array*//
   allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title)'))),
       time = 1,
+      timeInterval,
+      //Footer
+  theFooter = document.querySelector('.main-page-footer-slide'),
       //Title Cards
   titleCard = document.querySelector('.card-one-title'),
       //Left Cards
@@ -253,20 +256,22 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       tlScrollFour = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: -1,
     repeatDelay: 0
-  }); //Fade in Title-Card and other Cards
+  }); //FADE IN TITLE CARDS AND OTHER CARDS
 
 
   tl.to(titleCard, time, {
     opacity: 1,
     delay: time - 0.5,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  }) //.05, = stagger amount//'0.25' time between animation for cards
+  })
+  /*///.05, = stagger amount//'0.25' time between animation for cards///*/
   .staggerTo(allCards, time, {
     opacity: 1,
     delay: Math.random() * time,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
-    onComplete: function onComplete() {}
-  }, .05, '0.25'); //Slide the Cards	
+    onComplete: function onComplete() {//timeInterval = setInterval(raiseFooter, 7000);
+    }
+  }, .05, '0.25'); //SLIDE THE CARDS
 
   /*///
   Please Note:
@@ -289,7 +294,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   tlScrollFour.to('.main-page-card-wrapper-four', 17, {
     top: '128%',
     ease: 'none'
-  }); //console.log(allCards);
+  }); //SLIDE IN FOOTER
+
+  function raiseFooter() {//theFooter.style.display = 'block';
+    //tl.to(theFooter, time,{bottom:0, delay:time-0.5, ease:Linear})
+  }
 });
 
 /***/ }),
