@@ -4,6 +4,7 @@ const config = require('../config');
 
 
 import { sassCompile } from './sass';
+import { fonts } from './fonts';
 
 import { jsCompile } from './jscompile';
 import { jsCompileMin } from './jscompile.min';
@@ -51,18 +52,20 @@ let watchers = function() {
 }
 
 exports.localbuild = series(
-  sassCompile,
-  jsCompile,
   parallel(
+    fonts,
     localViews,
     localImages,
   ),
+  sassCompile,
+  jsCompile,
   localServe,
   watchers
 );
 
 exports.devbuild = series(
   parallel(
+    fonts,
     localViews,
     localImages,
   ),
@@ -73,6 +76,7 @@ exports.devbuild = series(
 
 exports.qabuild = series(
   parallel(
+    fonts,
     localViews,
     localImages,
   ),
@@ -83,6 +87,7 @@ exports.qabuild = series(
 
 exports.prodbuild = series(
   parallel(
+    fonts,
     localViews,
     localImages,
   ),
