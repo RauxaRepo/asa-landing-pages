@@ -111,8 +111,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var emailName = 'email';
   var getToken;
   var getEndpoint;
-  var getTokenUrl = "https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=".concat(config.creds.user, "&password=").concat(config.creds.pass, "&auth_type=password"); //
-  // function to grab params from url
+  var getTokenUrl = "https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=".concat(config.creds.user, "&password=").concat(config.creds.pass, "&auth_type=password"); // function to grab params from url
 
   var urlVars = function urlVars() {
     var vars = {};
@@ -120,10 +119,19 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
       vars[key] = value;
     });
     return vars;
-  };
+  }; // checking for customer ID to display discount ribbon
+
 
   if (urlVars()['CUSTOMER_ID_'] != undefined) {
     disctountRibbon.classList.add('active');
+  } // 
+
+
+  var uri = landingUrl.toString();
+
+  if (uri.indexOf("?") > 0) {
+    var clean_uri = uri.substring(0, uri.indexOf("?"));
+    window.history.replaceState({}, document.title, clean_uri);
   } // setting inputs based on url params
   //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
   //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';

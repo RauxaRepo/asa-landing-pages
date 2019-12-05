@@ -24,10 +24,6 @@ export default function () {
     let getEndpoint;
     let getTokenUrl = `https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=${config.creds.user}&password=${config.creds.pass}&auth_type=password`;
 
-    //
-
-
-
 
     // function to grab params from url
     let urlVars = function() {
@@ -39,9 +35,17 @@ export default function () {
         return vars;
     }
 
+    // checking for customer ID to display discount ribbon
     if(urlVars()['CUSTOMER_ID_'] != undefined ) {
         disctountRibbon.classList.add('active');
     }
+
+    // 
+    let uri = landingUrl.toString();
+	if (uri.indexOf("?") > 0) {
+	    var clean_uri = uri.substring(0, uri.indexOf("?"));
+	    window.history.replaceState({}, document.title, clean_uri);
+	}
 
     // setting inputs based on url params
     //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
