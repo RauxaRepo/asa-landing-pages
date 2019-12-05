@@ -1,5 +1,4 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear} from 'gsap';
-import { AST_SymbolMethod } from 'terser';
 
 export default function () {
   //Vars
