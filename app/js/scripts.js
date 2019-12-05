@@ -413,11 +413,32 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
+  // updating meta tag based on environment
   var siteHost = "".concat(window.location.protocol, "//").concat(window.location.host);
   var siteOgURL = document.querySelector('meta[property="og:url"]');
   var siteOgImage = document.querySelector('meta[property="og:image"]');
   siteOgURL.setAttribute('content', siteHost);
   siteOgImage.setAttribute('content', "".concat(siteHost, "/images/FB-Share.png"));
+});
+
+/***/ }),
+
+/***/ "../assets/src/js/components/social.set.js":
+/*!*************************************************!*\
+  !*** ../assets/src/js/components/social.set.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  // updating meta tag based on environment
+  var siteHost = "".concat(window.location.protocol, "//").concat(window.location.host);
+  var fbButton = document.querySelector('.fb-share-button');
+  var fbButtonAnchor = fbButton.querySelector('a');
+  fbButton.setAttribute('data-href', siteHost);
+  fbButtonAnchor.setAttribute('href', "https://www.facebook.com/sharer/sharer.php?u=".concat(siteHost, "&amp;src=sdkpreparse"));
 });
 
 /***/ }),
@@ -437,8 +458,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/form.test */ "../assets/src/js/components/form.test.js");
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
 /* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
+/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
 
  //import sampleJs from './components/sample.component';
+
 
 
 
@@ -457,6 +480,7 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
+  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_4__["default"])();
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
