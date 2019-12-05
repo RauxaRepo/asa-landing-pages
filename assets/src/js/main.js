@@ -20,7 +20,7 @@ function documentReady(fn) {
 
 documentReady( function() {
 
-  //responsysTest();
+  responsysTest();
   intoAnimation();
 
 });

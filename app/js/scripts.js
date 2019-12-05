@@ -100,9 +100,10 @@ var config = __webpack_require__(/*! ../../../../.gb/config */ "./config.js");
 var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var respSubmitBtn = document.querySelector('.submit-btn');
-  var respSubmitted = document.querySelector('.submitted-params');
+  //let respSubmitBtn = document.querySelector('.submit-btn');
+  // let respSubmitted = document.querySelector('.submitted-params');
   var landingUrl = window.location.href;
+  var disctountRibbon = document.querySelector('.main-page-header');
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');
@@ -110,8 +111,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var emailName = 'email';
   var getToken;
   var getEndpoint;
-  var getTokenUrl = "https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=".concat(config.creds.user, "&password=").concat(config.creds.pass, "&auth_type=password"); //
-  // function to grab params from url
+  var getTokenUrl = "https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=".concat(config.creds.user, "&password=").concat(config.creds.pass, "&auth_type=password"); // function to grab params from url
 
   var urlVars = function urlVars() {
     var vars = {};
@@ -119,13 +119,26 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
       vars[key] = value;
     });
     return vars;
-  }; // setting inputs based on url params
+  }; // checking for customer ID to display discount ribbon
 
 
-  customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
-  offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-  offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : ''; //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
-  /// need to add UTM 
+  if (urlVars()['CUSTOMER_ID_'] != undefined) {
+    disctountRibbon.classList.add('active');
+  } // 
+
+
+  var uri = landingUrl.toString();
+
+  if (uri.indexOf("?") > 0) {
+    var clean_uri = uri.substring(0, uri.indexOf("?"));
+    window.history.replaceState({}, document.title, clean_uri);
+  } // setting inputs based on url params
+  //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
+  //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
+  //offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
+  //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
+  /// need to add UTM |
+
 
   var respTriggerEmail = function respTriggerEmail(authToken, endPoint) {
     var url = "https://cors-anywhere.herokuapp.com/".concat(endPoint, "/rest/api/v1.3/campaigns/").concat(campaignName, "/").concat(emailName);
@@ -145,33 +158,34 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     });
   }; // getting Token
 
-
-  respSubmitBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    var respParms = {
-      CUSTOMER_ID_: customerId.value,
-      OFFER_CODE: offerCode.value,
-      OFFER_AUTHORIZATION: offerAuth.value
-    };
-    console.log(respParms);
-    console.log(getToken);
-    console.log(getEndpoint);
-    var url = "https://cors-anywhere.herokuapp.com/".concat(getEndpoint, "/rest/api/v1.3/campaigns/").concat(campaignName, "/").concat(emailName);
-    fetch(url, {
-      method: "POST",
-      mode: 'cors',
-      // no-cors, *cors, same-origin
-      headers: {
-        'Authorization': getToken,
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: JSON.stringify(respParms)
-    }).then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      return console.log(json);
-    });
+  /*
+  respSubmitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+       let respParms = {
+          CUSTOMER_ID_ : customerId.value,
+          OFFER_CODE : offerCode.value,
+          OFFER_AUTHORIZATION : offerAuth.value
+      };
+       console.log(respParms);
+      console.log(getToken);
+      console.log(getEndpoint);
+       let url = `https://cors-anywhere.herokuapp.com/${getEndpoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
+       fetch(url, {
+          method : "POST",
+          mode: 'cors', // no-cors, *cors, same-origin
+          headers: {
+              'Authorization': getToken, 
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+          body : JSON.stringify(respParms)
+      })
+      .then(response => response.json())
+      .then(json => console.log(json));
+       
   });
+  */
+
+
   fetch(getTokenUrl, {
     method: "POST",
     mode: 'cors',
@@ -322,7 +336,7 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  //responsysTest();
+  Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
 
@@ -33858,7 +33872,7 @@ if (!self.fetch) {
 /*! exports provided: name, version, description, scripts, babel, homepage, repository, author, license, browserslist, dependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"gulp-boostrap\",\"version\":\"0.0.1\",\"description\":\"gulp process to generate static pages for templates\",\"scripts\":{\"localbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks localbuild\",\"devbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks devbuild\",\"qabuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks qabuild\",\"prodbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks prodbuild --production\"},\"babel\":{\"presets\":[\"env\"],\"babelrc\":false},\"homepage\":\"http://\",\"repository\":{\"type\":\"git\",\"url\":\"https://\"},\"author\":\"Rauxa\",\"license\":\"MIT\",\"browserslist\":[\"ie >= 11\",\"last 2 version\",\"> 5%\"],\"dependencies\":{\"@babel/core\":\"^7.4.5\",\"@babel/polyfill\":\"^7.4.4\",\"@babel/preset-env\":\"^7.4.5\",\"babel-core\":\"^6.26.3\",\"babel-loader\":\"^8.0.6\",\"babel-preset-env\":\"^1.7.0\",\"base-64\":\"^0.1.0\",\"browser-sync\":\"^2.26.7\",\"cssnano\":\"^4.1.10\",\"gsap\":\"^3.0.1\",\"gulp\":\"^4.0.2\",\"gulp-autoprefixer\":\"^6.1.0\",\"gulp-babel\":\"^8.0.0\",\"gulp-clean\":\"^0.4.0\",\"gulp-if\":\"^3.0.0\",\"gulp-postcss\":\"^8.0.0\",\"gulp-rename\":\"^1.4.0\",\"gulp-sass\":\"^4.0.2\",\"gulp-sass-lint\":\"^1.4.0\",\"gulp-server-livereload\":\"^1.9.2\",\"gulp-sourcemaps\":\"^2.6.5\",\"merge-stream\":\"^2.0.0\",\"normalize-scss\":\"^7.0.1\",\"postcss-discard-comments\":\"^4.0.2\",\"webpack\":\"^4.35.0\",\"webpack-stream\":\"^5.2.1\",\"whatwg-fetch\":\"^3.0.0\",\"yargs\":\"^15.0.2\"}}");
+module.exports = JSON.parse("{\"name\":\"gulp-boostrap\",\"version\":\"0.0.1\",\"description\":\"gulp process to generate static pages for templates\",\"scripts\":{\"localbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks localbuild\",\"devbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks devbuild\",\"qabuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks qabuild\",\"prodbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks prodbuild --production\"},\"babel\":{\"presets\":[\"env\"],\"babelrc\":false},\"homepage\":\"http://\",\"repository\":{\"type\":\"git\",\"url\":\"https://\"},\"author\":\"Rauxa\",\"license\":\"MIT\",\"browserslist\":[\"ie >= 11\",\"last 2 version\",\"> 5%\"],\"dependencies\":{\"@babel/core\":\"^7.4.5\",\"@babel/polyfill\":\"^7.4.4\",\"@babel/preset-env\":\"^7.4.5\",\"babel-core\":\"^6.26.3\",\"babel-loader\":\"^8.0.6\",\"babel-preset-env\":\"^1.7.0\",\"base-64\":\"^0.1.0\",\"browser-sync\":\"^2.26.7\",\"cssnano\":\"^4.1.10\",\"gsap\":\"^3.0.1\",\"gulp\":\"^4.0.2\",\"gulp-autoprefixer\":\"^6.1.0\",\"gulp-babel\":\"^8.0.0\",\"gulp-clean\":\"^0.4.0\",\"gulp-if\":\"^3.0.0\",\"gulp-postcss\":\"^8.0.0\",\"gulp-remove-html-comments\":\"^1.0.1\",\"gulp-rename\":\"^1.4.0\",\"gulp-sass\":\"^4.0.2\",\"gulp-sass-lint\":\"^1.4.0\",\"gulp-server-livereload\":\"^1.9.2\",\"gulp-sourcemaps\":\"^2.6.5\",\"merge-stream\":\"^2.0.0\",\"normalize-scss\":\"^7.0.1\",\"postcss-discard-comments\":\"^4.0.2\",\"webpack\":\"^4.35.0\",\"webpack-stream\":\"^5.2.1\",\"whatwg-fetch\":\"^3.0.0\",\"yargs\":\"^15.0.2\"}}");
 
 /***/ }),
 
@@ -33902,7 +33916,9 @@ var ConfigOptions = function ConfigOptions() {
   config.local = {
     imagesDir: "".concat(config.srcDir, "/images/**/*"),
     viewsDir: "".concat(config.srcDir, "/views/*.html"),
+    fontsDir: "".concat(config.srcDir, "/fonts/**/*"),
     appcss: "".concat(config.localDir, "/css"),
+    appfonts: "".concat(config.localDir, "/css/fonts"),
     appjs: "".concat(config.localDir, "/js"),
     appimg: "".concat(config.localDir, "/images")
   };
