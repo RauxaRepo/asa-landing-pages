@@ -972,6 +972,11 @@ main {
   }
 }
 
+.main-page-inner-mobile {
+  top: 40%;
+  width: 280%;
+}
+
 .main-page-column {
   position: relative;
   width: 20%;
@@ -1003,7 +1008,7 @@ main {
 }
 
 .main-page-card-wrapper {
-  top: -10%;
+  top: 100%;
 }
 
 .main-page-card-wrapper,
@@ -1017,15 +1022,15 @@ main {
 }
 
 .main-page-card-wrapper-two {
-  top: -20%;
+  top: -2%;
 }
 
 .main-page-card-wrapper-three {
-  top: -30%;
+  top: 103%;
 }
 
 .main-page-card-wrapper-four {
-  top: -40%;
+  top: -5%;
 }
 
 .main-page-card-title {
@@ -1081,6 +1086,20 @@ main {
 
 .main-page-footer p:nth-child(:last-child) {
   padding-bottom: 40px;
+}
+
+.main-page-footer-slide {
+  bottom: -141px;
+  position: fixed;
+  width: 100%;
+}
+
+.main-page-footer-mobile p:nth-child(1) {
+  padding-top: 8%;
+}
+
+.main-page-footer-mobile p {
+  line-height: 14px;
 }
 
 .guide main {

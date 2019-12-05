@@ -1,15 +1,22 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear} from 'gsap';
+import getBreakpoint from './breakpoints';
+//getBreakpoint('md');
 
 export default function () {
-  //Vars
 
-	//*Randomize Array and place all Cards in the Array*//
+	//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
 	//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
-	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5);
-	//*Place all Cards except Title card in the Array*//
-	let allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title)')]);
-
-	let time = 1,
+	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
+		//*Place all Cards except Title card in the Array*//
+		allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title)')]),
+		
+		time = 1,
+		timeInterval,
+		//main page--Child div
+		mainPageInner = document.querySelector('.main-page-inner'),
+		//Footer
+		theFooterSlide = document.querySelector('.main-page-footer-slide'),
+		theFooter = document.querySelector('.main-page-footer'),
 		//Title Cards
 		titleCard = document.querySelector('.card-one-title'),
 		//Left Cards
@@ -26,19 +33,54 @@ export default function () {
 		tlScrollFour = gsap.timeline({repeat: -1, repeatDelay: 0});
 
 
-		//Fade in Title-Card and other Cards
+		//FADE IN TITLE CARDS AND OTHER CARDS
 		tl.to(titleCard, time,{opacity:1, delay:time-0.5, ease:Linear})
-			//.05, = stagger amount//'0.25' time between animation for cards
-			.staggerTo(allCards, time,{opacity:1, delay:Math.random() * time, ease:Linear, onComplete:function(){
-			
-			}},.05,'0.25');
+			/*///.05, = stagger amount//'0.25' time between animation for cards///*/
+			.staggerTo(allCards, time,{opacity:1, delay:Math.random() * time, ease:Linear},.05,'0.25');
 
-		//Slider the Cards	
-		tlScroll.to('.main-page-card-wrapper',10,{top:'90.25%', ease:'none'});
-		tlScrollTwo.to('.main-page-card-wrapper-two',15,{top:'80.25%', ease:'none'});
-		tlScrollThree.to('.main-page-card-wrapper-three',10,{top:'70.25%', ease:'none'});
-		tlScrollFour.to('.main-page-card-wrapper-four',17,{top:'60.25%', ease:'none'});
+		//SLIDE THE CARDS
+		/*///
+		Please Note:
+		1) each div that conatins a set of cards is set to a percentage
+		2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
+		///*/
+		tlScroll.to('.main-page-card-wrapper',13,{y:'-34%', ease:'none'});
+		tlScrollTwo.to('.main-page-card-wrapper-two',19,{y:'131%', ease:'none'});
+		tlScrollThree.to('.main-page-card-wrapper-three',15,{y:'-30%', ease:'none'});
+		tlScrollFour.to('.main-page-card-wrapper-four',17,{y:'128%', ease:'none'});
 		
-		//console.log(allCards);
+
+		//SLIDE IN FOOTER & STOP CARD ANIMATION
+		timeInterval = setInterval(raiseFooter, 5000);
+		function raiseFooter(){
+			console.log("Footer Slide In");
+			clearInterval(timeInterval);
+			tl.to(theFooterSlide, time,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
+				tlScroll.pause();
+				tlScrollTwo.pause();
+				tlScrollThree.pause();
+				tlScrollFour.pause();
+			}})
+		}
+
+
+		//MOBILE WINDOW CONTROL
+		var mq = window.matchMedia('(max-width: 576px');
+
+		function switchSize(e) {
+			if (e.matches) {
+				/* the viewport is mq pixels wide or less */
+				mainPageInner.classList.add('main-page-inner-mobile');
+				theFooter.classList.add('main-page-footer-mobile');
+				console.log('mobile');
+			} else {
+				//Do something
+				mainPageInner.classList.remove('main-page-inner-mobile');
+				theFooter.classList.remove('main-page-footer-mobile');
+			}
+		}
+		switchSize(mq);
+		mq.addListener(switchSize);
+	
 }
 

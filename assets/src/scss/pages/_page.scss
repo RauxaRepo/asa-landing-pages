@@ -13,6 +13,7 @@ $white: #fff;
 $footercolor: #e9e9e9;
 $footertextcolor: #656565;
 $red: #f00000;
+$footerheight: 141px;
 
 //div,
 //img,
@@ -53,7 +54,7 @@ $red: #f00000;
 //Outer Div - Position Relative
 .main-page-outer {
   position: relative;
-  height: 100vh;
+  height: 100vh;// - $footerheight;
   overflow: hidden;
   width: 100%;
 }
@@ -68,6 +69,11 @@ $red: #f00000;
   width: 100%;
   @include bp(md) {
     min-width: 1800px;
+  }
+
+  &-mobile {
+    top: 40%;
+    width: 280%;
   }
 }
 
@@ -102,7 +108,7 @@ $red: #f00000;
   }
 
   &-wrapper {
-    top: -10%;
+    top: 100%;
 }
 }
 
@@ -117,15 +123,15 @@ $red: #f00000;
 }
 
 .main-page-card-wrapper-two {
-  top: -20%;
+  top: -2%;
 }
 
 .main-page-card-wrapper-three {
-  top: -30%;
+  top: 103%;
 }
 
 .main-page-card-wrapper-four {
-  top: -40%;
+  top: -5%;
 }
 
 //Card Designs
@@ -162,7 +168,7 @@ $red: #f00000;
   bottom: 0;
   color: $footertextcolor;
   font-size: 10px;
-  height: 141px;
+  height: $footerheight;
   position: relative;
   text-align: center;
   width: 100%;
@@ -184,6 +190,22 @@ $red: #f00000;
 
   p:nth-child(:last-child) {
     padding-bottom: 40px;
+  }
+}
+
+.main-page-footer-slide {
+  bottom: -141px;
+  position: fixed;
+  width: 100%;
+}
+
+.main-page-footer-mobile {
+  p:nth-child(1) {
+    padding-top: 8%;
+  }
+
+  p {
+    line-height: 14px;
   }
 }
 
