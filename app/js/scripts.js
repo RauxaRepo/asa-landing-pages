@@ -347,7 +347,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   timeInterval = setInterval(raiseFooter, 5000);
 
   function raiseFooter() {
-    console.log("Footer Slide In");
     clearInterval(timeInterval);
     tl.to(theFooterSlide, time - 0.5, {
       bottom: 0,
@@ -357,9 +356,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         tlScroll.pause();
         tlScrollTwo.pause();
         tlScrollThree.pause();
-        tlScrollFour.pause();
+        tlScrollFour.pause(); //EventListener
+
+        titleCard.addEventListener('click', stackCards);
       }
-    });
+    }); //console.log("Footer Slide In");
   } //MOBILE VIEW 
 
 
@@ -398,19 +399,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     };
   }
 
-  var offsetEl = offset(document.getElementById('card-one-title'));
-  console.log(offsetEl.left, offsetEl.top); //EventListener
-
-  titleCard.addEventListener('click', stackCards);
+  var offsetEl = offset(document.getElementById('card-one-title')); //console.log(offsetEl.left, offsetEl.top);
+  //StackCards
 
   function stackCards() {
     console.log('title Click');
     leftCardArr.forEach(function (item) {
-      //item.style.position = 'absolute';
+      item.style.position = 'absolute';
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, time - 0.5, {
         stagger: 0.3,
         x: offsetEl.left,
+        //xPercent:offsetEl.left,
         y: offsetEl.top,
+        //yPercent:offsetEl.left,
         transformOrigin: '50% 50%',
         delay: Math.random() * 0.4,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]

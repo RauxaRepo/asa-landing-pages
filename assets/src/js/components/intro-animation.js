@@ -60,14 +60,16 @@ export default function () {
 		//SLIDE IN FOOTER & STOP CARD ANIMATION
 		timeInterval = setInterval(raiseFooter, 5000);
 		function raiseFooter(){
-			console.log("Footer Slide In");
 			clearInterval(timeInterval);
 			tl.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
 				tlScroll.pause();
 				tlScrollTwo.pause();
 				tlScrollThree.pause();
 				tlScrollFour.pause();
+				//EventListener
+				titleCard.addEventListener('click', stackCards);
 			}})
+			//console.log("Footer Slide In");
 		}
 
 
@@ -104,18 +106,17 @@ export default function () {
 			return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 		}
 		var offsetEl = offset(document.getElementById('card-one-title'));
-		console.log(offsetEl.left, offsetEl.top);
+		//console.log(offsetEl.left, offsetEl.top);
 
-		//EventListener
-		titleCard.addEventListener('click', stackCards);
+		//StackCards
 		function stackCards(){
 			console.log('title Click');
 			leftCardArr.forEach(function(item){
-				//item.style.position = 'absolute';
+				item.style.position = 'absolute';
 				gsap.to(item, time - 0.5,{
 					stagger: 0.3, 
-					x:offsetEl.left, 
-					y:offsetEl.top, 
+					x:offsetEl.left, //xPercent:offsetEl.left,
+					y:offsetEl.top, //yPercent:offsetEl.left,
 					transformOrigin: '50% 50%', 
 					delay:Math.random() * 0.4, 
 					ease:Linear
