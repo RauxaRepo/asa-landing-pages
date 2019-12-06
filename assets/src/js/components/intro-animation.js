@@ -7,8 +7,8 @@ export default function () {
 	//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
 	//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
 	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
-		//*Place all Cards except Title card in the Array*//
-		allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title)')]),
+		//*Place all Cards except Title card in the Array using ('...' = spread)*//
+		allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title):not(.main-page-card-white)')]),
 		time = 1,
 		timeInterval,
 		htmlBody = document.getElementsByTagName("BODY")[0],
@@ -22,12 +22,6 @@ export default function () {
 		theFooter = document.querySelector('.main-page-footer'),
 		//Title Cards
 		titleCard = document.querySelector('.card-one-title'),
-		//Left Cards
-		cardLeftOne = document.querySelector('.card-left-one'),
-		cardLeftTwo = document.querySelector('.card-left-two'),
-		//Right Cards
-		cardrRightOne = document.querySelector('.card-right-one'),
-		cardrRightTwo = document.querySelector('.card-right-two'),
 		//
 		tl = gsap.timeline({repeat: 0, repeatDelay: 0}),
 		tlScroll = gsap.timeline({repeat: -1, repeatDelay: 0}),
@@ -95,12 +89,6 @@ export default function () {
 		mq.addListener(switchSize);
 
 		//PRESS TITLE CARD AND STACK CARDS
-		let leftCardArr = [...document.querySelectorAll('.card-left-one .main-page-card')],
-			leftCardArrTwo = [...document.querySelectorAll('.card-left-two .main-page-card')],
-			rightCardArr = [...document.querySelectorAll('.card-right-one .main-page-card')],
-			rightCardArrTwo = [...document.querySelectorAll('.card-right-two .main-page-card')];
-		console.log('leftCardArr ',leftCardArr, );
-
 		//Get Positon of Element 
 		function offset(el) {
 			var rect = el.getBoundingClientRect(),
@@ -127,7 +115,7 @@ export default function () {
 			})*/
 			allCards.forEach(function(item){
 				item.style.position = 'absolute';
-				gsap.to(item, time * 3,{
+				gsap.to(item, time - 0.5,{
 					stagger: 0.3, 
 					x:offsetEl.left, //xPercent:offsetEl.left,
 					y:offsetEl.top, //yPercent:offsetEl.left,
@@ -136,17 +124,9 @@ export default function () {
 					ease:Linear
 				});
 			})
-			/*gsap.to(allCards, time - 0.5,{
-				stagger: 0.07, 
-				x:titleCard.offsetLeft, 
-				y:titleCard.offsetTop - 10, 
-				transformOrigin: '50% 50%', 
-				delay:Math.random() * 0.4, 
-				ease:Linear
-			});*/
 			//Background Color
 			gsap.to(htmlBody, {
-				duration: time * 2,
+				duration: time * 3,
 				backgroundColor: $flightbgblue, 
 				delay:Math.random() * 0.4, 
 				ease:Linear});

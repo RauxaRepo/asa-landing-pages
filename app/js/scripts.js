@@ -259,8 +259,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return Math.random() - 0.5;
     });
   },
-      //*Place all Cards except Title card in the Array*//
-  allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title)'))),
+      //*Place all Cards except Title card in the Array using ('...' = spread)*//
+  allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title):not(.main-page-card-white)'))),
       time = 1,
       timeInterval,
       htmlBody = document.getElementsByTagName("BODY")[0],
@@ -274,12 +274,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       theFooter = document.querySelector('.main-page-footer'),
       //Title Cards
   titleCard = document.querySelector('.card-one-title'),
-      //Left Cards
-  cardLeftOne = document.querySelector('.card-left-one'),
-      cardLeftTwo = document.querySelector('.card-left-two'),
-      //Right Cards
-  cardrRightOne = document.querySelector('.card-right-one'),
-      cardrRightTwo = document.querySelector('.card-right-two'),
       //
   tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
@@ -385,13 +379,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   switchSize(mq);
   mq.addListener(switchSize); //PRESS TITLE CARD AND STACK CARDS
-
-  var leftCardArr = _toConsumableArray(document.querySelectorAll('.card-left-one .main-page-card')),
-      leftCardArrTwo = _toConsumableArray(document.querySelectorAll('.card-left-two .main-page-card')),
-      rightCardArr = _toConsumableArray(document.querySelectorAll('.card-right-one .main-page-card')),
-      rightCardArrTwo = _toConsumableArray(document.querySelectorAll('.card-right-two .main-page-card'));
-
-  console.log('leftCardArr ', leftCardArr); //Get Positon of Element 
+  //Get Positon of Element 
 
   function offset(el) {
     var rect = el.getBoundingClientRect(),
@@ -422,7 +410,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     allCards.forEach(function (item) {
       item.style.position = 'absolute';
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, time * 3, {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, time - 0.5, {
         stagger: 0.3,
         x: offsetEl.left,
         //xPercent:offsetEl.left,
@@ -432,19 +420,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         delay: Math.random() * 0.4,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
       });
-    });
-    /*gsap.to(allCards, time - 0.5,{
-    	stagger: 0.07, 
-    	x:titleCard.offsetLeft, 
-    	y:titleCard.offsetTop - 10, 
-    	transformOrigin: '50% 50%', 
-    	delay:Math.random() * 0.4, 
-    	ease:Linear
-    });*/
-    //Background Color
+    }); //Background Color
 
     gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(htmlBody, {
-      duration: time * 2,
+      duration: time * 3,
       backgroundColor: $flightbgblue,
       delay: Math.random() * 0.4,
       ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]

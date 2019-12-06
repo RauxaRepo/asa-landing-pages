@@ -1007,6 +1007,14 @@ main {
   margin: auto 0;
 }
 
+.main-page-card-white {
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  height: auto;
+  width: 100%;
+}
+
 .main-page-card-wrapper,
 .main-page-card-wrapper-two,
 .main-page-card-wrapper-three,
@@ -1031,6 +1039,11 @@ main {
 
 .main-page-card-wrapper-four {
   transform: translateY(-52%);
+}
+
+.title-card-container {
+  height: auto;
+  position: relative;
 }
 
 .main-page-card-title {
