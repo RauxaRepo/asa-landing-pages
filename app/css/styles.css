@@ -914,56 +914,87 @@ section {
   margin: 10px 0;
   width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
-.main-page-card--question-wrapper {
+.main-page-card--question p {
+  padding-top: 40px;
+  padding-bottom: 15px;
+  font-size: 24px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
+}
+
+.main-page-card--question .active-card {
+  border-radius: 10px;
   background-color: #fff;
   position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
-  padding: 0 40px;
+  padding: 30px;
 }
 
-.main-page-card--question-wrapper img {
-  width: 109px;
+.main-page-card--question .active-card--buttonwrapper {
+  position: relative;
   height: auto;
-  padding-top: 65px;
+  width: 100%;
 }
 
-.main-page-card--question-wrapper .q1 {
-  color: #48a9c5;
-}
-
-.main-page-card--question-wrapper--button {
+.main-page-card--question .active-card--button {
+  position: relative;
+  display: block;
   margin-top: 15px;
-  width: 300px;
-  height: 47px;
-  background-color: #48a9c5;
-  color: #fff;
+  width: 100%;
+  padding: 17px 0px;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
   border-radius: 5px;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
+  border: none;
+  font-size: 16px;
+  transition: 0.3s;
 }
 
-.main-page-card--question-wrapper--button a {
+.main-page-card--question .active-card--button:hover {
+  background-color: #01426a;
   color: #fff;
-  text-decoration: none;
 }
 
-.q_bodycopy {
-  padding-top: 40px;
-  padding-bottom: 15px;
-  font-size: 24px;
-  line-height: 30px;
-  text-align: center;
-  font-weight: bold;
+.main-page-card--question .active-card.q2 button, .main-page-card--question .active-card.q4 button {
+  background-color: #2774ae;
+  color: #fff;
+}
+
+.main-page-card--question .active-card.q2 button:hover, .main-page-card--question .active-card.q4 button:hover {
+  background-color: #01426a;
+}
+
+.main-page-card--question .q1 {
+  display: none;
+}
+
+.main-page-card--question .q1 p {
+  color: #48a9c5;
+}
+
+.main-page-card--question .q1 img {
+  width: 109px;
+  height: auto;
+  pointer-events: none;
+}
+
+.main-page-card--question .q2 p {
+  color: #2774ae;
+}
+
+.main-page-card--question .q2 img {
+  width: 245px;
+  height: auto;
+  pointer-events: none;
 }
 
 .intro-block {

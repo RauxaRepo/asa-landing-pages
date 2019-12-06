@@ -1,3 +1,7 @@
+
+// MASTER CARD AND BUTTON STYLES
+
+// main wrapper with original classname
 .main-page-card--question {
   opacity: 1;
   border-radius: 10px;
@@ -8,68 +12,119 @@
   margin: 10px 0;
   width: 100%;
   overflow: hidden;
+  position:relative;
 
-  // targets main-page-card--question-wrapper;
-  &-wrapper {
+  p {
+    padding-top: 40px;
+    padding-bottom: 15px;
+    font-size: 24px;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: bold;
+    }
+
+  // active card wrapper
+  .active-card {
+    border-radius: 10px;
     background-color: $white;
     position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
     align-items: center;
-    padding: 0 40px;
+    padding: 30px;
 
-    // specific to question 1
+      &--buttonwrapper {
+        position: relative;
+        height: auto;
+        width: 100%;
+      }
+
+      &--button {
+        position: relative;
+        display: block;
+        margin-top: 15px;
+        width: 100%;
+        padding: 17px 0px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        transition: 0.3s;
+
+        // default hover
+        &:hover {
+        background-color: $darkblue;
+        color: $white;
+        }
+      }
+
+      // question 2 hover.  (see comma for applying to different versions)
+      &.q2, 
+      &.q4 {
+        button {
+          background-color: $atlasblue;
+          color: $white;
+
+          &:hover {
+            background-color: $darkblue;
+          }
+        }
+      } 
+
+    }
+
+
+
+
+
+
+  // SPECIFIC STYLING for each card
+  
+  // QUESTION 1 
+  .q1 {
+    display: none; 
+    p {color: $blue;}
+
     img {
       width: 109px;
       height: auto;
-      padding-top: 65px;
+      pointer-events: none;
+      // padding-top: 65px;
     }
 
-    .q1 {
-      color: $blue;
-    }
   }
 
-  // master button styles
-  &-wrapper--button {
-    margin-top: 15px;
-    width: 300px;
-    height: 47px;
-    background-color: $blue;
-    color: $white;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    border-radius: 5px;
+  // QUESTION 2
+  .q2 {
+    // display: none; 
+    p {color: $atlasblue;}
 
-    // centering text vertically within cta
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-
-    a { 
-      color: $white;
-      text-decoration: none;
+    img {
+      width: 245px;
+      height: auto;
+      pointer-events: none;
+      // padding-top: 65px;
     }
+
+
+
   }
 
+
+
+
+
+
 }
+  
 
 
 
+// COMPLETE BY EOD
+// *****************************
+// clean up scss, make more efficient in the bottom
 
-// GENERAL STYLES for all card types
-
-// These need to be organized/named better using scss conventions.. help?
-// I couldn't get the scss to compile correctly when i tried to mimic the &-wrapper method above
-
-.q_bodycopy {
-padding-top: 40px;
-padding-bottom: 15px;
-font-size: 24px;
-line-height: 30px;
-text-align: center;
-font-weight: bold;
-}
