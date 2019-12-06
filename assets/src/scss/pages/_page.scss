@@ -138,6 +138,8 @@ $footerheight: 141px;
 .main-page-card-title {
   background-image: url('../images/cards/Title_Card.png');
   cursor: pointer;
+  position: relative;
+  z-index: 100;
 }
 
 .main-page-card-atlas {

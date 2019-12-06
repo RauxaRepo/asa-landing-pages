@@ -55,7 +55,7 @@ export default function () {
 		function raiseFooter(){
 			console.log("Footer Slide In");
 			clearInterval(timeInterval);
-			tl.to(theFooterSlide, time,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
+			tl.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
 				tlScroll.pause();
 				tlScrollTwo.pause();
 				tlScrollThree.pause();
@@ -64,7 +64,7 @@ export default function () {
 		}
 
 
-		//MOBILE WINDOW CONTROL
+		//MOBILE VIEW 
 		var mq = window.matchMedia('(max-width: 576px');
 
 		function switchSize(e) {
@@ -81,6 +81,25 @@ export default function () {
 		}
 		switchSize(mq);
 		mq.addListener(switchSize);
-	
+
+		//PRESS TITLE CARD AND STACK CARDS
+		function offset(el) {
+				var rect = el.getBoundingClientRect(),
+				scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+				scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+		}
+		var offsetEl = offset(document.getElementById('card-one-title'));
+		console.log(offsetEl.left, offsetEl.top);
+
+		titleCard.addEventListener('click', stackCards);
+		function stackCards(){
+			console.log('title Click');
+			allCards.forEach(function(item){
+				//item.style.position = 'absolute';
+				gsap.to(item, time - 0.5,{stagger: 0.3, x:offsetEl.left, y:offsetEl.top, transformOrigin: '50% 50%', delay:Math.random() * 0.4, ease:Linear});
+			})
+			//gsap.to(allCards, time - 0.5,{stagger: 0.07, x:titleCard.offsetLeft, y:titleCard.offsetTop - 10, transformOrigin: '50% 50%', delay:Math.random() * 0.4, ease:Linear});
+		}
 }
 
