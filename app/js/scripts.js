@@ -315,24 +315,34 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   Please Note:
   1) each div that conatins a set of cards is set to a percentage
   2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
+  3) xPercent:50, yPercent:50 = "translate(-50%, -50%)"
+  4) x:100, y:200 = "translate3d(100px, 200px, 0)"
   ///*/
 
-  tlScroll.to('.main-page-card-wrapper', 13, {
-    y: '-34%',
+  tlScroll.to('.main-page-card-wrapper', 10, {
+    yPercent: -50,
+
+    /*y:'-34%',*/
     ease: 'none'
   });
-  tlScrollTwo.to('.main-page-card-wrapper-two', 19, {
-    y: '131%',
+  tlScrollTwo.to('.main-page-card-wrapper-two', 3, {
+    yPercent: 50,
     ease: 'none'
   });
-  tlScrollThree.to('.main-page-card-wrapper-three', 15, {
-    y: '-30%',
+  tlScrollThree.to('.main-page-card-wrapper-three', 5, {
+    yPercent: -50,
     ease: 'none'
   });
-  tlScrollFour.to('.main-page-card-wrapper-four', 17, {
-    y: '128%',
+  tlScrollFour.to('.main-page-card-wrapper-four', 13, {
+    yPercent: 50,
     ease: 'none'
-  }); //SLIDE IN FOOTER & STOP CARD ANIMATION
+  });
+  /*OLD*/
+  //tlScroll.to('.main-page-card-wrapper',13,{y:'-34%', ease:'none'});
+  //tlScrollTwo.to('.main-page-card-wrapper-two',19,{y:'131%', ease:'none'});
+  //tlScrollThree.to('.main-page-card-wrapper-three',15,{y:'-30%', ease:'none'});
+  //tlScrollFour.to('.main-page-card-wrapper-four',17,{y:'128%', ease:'none'});
+  //SLIDE IN FOOTER & STOP CARD ANIMATION
 
   timeInterval = setInterval(raiseFooter, 5000);
 
@@ -371,6 +381,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   switchSize(mq);
   mq.addListener(switchSize); //PRESS TITLE CARD AND STACK CARDS
 
+  var leftCardArr = _toConsumableArray(document.querySelectorAll('.card-left-one .main-page-card')),
+      leftCardArrTwo = _toConsumableArray(document.querySelectorAll('.card-left-two .main-page-card')),
+      rightCardArr = _toConsumableArray(document.querySelectorAll('.card-right-one .main-page-card')),
+      rightCardArrTwo = _toConsumableArray(document.querySelectorAll('.card-right-two .main-page-card'));
+
+  console.log('leftCardArr ', leftCardArr); //Get Positon of Element 
+
   function offset(el) {
     var rect = el.getBoundingClientRect(),
         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
@@ -382,12 +399,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   var offsetEl = offset(document.getElementById('card-one-title'));
-  console.log(offsetEl.left, offsetEl.top);
+  console.log(offsetEl.left, offsetEl.top); //EventListener
+
   titleCard.addEventListener('click', stackCards);
 
   function stackCards() {
     console.log('title Click');
-    allCards.forEach(function (item) {
+    leftCardArr.forEach(function (item) {
       //item.style.position = 'absolute';
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, time - 0.5, {
         stagger: 0.3,
@@ -397,7 +415,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         delay: Math.random() * 0.4,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
       });
-    }); //gsap.to(allCards, time - 0.5,{stagger: 0.07, x:titleCard.offsetLeft, y:titleCard.offsetTop - 10, transformOrigin: '50% 50%', delay:Math.random() * 0.4, ease:Linear});
+    });
+    /*gsap.to(allCards, time - 0.5,{
+    	stagger: 0.07, 
+    	x:titleCard.offsetLeft, 
+    	y:titleCard.offsetTop - 10, 
+    	transformOrigin: '50% 50%', 
+    	delay:Math.random() * 0.4, 
+    	ease:Linear
+    });*/
   }
 });
 

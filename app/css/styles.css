@@ -1007,10 +1007,6 @@ main {
   margin: auto 0;
 }
 
-.main-page-card-wrapper {
-  top: 100%;
-}
-
 .main-page-card-wrapper,
 .main-page-card-wrapper-two,
 .main-page-card-wrapper-three,
@@ -1021,16 +1017,20 @@ main {
   width: 100%;
 }
 
+.main-page-card-wrapper {
+  transform: translateY(-5%);
+}
+
 .main-page-card-wrapper-two {
-  top: -2%;
+  transform: translateY(-52%);
 }
 
 .main-page-card-wrapper-three {
-  top: 103%;
+  transform: translateY(-5%);
 }
 
 .main-page-card-wrapper-four {
-  top: -5%;
+  transform: translateY(-52%);
 }
 
 .main-page-card-title {

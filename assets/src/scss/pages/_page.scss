@@ -107,9 +107,6 @@ $footerheight: 141px;
     margin: auto 0;
   }
 
-  &-wrapper {
-    top: 100%;
-}
 }
 
 .main-page-card-wrapper,
@@ -122,16 +119,20 @@ $footerheight: 141px;
   width: 100%;
 }
 
+.main-page-card-wrapper {
+  transform: translateY(-5%);//top: 100%;
+}
+
 .main-page-card-wrapper-two {
-  top: -2%;
+  transform: translateY(-52%);//top: -2%;
 }
 
 .main-page-card-wrapper-three {
-  top: 103%;
+  transform: translateY(-5%);//top: 103%;
 }
 
 .main-page-card-wrapper-four {
-  top: -5%;
+  transform: translateY(-52%);//top: -5%;
 }
 
 //Card Designs
