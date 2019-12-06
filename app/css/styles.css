@@ -1104,6 +1104,10 @@ main {
   line-height: 14px;
 }
 
+.main-bg--color {
+  background-color: #2774ae;
+}
+
 .guide main {
   background-color: #fff;
   display: block;

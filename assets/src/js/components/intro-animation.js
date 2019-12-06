@@ -9,9 +9,12 @@ export default function () {
 	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
 		//*Place all Cards except Title card in the Array*//
 		allCards = allCardsshuffle([...document.querySelectorAll('.main-page-card:not(.main-page-card-title)')]),
-		
 		time = 1,
 		timeInterval,
+		htmlBody = document.getElementsByTagName("BODY")[0],
+		//colors
+		$flightblue = '#2774ae',
+		$flightbgblue = '#48a9c5',
 		//main page--Child div
 		mainPageInner = document.querySelector('.main-page-inner'),
 		//Footer
@@ -111,9 +114,20 @@ export default function () {
 		//StackCards
 		function stackCards(){
 			console.log('title Click');
-			leftCardArr.forEach(function(item){
+			/*leftCardArr.forEach(function(item){
 				item.style.position = 'absolute';
 				gsap.to(item, time - 0.5,{
+					stagger: 0.3, 
+					x:offsetEl.left, //xPercent:offsetEl.left,
+					y:offsetEl.top, //yPercent:offsetEl.left,
+					transformOrigin: '50% 50%', 
+					delay:Math.random() * 0.4, 
+					ease:Linear
+				});
+			})*/
+			allCards.forEach(function(item){
+				item.style.position = 'absolute';
+				gsap.to(item, time * 3,{
 					stagger: 0.3, 
 					x:offsetEl.left, //xPercent:offsetEl.left,
 					y:offsetEl.top, //yPercent:offsetEl.left,
@@ -130,6 +144,12 @@ export default function () {
 				delay:Math.random() * 0.4, 
 				ease:Linear
 			});*/
+			//Background Color
+			gsap.to(htmlBody, {
+				duration: time * 2,
+				backgroundColor: $flightbgblue, 
+				delay:Math.random() * 0.4, 
+				ease:Linear});
 		}
 }
 
