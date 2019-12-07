@@ -1,0 +1,101 @@
+//div,
+//img,
+//p,
+//span {
+//  outline: 1px solid $red;
+//}
+
+// MASTER CARD AND BUTTON STYLES
+.active-card-drag p {
+    font-size: 3vw;//24px;
+    line-height: 1.25;
+}
+
+.active-card-drag--button {
+    font-size: 2.1vw;//16px;
+}
+
+//Box shadow
+.q1,
+.q2,
+.q3,
+.q4,
+.q5,
+.q6,
+.q7,
+.q8,
+.q9,
+.q10 {
+    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.4);
+    display: flex;
+}
+
+//MEDIA QUERY
+@media only screen and (max-width: 576px) {
+    .active-card p {
+        padding-top: 21px;
+        padding-bottom: 15px;
+        font-size: 10px;
+        width: 124%;
+    }
+
+    .active-card--buttonwrapper {
+        width: 124%;
+    }
+
+    .active-card--button {
+        border-radius: 2px;
+        margin-top: 10px;
+        padding: 7px 0;
+        font-size: 10px;
+    }
+
+    .active-card.q2 button {
+        font-size: 7px;
+    }
+
+    .active-card.q4 button {
+        font-size: 8px;
+    }
+
+    // QUESTION 1 (and all other odd questions, for now)
+    .q1,
+    .q3,
+    .q5,
+    .q7,
+    .q9 {
+        img {
+            width: 52%;
+        }
+    }
+    
+}
+
+// QUESTION 2 (and all other even questions, for now)
+//.q2,
+//.q4,
+//.q6,
+//.q8,
+//.q10 {
+//  img {
+//    width: 80%;
+//  }
+//}
+
+
+// show whichever card I'm actively working on
+//.q1 {display: flex;}
+//.q2 {display: flex;}
+//.q3 {display: flex;}
+//.q4 {display: flex;}
+//.q5 {display: flex;}
+//.q6 {display: flex;}
+//.q7 {display: flex;}
+//.q8 {display: flex;}
+//.q9 {display: flex;}
+//.q10 {display: flex;}
+
+//body color
+.background-color-blue {
+    background-color: $blue;
+}
