@@ -1007,8 +1007,12 @@ main {
   margin: auto 0;
 }
 
-.main-page-card-wrapper {
-  top: 100%;
+.main-page-card-white {
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  height: auto;
+  width: 100%;
 }
 
 .main-page-card-wrapper,
@@ -1021,16 +1025,25 @@ main {
   width: 100%;
 }
 
+.main-page-card-wrapper {
+  transform: translateY(-5%);
+}
+
 .main-page-card-wrapper-two {
-  top: -2%;
+  transform: translateY(-52%);
 }
 
 .main-page-card-wrapper-three {
-  top: 103%;
+  transform: translateY(-5%);
 }
 
 .main-page-card-wrapper-four {
-  top: -5%;
+  transform: translateY(-52%);
+}
+
+.title-card-container {
+  height: auto;
+  position: relative;
 }
 
 .main-page-card-title {
@@ -1102,6 +1115,10 @@ main {
 
 .main-page-footer-mobile p {
   line-height: 14px;
+}
+
+.main-bg--color {
+  background-color: #2774ae;
 }
 
 .guide main {
