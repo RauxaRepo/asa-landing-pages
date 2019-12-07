@@ -1042,10 +1042,6 @@ main {
   background-color: #f1f1f1;
 }
 
-.main-page {
-  background-color: #48a9c5;
-}
-
 .main-page-header {
   background-color: #2774ae;
   border-bottom: 2px solid #fff;
@@ -1083,7 +1079,15 @@ main {
   left: 50%;
   top: 40%;
   transform: translate(-50%, -50%);
-  width: 280%;
+  width: 100%;
+  min-width: 1000px;
+  transition: min-width .25s ease, width .25s ease;
+}
+
+@media (min-width: 375px) {
+  .main-page-inner {
+    min-width: 1290px;
+  }
 }
 
 @media (min-width: 768px) {
