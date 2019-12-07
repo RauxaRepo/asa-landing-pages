@@ -8,7 +8,8 @@ main {
   background-color: $off-white;
 }
 
-$flightlblue: #2774ae;
+$flightblue: #2774ae;
+$flightbgblue: #48a9c5;
 $white: #fff;
 $footercolor: #e9e9e9;
 $footertextcolor: #656565;
@@ -24,11 +25,12 @@ $footerheight: 141px;
 
 //Set page layout
 .main-page {
-  background-color: transparent;
+  // i changed from transparent to blue to be able to see better -caleb
+  background-color: $blue;
 }
 
 .main-page-header {
-  background-color: $flightlblue;
+  background-color: $flightblue;
   border-bottom: 2px solid $white;
   color: $white;
   font-size: 12px;
@@ -107,9 +109,14 @@ $footerheight: 141px;
     margin: auto 0;
   }
 
-  &-wrapper {
-    top: 100%;
-}
+  &-white {
+    background-color: $white;
+    position: absolute;
+    left: 0;
+    height: auto;
+    width: 100%;
+  }
+
 }
 
 .main-page-card-wrapper,
@@ -122,22 +129,33 @@ $footerheight: 141px;
   width: 100%;
 }
 
+.main-page-card-wrapper {
+  transform: translateY(-5%);//top: 100%;
+}
+
 .main-page-card-wrapper-two {
-  top: -2%;
+  transform: translateY(-52%);//top: -2%;
 }
 
 .main-page-card-wrapper-three {
-  top: 103%;
+  transform: translateY(-5%);//top: 103%;
 }
 
 .main-page-card-wrapper-four {
-  top: -5%;
+  transform: translateY(-52%);//top: -5%;
 }
 
 //Card Designs
+.title-card-container {
+  height: auto;
+  position: relative;
+}
+
 .main-page-card-title {
   background-image: url('../images/cards/Title_Card.png');
   cursor: pointer;
+  position: relative;
+  z-index: 100;
 }
 
 .main-page-card-atlas {
@@ -159,7 +177,6 @@ $footerheight: 141px;
 .main-page-card-midnight {
   background-image: url('../images/cards/midnight.gif');
 }
-
 
 
 // FOOTER
@@ -207,5 +224,11 @@ $footerheight: 141px;
   p {
     line-height: 14px;
   }
+}
+
+
+//BG Background Color
+.main-bg--color {
+  background-color: $flightblue;
 }
 
