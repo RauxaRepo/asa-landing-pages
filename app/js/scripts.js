@@ -359,25 +359,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         titleCard.addEventListener('click', stackCards);
       }
     }); //console.log("Footer Slide In");
-  } //MOBILE VIEW 
-
-
-  var mq = window.matchMedia('(max-width: 576px');
-
-  function switchSize(e) {
-    if (e.matches) {
-      /* the viewport is mq pixels wide or less */
-      theFooter.classList.add('main-page-footer-mobile');
-      console.log('mobile');
-    } else {
-      //Do something
-      theFooter.classList.remove('main-page-footer-mobile');
-    }
-  }
-
-  switchSize(mq);
-  mq.addListener(switchSize); //PRESS TITLE CARD AND STACK CARDS
+  } //PRESS TITLE CARD AND STACK CARDS
   //Get Positon of Element 
+
 
   function offset(el) {
     var rect = el.getBoundingClientRect(),
@@ -394,37 +378,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   function stackCards() {
     console.log('title Click');
-    /*leftCardArr.forEach(function(item){
-    	item.style.position = 'absolute';
-    	gsap.to(item, time - 0.5,{
-    		stagger: 0.3, 
-    		x:offsetEl.left, //xPercent:offsetEl.left,
-    		y:offsetEl.top, //yPercent:offsetEl.left,
-    		transformOrigin: '50% 50%', 
-    		delay:Math.random() * 0.4, 
-    		ease:Linear
-    	});
-    })*/
-
-    allCards.forEach(function (item) {
-      item.style.position = 'absolute';
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, time - 0.5, {
-        stagger: 0.3,
-        x: offsetEl.left,
-        //xPercent:offsetEl.left,
-        y: offsetEl.top,
-        //yPercent:offsetEl.left,
-        transformOrigin: '50% 50%',
-        delay: Math.random() * 0.4,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-      });
-    }); //Background Color
-
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(htmlBody, {
-      duration: time * 3,
-      backgroundColor: $flightbgblue,
-      delay: Math.random() * 0.4,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
+    var outer = ['.main-page-column:nth-child(1)', '.main-page-column:nth-child(2)', '.main-page-column:nth-child(4)', '.main-page-column:nth-child(5)'];
+    var inner = ['.card-left-two'];
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-column:nth-child(4', {
+      duration: 1,
+      top: '0%',
+      yPercent: -60.75
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper-three', 5, {
+      yPercent: 0,
+      ease: 'none'
     });
   }
 });
@@ -510,8 +473,7 @@ function documentReady(fn) {
 documentReady(function () {
   Object(_components_social_set__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])(); // intoAnimation();
 });
 
 /***/ }),

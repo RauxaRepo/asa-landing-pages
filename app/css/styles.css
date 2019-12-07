@@ -1077,7 +1077,7 @@ main {
   display: flex;
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
   min-width: 1000px;
@@ -1092,7 +1092,6 @@ main {
 
 @media (min-width: 768px) {
   .main-page-inner {
-    top: 50%;
     width: 100%;
     min-width: 1800px;
   }
@@ -1103,22 +1102,51 @@ main {
   width: 20%;
 }
 
+.main-page-column:nth-child(1) {
+  transform: translateX(200%);
+}
+
+.main-page-column:nth-child(1) .main-page-card {
+  transform: translateX(-200%);
+}
+
+.main-page-column:nth-child(2) {
+  transform: translateX(100%);
+}
+
+.main-page-column:nth-child(2) .main-page-card {
+  transform: translateX(-100%);
+}
+
+.main-page-column:nth-child(4) {
+  transform: translateX(-100%);
+}
+
+.main-page-column:nth-child(4) .main-page-card {
+  transform: translateX(100%);
+}
+
+.main-page-column:nth-child(5) {
+  transform: translateX(-200%);
+}
+
+.main-page-column:nth-child(5) .main-page-card {
+  transform: translateX(200%);
+}
+
 .main-page-card {
   background-size: contain;
   border-radius: 10px;
   background-repeat: no-repeat;
   display: block;
-  float: left;
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
   width: 100%;
-  opacity: 0;
 }
 
 .main-page-card-container {
   display: block;
-  float: left;
   height: 100%;
   position: relative;
   width: 240px;
@@ -1142,24 +1170,9 @@ main {
 .main-page-card-wrapper-four {
   left: 0;
   position: absolute;
+  top: 50%;
   transform: translateY(-50%);
   width: 100%;
-}
-
-.main-page-card-wrapper {
-  transform: translateY(-5%);
-}
-
-.main-page-card-wrapper-two {
-  transform: translateY(-52%);
-}
-
-.main-page-card-wrapper-three {
-  transform: translateY(-5%);
-}
-
-.main-page-card-wrapper-four {
-  transform: translateY(-52%);
 }
 
 .title-card-container {

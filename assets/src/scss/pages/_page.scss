@@ -23,11 +23,7 @@ $footerheight: 141px;
 //}
 
 
-//Set page layout
-.main-page {
-  // i changed from transparent to blue to be able to see better -caleb
-  //background-color: $blue;
-}
+
 
 .main-page-header {
   background-color: $flightblue;
@@ -66,7 +62,7 @@ $footerheight: 141px;
   display: flex;
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
   min-width: 1000px;
@@ -76,7 +72,6 @@ $footerheight: 141px;
     min-width: 1290px;
   }
   @include bp(md) {
-    top: 50%;
     width: 100%;
     min-width: 1800px;
   }
@@ -85,6 +80,38 @@ $footerheight: 141px;
 .main-page-column {
   position: relative;
   width: 20%;
+
+  &:nth-child(1) {
+    transform: translateX(200%);
+
+    .main-page-card {
+      transform: translateX(-200%);
+    }
+  }
+
+  &:nth-child(2) {
+    transform: translateX(100%);
+
+    .main-page-card {
+      transform: translateX(-100%);
+    }
+  }
+
+  &:nth-child(4) {
+    transform: translateX(-100%);
+
+    .main-page-card {
+      transform: translateX(100%);
+    }
+  }
+
+  &:nth-child(5) {
+    transform: translateX(-200%);
+
+    .main-page-card {
+      transform: translateX(200%);
+    }
+  }
 }
 
 .main-page-card {
@@ -92,17 +119,16 @@ $footerheight: 141px;
   border-radius: 10px;
   background-repeat: no-repeat;
   display: block;
-  float: left;
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
   width: 100%;
   //for intro animation
-  opacity: 0;
+  //opacity: 0;
 
   &-container {
     display: block;
-    float: left;
+   // float: left;
     height: 100%;
     position: relative;
     width: 240px;
@@ -128,24 +154,25 @@ $footerheight: 141px;
 .main-page-card-wrapper-four {
   left: 0;
   position: absolute;
+  top: 50%;
   transform: translateY(-50%);
   width: 100%;
 }
 
 .main-page-card-wrapper {
-  transform: translateY(-5%);//top: 100%;
+ // transform: translateY(-5%);//top: 100%;
 }
 
 .main-page-card-wrapper-two {
-  transform: translateY(-52%);//top: -2%;
+ //transform: translateY(-52%);//top: -2%;
 }
 
 .main-page-card-wrapper-three {
-  transform: translateY(-5%);//top: 103%;
+ // transform: translateY(-5%);//top: 103%;
 }
 
 .main-page-card-wrapper-four {
-  transform: translateY(-52%);//top: -5%;
+ // transform: translateY(-52%);//top: -5%;
 }
 
 //Card Designs
