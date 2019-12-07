@@ -77,6 +77,9 @@ $footerheight: 141px;
   }
 }
 
+// Centering all main-page-columns and offsetting the child elements.
+// the animation will revolve for the individual card to center vertically but not horizontally
+
 .main-page-column {
   position: relative;
   width: 20%;
@@ -155,25 +158,11 @@ $footerheight: 141px;
   left: 0;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-56.25%); //translateY(-56.25%)
   width: 100%;
 }
 
-.main-page-card-wrapper {
- // transform: translateY(-5%);//top: 100%;
-}
 
-.main-page-card-wrapper-two {
- //transform: translateY(-52%);//top: -2%;
-}
-
-.main-page-card-wrapper-three {
- // transform: translateY(-5%);//top: 103%;
-}
-
-.main-page-card-wrapper-four {
- // transform: translateY(-52%);//top: -5%;
-}
 
 //Card Designs
 .title-card-container {

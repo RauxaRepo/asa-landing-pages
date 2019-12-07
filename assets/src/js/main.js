@@ -24,5 +24,5 @@ documentReady( function() {
   socialSet();
   metaTags();
   responsysTest();
- // intoAnimation();
+  intoAnimation();
 });

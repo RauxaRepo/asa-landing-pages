@@ -24,10 +24,8 @@ export default function () {
 		titleCard = document.querySelector('.card-one-title'),
 		//
 		tl = gsap.timeline({repeat: 0, repeatDelay: 0}),
-		tlScroll = gsap.timeline({repeat: -1, repeatDelay: 0}),
-		tlScrollTwo = gsap.timeline({repeat: -1, repeatDelay: 0}),
-		tlScrollThree = gsap.timeline({repeat: -1, repeatDelay: 0}),
-		tlScrollFour = gsap.timeline({repeat: -1, repeatDelay: 0});
+		tlScroll = gsap.timeline({repeat: -1, repeatDelay: 0});
+
 
 
 		//FADE IN TITLE CARDS AND OTHER CARDS
@@ -35,23 +33,19 @@ export default function () {
 			/*///.05, = stagger amount//'0.25' time between animation for cards///*/
 			.staggerTo(allCards, time,{opacity:1, delay:Math.random() * time, ease:Linear},.05,'0.25');
 
-		//SLIDE THE CARDS
-		/*///
-		Please Note:
-		1) each div that conatins a set of cards is set to a percentage
-		2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
-		3) xPercent:50, yPercent:50 = "translate(-50%, -50%)"
-		4) x:100, y:200 = "translate3d(100px, 200px, 0)"
-		///*/
-		tlScroll.to('.main-page-card-wrapper',10,{yPercent:-50,/*y:'-34%',*/ ease:'none'});
-		tlScrollTwo.to('.main-page-card-wrapper-two',3,{yPercent:50, ease:'none'});
-		tlScrollThree.to('.main-page-card-wrapper-three',5,{yPercent:-50, ease:'none'});
-		tlScrollFour.to('.main-page-card-wrapper-four',13,{yPercent:50, ease:'none'});
-		/*OLD*/
-		//tlScroll.to('.main-page-card-wrapper',13,{y:'-34%', ease:'none'});
-		//tlScrollTwo.to('.main-page-card-wrapper-two',19,{y:'131%', ease:'none'});
-		//tlScrollThree.to('.main-page-card-wrapper-three',15,{y:'-30%', ease:'none'});
-		//tlScrollFour.to('.main-page-card-wrapper-four',17,{y:'128%', ease:'none'});
+
+		gsap.set('.main-page-card-wrapper',{yPercent:-38});
+		gsap.set('.main-page-card-wrapper-two',{yPercent:37.45});
+		gsap.set('.main-page-card-wrapper-three',{yPercent:-36});
+		gsap.set('.main-page-card-wrapper-four',{yPercent:35.45});
+
+		tlScroll
+		.timeScale(.5)
+		.to('.main-page-card-wrapper',2,{yPercent:11.9, ease:'none'},0)
+		.to('.main-page-card-wrapper-two',2,{yPercent:-12.45, ease:'none'},0)
+		.to('.main-page-card-wrapper-three',2,{yPercent:13.9, ease:'none'},0)
+		.to('.main-page-card-wrapper-four',2,{yPercent:-14.45, ease:'none'},0);
+
 		
 
 		//SLIDE IN FOOTER & STOP CARD ANIMATION
@@ -60,9 +54,6 @@ export default function () {
 			clearInterval(timeInterval);
 			tl.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
 				tlScroll.pause();
-				tlScrollTwo.pause();
-				tlScrollThree.pause();
-				tlScrollFour.pause();
 				//EventListener
 				titleCard.addEventListener('click', stackCards);
 			}})
@@ -93,12 +84,11 @@ export default function () {
 				'.main-page-column:nth-child(5)'
 			];
 
-			let inner = [
-				'.card-left-two'
-			];
 
-			gsap.to('.main-page-column:nth-child(4', { duration: 1, top: '0%', yPercent: -60.75});
-			gsap.to('.main-page-card-wrapper-three',5,{yPercent:0, ease:'none'});
+			gsap.to('.main-page-card-wrapper',5,{yPercent: 0, ease:'none'});
+			gsap.to('.main-page-card-wrapper-four',5,{yPercent: 0, ease:'none'});
+			gsap.to('.main-page-card-wrapper-three',5,{yPercent: 0, ease:'none'});
+			gsap.to('.main-page-card-wrapper-two',5,{yPercent: 0, ease:'none'});
 
 			
 		}

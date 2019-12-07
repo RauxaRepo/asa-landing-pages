@@ -282,18 +282,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       tlScroll = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: -1,
     repeatDelay: 0
-  }),
-      tlScrollTwo = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: -1,
-    repeatDelay: 0
-  }),
-      tlScrollThree = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: -1,
-    repeatDelay: 0
-  }),
-      tlScrollFour = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: -1,
-    repeatDelay: 0
   }); //FADE IN TITLE CARDS AND OTHER CARDS
 
 
@@ -307,40 +295,32 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     opacity: 1,
     delay: Math.random() * time,
     ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  }, .05, '0.25'); //SLIDE THE CARDS
-
-  /*///
-  Please Note:
-  1) each div that conatins a set of cards is set to a percentage
-  2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
-  3) xPercent:50, yPercent:50 = "translate(-50%, -50%)"
-  4) x:100, y:200 = "translate3d(100px, 200px, 0)"
-  ///*/
-
-  tlScroll.to('.main-page-card-wrapper', 10, {
-    yPercent: -50,
-
-    /*y:'-34%',*/
-    ease: 'none'
+  }, .05, '0.25');
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.main-page-card-wrapper', {
+    yPercent: -38
   });
-  tlScrollTwo.to('.main-page-card-wrapper-two', 3, {
-    yPercent: 50,
-    ease: 'none'
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.main-page-card-wrapper-two', {
+    yPercent: 37.45
   });
-  tlScrollThree.to('.main-page-card-wrapper-three', 5, {
-    yPercent: -50,
-    ease: 'none'
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.main-page-card-wrapper-three', {
+    yPercent: -36
   });
-  tlScrollFour.to('.main-page-card-wrapper-four', 13, {
-    yPercent: 50,
-    ease: 'none'
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.main-page-card-wrapper-four', {
+    yPercent: 35.45
   });
-  /*OLD*/
-  //tlScroll.to('.main-page-card-wrapper',13,{y:'-34%', ease:'none'});
-  //tlScrollTwo.to('.main-page-card-wrapper-two',19,{y:'131%', ease:'none'});
-  //tlScrollThree.to('.main-page-card-wrapper-three',15,{y:'-30%', ease:'none'});
-  //tlScrollFour.to('.main-page-card-wrapper-four',17,{y:'128%', ease:'none'});
-  //SLIDE IN FOOTER & STOP CARD ANIMATION
+  tlScroll.timeScale(.5).to('.main-page-card-wrapper', 2, {
+    yPercent: 11.9,
+    ease: 'none'
+  }, 0).to('.main-page-card-wrapper-two', 2, {
+    yPercent: -12.45,
+    ease: 'none'
+  }, 0).to('.main-page-card-wrapper-three', 2, {
+    yPercent: 13.9,
+    ease: 'none'
+  }, 0).to('.main-page-card-wrapper-four', 2, {
+    yPercent: -14.45,
+    ease: 'none'
+  }, 0); //SLIDE IN FOOTER & STOP CARD ANIMATION
 
   timeInterval = setInterval(raiseFooter, 5000);
 
@@ -351,10 +331,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       delay: time - 0.5,
       ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
       onComplete: function onComplete() {
-        tlScroll.pause();
-        tlScrollTwo.pause();
-        tlScrollThree.pause();
-        tlScrollFour.pause(); //EventListener
+        tlScroll.pause(); //EventListener
 
         titleCard.addEventListener('click', stackCards);
       }
@@ -379,13 +356,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function stackCards() {
     console.log('title Click');
     var outer = ['.main-page-column:nth-child(1)', '.main-page-column:nth-child(2)', '.main-page-column:nth-child(4)', '.main-page-column:nth-child(5)'];
-    var inner = ['.card-left-two'];
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-column:nth-child(4', {
-      duration: 1,
-      top: '0%',
-      yPercent: -60.75
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper', 5, {
+      yPercent: 0,
+      ease: 'none'
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper-four', 5, {
+      yPercent: 0,
+      ease: 'none'
     });
     gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper-three', 5, {
+      yPercent: 0,
+      ease: 'none'
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper-two', 5, {
       yPercent: 0,
       ease: 'none'
     });
@@ -473,7 +456,8 @@ function documentReady(fn) {
 documentReady(function () {
   Object(_components_social_set__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])(); // intoAnimation();
+  Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
 
 /***/ }),
