@@ -4,6 +4,7 @@ import 'whatwg-fetch';
 //import sampleJs from './components/sample.component';
 import responsysTest from './components/form.test';
 import  intoAnimation from './components/intro-animation';
+import  draggableCards from './components/draggable-cards';
 import metaTags from './components/meta.tags';
 import socialSet from './components/social.set';
 
@@ -24,5 +25,6 @@ documentReady( function() {
   socialSet();
   metaTags();
   responsysTest();
-  intoAnimation();
+  //intoAnimation();
+  draggableCards();
 });

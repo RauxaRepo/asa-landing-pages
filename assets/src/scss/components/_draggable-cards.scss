@@ -5,7 +5,20 @@
 //  outline: 1px solid $red;
 //}
 
-// MASTER CARD AND BUTTON STYLES
+
+.main-page-card--question {
+    opacity: 1;
+    border-radius: 10px;
+    display: block;
+    float: left;
+    height: 0;
+    padding-bottom: 160%;
+    margin: 10px 0;
+    width: 100%;
+    //overflow: hidden;
+    position: absolute;
+}
+
 .active-card-drag p {
     font-size: 3vw;//24px;
     line-height: 1.25;
@@ -26,9 +39,90 @@
 .q8,
 .q9,
 .q10 {
-    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.4);
+    //box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.4);
     display: flex;
 }
+
+
+
+// QUESTION 2 (and all other even questions, for now)
+//.q2,
+//.q4,
+//.q6,
+//.q8,
+//.q10 {
+//  img {
+//    width: 80%;
+//  }
+//}
+
+
+// show whichever card I'm actively working on
+//.q1 {display: flex;}
+//.q2 {display: flex;}
+//.q3 {display: flex;}
+//.q4 {display: flex;}
+//.q5 {display: flex;}
+//.q6 {display: flex;}
+//.q7 {display: flex;}
+//.q8 {display: flex;}
+//.q9 {display: flex;}
+//.q10 {display: flex;}
+
+//body color
+.background-color-blue {
+    background-color: $blue;
+}
+
+//BACKGROUND COLOR CARDS
+.main-page-card--color {
+    opacity: 1;
+    border-radius: 10px;
+    //box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.05);
+    display: block;
+    float: left;
+    height: 0;
+    padding-bottom: 160%;
+    margin: 10px 0;
+    transform-origin: '0 50%';
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+}
+.bg-color-card {
+    border-radius: 10px;
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    color: #48a9c5;
+}
+
+.clr0 {
+    background-color: #fff;
+}
+
+.clr1 {
+    background-color: #b3d57d;
+}
+
+.clr2 {
+    background-color: #4da786;
+}
+
+.clr3 {
+    background-color: #47a4bf;
+}
+
+.clr4 {
+    background-color: #2672ab;
+}
+
 
 //MEDIA QUERY
 @media only screen and (max-width: 576px) {
@@ -71,31 +165,3 @@
     
 }
 
-// QUESTION 2 (and all other even questions, for now)
-//.q2,
-//.q4,
-//.q6,
-//.q8,
-//.q10 {
-//  img {
-//    width: 80%;
-//  }
-//}
-
-
-// show whichever card I'm actively working on
-//.q1 {display: flex;}
-//.q2 {display: flex;}
-//.q3 {display: flex;}
-//.q4 {display: flex;}
-//.q5 {display: flex;}
-//.q6 {display: flex;}
-//.q7 {display: flex;}
-//.q8 {display: flex;}
-//.q9 {display: flex;}
-//.q10 {display: flex;}
-
-//body color
-.background-color-blue {
-    background-color: $blue;
-}

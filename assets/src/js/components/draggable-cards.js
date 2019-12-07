@@ -5,9 +5,10 @@ export default function () {
 
 	//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
 	//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
-	let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
+	let theCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
 		//*Place all Cards except Title card in the Array using ('...' = spread)*//
-		allCards = allCardsshuffle([...document.querySelectorAll('.active-card')]),
+		theCards = theCardsshuffle([...document.querySelectorAll('.main-page-card--question')]),
+		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
 		time = 1,
 		timeInterval,
 		htmlBody = document.getElementsByTagName("BODY")[0],
@@ -29,23 +30,35 @@ export default function () {
 			}
 		}
 		switchSizeDc(mq);
-		mq.addListener(switchSize);
-		
+		mq.addListener(switchSizeDc);
 
-		//StackCards
-		function stackCards(){
-			console.log('title Click');
-			allCards.forEach(function(item){
-				item.style.position = 'absolute';
-				gsap.to(item, time - 0.5,{
-					stagger: 0.3, 
-					x:offsetEl.left, //xPercent:offsetEl.left,
-					y:offsetEl.top, //yPercent:offsetEl.left,
-					transformOrigin: '50% 50%', 
-					delay:Math.random() * 0.4, 
-					ease:Linear
-				});
+
+		//MATH MIN-MAX RANDOM
+		function random(min, max) {
+			return min + Math.random() * (max - min);
+		}
+
+		
+		//RANDOM CARDS
+		function randomCards(){
+			console.log('randomCards');
+			theCards.forEach(function(item){
+                //randomize cards
+				item.style.zIndex = Math.floor(Math.random() * 11);
 			})
 		}
+
+		//SPREAD-CARDS
+		function spreadTheCards(){
+			let i = 0;
+			for (let i = 0;i<theColorCards.length; i++){
+				//rotation
+				gsap.to(theColorCards[i], 1, {rotation: -2.2 * i, x:theColorCards[i].style.top - 0.09 * i});
+			}
+		}
+		
+		//RUN FUNCTIONS
+        randomCards()
+        spreadTheCards();
 }
 
