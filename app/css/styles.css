@@ -1024,6 +1024,64 @@ section {
   display: flex;
 }
 
+.active-card-drag p {
+  font-size: 3vw;
+  line-height: 1.25;
+}
+
+.active-card-drag--button {
+  font-size: 2.1vw;
+}
+
+.q1,
+.q2,
+.q3,
+.q4,
+.q5,
+.q6,
+.q7,
+.q8,
+.q9,
+.q10 {
+  box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.4);
+  display: flex;
+}
+
+@media only screen and (max-width: 576px) {
+  .active-card p {
+    padding-top: 21px;
+    padding-bottom: 15px;
+    font-size: 10px;
+    width: 124%;
+  }
+  .active-card--buttonwrapper {
+    width: 124%;
+  }
+  .active-card--button {
+    border-radius: 2px;
+    margin-top: 10px;
+    padding: 7px 0;
+    font-size: 10px;
+  }
+  .active-card.q2 button {
+    font-size: 7px;
+  }
+  .active-card.q4 button {
+    font-size: 8px;
+  }
+  .q1 img,
+  .q3 img,
+  .q5 img,
+  .q7 img,
+  .q9 img {
+    width: 52%;
+  }
+}
+
+.background-color-blue {
+  background-color: #48a9c5;
+}
+
 .intro-block {
   position: relative;
   width: 100%;
@@ -1040,10 +1098,6 @@ main {
   align-items: center;
   justify-content: center;
   background-color: #f1f1f1;
-}
-
-.main-page {
-  background-color: #48a9c5;
 }
 
 .main-page-header {
