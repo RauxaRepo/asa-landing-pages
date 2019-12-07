@@ -367,12 +367,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function switchSize(e) {
     if (e.matches) {
       /* the viewport is mq pixels wide or less */
-      mainPageInner.classList.add('main-page-inner-mobile');
       theFooter.classList.add('main-page-footer-mobile');
       console.log('mobile');
     } else {
       //Do something
-      mainPageInner.classList.remove('main-page-inner-mobile');
       theFooter.classList.remove('main-page-footer-mobile');
     }
   }
