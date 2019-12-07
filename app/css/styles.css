@@ -1081,20 +1081,17 @@ main {
   display: flex;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 40%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 280%;
 }
 
 @media (min-width: 768px) {
   .main-page-inner {
+    top: 50%;
+    width: 100%;
     min-width: 1800px;
   }
-}
-
-.main-page-inner-mobile {
-  top: 40%;
-  width: 280%;
 }
 
 .main-page-column {
