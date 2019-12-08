@@ -162,7 +162,13 @@ $footerheight: 141px;
   width: 100%;
 }
 
+.main-page-card-wrapper {
+  //transform: translateY(-38%);
 
+  &.card-collect {
+    transform: translateY(11.9%);
+  }
+}
 
 //Card Designs
 .title-card-container {
@@ -208,6 +214,8 @@ $footerheight: 141px;
   position: relative;
   text-align: center;
   width: 100%;
+  opacity: 0;
+  pointer-events: none;
 
   p {
     line-height: 17px;

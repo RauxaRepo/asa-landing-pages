@@ -354,24 +354,146 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   //StackCards
 
   function stackCards() {
-    console.log('title Click');
-    var outer = ['.main-page-column:nth-child(1)', '.main-page-column:nth-child(2)', '.main-page-column:nth-child(4)', '.main-page-column:nth-child(5)'];
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper', 5, {
+    var cardGroup1 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:nth-child(1) .main-page-card')));
+    var cardGroup2 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:nth-child(2) .main-page-card')));
+    var cardGroup3 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:nth-child(4) .main-page-card')));
+    var cardGroup4 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:nth-child(5) .main-page-card')));
+    var cardGroupSingle1 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(1)')));
+    var cardGroupSingle2 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(2)')));
+    var cardGroupSingle3 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(3)')));
+    var cardGroupSingle4 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(4)')));
+    var cardGroupSingle6 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(6)')));
+    var cardGroupSingle7 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(7)')));
+    var cardGroupSingle8 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(8)')));
+    var tlk = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+      repeat: 0,
+      repeatDelay: 0
+    }); // array of card wrappers
+
+    var outer = ['.main-page-card-wrapper', '.main-page-card-wrapper-four', '.main-page-card-wrapper-three', '.main-page-card-wrapper-two']; //placing holder back in place
+
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(outer, {
+      duration: 1.5,
       yPercent: 0,
-      ease: 'none'
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper-four', 5, {
-      yPercent: 0,
-      ease: 'none'
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper-three', 5, {
-      yPercent: 0,
-      ease: 'none'
-    });
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to('.main-page-card-wrapper-two', 5, {
-      yPercent: 0,
-      ease: 'none'
-    });
+      ease: 'sine.in'
+    }); // timeline starts here
+
+    tlk // timeScale function speeds up animation by 75%
+    .timeScale(1).to(cardGroup1, .8, {
+      x: '0%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2
+      }
+    }, 0).to(cardGroup2, .8, {
+      x: '0%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2
+      }
+    }, 0).to(cardGroup3, .8, {
+      x: '0%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2
+      }
+    }, 0).to(cardGroup4, .8, {
+      x: '0%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2
+      }
+    }, 0).to('.main-page-card.main-page-card-atlas.card-one-a', .8, {
+      y: '102%',
+      ease: 'back.in'
+    }, 0).to('.main-page-card.main-page-card-atlas.card-one-b', .8, {
+      y: '-102%',
+      ease: 'back.in'
+    }, 0).to(cardGroupSingle1, .8, {
+      y: '408%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
+      }
+    }, 0).to(cardGroupSingle2, .8, {
+      y: '306%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
+      }
+    }, 0).to(cardGroupSingle3, .8, {
+      y: '204%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
+      }
+    }, 0).to(cardGroupSingle4, .8, {
+      y: '102%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
+      }
+    }, 0).to(cardGroupSingle6, .8, {
+      y: '-102%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
+      }
+    }, 0).to(cardGroupSingle7, .8, {
+      y: '-204%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
+      }
+    }, 0).to(cardGroupSingle8, .8, {
+      y: '-304%',
+      ease: 'back.in',
+      stagger: {
+        amount: .2,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
+      }
+    }, 0);
   }
 });
 

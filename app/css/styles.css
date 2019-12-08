@@ -1175,6 +1175,10 @@ main {
   width: 100%;
 }
 
+.main-page-card-wrapper.card-collect {
+  transform: translateY(11.9%);
+}
+
 .title-card-container {
   height: auto;
   position: relative;
@@ -1216,6 +1220,8 @@ main {
   position: relative;
   text-align: center;
   width: 100%;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .main-page-footer p {

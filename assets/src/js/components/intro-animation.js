@@ -76,21 +76,106 @@ export default function () {
 
 		//StackCards
 		function stackCards(){
-			console.log('title Click');
+
+
+			let cardGroup1 = allCardsshuffle([...document.querySelectorAll('.main-page-column:nth-child(1) .main-page-card')]);
+			let cardGroup2 = allCardsshuffle([...document.querySelectorAll('.main-page-column:nth-child(2) .main-page-card')]);
+			let cardGroup3 = allCardsshuffle([...document.querySelectorAll('.main-page-column:nth-child(4) .main-page-card')]);
+			let cardGroup4 = allCardsshuffle([...document.querySelectorAll('.main-page-column:nth-child(5) .main-page-card')]);
+
+			let cardGroupSingle1 = allCardsshuffle([...document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(1)')]);
+			let cardGroupSingle2 = allCardsshuffle([...document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(2)')]);
+			let cardGroupSingle3 = allCardsshuffle([...document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(3)')]);
+			let cardGroupSingle4 = allCardsshuffle([...document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(4)')]);
+			let cardGroupSingle6 = allCardsshuffle([...document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(6)')]);
+			let cardGroupSingle7 = allCardsshuffle([...document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(7)')]);
+			let cardGroupSingle8 = allCardsshuffle([...document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(8)')]);
+
+			let tlk = gsap.timeline({repeat: 0, repeatDelay: 0});
+			
+			// array of card wrappers
 			let outer = [
-				'.main-page-column:nth-child(1)',
-				'.main-page-column:nth-child(2)',
-				'.main-page-column:nth-child(4)',
-				'.main-page-column:nth-child(5)'
+				'.main-page-card-wrapper',
+				'.main-page-card-wrapper-four',
+				'.main-page-card-wrapper-three',
+				'.main-page-card-wrapper-two'
 			];
 
+			//placing holder back in place
+			gsap.to(outer,{duration:1.5,yPercent: 0, ease:'sine.in'});
+			// timeline starts here
+			tlk
+			// timeScale function speeds up animation by 75%
+			.timeScale(1)
+			.to(cardGroup1,.8,{x:'0%', ease:'back.in',stagger:{amount:.2}}, 0)
+			.to(cardGroup2,.8,{x:'0%', ease:'back.in',stagger:{amount:.2}}, 0)
+			.to(cardGroup3,.8,{x:'0%', ease:'back.in',stagger:{amount:.2}}, 0)
+			.to(cardGroup4,.8,{x:'0%', ease:'back.in',stagger:{amount:.2}}, 0)
+			.to('.main-page-card.main-page-card-atlas.card-one-a',.8,{y:'102%',ease:'back.in'},0)
+			.to('.main-page-card.main-page-card-atlas.card-one-b',.8,{y:'-102%',ease:'back.in'},0)
+			.to(cardGroupSingle1,.8,{y:'408%', ease:'back.in',
+				stagger: {
+					amount: .2,
+					onComplete: function(e) {
+						gsap.to(e._targets,{duration:.25,autoAlpha:0});
+					}
+				},}, 0)
+			.to(cardGroupSingle2,.8,{
+				y:'306%',
+				ease:'back.in',
+				stagger: {
+					amount: .2,
+					onComplete: function(e) {
+						gsap.to(e._targets,{duration:.25,autoAlpha:0});
+					}
+				},}, 0)
+			.to(cardGroupSingle3,.8,{
+				y:'204%',
+				ease:'back.in',
+				stagger: {
+					amount: .2,
+					onComplete: function(e) {
+						gsap.to(e._targets,{duration:.25,autoAlpha:0});
+					}
+				},}, 0)
+			.to(cardGroupSingle4,.8,{
+				y:'102%',
+				ease:'back.in',
+				stagger: {
+					amount: .2,
+					onComplete: function(e) {
+						gsap.to(e._targets,{duration:.25,autoAlpha:0});
+					}
+				},}, 0)
+			.to(cardGroupSingle6,.8,{
+				y:'-102%',
+				ease:'back.in',
+				stagger: {
+					amount: .2,
+					onComplete: function(e) {
+						gsap.to(e._targets,{duration:.25,autoAlpha:0});
+					}
+				},}, 0)
+			.to(cardGroupSingle7,.8,{
+				y:'-204%',
+				ease:'back.in',
+				stagger: {
+					amount: .2,
+					onComplete: function(e) {
+						gsap.to(e._targets,{duration:.25,autoAlpha:0});
+					}
+				},}, 0)
+			.to(cardGroupSingle8,.8,{
+				y:'-304%',
+				ease:'back.in',
+				stagger: {
+					amount: .2,
+					onComplete: function(e) {
+						gsap.to(e._targets,{duration:.25,autoAlpha:0});
+					}
+				},}, 0);
 
-			gsap.to('.main-page-card-wrapper',5,{yPercent: 0, ease:'none'});
-			gsap.to('.main-page-card-wrapper-four',5,{yPercent: 0, ease:'none'});
-			gsap.to('.main-page-card-wrapper-three',5,{yPercent: 0, ease:'none'});
-			gsap.to('.main-page-card-wrapper-two',5,{yPercent: 0, ease:'none'});
 
-			
 		}
 }
 
