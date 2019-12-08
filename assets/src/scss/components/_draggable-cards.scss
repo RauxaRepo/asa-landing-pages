@@ -19,16 +19,7 @@
     position: absolute;
 }
 
-.active-card-drag p {
-    font-size: 3vw;//24px;
-    line-height: 1.25;
-}
-
-.active-card-drag--button {
-    font-size: 2.1vw;//16px;
-}
-
-//Box shadow
+//Display and Zindex
 .q1,
 .q2,
 .q3,
@@ -39,22 +30,8 @@
 .q8,
 .q9,
 .q10 {
-    //box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.4);
     display: flex;
 }
-
-
-
-// QUESTION 2 (and all other even questions, for now)
-//.q2,
-//.q4,
-//.q6,
-//.q8,
-//.q10 {
-//  img {
-//    width: 80%;
-//  }
-//}
 
 
 // show whichever card I'm actively working on
@@ -78,7 +55,6 @@
 .main-page-card--color {
     opacity: 1;
     border-radius: 10px;
-    //box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.05);
     display: block;
     float: left;
     height: 0;
@@ -120,6 +96,14 @@
 
 .clr4 {
     background-color: #2672ab;
+}
+
+.box-shadow {
+    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.opacity-zero {
+    opacity: 0;
 }
 
 .zIndex {
