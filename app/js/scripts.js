@@ -161,6 +161,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         rotation: -2.2 * _i
       });
     }
+  } //RANDOM MIN MAX
+
+
+  function random(min, max) {
+    return min + Math.random() * (max - min);
   } //GET SCREEN LEFT/RIGHT POSITION
 
 
@@ -269,7 +274,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     console.log('randomCards');
     theCards.forEach(function (item) {
       //randomize cards
-      item.style.zIndex = Math.floor(Math.random() * 11); //cursor pointer
+      item.style.zIndex = Math.floor(random(5, 15)); //Math.floor(Math.random() * 11);
+      //cursor pointer
 
       item.style.cursor = "pointer";
     });
@@ -277,8 +283,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   function dragCards() {
-    theCards.forEach(function (item) {//drag cards
-      //dragElement(item);
+    theCards.forEach(function (item) {
+      //drag cards
+      dragElement(item);
     });
   } //FlIP TITLE CARD
 

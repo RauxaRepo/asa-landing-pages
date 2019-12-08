@@ -27,6 +27,11 @@ export default function () {
 			}
 		}
 
+		//RANDOM MIN MAX
+		function random(min, max) {
+			return min + Math.random() * (max - min);
+		}
+
 		//GET SCREEN LEFT/RIGHT POSITION
 		function getPosition(element) {
 			var xPosition = 0;
@@ -126,7 +131,7 @@ export default function () {
 			console.log('randomCards');
 			theCards.forEach(function(item){
                 //randomize cards
-				item.style.zIndex = Math.floor(Math.random() * 11);
+				item.style.zIndex = Math.floor(random(5, 15));//Math.floor(Math.random() * 11);
 				//cursor pointer
 				item.style.cursor = "pointer";
 			})
@@ -137,7 +142,7 @@ export default function () {
 		function dragCards(){
 			theCards.forEach(function(item){
 				//drag cards
-				//dragElement(item);
+				dragElement(item);
 			})
 		}
 
