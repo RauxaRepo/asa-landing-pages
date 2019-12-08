@@ -605,8 +605,13 @@ function documentReady(fn) {
 documentReady(function () {
   Object(_components_social_set__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_5__["default"])();
+<<<<<<< HEAD
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
+=======
+  Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])(); //intoAnimation();
+
+>>>>>>> 31c71a6b7fbcfc97f41007cd1a88177a7ab70011
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 
