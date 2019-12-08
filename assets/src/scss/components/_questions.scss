@@ -3,13 +3,15 @@
   opacity: 1;
   border-radius: 10px;
   display: block;
-  float: left;
+
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
   width: 100%;
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   }
 
 .active-card {    // active card wrapper

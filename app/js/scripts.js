@@ -252,248 +252,55 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
  //getBreakpoint('md');
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
-  //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+  var cardHolder = document.querySelector('.cards');
+  var cardCount = 40;
+  var cardBgCounter = 0;
+  var cardXCounter = 0;
+  var cardYCounter = 0;
+  var cardType = ['tropical', 'midnight', 'breezecard', 'palm'];
+  var cardX = ['-250%', '-150%', '-50%', '50%', '150%'];
+  var cardY = ['-450%', '-350%', '-250%', '-150%', '-50%', '50%', '150%', '250%'];
+
   var allCardsshuffle = function allCardsshuffle(array) {
     return array.sort(function () {
       return Math.random() - 0.5;
     });
-  },
-      //*Place all Cards except Title card in the Array using ('...' = spread)*//
-  allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title):not(.main-page-card-white)'))),
-      time = 1,
-      timeInterval,
-      htmlBody = document.getElementsByTagName("BODY")[0],
-      //colors
-  $flightblue = '#2774ae',
-      $flightbgblue = '#48a9c5',
-      //main page--Child div
-  mainPageInner = document.querySelector('.main-page-inner'),
-      //Footer
-  theFooterSlide = document.querySelector('.main-page-footer-slide'),
-      theFooter = document.querySelector('.main-page-footer'),
-      //Title Cards
-  titleCard = document.querySelector('.card-one-title'),
-      //
-  tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: 0,
-    repeatDelay: 0
-  }),
-      tlScroll = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: -1,
-    repeatDelay: 0
-  }); //FADE IN TITLE CARDS AND OTHER CARDS
+  };
 
+  var addPos = function addPos() {
+    var allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.cards-single:not(.cta)')));
+    var ctaCard = document.querySelector('.cards-single.cta');
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(ctaCard, {
+      x: '-50%',
+      y: '-50%'
+    });
+    allCards.forEach(function (card) {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(card, {
+        x: cardX[cardXCounter],
+        y: cardY[cardYCounter]
+      });
 
-  tl.to(titleCard, time, {
-    opacity: 1,
-    delay: time - 0.5,
-    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  })
-  /*///.05, = stagger amount//'0.25' time between animation for cards///*/
-  .staggerTo(allCards, time, {
-    opacity: 1,
-    delay: Math.random() * time,
-    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  }, .05, '0.25');
-  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.main-page-card-wrapper', {
-    yPercent: -38
-  });
-  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.main-page-card-wrapper-two', {
-    yPercent: 37.45
-  });
-  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.main-page-card-wrapper-three', {
-    yPercent: -36
-  });
-  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.main-page-card-wrapper-four', {
-    yPercent: 35.45
-  });
-  tlScroll.timeScale(.5).to('.main-page-card-wrapper', 2, {
-    yPercent: 11.9,
-    ease: 'none'
-  }, 0).to('.main-page-card-wrapper-two', 2, {
-    yPercent: -12.45,
-    ease: 'none'
-  }, 0).to('.main-page-card-wrapper-three', 2, {
-    yPercent: 13.9,
-    ease: 'none'
-  }, 0).to('.main-page-card-wrapper-four', 2, {
-    yPercent: -14.45,
-    ease: 'none'
-  }, 0); //SLIDE IN FOOTER & STOP CARD ANIMATION
+      if (cardYCounter == 7) {
+        cardYCounter = 0;
+        cardXCounter++;
+      } else {
+        cardYCounter++;
+      }
+    });
+  };
 
-  timeInterval = setInterval(raiseFooter, 5000);
+  for (var c = 1; c < cardCount + 1; c++) {
+    var card = document.createElement('div');
+    var cardContent = document.createElement('div');
+    cardContent.classList.add('cards-single--content');
+    card.classList.add('cards-single', cardType[cardBgCounter]);
+    card.appendChild(cardContent);
+    cardHolder.appendChild(card);
+    cardBgCounter == 3 ? cardBgCounter = 0 : cardBgCounter++;
 
-  function raiseFooter() {
-    clearInterval(timeInterval);
-    tl.to(theFooterSlide, time - 0.5, {
-      bottom: 0,
-      delay: time - 0.5,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
-      onComplete: function onComplete() {
-        tlScroll.pause(); //EventListener
-
-        titleCard.addEventListener('click', stackCards);
-      }
-    }); //console.log("Footer Slide In");
-  } //PRESS TITLE CARD AND STACK CARDS
-  //Get Positon of Element 
-
-
-  function offset(el) {
-    var rect = el.getBoundingClientRect(),
-        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return {
-      top: rect.top + scrollTop,
-      left: rect.left + scrollLeft
-    };
-  }
-
-  var offsetEl = offset(document.getElementById('card-one-title')); //console.log(offsetEl.left, offsetEl.top);
-  //StackCards
-
-  function stackCards() {
-    var cardGroup1 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:nth-child(1) .main-page-card')));
-    var cardGroup2 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:nth-child(2) .main-page-card')));
-    var cardGroup3 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:nth-child(4) .main-page-card')));
-    var cardGroup4 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:nth-child(5) .main-page-card')));
-    var cardGroupSingle1 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(1)')));
-    var cardGroupSingle2 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(2)')));
-    var cardGroupSingle3 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(3)')));
-    var cardGroupSingle4 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(4)')));
-    var cardGroupSingle6 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(6)')));
-    var cardGroupSingle7 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(7)')));
-    var cardGroupSingle8 = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-column:not(.main-page-card-center) .main-page-card:nth-child(8)')));
-    var tlk = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-      repeat: 0,
-      repeatDelay: 0
-    }); // array of card wrappers
-
-    var outer = ['.main-page-card-wrapper', '.main-page-card-wrapper-four', '.main-page-card-wrapper-three', '.main-page-card-wrapper-two']; //placing holder back in place
-
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(outer, {
-      duration: 1.5,
-      yPercent: 0,
-      ease: 'sine.in'
-    }); // timeline starts here
-
-    tlk // timeScale function speeds up animation by 75%
-    .timeScale(1).to(cardGroup1, .8, {
-      x: '0%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2
-      }
-    }, 0).to(cardGroup2, .8, {
-      x: '0%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2
-      }
-    }, 0).to(cardGroup3, .8, {
-      x: '0%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2
-      }
-    }, 0).to(cardGroup4, .8, {
-      x: '0%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2
-      }
-    }, 0).to('.main-page-card.main-page-card-atlas.card-one-a', .8, {
-      y: '102%',
-      ease: 'back.in'
-    }, 0).to('.main-page-card.main-page-card-atlas.card-one-b', .8, {
-      y: '-102%',
-      ease: 'back.in'
-    }, 0).to(cardGroupSingle1, .8, {
-      y: '408%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2,
-        onComplete: function onComplete(e) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
-            duration: .25,
-            autoAlpha: 0
-          });
-        }
-      }
-    }, 0).to(cardGroupSingle2, .8, {
-      y: '306%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2,
-        onComplete: function onComplete(e) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
-            duration: .25,
-            autoAlpha: 0
-          });
-        }
-      }
-    }, 0).to(cardGroupSingle3, .8, {
-      y: '204%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2,
-        onComplete: function onComplete(e) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
-            duration: .25,
-            autoAlpha: 0
-          });
-        }
-      }
-    }, 0).to(cardGroupSingle4, .8, {
-      y: '102%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2,
-        onComplete: function onComplete(e) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
-            duration: .25,
-            autoAlpha: 0
-          });
-        }
-      }
-    }, 0).to(cardGroupSingle6, .8, {
-      y: '-102%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2,
-        onComplete: function onComplete(e) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
-            duration: .25,
-            autoAlpha: 0
-          });
-        }
-      }
-    }, 0).to(cardGroupSingle7, .8, {
-      y: '-204%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2,
-        onComplete: function onComplete(e) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
-            duration: .25,
-            autoAlpha: 0
-          });
-        }
-      }
-    }, 0).to(cardGroupSingle8, .8, {
-      y: '-304%',
-      ease: 'back.in',
-      stagger: {
-        amount: .2,
-        onComplete: function onComplete(e) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
-            duration: .25,
-            autoAlpha: 0
-          });
-        }
-      }
-    }, 0);
+    if (c == cardCount) {
+      addPos();
+    }
   }
 });
 

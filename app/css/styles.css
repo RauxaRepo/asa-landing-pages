@@ -908,13 +908,14 @@ section {
   opacity: 1;
   border-radius: 10px;
   display: block;
-  float: left;
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
   width: 100%;
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .active-card {
@@ -1022,6 +1023,60 @@ section {
 
 .q1 {
   display: flex;
+}
+
+.cards {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.cards-single {
+  position: absolute;
+  width: 370px;
+  height: 610px;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+}
+
+.cards-single.cta {
+  z-index: 5;
+}
+
+.cards-single.cta .cards-single--content {
+  background-image: url("../images/cards/Title_Card.png");
+}
+
+.cards-single.tropical .cards-single--content {
+  background-image: url("../images/cards/tropical.gif");
+}
+
+.cards-single.midnight .cards-single--content {
+  background-image: url("../images/cards/midnight.gif");
+}
+
+.cards-single.breezecard .cards-single--content {
+  background-image: url("../images/cards/breezeCard.gif");
+}
+
+.cards-single.palm .cards-single--content {
+  background-image: url("../images/cards/palm.gif");
+}
+
+.cards-single--content {
+  position: absolute;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  overflow: hidden;
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .active-card-drag p {
@@ -1134,6 +1189,7 @@ main {
 .main-page-inner {
   display: flex;
   position: absolute;
+  justify-content: space-between;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -1151,13 +1207,13 @@ main {
 @media (min-width: 768px) {
   .main-page-inner {
     width: 100%;
-    min-width: 1800px;
+    min-width: 1850px;
   }
 }
 
 .main-page-column {
   position: relative;
-  width: 20%;
+  width: 360px;
 }
 
 .main-page-column:nth-child(1) {
@@ -1193,14 +1249,13 @@ main {
 }
 
 .main-page-card {
-  background-size: contain;
+  background-size: 100%;
   border-radius: 10px;
   background-repeat: no-repeat;
-  display: block;
-  height: 0;
-  padding-bottom: 160%;
+  display: flex;
   margin: 10px 0;
-  width: 100%;
+  width: 360px;
+  height: 600px;
 }
 
 .main-page-card-container {
