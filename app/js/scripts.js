@@ -186,8 +186,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     for (var _i = 0; _i < theColorCards.length; _i++) {
       //rotation
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
-        rotation: -2.2 * _i,
-        x: theColorCards[_i].style.top - 0.09 * _i
+        rotation: -2.2 * (_i * 2)
       });
     }
   } //RUN FUNCTIONS
@@ -605,13 +604,8 @@ function documentReady(fn) {
 documentReady(function () {
   Object(_components_social_set__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_5__["default"])();
-<<<<<<< HEAD
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
-=======
-  Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])(); //intoAnimation();
-
->>>>>>> 31c71a6b7fbcfc97f41007cd1a88177a7ab70011
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 

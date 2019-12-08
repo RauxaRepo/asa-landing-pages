@@ -1070,11 +1070,7 @@ section {
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
-<<<<<<< HEAD
   transform-origin: '50% 50%';
-=======
-  transform-origin: '0 50%';
->>>>>>> 31c71a6b7fbcfc97f41007cd1a88177a7ab70011
   width: 100%;
   position: absolute;
   z-index: 1;
@@ -1091,10 +1087,6 @@ section {
   align-items: center;
   justify-content: center;
   padding: 30px;
-<<<<<<< HEAD
-=======
-  color: #48a9c5;
->>>>>>> 31c71a6b7fbcfc97f41007cd1a88177a7ab70011
 }
 
 .clr0 {

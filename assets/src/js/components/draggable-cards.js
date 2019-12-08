@@ -53,7 +53,7 @@ export default function () {
 			let i = 0;
 			for (let i = 0;i<theColorCards.length; i++){
 				//rotation
-				gsap.to(theColorCards[i], 1, {rotation: -2.2 * i, x:theColorCards[i].style.top - 0.09 * i});
+				gsap.to(theColorCards[i], 1, {rotation: - 2.2 * (i * 2)});
 			}
 		}
 		
