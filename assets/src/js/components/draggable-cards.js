@@ -4,17 +4,18 @@ import getBreakpoint from './breakpoints';
 export default function () {
 
 	//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
-	//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
-	let theCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
+	
+	let time = 1,
+		timeInterval,
+		htmlBody = document.getElementsByTagName("BODY")[0],
+
+		//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+		theCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
 		//*Place all Cards except Title card in the Array using ('...' = spread)*//
 		theCards = theCardsshuffle([...document.querySelectorAll('.main-page-card--question')]),
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
-		time = 1,
-		timeInterval,
-		htmlBody = document.getElementsByTagName("BODY")[0],
 		//
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
-
 
 		//MOBILE VIEW 
 		var mq = window.matchMedia('(max-width: 576px');
@@ -53,7 +54,8 @@ export default function () {
 			let i = 0;
 			for (let i = 0;i<theColorCards.length; i++){
 				//rotation
-				gsap.to(theColorCards[i], 1, {rotation: - 2.2 * (i * 2)});
+				gsap.to(theColorCards[i], 1, {rotation: - 2.2 * i});
+				//console.log('theColorCards[i] ',theColorCards[i])
 			}
 		}
 		

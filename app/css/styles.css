@@ -1109,6 +1109,22 @@ section {
   background-color: #2672ab;
 }
 
+.zIndex-4 {
+  z-index: 4;
+}
+
+.zIndex-3 {
+  z-index: 3;
+}
+
+.zIndex-3 {
+  z-index: 3;
+}
+
+.zIndex-1 {
+  z-index: 1;
+}
+
 @media only screen and (max-width: 576px) {
   .active-card p {
     padding-top: 21px;

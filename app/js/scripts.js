@@ -132,8 +132,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
-  //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
-  var theCardsshuffle = function theCardsshuffle(array) {
+  var time = 1,
+      timeInterval,
+      htmlBody = document.getElementsByTagName("BODY")[0],
+      //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+  theCardsshuffle = function theCardsshuffle(array) {
     return array.sort(function () {
       return Math.random() - 0.5;
     });
@@ -141,9 +144,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //*Place all Cards except Title card in the Array using ('...' = spread)*//
   theCards = theCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card--question'))),
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
-      time = 1,
-      timeInterval,
-      htmlBody = document.getElementsByTagName("BODY")[0],
       //
   tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
@@ -186,8 +186,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     for (var _i = 0; _i < theColorCards.length; _i++) {
       //rotation
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
-        rotation: -2.2 * (_i * 2)
-      });
+        rotation: -2.2 * _i
+      }); //console.log('theColorCards[i] ',theColorCards[i])
     }
   } //RUN FUNCTIONS
 
