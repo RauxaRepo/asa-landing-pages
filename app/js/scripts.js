@@ -109,6 +109,96 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../assets/src/js/components/draggable-cards.js":
+/*!******************************************************!*\
+  !*** ../assets/src/js/components/draggable-cards.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
+  //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+  var theCardsshuffle = function theCardsshuffle(array) {
+    return array.sort(function () {
+      return Math.random() - 0.5;
+    });
+  },
+      //*Place all Cards except Title card in the Array using ('...' = spread)*//
+  theCards = theCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card--question'))),
+      theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
+      time = 1,
+      timeInterval,
+      htmlBody = document.getElementsByTagName("BODY")[0],
+      //
+  tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    repeat: 0,
+    repeatDelay: 0
+  }); //MOBILE VIEW 
+
+
+  var mq = window.matchMedia('(max-width: 576px');
+
+  function switchSizeDc(e) {
+    if (e.matches) {
+      /* the viewport is mq pixels wide or less */
+      //theFooter.classList.add('main-page-footer-mobile');
+      console.log('mobile');
+    } else {//Do something
+      //theFooter.classList.remove('main-page-footer-mobile');
+    }
+  }
+
+  switchSizeDc(mq);
+  mq.addListener(switchSizeDc); //MATH MIN-MAX RANDOM
+
+  function random(min, max) {
+    return min + Math.random() * (max - min);
+  } //RANDOM CARDS
+
+
+  function randomCards() {
+    console.log('randomCards');
+    theCards.forEach(function (item) {
+      //randomize cards
+      item.style.zIndex = Math.floor(Math.random() * 11);
+    });
+  } //SPREAD-CARDS
+
+
+  function spreadTheCards() {
+    var i = 0;
+
+    for (var _i = 0; _i < theColorCards.length; _i++) {
+      //rotation
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
+        rotation: -2.2 * _i,
+        x: theColorCards[_i].style.top - 0.09 * _i
+      });
+    }
+  } //RUN FUNCTIONS
+
+
+  randomCards();
+  spreadTheCards();
+});
+
+/***/ }),
+
 /***/ "../assets/src/js/components/form.test.js":
 /*!************************************************!*\
   !*** ../assets/src/js/components/form.test.js ***!
@@ -461,12 +551,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  // updating meta tag based on environment
-  var siteHost = "".concat(window.location.protocol, "//").concat(window.location.host);
   var fbButton = document.querySelector('.fb-share-button');
-  var fbButtonAnchor = fbButton.querySelector('a');
-  fbButton.setAttribute('data-href', siteHost);
-  fbButtonAnchor.setAttribute('href', "https://www.facebook.com/sharer/sharer.php?u=".concat(siteHost, "&amp;src=sdkpreparse"));
+
+  if (fbButton) {
+    // updating meta tag based on environment
+    var siteHost = "".concat(window.location.protocol, "//").concat(window.location.host);
+    var fbButtonAnchor = fbButton.querySelector('a');
+    fbButton.setAttribute('data-href', siteHost);
+    fbButtonAnchor.setAttribute('href', "https://www.facebook.com/sharer/sharer.php?u=".concat(siteHost, "&amp;src=sdkpreparse"));
+  }
 });
 
 /***/ }),
@@ -485,10 +578,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! whatwg-fetch */ "../node_modules/whatwg-fetch/fetch.js");
 /* harmony import */ var _components_form_test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/form.test */ "../assets/src/js/components/form.test.js");
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
-/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
-/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
+/* harmony import */ var _components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/draggable-cards */ "../assets/src/js/components/draggable-cards.js");
+/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
+/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
 
  //import sampleJs from './components/sample.component';
+
 
 
 
@@ -508,10 +603,11 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 
 /***/ }),
