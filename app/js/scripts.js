@@ -144,7 +144,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //*Place all Cards in an Array using ('...' = spread)*//
   theCards = theCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card--question'))),
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
-      flipTitle = document.querySelector('.main-page-card-title'),
+      flipTitle = document.querySelector('.card-title--flip'),
       //
   tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
@@ -274,8 +274,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     console.log('randomCards');
     theCards.forEach(function (item) {
       //randomize cards
-      item.style.zIndex = Math.floor(random(5, 15)); //Math.floor(Math.random() * 11);
-      //cursor pointer
+      item.style.zIndex = Math.floor(random(5, 15)); //cursor pointer
 
       item.style.cursor = "pointer";
     });

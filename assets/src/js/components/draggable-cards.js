@@ -13,7 +13,7 @@ export default function () {
 		//*Place all Cards in an Array using ('...' = spread)*//
 		theCards = theCardsshuffle([...document.querySelectorAll('.main-page-card--question')]),
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
-		flipTitle = document.querySelector('.main-page-card-title'),
+		flipTitle = document.querySelector('.card-title--flip'),
 		//
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
 
@@ -131,7 +131,7 @@ export default function () {
 			console.log('randomCards');
 			theCards.forEach(function(item){
                 //randomize cards
-				item.style.zIndex = Math.floor(random(5, 15));//Math.floor(Math.random() * 11);
+				item.style.zIndex = Math.floor( random(5, 15) );
 				//cursor pointer
 				item.style.cursor = "pointer";
 			})
