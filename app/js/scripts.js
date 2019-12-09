@@ -236,6 +236,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var cardBgCounter = 0;
   var cardXCounter = 0;
   var cardYCounter = 0;
+  var isTouch = 'touchstart' in document.documentElement;
   var time = 1;
   var theFooterSlide = document.querySelector('.main-page-footer-slide');
   var cardNumber = ['one', 'two', 'three', 'four', 'five'];
@@ -251,17 +252,52 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   var stackCards = function stackCards(cards) {
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cards, .8, {
+    var introEnd = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline();
+    introEnd.to(cards, .8, {
       top: '50%',
       x: '-50%',
       y: '-50%',
       ease: 'sine.inout',
       stagger: {
-        amount: 1.5
+        amount: 1.5,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
       }
-    });
-  }; // function to animate columns of cards
+    }).to(cardsHolder, 1, {
+      backgroundColor: '#48a9c5',
+      ease: 'sine.in'
+    }, '-=.3').to([cardCta, cardQuestionOne], 1.25, {
+      rotationY: '+=180',
+      ease: 'sine.inout'
+    }, '+=.2').to([cardCta, cardQuestionOne], .625, {
+      z: '-=100',
+      yoyo: true,
+      repeat: 1,
+      ease: 'sine.in'
+    }, '-=1.5');
+  }; //setting card flip
 
+
+  var cardsHolder = document.querySelector('.cards');
+  var cardFlipWrapper = document.querySelector('.cards-single.cta .cards-single--content');
+  var cardCta = document.querySelector('.cards-single.cta .cards-single--init-card');
+  var cardQuestionOne = document.querySelector('.cards-single.cta .main-page-card--question');
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(cardFlipWrapper, {
+    transformStyle: "preserve-3d",
+    perspective: 800,
+    perspectiveOrigin: '50% 50% 0px'
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(cardQuestionOne, {
+    rotationY: -180
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set([cardCta, cardQuestionOne], {
+    backfaceVisibility: "hidden"
+  }); //
+  // function to animate columns of cards
 
   var scrollCards = function scrollCards(cta) {
     var columnCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({

@@ -19,8 +19,21 @@
     &.cta {
       z-index: 5;
 
+      
       .cards-single--content {
+        overflow: visible;
+      }
+
+      .cards-single--init-card {
         background-image: url('../images/cards/Title_Card.png');
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0%;
+        top: 0%;
+        background-size: 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
       }
     }
 

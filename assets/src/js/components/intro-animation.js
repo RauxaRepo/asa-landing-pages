@@ -1,4 +1,4 @@
-import {gsap, TweenMax, TimelineMax, Power, Linear} from 'gsap';
+import {gsap, TweenMax, TimelineMax, Power, Power2, Linear} from 'gsap';
 
 
 export default function () {
@@ -13,6 +13,8 @@ export default function () {
   let cardBgCounter = 0;
   let cardXCounter = 0;
   let cardYCounter = 0;
+
+  let isTouch = ('touchstart' in document.documentElement);
 
   let time = 1;
   let theFooterSlide = document.querySelector('.main-page-footer-slide');
@@ -57,9 +59,43 @@ export default function () {
 
   // function to stack cards under cta card
   let stackCards = function(cards) {
-    gsap.to(cards,.8,{top:'50%',x:'-50%',y:'-50%',ease:'sine.inout', stagger:{amount: 1.5}});
+
+    let introEnd = gsap.timeline();
+    introEnd
+    .to(cards,.8,{top:'50%',x:'-50%',y:'-50%',ease:'sine.inout',
+      stagger:{
+        amount: 1.5,
+        onComplete: function(e) {
+          gsap.to(e._targets,{duration:.25,autoAlpha:0});
+        }
+    }})
+    .to(cardsHolder,1, {backgroundColor: '#48a9c5',ease: 'sine.in'},'-=.3')
+    .to([cardCta,cardQuestionOne], 1.25, {rotationY:'+=180', ease:'sine.inout'},'+=.2')
+    .to([cardCta,cardQuestionOne], .625, {z:'-=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5');
   }
 
+
+  //setting card flip
+  let cardsHolder = document.querySelector('.cards');
+  let cardFlipWrapper = document.querySelector('.cards-single.cta .cards-single--content');
+  let cardCta = document.querySelector('.cards-single.cta .cards-single--init-card');
+  let cardQuestionOne = document.querySelector('.cards-single.cta .main-page-card--question');
+
+  gsap.set(cardFlipWrapper, {
+    transformStyle:"preserve-3d",
+    perspective: 800,
+    perspectiveOrigin:'50% 50% 0px'
+  });
+
+  gsap.set(cardQuestionOne,{
+    rotationY:-180
+  });
+
+  gsap.set([cardCta,cardQuestionOne],{
+    backfaceVisibility:"hidden"
+  });
+  //
+    
 
   // function to animate columns of cards
   let scrollCards = function(cta) {
