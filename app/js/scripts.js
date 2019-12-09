@@ -238,11 +238,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       e = e || window.event;
       e.preventDefault(); // get the mouse cursor position at startup:
 
-      pos3 = e.clientX;
-      pos4 = e.clientY;
+      pos3 = e.clientX; //pos4 = e.clientY;
+
       document.onmouseup = closeDragElement; // call a function whenever the cursor moves:
 
-      document.onmousemove = elementDrag;
+      document.onmousemove = elementDrag; //rotate 
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+        duration: time - 0.7,
+        rotation: '-=40',
+        opacity: 1,
+        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+      });
     }
 
     function elementDrag(e) {
@@ -253,8 +260,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pos2 = pos4 - e.clientY;
       pos3 = e.clientX;
       pos4 = e.clientY; // set the element's new position:
+      //elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
 
-      elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
       elmnt.style.left = elmnt.offsetLeft - pos1 + 'px'; //Remove card if out of bounds
 
       if (elmnt.offsetLeft < wrapper.offsetLeft - 700) {//gsap.to(elmnt,  {duration:time - 0.5, x: '-=600', opacity: 1, ease:Quad.easInOut});
@@ -268,14 +275,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     function closeDragElement() {
       // stop moving when mouse button is released://
       document.onmouseup = null;
-      document.onmousemove = null;
-      /*rotate back
-      gsap.to(elmnt, {
-      	duration: time - 0.7,
-      	rotation: '+=40',
-      	opacity: 1,
-      	ease:Quad.easInOut
-      });*/
+      document.onmousemove = null; //rotate back
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+        duration: time - 0.7,
+        rotation: '+=40',
+        opacity: 1,
+        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+      });
     }
   } //RANDOMIZE  Q1-Q10 CARDS
 

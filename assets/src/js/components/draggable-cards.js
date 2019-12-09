@@ -95,10 +95,17 @@ export default function () {
 				e.preventDefault();
 				// get the mouse cursor position at startup:
 				pos3 = e.clientX;
-				pos4 = e.clientY;
+				//pos4 = e.clientY;
 				document.onmouseup = closeDragElement;
 				// call a function whenever the cursor moves:
 				document.onmousemove = elementDrag;
+				//rotate 
+				gsap.to(elmnt, {
+					duration: time - 0.7,
+					rotation: '-=40',
+					opacity: 1,
+					ease:Quad.easInOut
+				});
 			}
 		  
 			function elementDrag(e) {
@@ -110,7 +117,7 @@ export default function () {
 				pos3 = e.clientX;
 				pos4 = e.clientY;
 				// set the element's new position:
-				elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
+				//elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
 				elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
 				//Remove card if out of bounds
 				if(elmnt.offsetLeft < (wrapper.offsetLeft - 700)){
@@ -127,13 +134,13 @@ export default function () {
 				// stop moving when mouse button is released://
 				document.onmouseup = null;
 				document.onmousemove = null;
-				/*rotate back
+				//rotate back
 				gsap.to(elmnt, {
 					duration: time - 0.7,
 					rotation: '+=40',
 					opacity: 1,
 					ease:Quad.easInOut
-				});*/
+				});
 			}
 		}
 
