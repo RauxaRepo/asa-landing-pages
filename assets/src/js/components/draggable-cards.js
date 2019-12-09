@@ -54,21 +54,21 @@ export default function () {
 			var ew = elmnt.offsetWidth; //width of the hovered element
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
-				//rotate
+				/*//rotate
 				gsap.to(elmnt, {
 					duration: time - 0.7,
 					rotation: '+=40',
 					opacity: 0.7,
 					ease:Quad.easInOut
-				});
+				});*/
 			} else { //element is on left side of viewport
-				//rotate
+				/*//rotate
 				gsap.to(elmnt, {
 					duration: time - 0.7,
 					rotation: '-=40',
 					opacity: 0.7,
 					ease:Quad.easInOut
-				});
+				});*/
 			}
 
 		 }
@@ -94,7 +94,7 @@ export default function () {
 				// call a function whenever the cursor moves:
 				document.onmousemove = elementDrag;
 				//check if card on left / right side of screen
-				changeCardPos(elmnt);
+				//changeCardPos(elmnt);
 			}
 		  
 			function elementDrag(e) {
