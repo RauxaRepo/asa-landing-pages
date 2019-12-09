@@ -1164,7 +1164,7 @@ section {
 }
 
 .clr0 {
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .clr1 {
@@ -1205,6 +1205,25 @@ section {
 
 .zIndex-1 {
   z-index: 1;
+}
+
+.gradient--slide {
+  background: linear-gradient(90deg, #2774ae, #48a9c5);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 2s ease;
+  animation: gradient 2s ease;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @media only screen and (max-width: 576px) {
@@ -1260,7 +1279,8 @@ section {
     padding: 7px 0;
     font-size: 10px;
   }
-  .active-card.q2 button, .active-card.q4 button {
+  .active-card.q2 button,
+  .active-card.q4 button {
     font-size: 10px;
   }
 }

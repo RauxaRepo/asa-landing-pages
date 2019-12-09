@@ -5,6 +5,9 @@
 //  outline: 1px solid $red;
 //}
 
+$flightblue: #2774ae;
+$flightbgblue: #48a9c5;
+
 .main-page-card-center {
     height: 600px;
 }
@@ -84,7 +87,7 @@
 }
 
 .clr0 {
-    background-color: #fff;
+    background-color: #ffffff;
 }
 
 .clr1 {
@@ -128,6 +131,26 @@
     &-1 {
         z-index: 1;
     }
+}
+
+//GRADIENT
+.gradient--slide {
+    background: linear-gradient(90deg, $flightblue, $flightbgblue );
+	background-size: 400% 400%;
+	-webkit-animation: gradient 2s ease;
+	animation: gradient 2s ease;
+} 
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 
@@ -199,7 +222,8 @@
         font-size: 10px;
     }
 
-    .active-card.q2 button, .active-card.q4 button {
+    .active-card.q2 button, 
+    .active-card.q4 button {
         font-size: 10px;
     }
 

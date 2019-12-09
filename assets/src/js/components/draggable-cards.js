@@ -17,7 +17,14 @@ export default function () {
 		rightBounds = 350,
 		leftBounds = 330,
 		sm = window.matchMedia('(max-width: 576px)'),
+		cardQuestionArr = [],
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
+
+		//FUNCTION CHANGE BACKGROUND COLOR
+		function slidebackgroundColor(){
+			theCards.push(cardQuestionArr);
+			//when card is dragged off-screen place at the end of array
+		}
 
 
 		//COLOR CARDS--SPREAD
@@ -77,10 +84,10 @@ export default function () {
 			let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 			//elmnt.onmousedown = dragMouseDown;
 			if (document.getElementById(elmnt.id + wrapper)) {
-				/* if present, the wrapper is where you move the DIV from:*/
+				// if present, the wrapper is where you move the DIV from:
 				document.getElementById(elmnt.id + wrapper).onmousedown = dragMouseDown;
 			} else {
-				/* otherwise, move the DIV from an	ywhere inside the DIV:*/
+				// otherwise, move the DIV from an	ywhere inside the DIV:
 				elmnt.onmousedown = dragMouseDown;
 			}
 
