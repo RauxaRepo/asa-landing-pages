@@ -133,7 +133,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var time = 1,
       timeInterval,
-      htmlBody = document.getElementsByTagName("BODY")[0],
+      htmlBody = document.getElementsByTagName('BODY')[0],
       //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
   //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
   theCardsshuffle = function theCardsshuffle(array) {
@@ -145,8 +145,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   theCards = _toConsumableArray(document.querySelectorAll('.main-page-card--question')),
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
       wrapper = document.getElementById('drag-card-holder'),
-      //
-  tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+      rightBounds = 350,
+      leftBounds = 330,
+      sm = window.matchMedia('(max-width: 576px)'),
+      tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
     repeatDelay: 0
   }); //COLOR CARDS--SPREAD
@@ -196,7 +198,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (pos.x > ww / 2) {
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
-      if (elmnt.offsetLeft > wrapper.offsetLeft + 380) {
+      if (elmnt.offsetLeft > wrapper.offsetLeft + rightBounds) {
         //console.log('Right Bounds');
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
           duration: time - 0.5,
@@ -208,7 +210,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     } else {
       //element is on left side of viewport
       //console.log('LEFT, ', pos);
-      if (elmnt.offsetLeft < wrapper.offsetLeft - 360) {
+      if (elmnt.offsetLeft < wrapper.offsetLeft - leftBounds) {
         //console.log('Left Bounds');
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
           duration: time - 0.5,
@@ -247,8 +249,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
         duration: time - 0.7,
-        rotation: '-=40',
-        opacity: 1,
+        rotation: -40,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
       });
     }
@@ -274,8 +275,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
         duration: time - 0.7,
-        rotation: '+=40',
-        opacity: 1,
+        rotation: 0,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
       });
     }
@@ -284,31 +284,30 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   function touchHandler(event) {
     var touch = event.changedTouches[0];
-    var simulatedEvent = document.createEvent("MouseEvent");
+    var simulatedEvent = document.createEvent('MouseEvent');
     simulatedEvent.initMouseEvent({
-      touchstart: "mousedown",
-      touchmove: "mousemove",
-      touchend: "mouseup"
+      touchstart: 'mousedown',
+      touchmove: 'mousemove',
+      touchend: 'mouseup'
     }[event.type], true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
-    touch.target.dispatchEvent(simulatedEvent);
-    event.preventDefault();
+    touch.target.dispatchEvent(simulatedEvent); //event.preventDefault();
   }
 
   function init() {
-    document.addEventListener("touchstart", touchHandler, true);
-    document.addEventListener("touchmove", touchHandler, true);
-    document.addEventListener("touchend", touchHandler, true);
-    document.addEventListener("touchcancel", touchHandler, true);
+    document.addEventListener('touchstart', touchHandler, true);
+    document.addEventListener('touchmove', touchHandler, true);
+    document.addEventListener('touchend', touchHandler, true);
+    document.addEventListener('touchcancel', touchHandler, true);
   } //RANDOMIZE  Q1-Q10 CARDS
 
 
   function randomizeCards() {
-    console.log('randomCards');
+    //console.log('randomCards');
     theCards.forEach(function (item) {
       //randomize cards
       item.style.zIndex = Math.floor(random(5, 15)); //cursor pointer
 
-      item.style.cursor = "pointer";
+      item.style.cursor = 'pointer';
     });
   } //DRAG Q1-Q10 CARDS
 
@@ -318,6 +317,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //drag cards
       dragElement(item);
     });
+  } //MATCH MEDIA
+
+
+  function media576Px() {
+    if (sm.matches) {
+      rightBounds = 250;
+      leftBounds = 300; //console.log('rightBounds ',rightBounds, ' leftBounds ',leftBounds);
+    }
+  } //All EVENTLISTENERS
+
+
+  function allEventListeners() {
+    sm.addListener(media576Px);
   } //RUN FUNCTIONS
 
 
@@ -328,6 +340,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   dragCards(); //drag question cards
 
   init(); //start touch controls
+
+  allEventListeners(); //eventlisteners
 });
 
 /***/ }),
