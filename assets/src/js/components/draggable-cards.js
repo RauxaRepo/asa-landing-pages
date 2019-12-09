@@ -13,8 +13,7 @@ export default function () {
 		//*Place all Cards in an Array using ('...' = spread)*//
 		theCards = [...document.querySelectorAll('.main-page-card--question')],
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
-		flipTitle = document.querySelector('.card-title--flip'),
-		wrapper = document.getElementById('main-page-card-center'),
+		wrapper = document.getElementById('drag-card-holder'),
 		//
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
 
@@ -55,16 +54,16 @@ export default function () {
 			var ew = elmnt.offsetWidth; //width of the hovered element
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
-				console.log('RIGHT, ', pos);
+				//console.log('RIGHT, ', pos);
 				if(elmnt.offsetLeft > (wrapper.offsetLeft + 380)){
-					console.log('Right Bounds');
+					//console.log('Right Bounds');
 					gsap.to(elmnt,  {duration:time - 0.5, x: '+=600', opacity: 1, ease:Quad.easInOut});
 				}
 				
 			} else { //element is on left side of viewport
-				console.log('LEFT, ', pos);
+				//console.log('LEFT, ', pos);
 				if(elmnt.offsetLeft < (wrapper.offsetLeft - 360)){
-					console.log('Left Bounds');
+					//console.log('Left Bounds');
 					gsap.to(elmnt,  {duration:time - 0.5, x: '-=600', opacity: 1, ease:Quad.easInOut});
 				}
 			}
@@ -72,8 +71,6 @@ export default function () {
 		 }
 
 		//DRAGGABLE CARDS CODE
-		//https://www.w3schools.com/howto/howto_js_draggable.asp
-		//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
 		function dragElement(elmnt) {
 			let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 			//elmnt.onmousedown = dragMouseDown;
@@ -131,6 +128,31 @@ export default function () {
 			}
 		}
 
+		//TOUCH CONTROL
+		function touchHandler(event) {
+			var touch = event.changedTouches[0];
+		
+			var simulatedEvent = document.createEvent("MouseEvent");
+				simulatedEvent.initMouseEvent({
+				touchstart: "mousedown",
+				touchmove: "mousemove",
+				touchend: "mouseup"
+			}[event.type], true, true, window, 1,
+				touch.screenX, touch.screenY,
+				touch.clientX, touch.clientY, false,
+				false, false, false, 0, null);
+		
+			touch.target.dispatchEvent(simulatedEvent);
+			event.preventDefault();
+		}
+		
+		function init() {
+			document.addEventListener("touchstart", touchHandler, true);
+			document.addEventListener("touchmove", touchHandler, true);
+			document.addEventListener("touchend", touchHandler, true);
+			document.addEventListener("touchcancel", touchHandler, true);
+		}
+
 
 		//RANDOMIZE  Q1-Q10 CARDS
 		function randomizeCards(){
@@ -143,56 +165,19 @@ export default function () {
 			})
 		}
 
-
 		//DRAG Q1-Q10 CARDS
 		function dragCards(){
 			theCards.forEach(function(item){
 				//drag cards
 				dragElement(item);
 			})
-		}
-
-		//FlIP TITLE CARD
-		function flipTitleCard() {
-			let flipInterval = setInterval(flippy,2000);
-			function flippy(){
-				clearInterval(flipInterval);
-				//flipTitle.style.transform = 'rotateY(180deg)';
-				gsap.to(flipTitle, {
-					duration: time - 0.7,
-					rotationY: -180,
-					opacity: 0,
-					ease:Quad.easInOut
-				, 
-				onComplete: function(){
-					flipTitle.style.zIndex = '0';
-				}});
-			}
-			
-		}
-
-		//MOBILE VIEW 
-		let mq = window.matchMedia('(max-width: 576px');
-
-		function switchSizeDc(e) {
-			if (e.matches) {
-				/* the viewport is mq pixels wide or less */
-				//theFooter.classList.add('main-page-footer-mobile');
-				console.log('mobile');
-			} else {
-				//Do something
-				//theFooter.classList.remove('main-page-footer-mobile');
-			}
-		}
-		switchSizeDc(mq);
-		mq.addListener(switchSizeDc);
-		
+		}		
 
 		//RUN FUNCTIONS
-		spreadTheCards();
-		randomizeCards();
-		dragCards();
-		//flipTitleCard();
+		spreadTheCards();//spread color cards
+		randomizeCards();//randomize question cards
+		dragCards();//drag question cards
+		init();//start touch controls
         
 }
 
