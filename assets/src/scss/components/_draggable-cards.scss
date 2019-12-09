@@ -5,6 +5,10 @@
 //  outline: 1px solid $red;
 //}
 
+.main-page-card-center {
+    height: 600px;
+}
+
 
 .main-page-card--question {
     opacity: 1;
@@ -60,6 +64,7 @@
     height: 0;
     padding-bottom: 160%;
     margin: 10px 0;
+    top: 0;
     transform-origin: '50% 50%';
     width: 100%;
     position: absolute;

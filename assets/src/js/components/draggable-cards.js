@@ -11,9 +11,10 @@ export default function () {
 		//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
 		theCardsshuffle = (array) => array.sort(() => Math.random() - 0.5),
 		//*Place all Cards in an Array using ('...' = spread)*//
-		theCards = theCardsshuffle([...document.querySelectorAll('.main-page-card--question')]),
+		theCards = [...document.querySelectorAll('.main-page-card--question')],
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
 		flipTitle = document.querySelector('.card-title--flip'),
+		wrapper = document.getElementById('main-page-inner'),
 		//
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
 
@@ -54,6 +55,7 @@ export default function () {
 			var ew = elmnt.offsetWidth; //width of the hovered element
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
+				console.log('RIGHT, ', pos);
 				/*//rotate
 				gsap.to(elmnt, {
 					duration: time - 0.7,
@@ -62,6 +64,7 @@ export default function () {
 					ease:Quad.easInOut
 				});*/
 			} else { //element is on left side of viewport
+				console.log('LEFT, ', pos);
 				/*//rotate
 				gsap.to(elmnt, {
 					duration: time - 0.7,
@@ -74,16 +77,19 @@ export default function () {
 		 }
 
 		//DRAGGABLE CARDS CODE
+		//https://www.w3schools.com/howto/howto_js_draggable.asp
+		//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
 		function dragElement(elmnt) {
-			var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-			if (document.getElementById(elmnt.id + 'wrapper')) {
+			let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+			//elmnt.onmousedown = dragMouseDown;
+			if (document.getElementById(elmnt.id + wrapper)) {
 				/* if present, the wrapper is where you move the DIV from:*/
-				document.getElementById(elmnt.id + 'wrapper').onmousedown = dragMouseDown;
+				document.getElementById(elmnt.id + wrapper).onmousedown = dragMouseDown;
 			} else {
-				/* otherwise, move the DIV from anywhere inside the DIV:*/
+				/* otherwise, move the DIV from an	ywhere inside the DIV:*/
 				elmnt.onmousedown = dragMouseDown;
 			}
-		  
+
 			function dragMouseDown(e) {
 				e = e || window.event;
 				e.preventDefault();
@@ -93,8 +99,6 @@ export default function () {
 				document.onmouseup = closeDragElement;
 				// call a function whenever the cursor moves:
 				document.onmousemove = elementDrag;
-				//check if card on left / right side of screen
-				//changeCardPos(elmnt);
 			}
 		  
 			function elementDrag(e) {
@@ -109,19 +113,27 @@ export default function () {
 				elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
 				elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
 				//Remove card if out of bounds
+				if(elmnt.offsetLeft < (wrapper.offsetLeft - 700)){
+					//gsap.to(elmnt,  {duration:time - 0.5, x: '-=600', opacity: 1, ease:Quad.easInOut});
+				}
+				else if(elmnt.offsetWidth > (wrapper.offsetWidth + 100)){
+					//gsap.to(elmnt,  {duration:time - 0.5, x: '+=600', opacity: 1, ease:Quad.easInOut});
+				}
+				//check if card on left / right side of screen
+				changeCardPos(elmnt);
 			}
 		  
 			function closeDragElement() {
-				/* stop moving when mouse button is released:*/
+				// stop moving when mouse button is released://
 				document.onmouseup = null;
 				document.onmousemove = null;
-				//rotate back
+				/*rotate back
 				gsap.to(elmnt, {
 					duration: time - 0.7,
 					rotation: '+=40',
 					opacity: 1,
 					ease:Quad.easInOut
-				});
+				});*/
 			}
 		}
 
@@ -166,7 +178,7 @@ export default function () {
 		}
 
 		//MOBILE VIEW 
-		var mq = window.matchMedia('(max-width: 576px');
+		let mq = window.matchMedia('(max-width: 576px');
 
 		function switchSizeDc(e) {
 			if (e.matches) {
@@ -186,7 +198,7 @@ export default function () {
 		spreadTheCards();
 		randomizeCards();
 		dragCards();
-		flipTitleCard();
+		//flipTitleCard();
         
 }
 

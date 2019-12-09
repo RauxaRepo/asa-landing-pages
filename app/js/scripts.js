@@ -142,9 +142,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     });
   },
       //*Place all Cards in an Array using ('...' = spread)*//
-  theCards = theCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card--question'))),
+  theCards = _toConsumableArray(document.querySelectorAll('.main-page-card--question')),
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
       flipTitle = document.querySelector('.card-title--flip'),
+      wrapper = document.getElementById('main-page-inner'),
       //
   tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
@@ -193,8 +194,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var ew = elmnt.offsetWidth; //width of the hovered element
 
-    if (pos.x > ww / 2) {//element is on right side of viewport
-
+    if (pos.x > ww / 2) {
+      //element is on right side of viewport
+      console.log('RIGHT, ', pos);
       /*//rotate
       gsap.to(elmnt, {
       	duration: time - 0.7,
@@ -202,30 +204,33 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       	opacity: 0.7,
       	ease:Quad.easInOut
       });*/
-    } else {//element is on left side of viewport
-
-        /*//rotate
-        gsap.to(elmnt, {
-        	duration: time - 0.7,
-        	rotation: '-=40',
-        	opacity: 0.7,
-        	ease:Quad.easInOut
-        });*/
-      }
+    } else {
+      //element is on left side of viewport
+      console.log('LEFT, ', pos);
+      /*//rotate
+      gsap.to(elmnt, {
+      	duration: time - 0.7,
+      	rotation: '-=40',
+      	opacity: 0.7,
+      	ease:Quad.easInOut
+      });*/
+    }
   } //DRAGGABLE CARDS CODE
+  //https://www.w3schools.com/howto/howto_js_draggable.asp
+  //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
 
 
   function dragElement(elmnt) {
     var pos1 = 0,
         pos2 = 0,
         pos3 = 0,
-        pos4 = 0;
+        pos4 = 0; //elmnt.onmousedown = dragMouseDown;
 
-    if (document.getElementById(elmnt.id + 'wrapper')) {
+    if (document.getElementById(elmnt.id + wrapper)) {
       /* if present, the wrapper is where you move the DIV from:*/
-      document.getElementById(elmnt.id + 'wrapper').onmousedown = dragMouseDown;
+      document.getElementById(elmnt.id + wrapper).onmousedown = dragMouseDown;
     } else {
-      /* otherwise, move the DIV from anywhere inside the DIV:*/
+      /* otherwise, move the DIV from an	ywhere inside the DIV:*/
       elmnt.onmousedown = dragMouseDown;
     }
 
@@ -237,8 +242,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pos4 = e.clientY;
       document.onmouseup = closeDragElement; // call a function whenever the cursor moves:
 
-      document.onmousemove = elementDrag; //check if card on left / right side of screen
-      //changeCardPos(elmnt);
+      document.onmousemove = elementDrag;
     }
 
     function elementDrag(e) {
@@ -252,19 +256,26 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
       elmnt.style.left = elmnt.offsetLeft - pos1 + 'px'; //Remove card if out of bounds
+
+      if (elmnt.offsetLeft < wrapper.offsetLeft - 700) {//gsap.to(elmnt,  {duration:time - 0.5, x: '-=600', opacity: 1, ease:Quad.easInOut});
+      } else if (elmnt.offsetWidth > wrapper.offsetWidth + 100) {} //gsap.to(elmnt,  {duration:time - 0.5, x: '+=600', opacity: 1, ease:Quad.easInOut});
+      //check if card on left / right side of screen
+
+
+      changeCardPos(elmnt);
     }
 
     function closeDragElement() {
-      /* stop moving when mouse button is released:*/
+      // stop moving when mouse button is released://
       document.onmouseup = null;
-      document.onmousemove = null; //rotate back
-
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-        duration: time - 0.7,
-        rotation: '+=40',
-        opacity: 1,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
-      });
+      document.onmousemove = null;
+      /*rotate back
+      gsap.to(elmnt, {
+      	duration: time - 0.7,
+      	rotation: '+=40',
+      	opacity: 1,
+      	ease:Quad.easInOut
+      });*/
     }
   } //RANDOMIZE  Q1-Q10 CARDS
 
@@ -324,8 +335,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   spreadTheCards();
   randomizeCards();
-  dragCards();
-  flipTitleCard();
+  dragCards(); //flipTitleCard();
 });
 
 /***/ }),
