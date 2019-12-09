@@ -249,6 +249,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     });
   };
 
+  var stackCards = function stackCards(cards) {
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cards, .8, {
+      top: '50%',
+      x: '-50%',
+      y: '-50%',
+      ease: 'sine.inout',
+      stagger: {
+        amount: 1.5
+      }
+    });
+  };
+
   var scrollCards = function scrollCards(cta) {
     var columnCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
       repeat: -1
@@ -310,9 +322,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
         onComplete: function onComplete() {
           columnCards.pause(); //EventListener
-          //	titleCard.addEventListener('click', stackCards);
+
+          cta.addEventListener('click', function (e) {
+            stackCards(showGroupCards);
+          });
         }
-      }); //console.log("Footer Slide In");
+      });
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
 

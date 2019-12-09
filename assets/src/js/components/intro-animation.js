@@ -54,7 +54,9 @@ export default function () {
 
   let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5);
 
-  
+  let stackCards = function(cards) {
+    gsap.to(cards,.8,{top:'50%',x:'-50%',y:'-50%',ease:'sine.inout', stagger:{amount: 1.5}});
+  }
 
   let scrollCards = function(cta) {
 
@@ -85,9 +87,11 @@ export default function () {
 			gsap.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
 				columnCards.pause();
 				//EventListener
-			//	titleCard.addEventListener('click', stackCards);
+			  cta.addEventListener('click', (e) => {
+          stackCards(showGroupCards);
+        });
 			}})
-			//console.log("Footer Slide In");
+			
     }
     //SLIDE IN FOOTER & STOP CARD ANIMATION
     let introStop = setInterval(raiseFooter, 5000);
