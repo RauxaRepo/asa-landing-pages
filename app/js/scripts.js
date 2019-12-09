@@ -460,7 +460,6 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -470,183 +469,205 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
- //getBreakpoint('md');
-
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
-  //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+  var cardHolder = document.querySelector('.cards');
+
+  if (!cardHolder) {
+    return;
+  }
+
+  var cardCount = 40;
+  var cardBgCounter = 0;
+  var cardXCounter = 0;
+  var cardYCounter = 0;
+  var isTouch = 'touchstart' in document.documentElement;
+  var time = 1;
+  var theFooterSlide = document.querySelector('.main-page-footer-slide');
+  var cardNumber = ['one', 'two', 'three', 'four', 'five'];
+  var cardType = ['tropical', 'midnight', 'breezecard', 'palm'];
+  var cardX = ['-250%', '-150%', '-50%', '50%', '150%'];
+  var cardY = ['-450%', '-350%', '-250%', '-150%', '-50%', '50%', '150%', '250%']; // function to shuffle cards
+
   var allCardsshuffle = function allCardsshuffle(array) {
     return array.sort(function () {
       return Math.random() - 0.5;
     });
-  },
-      //*Place all Cards except Title card in the Array using ('...' = spread)*//
-  allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.main-page-card:not(.main-page-card-title):not(.main-page-card-white)'))),
-      time = 1,
-      timeInterval,
-      htmlBody = document.getElementsByTagName("BODY")[0],
-      //colors
-  $flightblue = '#2774ae',
-      $flightbgblue = '#48a9c5',
-      //main page--Child div
-  mainPageInner = document.querySelector('.main-page-inner'),
-      //Footer
-  theFooterSlide = document.querySelector('.main-page-footer-slide'),
-      theFooter = document.querySelector('.main-page-footer'),
-      //Title Cards
-  titleCard = document.querySelector('.card-one-title'),
-      //
-  tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: 0,
-    repeatDelay: 0
-  }),
-      tlScroll = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: -1,
-    repeatDelay: 0
-  }),
-      tlScrollTwo = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: -1,
-    repeatDelay: 0
-  }),
-      tlScrollThree = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: -1,
-    repeatDelay: 0
-  }),
-      tlScrollFour = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: -1,
-    repeatDelay: 0
-  }); //FADE IN TITLE CARDS AND OTHER CARDS
+  }; // function to stack cards under cta card
 
 
-  tl.to(titleCard, time, {
-    opacity: 1,
-    delay: time - 0.5,
-    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  })
-  /*///.05, = stagger amount//'0.25' time between animation for cards///*/
-  .staggerTo(allCards, time, {
-    opacity: 1,
-    delay: Math.random() * time,
-    ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-  }, .05, '0.25'); //SLIDE THE CARDS
-
-  /*///
-  Please Note:
-  1) each div that conatins a set of cards is set to a percentage
-  2) the 'top' area in the tween matches the position of the 'corresponding card' ie match the position of the prevoius card
-  3) xPercent:50, yPercent:50 = "translate(-50%, -50%)"
-  4) x:100, y:200 = "translate3d(100px, 200px, 0)"
-  ///*/
-
-  tlScroll.to('.main-page-card-wrapper', 10, {
-    yPercent: -50,
-
-    /*y:'-34%',*/
-    ease: 'none'
-  });
-  tlScrollTwo.to('.main-page-card-wrapper-two', 3, {
-    yPercent: 50,
-    ease: 'none'
-  });
-  tlScrollThree.to('.main-page-card-wrapper-three', 5, {
-    yPercent: -50,
-    ease: 'none'
-  });
-  tlScrollFour.to('.main-page-card-wrapper-four', 13, {
-    yPercent: 50,
-    ease: 'none'
-  });
-  /*OLD*/
-  //tlScroll.to('.main-page-card-wrapper',13,{y:'-34%', ease:'none'});
-  //tlScrollTwo.to('.main-page-card-wrapper-two',19,{y:'131%', ease:'none'});
-  //tlScrollThree.to('.main-page-card-wrapper-three',15,{y:'-30%', ease:'none'});
-  //tlScrollFour.to('.main-page-card-wrapper-four',17,{y:'128%', ease:'none'});
-  //SLIDE IN FOOTER & STOP CARD ANIMATION
-
-  timeInterval = setInterval(raiseFooter, 5000);
-
-  function raiseFooter() {
-    clearInterval(timeInterval);
-    tl.to(theFooterSlide, time - 0.5, {
-      bottom: 0,
-      delay: time - 0.5,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
-      onComplete: function onComplete() {
-        tlScroll.pause();
-        tlScrollTwo.pause();
-        tlScrollThree.pause();
-        tlScrollFour.pause(); //EventListener
-
-        titleCard.addEventListener('click', stackCards);
+  var stackCards = function stackCards(cards) {
+    var introEnd = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline();
+    introEnd.to(cards, .8, {
+      top: '50%',
+      x: '-50%',
+      y: '-50%',
+      ease: 'sine.inout',
+      stagger: {
+        amount: 1.5,
+        onComplete: function onComplete(e) {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+            duration: .25,
+            autoAlpha: 0
+          });
+        }
       }
-    }); //console.log("Footer Slide In");
-  } //MOBILE VIEW 
+    }).to(cardsHolder, 1, {
+      backgroundColor: '#48a9c5',
+      ease: 'sine.in'
+    }, '-=.3').to([cardCta, cardQuestionOne], 1.25, {
+      rotationY: '+=180',
+      ease: 'sine.inout'
+    }, '+=.2').to([cardCta, cardQuestionOne], .625, {
+      z: '-=100',
+      yoyo: true,
+      repeat: 1,
+      ease: 'sine.in'
+    }, '-=1.5');
+  }; //setting card flip
 
 
-  var mq = window.matchMedia('(max-width: 576px');
+  var cardsHolder = document.querySelector('.cards');
+  var cardFlipWrapper = document.querySelector('.cards-single.cta .cards-single--content');
+  var cardCta = document.querySelector('.cards-single.cta .cards-single--init-card');
+  var cardQuestionOne = document.querySelector('.cards-single.cta .main-page-card--question');
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(cardFlipWrapper, {
+    transformStyle: "preserve-3d",
+    perspective: 800,
+    perspectiveOrigin: '50% 50% 0px'
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(cardQuestionOne, {
+    rotationY: -180
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set([cardCta, cardQuestionOne], {
+    backfaceVisibility: "hidden"
+  }); //
+  // function to animate columns of cards
 
-  function switchSize(e) {
-    if (e.matches) {
-      /* the viewport is mq pixels wide or less */
-      theFooter.classList.add('main-page-footer-mobile');
-      console.log('mobile');
-    } else {
-      //Do something
-      theFooter.classList.remove('main-page-footer-mobile');
-    }
-  }
-
-  switchSize(mq);
-  mq.addListener(switchSize); //PRESS TITLE CARD AND STACK CARDS
-  //Get Positon of Element 
-
-  function offset(el) {
-    var rect = el.getBoundingClientRect(),
-        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return {
-      top: rect.top + scrollTop,
-      left: rect.left + scrollLeft
-    };
-  }
-
-  var offsetEl = offset(document.getElementById('card-one-title')); //console.log(offsetEl.left, offsetEl.top);
-  //StackCards
-
-  function stackCards() {
-    console.log('title Click');
-    /*leftCardArr.forEach(function(item){
-    	item.style.position = 'absolute';
-    	gsap.to(item, time - 0.5,{
-    		stagger: 0.3, 
-    		x:offsetEl.left, //xPercent:offsetEl.left,
-    		y:offsetEl.top, //yPercent:offsetEl.left,
-    		transformOrigin: '50% 50%', 
-    		delay:Math.random() * 0.4, 
-    		ease:Linear
-    	});
-    })*/
-
-    allCards.forEach(function (item) {
-      item.style.position = 'absolute';
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, time - 0.5, {
-        stagger: 0.3,
-        x: offsetEl.left,
-        //xPercent:offsetEl.left,
-        y: offsetEl.top,
-        //yPercent:offsetEl.left,
-        transformOrigin: '50% 50%',
-        delay: Math.random() * 0.4,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
-      });
-    }); //Background Color
-
-    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(htmlBody, {
-      duration: time * 3,
-      backgroundColor: $flightbgblue,
-      delay: Math.random() * 0.4,
-      ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"]
+  var scrollCards = function scrollCards(cta) {
+    var columnCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+      repeat: -1
     });
+
+    var column1Cards = _toConsumableArray(document.querySelectorAll('.cards-single.one'));
+
+    var column2Cards = _toConsumableArray(document.querySelectorAll('.cards-single.two'));
+
+    var column4Cards = _toConsumableArray(document.querySelectorAll('.cards-single.four'));
+
+    var column5Cards = _toConsumableArray(document.querySelectorAll('.cards-single.five'));
+
+    var column3Cards = _toConsumableArray(document.querySelectorAll('.cards-single.three'));
+
+    var showCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({});
+    var showGroupCards = allCardsshuffle([].concat(_toConsumableArray(column1Cards), _toConsumableArray(column2Cards), _toConsumableArray(column3Cards), _toConsumableArray(column4Cards), _toConsumableArray(column5Cards)));
+    showCards.to(cta, .5, {
+      opacity: 1,
+      ease: 'sine.in'
+    }).to(showGroupCards, .6, {
+      opacity: 1,
+      ease: 'sine.in',
+      stagger: {
+        amount: 1
+      }
+    }, '+=.1');
+    columnCards.fromTo(column1Cards, 5, {
+      top: '-140%',
+      ease: 'none'
+    }, {
+      top: '194%',
+      ease: 'none'
+    }, 0).fromTo(column2Cards, 5, {
+      top: '194%',
+      ease: 'none'
+    }, {
+      top: '-140%',
+      ease: 'none'
+    }, 0).fromTo(column4Cards, 5, {
+      top: '-125%',
+      ease: 'none'
+    }, {
+      top: '209%',
+      ease: 'none'
+    }, 0).fromTo(column5Cards, 5, {
+      top: '209%',
+      ease: 'none'
+    }, {
+      top: '-125%',
+      ease: 'none'
+    }, 0); // timer for footer and animation intro stop
+
+    var raiseFooter = function raiseFooter() {
+      clearInterval(introStop);
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theFooterSlide, time - 0.5, {
+        bottom: 0,
+        delay: time - 0.5,
+        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
+        onComplete: function onComplete() {
+          columnCards.pause(); //EventListener
+
+          cta.addEventListener('click', function (e) {
+            stackCards(showGroupCards);
+          });
+        }
+      });
+    }; //SLIDE IN FOOTER & STOP CARD ANIMATION
+
+
+    var introStop = setInterval(raiseFooter, 5000);
+  }; //
+  // places all cards in grid based on array coors
+  //
+
+
+  var addPos = function addPos() {
+    // select all cards except cta
+    var allCards = _toConsumableArray(document.querySelectorAll('.cards-single:not(.cta)'));
+
+    var ctaCard = document.querySelector('.cards-single.cta'); //places cta in center
+
+    gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(ctaCard, {
+      x: '-50%',
+      y: '-50%'
+    }); // iterates all cards and add coors basead on Y first then X
+
+    allCards.forEach(function (card, i) {
+      card.classList.add(cardNumber[cardXCounter]);
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(card, {
+        x: cardX[cardXCounter],
+        y: cardY[cardYCounter]
+      });
+
+      if (cardYCounter == 7) {
+        cardYCounter = 0;
+        cardXCounter++;
+      } else {
+        cardYCounter++;
+      }
+
+      if (i == allCards.length - 1) {
+        scrollCards(ctaCard);
+      }
+    });
+  }; //
+  // creates 40 divs ad adds class for background image
+  //
+
+
+  for (var c = 1; c < cardCount + 1; c++) {
+    // creates divs
+    var card = document.createElement('div');
+    var cardContent = document.createElement('div'); // adding classes to divs
+
+    cardContent.classList.add('cards-single--content'); // adding class based on array 
+
+    card.classList.add('cards-single', cardType[cardBgCounter]);
+    card.appendChild(cardContent);
+    cardHolder.appendChild(card);
+    cardBgCounter == 3 ? cardBgCounter = 0 : cardBgCounter++;
+
+    if (c == cardCount) {
+      addPos();
+    }
   }
 });
 

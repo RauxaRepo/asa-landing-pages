@@ -1,0 +1,86 @@
+
+.cards {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  &-single {
+    position: absolute;
+    width: 370px;
+    height: 610px;
+    left: 50%;
+    top: 50%;
+    opacity: 0;
+
+
+    z-index: 1;
+
+    &.cta {
+      z-index: 5;
+
+      
+      .cards-single--content {
+        overflow: visible;
+      }
+
+      .cards-single--init-card {
+        background-image: url('../images/cards/Title_Card.png');
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0%;
+        top: 0%;
+        background-size: 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    &.tropical {
+      .cards-single--content {
+        background-image: url('../images/cards/tropical.gif');
+      }
+      
+    }
+
+    &.midnight {
+      .cards-single--content {
+        background-image: url('../images/cards/midnight.gif');
+      }
+      
+    }
+
+    &.breezecard {
+      .cards-single--content {
+        background-image: url('../images/cards/breezeCard.gif');
+      }
+      
+    }
+
+    &.palm {
+      .cards-single--content {
+        background-image: url('../images/cards/palm.gif');
+      }
+      
+    }
+
+  }
+
+  &-single--content {
+    position: absolute;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    overflow: hidden;
+  
+    background-size: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+  }
+
+}
