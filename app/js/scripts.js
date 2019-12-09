@@ -86,29 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../assets/src/js/components/breakpoints.js":
-/*!**************************************************!*\
-  !*** ../assets/src/js/components/breakpoints.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function (breakpoint) {
-  var breakpoints = {
-    // default breakpoints from bootstrap
-    xs: '320px',
-    sm: '576px',
-    md: '768px',
-    lg: '992px',
-    xl: '1200px'
-  };
-  return breakpoints[breakpoint];
-});
-
-/***/ }),
-
 /***/ "../assets/src/js/components/form.test.js":
 /*!************************************************!*\
   !*** ../assets/src/js/components/form.test.js ***!
@@ -239,7 +216,6 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -249,14 +225,20 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
- //getBreakpoint('md');
-
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var cardHolder = document.querySelector('.cards');
+
+  if (!cardHolder) {
+    return;
+  }
+
   var cardCount = 40;
   var cardBgCounter = 0;
   var cardXCounter = 0;
   var cardYCounter = 0;
+  var time = 1;
+  var theFooterSlide = document.querySelector('.main-page-footer-slide');
+  var cardNumber = ['one', 'two', 'three', 'four', 'five'];
   var cardType = ['tropical', 'midnight', 'breezecard', 'palm'];
   var cardX = ['-250%', '-150%', '-50%', '50%', '150%'];
   var cardY = ['-450%', '-350%', '-250%', '-150%', '-50%', '50%', '150%', '250%'];
@@ -267,14 +249,92 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     });
   };
 
+  var scrollCards = function scrollCards(cta) {
+    var columnCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+      repeat: -1
+    });
+
+    var column1Cards = _toConsumableArray(document.querySelectorAll('.cards-single.one'));
+
+    var column2Cards = _toConsumableArray(document.querySelectorAll('.cards-single.two'));
+
+    var column4Cards = _toConsumableArray(document.querySelectorAll('.cards-single.four'));
+
+    var column5Cards = _toConsumableArray(document.querySelectorAll('.cards-single.five'));
+
+    var column3Cards = _toConsumableArray(document.querySelectorAll('.cards-single.three'));
+
+    var showCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({});
+    var showGroupCards = allCardsshuffle([].concat(_toConsumableArray(column1Cards), _toConsumableArray(column2Cards), _toConsumableArray(column3Cards), _toConsumableArray(column4Cards), _toConsumableArray(column5Cards)));
+    showCards.to(cta, .5, {
+      opacity: 1,
+      ease: 'sine.in'
+    }).to(showGroupCards, .6, {
+      opacity: 1,
+      ease: 'sine.in',
+      stagger: {
+        amount: 1
+      }
+    }, '+=.1');
+    columnCards.fromTo(column1Cards, 5, {
+      top: '-140%',
+      ease: 'none'
+    }, {
+      top: '194%',
+      ease: 'none'
+    }, 0).fromTo(column2Cards, 5, {
+      top: '194%',
+      ease: 'none'
+    }, {
+      top: '-140%',
+      ease: 'none'
+    }, 0).fromTo(column4Cards, 5, {
+      top: '-125%',
+      ease: 'none'
+    }, {
+      top: '209%',
+      ease: 'none'
+    }, 0).fromTo(column5Cards, 5, {
+      top: '209%',
+      ease: 'none'
+    }, {
+      top: '-125%',
+      ease: 'none'
+    }, 0);
+
+    var raiseFooter = function raiseFooter() {
+      clearInterval(introStop);
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theFooterSlide, time - 0.5, {
+        bottom: 0,
+        delay: time - 0.5,
+        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
+        onComplete: function onComplete() {
+          columnCards.pause(); //EventListener
+          //	titleCard.addEventListener('click', stackCards);
+        }
+      }); //console.log("Footer Slide In");
+    }; //SLIDE IN FOOTER & STOP CARD ANIMATION
+
+
+    var introStop = setInterval(raiseFooter, 5000);
+  }; //
+  // places all cards in grid based on array coors
+  //
+
+
   var addPos = function addPos() {
-    var allCards = allCardsshuffle(_toConsumableArray(document.querySelectorAll('.cards-single:not(.cta)')));
-    var ctaCard = document.querySelector('.cards-single.cta');
+    // select all cards except cta
+    var allCards = _toConsumableArray(document.querySelectorAll('.cards-single:not(.cta)'));
+
+    var ctaCard = document.querySelector('.cards-single.cta'); //places cta in center
+
     gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(ctaCard, {
       x: '-50%',
       y: '-50%'
-    });
-    allCards.forEach(function (card) {
+    }); // iterates all cards and add coors basead on Y first then X
+
+    allCards.forEach(function (card, i) {
+      card.classList.add(cardNumber[cardXCounter]);
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(card, {
         x: cardX[cardXCounter],
         y: cardY[cardYCounter]
@@ -286,13 +346,23 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       } else {
         cardYCounter++;
       }
+
+      if (i == allCards.length - 1) {
+        scrollCards(ctaCard);
+      }
     });
-  };
+  }; //
+  // creates 40 divs ad adds class for background image
+  //
+
 
   for (var c = 1; c < cardCount + 1; c++) {
+    // creates divs
     var card = document.createElement('div');
-    var cardContent = document.createElement('div');
-    cardContent.classList.add('cards-single--content');
+    var cardContent = document.createElement('div'); // adding classes to divs
+
+    cardContent.classList.add('cards-single--content'); // adding class based on array 
+
     card.classList.add('cards-single', cardType[cardBgCounter]);
     card.appendChild(cardContent);
     cardHolder.appendChild(card);

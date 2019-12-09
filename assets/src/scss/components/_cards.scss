@@ -11,12 +11,12 @@
     height: 610px;
     left: 50%;
     top: 50%;
+    opacity: 0;
 
 
     z-index: 1;
 
     &.cta {
-      
       z-index: 5;
 
       .cards-single--content {
