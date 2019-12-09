@@ -65,15 +65,16 @@ $footerheight: 141px;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  min-width: 1000px;
+  min-width: 1250px;
   transition: min-width .25s ease, width .25s ease;
 
   @media (min-width: 375px) {
-    min-width: 1290px;
+    min-width: 1250px;
   }
   @include bp(md) {
     width: 100%;
-    min-width: 1850px;
+    min-width: 1850px; // 1250
+    //
   }
 }
 
@@ -217,6 +218,11 @@ $footerheight: 141px;
   width: 100%;
   opacity: 0;
   pointer-events: none;
+
+  &.active {
+    pointer-events: auto;
+    opacity: 1;
+  }
 
   p {
     line-height: 17px;
