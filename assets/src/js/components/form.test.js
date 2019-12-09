@@ -14,6 +14,7 @@ export default function () {
    // let respSubmitted = document.querySelector('.submitted-params');
     let landingUrl = window.location.href;
     let disctountRibbon = document.querySelector('.main-page-header');
+    let discountLegal = document.querySelector('.main-page-footer');
     let customerId = document.querySelector('input[name="id"]');
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
@@ -38,6 +39,7 @@ export default function () {
     // checking for customer ID to display discount ribbon
     if(urlVars()['CUSTOMER_ID_'] != undefined ) {
         disctountRibbon.classList.add('active');
+        discountLegal.classList.add('active');
     }
 
     // 

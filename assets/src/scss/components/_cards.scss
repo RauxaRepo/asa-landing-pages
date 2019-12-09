@@ -7,14 +7,20 @@
 
   &-single {
     position: absolute;
-    width: 370px;
-    height: 610px;
+    width: 250px; //250
+    height: 412px; //412
     left: 50%;
     top: 50%;
     opacity: 0;
-
-
     z-index: 1;
+
+    @media (min-width: 375px) {
+      
+    }
+    @include bp(md) {
+      width: 370px; //250
+      height: 610px; //412
+    }
 
     &.cta {
       z-index: 5;
