@@ -144,8 +144,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //*Place all Cards in an Array using ('...' = spread)*//
   theCards = _toConsumableArray(document.querySelectorAll('.main-page-card--question')),
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
-      flipTitle = document.querySelector('.card-title--flip'),
-      wrapper = document.getElementById('main-page-card-center'),
+      wrapper = document.getElementById('drag-card-holder'),
       //
   tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
@@ -220,8 +219,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }
     }
   } //DRAGGABLE CARDS CODE
-  //https://www.w3schools.com/howto/howto_js_draggable.asp
-  //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
 
 
   function dragElement(elmnt) {
@@ -283,7 +280,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       });
     }
   } //TOUCH CONTROL
-  //https://stackoverflow.com/questions/5186441/javascript-drag-and-drop-for-touch-devices
 
 
   function touchHandler(event) {

@@ -13,8 +13,7 @@ export default function () {
 		//*Place all Cards in an Array using ('...' = spread)*//
 		theCards = [...document.querySelectorAll('.main-page-card--question')],
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
-		flipTitle = document.querySelector('.card-title--flip'),
-		wrapper = document.getElementById('main-page-card-center'),
+		wrapper = document.getElementById('drag-card-holder'),
 		//
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
 
@@ -72,8 +71,6 @@ export default function () {
 		 }
 
 		//DRAGGABLE CARDS CODE
-		//https://www.w3schools.com/howto/howto_js_draggable.asp
-		//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
 		function dragElement(elmnt) {
 			let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 			//elmnt.onmousedown = dragMouseDown;
@@ -132,7 +129,6 @@ export default function () {
 		}
 
 		//TOUCH CONTROL
-		//https://stackoverflow.com/questions/5186441/javascript-drag-and-drop-for-touch-devices
 		function touchHandler(event) {
 			var touch = event.changedTouches[0];
 		
