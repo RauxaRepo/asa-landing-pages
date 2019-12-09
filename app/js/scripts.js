@@ -86,6 +86,267 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../assets/src/js/components/breakpoints.js":
+/*!**************************************************!*\
+  !*** ../assets/src/js/components/breakpoints.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function (breakpoint) {
+  var breakpoints = {
+    // default breakpoints from bootstrap
+    xs: '320px',
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px'
+  };
+  return breakpoints[breakpoint];
+});
+
+/***/ }),
+
+/***/ "../assets/src/js/components/draggable-cards.js":
+/*!******************************************************!*\
+  !*** ../assets/src/js/components/draggable-cards.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var time = 1,
+      timeInterval,
+      htmlBody = document.getElementsByTagName("BODY")[0],
+      //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
+  //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+  theCardsshuffle = function theCardsshuffle(array) {
+    return array.sort(function () {
+      return Math.random() - 0.5;
+    });
+  },
+      //*Place all Cards in an Array using ('...' = spread)*//
+  theCards = _toConsumableArray(document.querySelectorAll('.main-page-card--question')),
+      theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
+      flipTitle = document.querySelector('.card-title--flip'),
+      wrapper = document.getElementById('main-page-card-center'),
+      //
+  tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    repeat: 0,
+    repeatDelay: 0
+  }); //COLOR CARDS--SPREAD
+
+
+  function spreadTheCards() {
+    var i = 0;
+
+    for (var _i = 0; _i < theColorCards.length; _i++) {
+      //rotation
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
+        rotation: -2.2 * _i
+      });
+    }
+  } //RANDOM MIN MAX
+
+
+  function random(min, max) {
+    return min + Math.random() * (max - min);
+  } //GET SCREEN LEFT/RIGHT POSITION
+
+
+  function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while (element) {
+      xPosition += element.offsetLeft - element.scrollLeft + element.clientLeft;
+      yPosition += element.offsetTop - element.scrollTop + element.clientTop;
+      element = element.offsetParent;
+    }
+
+    return {
+      x: xPosition,
+      y: yPosition
+    };
+  } //ACTION DEPENDING ON LEFT/RIGHT SIDE OF WINDOW 
+
+
+  function changeCardPos(elmnt) {
+    var ww = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); //width of the window
+
+    var pos = getPosition(elmnt); //position of the hovered element relative to window
+
+    var ew = elmnt.offsetWidth; //width of the hovered element
+
+    if (pos.x > ww / 2) {
+      //element is on right side of viewport
+      console.log('RIGHT, ', pos);
+
+      if (elmnt.offsetLeft > wrapper.offsetLeft + 380) {
+        console.log('Right Bounds');
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+          duration: time - 0.5,
+          x: '+=600',
+          opacity: 1,
+          ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+        });
+      }
+    } else {
+      //element is on left side of viewport
+      console.log('LEFT, ', pos);
+
+      if (elmnt.offsetLeft < wrapper.offsetLeft - 360) {
+        console.log('Left Bounds');
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+          duration: time - 0.5,
+          x: '-=600',
+          opacity: 1,
+          ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+        });
+      }
+    }
+  } //DRAGGABLE CARDS CODE
+  //https://www.w3schools.com/howto/howto_js_draggable.asp
+  //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
+
+
+  function dragElement(elmnt) {
+    var pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0; //elmnt.onmousedown = dragMouseDown;
+
+    if (document.getElementById(elmnt.id + wrapper)) {
+      /* if present, the wrapper is where you move the DIV from:*/
+      document.getElementById(elmnt.id + wrapper).onmousedown = dragMouseDown;
+    } else {
+      /* otherwise, move the DIV from an	ywhere inside the DIV:*/
+      elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault(); // get the mouse cursor position at startup:
+
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement; // call a function whenever the cursor moves:
+
+      document.onmousemove = elementDrag; //rotate 
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+        duration: time - 0.7,
+        rotation: '-=40',
+        opacity: 1,
+        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+      });
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault(); // calculate the new cursor position:
+
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY; // set the element's new position:
+
+      elmnt.style.left = elmnt.offsetLeft - pos1 + 'px'; //check if card on left / right side of screen
+
+      changeCardPos(elmnt);
+    }
+
+    function closeDragElement() {
+      // stop moving when mouse button is released://
+      document.onmouseup = null;
+      document.onmousemove = null; //rotate back
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+        duration: time - 0.7,
+        rotation: '+=40',
+        opacity: 1,
+        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+      });
+    }
+  } //RANDOMIZE  Q1-Q10 CARDS
+
+
+  function randomizeCards() {
+    console.log('randomCards');
+    theCards.forEach(function (item) {
+      //randomize cards
+      item.style.zIndex = Math.floor(random(5, 15)); //cursor pointer
+
+      item.style.cursor = "pointer";
+    });
+  } //DRAG Q1-Q10 CARDS
+
+
+  function dragCards() {
+    theCards.forEach(function (item) {
+      //drag cards
+      dragElement(item);
+    });
+  } //FlIP TITLE CARD
+
+
+  function flipTitleCard() {
+    var flipInterval = setInterval(flippy, 2000);
+
+    function flippy() {
+      clearInterval(flipInterval); //flipTitle.style.transform = 'rotateY(180deg)';
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(flipTitle, {
+        duration: time - 0.7,
+        rotationY: -180,
+        opacity: 0,
+        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut,
+        onComplete: function onComplete() {
+          flipTitle.style.zIndex = '0';
+        }
+      });
+    }
+  } //MOBILE VIEW 
+
+
+  var mq = window.matchMedia('(max-width: 576px');
+
+  function switchSizeDc(e) {
+    if (e.matches) {
+      /* the viewport is mq pixels wide or less */
+      //theFooter.classList.add('main-page-footer-mobile');
+      console.log('mobile');
+    } else {//Do something
+      //theFooter.classList.remove('main-page-footer-mobile');
+    }
+  }
+
+  switchSizeDc(mq);
+  mq.addListener(switchSizeDc); //RUN FUNCTIONS
+
+  spreadTheCards();
+  randomizeCards();
+  dragCards(); //flipTitleCard();
+});
+
+/***/ }),
+
 /***/ "../assets/src/js/components/form.test.js":
 /*!************************************************!*\
   !*** ../assets/src/js/components/form.test.js ***!
@@ -461,12 +722,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  // updating meta tag based on environment
-  var siteHost = "".concat(window.location.protocol, "//").concat(window.location.host);
   var fbButton = document.querySelector('.fb-share-button');
-  var fbButtonAnchor = fbButton.querySelector('a');
-  fbButton.setAttribute('data-href', siteHost);
-  fbButtonAnchor.setAttribute('href', "https://www.facebook.com/sharer/sharer.php?u=".concat(siteHost, "&amp;src=sdkpreparse"));
+
+  if (fbButton) {
+    // updating meta tag based on environment
+    var siteHost = "".concat(window.location.protocol, "//").concat(window.location.host);
+    var fbButtonAnchor = fbButton.querySelector('a');
+    fbButton.setAttribute('data-href', siteHost);
+    fbButtonAnchor.setAttribute('href', "https://www.facebook.com/sharer/sharer.php?u=".concat(siteHost, "&amp;src=sdkpreparse"));
+  }
 });
 
 /***/ }),
@@ -485,10 +749,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! whatwg-fetch */ "../node_modules/whatwg-fetch/fetch.js");
 /* harmony import */ var _components_form_test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/form.test */ "../assets/src/js/components/form.test.js");
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
-/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
-/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
+/* harmony import */ var _components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/draggable-cards */ "../assets/src/js/components/draggable-cards.js");
+/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
+/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
 
  //import sampleJs from './components/sample.component';
+
 
 
 
@@ -508,10 +774,11 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 
 /***/ }),
