@@ -14,7 +14,7 @@ export default function () {
 		theCards = [...document.querySelectorAll('.main-page-card--question')],
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
 		flipTitle = document.querySelector('.card-title--flip'),
-		wrapper = document.getElementById('main-page-inner'),
+		wrapper = document.getElementById('main-page-card-center'),
 		//
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
 
@@ -56,22 +56,17 @@ export default function () {
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
 				console.log('RIGHT, ', pos);
-				/*//rotate
-				gsap.to(elmnt, {
-					duration: time - 0.7,
-					rotation: '+=40',
-					opacity: 0.7,
-					ease:Quad.easInOut
-				});*/
+				if(elmnt.offsetLeft > (wrapper.offsetLeft + 380)){
+					console.log('Right Bounds');
+					gsap.to(elmnt,  {duration:time - 0.5, x: '+=600', opacity: 1, ease:Quad.easInOut});
+				}
+				
 			} else { //element is on left side of viewport
 				console.log('LEFT, ', pos);
-				/*//rotate
-				gsap.to(elmnt, {
-					duration: time - 0.7,
-					rotation: '-=40',
-					opacity: 0.7,
-					ease:Quad.easInOut
-				});*/
+				if(elmnt.offsetLeft < (wrapper.offsetLeft - 360)){
+					console.log('Left Bounds');
+					gsap.to(elmnt,  {duration:time - 0.5, x: '-=600', opacity: 1, ease:Quad.easInOut});
+				}
 			}
 
 		 }
@@ -95,7 +90,7 @@ export default function () {
 				e.preventDefault();
 				// get the mouse cursor position at startup:
 				pos3 = e.clientX;
-				//pos4 = e.clientY;
+				pos4 = e.clientY;
 				document.onmouseup = closeDragElement;
 				// call a function whenever the cursor moves:
 				document.onmousemove = elementDrag;
@@ -117,15 +112,7 @@ export default function () {
 				pos3 = e.clientX;
 				pos4 = e.clientY;
 				// set the element's new position:
-				//elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
 				elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
-				//Remove card if out of bounds
-				if(elmnt.offsetLeft < (wrapper.offsetLeft - 700)){
-					//gsap.to(elmnt,  {duration:time - 0.5, x: '-=600', opacity: 1, ease:Quad.easInOut});
-				}
-				else if(elmnt.offsetWidth > (wrapper.offsetWidth + 100)){
-					//gsap.to(elmnt,  {duration:time - 0.5, x: '+=600', opacity: 1, ease:Quad.easInOut});
-				}
 				//check if card on left / right side of screen
 				changeCardPos(elmnt);
 			}
