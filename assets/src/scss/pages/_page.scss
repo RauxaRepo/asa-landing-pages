@@ -218,6 +218,11 @@ $footerheight: 141px;
   opacity: 0;
   pointer-events: none;
 
+  &.active {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
   p {
     line-height: 17px;
     margin: 0;

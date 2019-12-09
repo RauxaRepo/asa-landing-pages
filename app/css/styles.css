@@ -904,6 +904,10 @@ section {
   padding: 4px;
 }
 
+.footer {
+  z-index: 6;
+}
+
 .main-page-card--question {
   opacity: 1;
   border-radius: 10px;
@@ -1347,6 +1351,11 @@ main {
   width: 100%;
   opacity: 0;
   pointer-events: none;
+}
+
+.main-page-footer.active {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .main-page-footer p {
