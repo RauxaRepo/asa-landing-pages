@@ -52,12 +52,16 @@ export default function () {
     '250%'
   ]
 
+  // function to shuffle cards
   let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5);
 
+  // function to stack cards under cta card
   let stackCards = function(cards) {
     gsap.to(cards,.8,{top:'50%',x:'-50%',y:'-50%',ease:'sine.inout', stagger:{amount: 1.5}});
   }
 
+
+  // function to animate columns of cards
   let scrollCards = function(cta) {
 
     let columnCards = gsap.timeline({repeat: -1});
@@ -81,7 +85,7 @@ export default function () {
     .fromTo(column5Cards, 5, {top:'209%', ease: 'none'}, {top:'-125%', ease: 'none'},0);
 
 
-
+    // timer for footer and animation intro stop
     let raiseFooter = function() {
 			clearInterval(introStop);
 			gsap.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){

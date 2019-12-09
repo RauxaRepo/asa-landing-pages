@@ -241,13 +241,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var cardNumber = ['one', 'two', 'three', 'four', 'five'];
   var cardType = ['tropical', 'midnight', 'breezecard', 'palm'];
   var cardX = ['-250%', '-150%', '-50%', '50%', '150%'];
-  var cardY = ['-450%', '-350%', '-250%', '-150%', '-50%', '50%', '150%', '250%'];
+  var cardY = ['-450%', '-350%', '-250%', '-150%', '-50%', '50%', '150%', '250%']; // function to shuffle cards
 
   var allCardsshuffle = function allCardsshuffle(array) {
     return array.sort(function () {
       return Math.random() - 0.5;
     });
-  };
+  }; // function to stack cards under cta card
+
 
   var stackCards = function stackCards(cards) {
     gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cards, .8, {
@@ -259,7 +260,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         amount: 1.5
       }
     });
-  };
+  }; // function to animate columns of cards
+
 
   var scrollCards = function scrollCards(cta) {
     var columnCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
@@ -312,7 +314,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }, {
       top: '-125%',
       ease: 'none'
-    }, 0);
+    }, 0); // timer for footer and animation intro stop
 
     var raiseFooter = function raiseFooter() {
       clearInterval(introStop);
