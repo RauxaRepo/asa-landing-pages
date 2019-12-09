@@ -193,25 +193,25 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var ew = elmnt.offsetWidth; //width of the hovered element
 
-    if (pos.x > ww / 2) {
-      //element is on right side of viewport
-      //rotate
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-        duration: time - 0.7,
-        rotation: '+=40',
-        opacity: 0.7,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
-      });
-    } else {
-      //element is on left side of viewport
-      //rotate
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-        duration: time - 0.7,
-        rotation: '-=40',
-        opacity: 0.7,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
-      });
-    }
+    if (pos.x > ww / 2) {//element is on right side of viewport
+
+      /*//rotate
+      gsap.to(elmnt, {
+      	duration: time - 0.7,
+      	rotation: '+=40',
+      	opacity: 0.7,
+      	ease:Quad.easInOut
+      });*/
+    } else {//element is on left side of viewport
+
+        /*//rotate
+        gsap.to(elmnt, {
+        	duration: time - 0.7,
+        	rotation: '-=40',
+        	opacity: 0.7,
+        	ease:Quad.easInOut
+        });*/
+      }
   } //DRAGGABLE CARDS CODE
 
 
@@ -238,8 +238,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       document.onmouseup = closeDragElement; // call a function whenever the cursor moves:
 
       document.onmousemove = elementDrag; //check if card on left / right side of screen
-
-      changeCardPos(elmnt);
+      //changeCardPos(elmnt);
     }
 
     function elementDrag(e) {
