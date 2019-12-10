@@ -1208,21 +1208,22 @@ section {
 }
 
 .gradient--slide {
-  background: linear-gradient(90deg, #2774ae, #48a9c5);
-  background-size: 400% 400%;
+  background: linear-gradient(90deg, #48a9c5, #2774ae, #48a9c5);
+  background-size: 600% 600%;
   -webkit-animation: gradient 2s ease;
+  -moz-animation: gradient 2s ease;
   animation: gradient 2s ease;
 }
 
 @keyframes gradient {
   0% {
-    background-position: 0% 50%;
+    background-position: 0%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 50%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 100%;
   }
 }
 

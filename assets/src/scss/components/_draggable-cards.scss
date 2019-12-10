@@ -135,22 +135,30 @@ $flightbgblue: #48a9c5;
 
 //GRADIENT
 .gradient--slide {
-    background: linear-gradient(90deg, $flightblue, $flightbgblue );
-	background-size: 400% 400%;
-	-webkit-animation: gradient 2s ease;
-	animation: gradient 2s ease;
+    background: linear-gradient(90deg, $flightbgblue, $flightblue, $flightbgblue);
+    background-size: 600% 600%;
+
+    -webkit-animation: gradient 2s ease;
+    -moz-animation: gradient 2s ease;
+    animation: gradient 2s ease;
 } 
 
+//@-webkit-keyframes gradient {
+//    0%{background-position:0% 49%}
+//    50%{background-position:100% 52%}
+//    100%{background-position:0% 49%}
+//}
+
+//@-moz-keyframes gradient {
+//    0%{background-position:0% 49%}
+//    50%{background-position:100% 52%}
+//    100%{background-position:0% 49%}
+//}
+
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    0%{background-position:0%}
+    50%{background-position:50%}
+    100%{background-position:100%}
 }
 
 
