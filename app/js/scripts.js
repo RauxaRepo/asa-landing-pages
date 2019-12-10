@@ -341,7 +341,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function randomizeCards() {
     theCards.forEach(function (item) {
       //randomize cards
-      item.style.zIndex = Math.floor(random(5, 15)); //cursor pointer
+      item.style.zIndex = Math.floor(random(7, 17)); //cursor pointer
 
       item.style.cursor = 'pointer';
       console.log('randomizeCards ');

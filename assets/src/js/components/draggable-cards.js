@@ -197,7 +197,7 @@ export default function () {
 		function randomizeCards () {
 			theCards.forEach(function(item){
 				//randomize cards
-				item.style.zIndex = Math.floor( random(5, 15) );
+				item.style.zIndex = Math.floor( random(7, 17) );
 				//cursor pointer
 				item.style.cursor = 'pointer';
 				console.log('randomizeCards ');
