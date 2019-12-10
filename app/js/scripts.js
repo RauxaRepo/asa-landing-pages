@@ -164,7 +164,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   function answerQuestions(e) {
-    //theCards.push(cardQuestionArr);
     console.log(e.target);
     theCards.forEach(function (item) {
       item.addEventListener('click', function () {
@@ -272,7 +271,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     function dragMouseDown(e) {
       e = e || window.event;
-      e.preventDefault();
+      e.preventDefault(); //stop drag over buttons
 
       if (e.target.classList.contains('active-card--button')) {
         return false;

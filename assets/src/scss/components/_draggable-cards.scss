@@ -13,7 +13,8 @@ $flightbgblue: #48a9c5;
 }
 
 
-.main-page-card--question {
+.main-page-card--question,
+.main-page-card--results  {
     opacity: 1;
     border-radius: 10px;
     display: block;
@@ -38,6 +39,7 @@ $flightbgblue: #48a9c5;
 .q9,
 .q10 {
     display: flex;
+    //display: none;
 }
 
 
@@ -183,6 +185,47 @@ $flightbgblue: #48a9c5;
     text-align: center;
     width: 100%; 
 }
+
+//RESULTS CARD
+.main-page-card--results {
+    z-index: 4;
+
+    p {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 24px;
+        line-height: 1.25;
+        text-align: center;
+        font-weight: bold;
+    }
+}
+
+.num-holder {
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 170px;
+}
+
+.results-num {
+    color: $flightblue;
+    font-size: 66px;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: bold;
+
+    display: block;
+    float: left;
+    position: relative;
+}
+
+.correct-text {
+    font-size: 49px;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: bold;
+}
+
 
 
 //MEDIA QUERY

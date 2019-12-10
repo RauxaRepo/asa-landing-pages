@@ -32,7 +32,6 @@ export default function () {
 
 		//FUNCTION ANSWER QUESTION
 		function answerQuestions(e){
-			//theCards.push(cardQuestionArr);
 			console.log(e.target);
 			theCards.forEach((item)=> {
 				item.addEventListener('click', function(){
@@ -123,6 +122,7 @@ export default function () {
 			function dragMouseDown(e) {
 				e = e || window.event;
 				e.preventDefault();
+				//stop drag over buttons
 				if(e.target.classList.contains('active-card--button'))  {
 					return false;
 				}
