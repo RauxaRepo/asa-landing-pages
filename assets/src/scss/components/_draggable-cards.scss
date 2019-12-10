@@ -5,12 +5,16 @@
 //  outline: 1px solid $red;
 //}
 
+$flightblue: #2774ae;
+$flightbgblue: #48a9c5;
+
 .main-page-card-center {
     height: 600px;
 }
 
 
-.main-page-card--question {
+.main-page-card--question,
+.main-page-card--results  {
     opacity: 1;
     border-radius: 10px;
     display: block;
@@ -35,20 +39,21 @@
 .q9,
 .q10 {
     display: flex;
+    //display: none;
 }
 
 
 // show whichever card I'm actively working on
-//.q1 {display: flex;}
-//.q2 {display: flex;}
-//.q3 {display: flex;}
-//.q4 {display: flex;}
-//.q5 {display: flex;}
-//.q6 {display: flex;}
-//.q7 {display: flex;}
-//.q8 {display: flex;}
-//.q9 {display: flex;}
-//.q10 {display: flex;}
+//.q1 {display: flex; z-index: 30;}
+//.q2 {display: flex; z-index: 30;}
+//.q3 {display: flex; z-index: 30;}
+//.q4 {display: flex; z-index: 30;}
+//.q5 {display: flex; z-index: 30;}
+//.q6 {display: flex; z-index: 30;}
+//.q7 {display: flex; z-index: 30;}
+//.q8 {display: flex; z-index: 30;}
+//.q9 {display: flex; z-index: 30;}
+//.q10 {display: flex; z-index: 30;}
 
 //body color
 .background-color-blue {
@@ -84,7 +89,7 @@
 }
 
 .clr0 {
-    background-color: #fff;
+    background-color: #ffffff;
 }
 
 .clr1 {
@@ -129,6 +134,98 @@
         z-index: 1;
     }
 }
+
+//GRADIENT
+.gradient--slide {
+    background-image: linear-gradient(90deg, $flightbgblue, $flightbgblue, $flightblue, $flightblue);
+    background-size: 600% 600%;
+    //-webkit-animation: gradient 2s ease;
+    //-moz-animation: gradient 2s ease;
+    //animation: gradient 2s ease;
+} 
+
+@-webkit-keyframes gradient {
+    0%{background-position:0% 49%}
+    50%{background-position:100% 52%}
+    100%{background-position:0% 49%}
+}
+
+@-moz-keyframes gradient {
+    0%{background-position:0% 49%}
+    50%{background-position:100% 52%}
+    100%{background-position:0% 49%}
+}
+
+@keyframes gradient {
+    0%{background-position:0% 49%}
+    50%{background-position:100% 52%}
+    100%{background-position:0% 49%}
+}
+
+
+//ANSWER CARDS
+.right-answer, 
+.right-answer-a, 
+.right-answer-b, 
+.wrong-answer, 
+.wrong-answer-a, 
+.wrong-answer-b, 
+.wrong-answer-c,
+.answer-bttn,
+.next-question {
+    display: none;
+}
+
+.drag-text {
+    color: #656565;
+    display: block;
+    font-size: 12px;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+    width: 100%; 
+}
+
+//RESULTS CARD
+.main-page-card--results {
+    z-index: 4;
+
+    p {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 24px;
+        line-height: 1.25;
+        text-align: center;
+        font-weight: bold;
+    }
+}
+
+.num-holder {
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 170px;
+}
+
+.results-num {
+    color: $flightblue;
+    font-size: 66px;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: bold;
+
+    display: block;
+    float: left;
+    position: relative;
+}
+
+.correct-text {
+    font-size: 49px;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: bold;
+}
+
 
 
 //MEDIA QUERY
@@ -199,7 +296,8 @@
         font-size: 10px;
     }
 
-    .active-card.q2 button, .active-card.q4 button {
+    .active-card.q2 button, 
+    .active-card.q4 button {
         font-size: 10px;
     }
 

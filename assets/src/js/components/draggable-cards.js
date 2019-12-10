@@ -5,7 +5,7 @@ export default function () {
 	
 	let time = 1,
 		timeInterval,
-		htmlBody = document.getElementsByTagName("BODY")[0],
+		htmlBody = document.getElementsByTagName('BODY')[0],
 
 		//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
 		//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
@@ -13,9 +13,45 @@ export default function () {
 		//*Place all Cards in an Array using ('...' = spread)*//
 		theCards = [...document.querySelectorAll('.main-page-card--question')],
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
+		activeCardButton = [...document.querySelectorAll('.active-card--button')],
 		wrapper = document.getElementById('drag-card-holder'),
-		//
+		rightBounds = 350,
+		leftBounds = 330,
+		sm = window.matchMedia('(max-width: 576px)'),
+		cardQuestionArr = [],
+
+		//Answer Vars
+		quest = document.querySelector('.quest'),
+		rightAnswer = document.querySelector('.right-answer'),
+		wrongAnswer = document.querySelector('.wrong-answer'),
+		hideMainButtons =  document.querySelector('.hide-main-buttons'),
+		nextQuestion = document.querySelector('.next-question'),
+		nextQuestButton = document.querySelector('.next-question--button'),
+
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
+
+		//FUNCTION ANSWER QUESTION
+		function answerQuestions(){
+			theCards.forEach((item)=> {
+				item.addEventListener('click', function(){
+					hideMainButtons.classList.add('hide');
+					nextQuestion.classList.add('show');
+					quest.classList.add('hide');
+					if ( rightAnswer ) {
+						rightAnswer.classList.add('show');
+					}else if ( wrongAnswer ) {
+						wrongAnswer.classList.add('show');
+					}
+				});
+			});
+		}
+
+
+		//FUNCTION CHANGE BACKGROUND COLOR
+		function slidebackgroundColor(){
+			theCards.push(cardQuestionArr);
+			//when card is dragged off-screen place at the end of array
+		}
 
 
 		//COLOR CARDS--SPREAD
@@ -55,14 +91,14 @@ export default function () {
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
 				//console.log('RIGHT, ', pos);
-				if(elmnt.offsetLeft > (wrapper.offsetLeft + 380)){
+				if(elmnt.offsetLeft > (wrapper.offsetLeft + rightBounds)){
 					//console.log('Right Bounds');
 					gsap.to(elmnt,  {duration:time - 0.5, x: '+=600', opacity: 1, ease:Quad.easInOut});
 				}
 				
 			} else { //element is on left side of viewport
 				//console.log('LEFT, ', pos);
-				if(elmnt.offsetLeft < (wrapper.offsetLeft - 360)){
+				if(elmnt.offsetLeft < (wrapper.offsetLeft - leftBounds)){
 					//console.log('Left Bounds');
 					gsap.to(elmnt,  {duration:time - 0.5, x: '-=600', opacity: 1, ease:Quad.easInOut});
 				}
@@ -75,16 +111,20 @@ export default function () {
 			let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 			//elmnt.onmousedown = dragMouseDown;
 			if (document.getElementById(elmnt.id + wrapper)) {
-				/* if present, the wrapper is where you move the DIV from:*/
+				// if present, the wrapper is where you move the DIV from:
 				document.getElementById(elmnt.id + wrapper).onmousedown = dragMouseDown;
 			} else {
-				/* otherwise, move the DIV from an	ywhere inside the DIV:*/
+				// otherwise, move the DIV from an	ywhere inside the DIV:
 				elmnt.onmousedown = dragMouseDown;
 			}
 
 			function dragMouseDown(e) {
 				e = e || window.event;
 				e.preventDefault();
+				//stop drag over buttons
+				if(e.target.classList.contains('active-card--button'))  {
+					return false;
+				}
 				// get the mouse cursor position at startup:
 				pos3 = e.clientX;
 				pos4 = e.clientY;
@@ -94,8 +134,7 @@ export default function () {
 				//rotate 
 				gsap.to(elmnt, {
 					duration: time - 0.7,
-					rotation: '-=40',
-					opacity: 1,
+					rotation: -40,
 					ease:Quad.easInOut
 				});
 			}
@@ -121,8 +160,7 @@ export default function () {
 				//rotate back
 				gsap.to(elmnt, {
 					duration: time - 0.7,
-					rotation: '+=40',
-					opacity: 1,
+					rotation: 0,
 					ease:Quad.easInOut
 				});
 			}
@@ -132,36 +170,37 @@ export default function () {
 		function touchHandler(event) {
 			var touch = event.changedTouches[0];
 		
-			var simulatedEvent = document.createEvent("MouseEvent");
+			var simulatedEvent = document.createEvent('MouseEvent');
 				simulatedEvent.initMouseEvent({
-				touchstart: "mousedown",
-				touchmove: "mousemove",
-				touchend: "mouseup"
+				touchstart: 'mousedown',
+				touchmove: 'mousemove',
+				touchend: 'mouseup'
 			}[event.type], true, true, window, 1,
 				touch.screenX, touch.screenY,
 				touch.clientX, touch.clientY, false,
 				false, false, false, 0, null);
 		
 			touch.target.dispatchEvent(simulatedEvent);
-			event.preventDefault();
+			//event.preventDefault();
 		}
 		
 		function init() {
-			document.addEventListener("touchstart", touchHandler, true);
-			document.addEventListener("touchmove", touchHandler, true);
-			document.addEventListener("touchend", touchHandler, true);
-			document.addEventListener("touchcancel", touchHandler, true);
+			document.addEventListener('touchstart', touchHandler, true);
+			document.addEventListener('touchmove', touchHandler, true);
+			document.addEventListener('touchend', touchHandler, true);
+			document.addEventListener('touchcancel', touchHandler, true);
 		}
 
 
 		//RANDOMIZE  Q1-Q10 CARDS
-		function randomizeCards(){
-			console.log('randomCards');
+		//condition ? exprIfTrue : exprIfFalse
+		function randomizeCards () {
 			theCards.forEach(function(item){
-                //randomize cards
+				//randomize cards
 				item.style.zIndex = Math.floor( random(5, 15) );
 				//cursor pointer
-				item.style.cursor = "pointer";
+				item.style.cursor = 'pointer';
+				console.log('randomizeCards ');
 			})
 		}
 
@@ -171,13 +210,30 @@ export default function () {
 				//drag cards
 				dragElement(item);
 			})
-		}		
+		}
+		
+		//MATCH MEDIA
+		function media576Px(){
+			if( sm.matches ){
+				rightBounds = 250;
+				leftBounds = 300;
+				//console.log('rightBounds ',rightBounds, ' leftBounds ',leftBounds);
+			}
+		}
+
+		//All EVENTLISTENERS
+		function allEventListeners(){
+			sm.addListener(media576Px);
+		}
+
 
 		//RUN FUNCTIONS
 		spreadTheCards();//spread color cards
 		randomizeCards();//randomize question cards
 		dragCards();//drag question cards
 		init();//start touch controls
+		allEventListeners()//eventlisteners
+		//answerQuestions();
         
 }
 

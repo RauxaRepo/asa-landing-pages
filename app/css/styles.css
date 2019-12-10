@@ -546,6 +546,16 @@ section {
   display: table;
 }
 
+.hide {
+  display: none;
+  visibility: hidden;
+}
+
+.show {
+  display: block !important;
+  visibility: visible;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -1106,7 +1116,8 @@ section {
   height: 600px;
 }
 
-.main-page-card--question {
+.main-page-card--question,
+.main-page-card--results {
   opacity: 1;
   border-radius: 10px;
   display: block;
@@ -1164,7 +1175,7 @@ section {
 }
 
 .clr0 {
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .clr1 {
@@ -1205,6 +1216,107 @@ section {
 
 .zIndex-1 {
   z-index: 1;
+}
+
+.gradient--slide {
+  background-image: linear-gradient(90deg, #48a9c5, #48a9c5, #2774ae, #2774ae);
+  background-size: 600% 600%;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 49%;
+  }
+  50% {
+    background-position: 100% 52%;
+  }
+  100% {
+    background-position: 0% 49%;
+  }
+}
+
+@-moz-keyframes gradient {
+  0% {
+    background-position: 0% 49%;
+  }
+  50% {
+    background-position: 100% 52%;
+  }
+  100% {
+    background-position: 0% 49%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 49%;
+  }
+  50% {
+    background-position: 100% 52%;
+  }
+  100% {
+    background-position: 0% 49%;
+  }
+}
+
+.right-answer,
+.right-answer-a,
+.right-answer-b,
+.wrong-answer,
+.wrong-answer-a,
+.wrong-answer-b,
+.wrong-answer-c,
+.answer-bttn,
+.next-question {
+  display: none;
+}
+
+.drag-text {
+  color: #656565;
+  display: block;
+  font-size: 12px;
+  padding: 10px 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.main-page-card--results {
+  z-index: 4;
+}
+
+.main-page-card--results p {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 24px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
+}
+
+.num-holder {
+  display: block;
+  position: relative;
+  text-align: center;
+  width: 170px;
+}
+
+.results-num {
+  color: #2774ae;
+  font-size: 66px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
+  display: block;
+  float: left;
+  position: relative;
+}
+
+.correct-text {
+  font-size: 49px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 576px) {
@@ -1260,7 +1372,8 @@ section {
     padding: 7px 0;
     font-size: 10px;
   }
-  .active-card.q2 button, .active-card.q4 button {
+  .active-card.q2 button,
+  .active-card.q4 button {
     font-size: 10px;
   }
 }
