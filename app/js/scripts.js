@@ -144,15 +144,42 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //*Place all Cards in an Array using ('...' = spread)*//
   theCards = _toConsumableArray(document.querySelectorAll('.main-page-card--question')),
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
+      activeCardButton = _toConsumableArray(document.querySelectorAll('.active-card--button')),
       wrapper = document.getElementById('drag-card-holder'),
       rightBounds = 350,
       leftBounds = 330,
       sm = window.matchMedia('(max-width: 576px)'),
       cardQuestionArr = [],
+      //Answer Vars
+  quest = document.querySelector('.quest'),
+      rightAnswer = document.querySelector('.right-answer'),
+      wrongAnswer = document.querySelector('.wrong-answer'),
+      hideMainButtons = document.querySelector('.hide-main-buttons'),
+      nextQuestion = document.querySelector('.next-question'),
+      nextQuestButton = document.querySelector('.next-question--button'),
       tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     repeat: 0,
     repeatDelay: 0
-  }); //FUNCTION CHANGE BACKGROUND COLOR
+  }); //FUNCTION ANSWER QUESTION
+
+
+  function answerQuestions(e) {
+    //theCards.push(cardQuestionArr);
+    console.log(e.target);
+    theCards.forEach(function (item) {
+      item.addEventListener('click', function () {
+        hideMainButtons.classList.add('hide');
+        nextQuestion.classList.add('show');
+        quest.classList.add('hide');
+
+        if (rightAnswer) {
+          rightAnswer.classList.add('show');
+        } else if (wrongAnswer) {
+          wrongAnswer.classList.add('show');
+        }
+      });
+    });
+  } //FUNCTION CHANGE BACKGROUND COLOR
 
 
   function slidebackgroundColor() {
@@ -245,7 +272,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     function dragMouseDown(e) {
       e = e || window.event;
-      e.preventDefault(); // get the mouse cursor position at startup:
+      e.preventDefault();
+
+      if (e.target.classList.contains('active-card--button')) {
+        return false;
+      } // get the mouse cursor position at startup:
+
 
       pos3 = e.clientX;
       pos4 = e.clientY;
@@ -305,15 +337,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     document.addEventListener('touchend', touchHandler, true);
     document.addEventListener('touchcancel', touchHandler, true);
   } //RANDOMIZE  Q1-Q10 CARDS
+  //condition ? exprIfTrue : exprIfFalse
 
 
   function randomizeCards() {
-    //console.log('randomCards');
     theCards.forEach(function (item) {
       //randomize cards
       item.style.zIndex = Math.floor(random(5, 15)); //cursor pointer
 
       item.style.cursor = 'pointer';
+      console.log('randomizeCards ');
     });
   } //DRAG Q1-Q10 CARDS
 
@@ -348,6 +381,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   init(); //start touch controls
 
   allEventListeners(); //eventlisteners
+  //answerQuestions();
 });
 
 /***/ }),

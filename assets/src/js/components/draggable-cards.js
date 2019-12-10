@@ -13,12 +13,41 @@ export default function () {
 		//*Place all Cards in an Array using ('...' = spread)*//
 		theCards = [...document.querySelectorAll('.main-page-card--question')],
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
+		activeCardButton = [...document.querySelectorAll('.active-card--button')],
 		wrapper = document.getElementById('drag-card-holder'),
 		rightBounds = 350,
 		leftBounds = 330,
 		sm = window.matchMedia('(max-width: 576px)'),
 		cardQuestionArr = [],
+
+		//Answer Vars
+		quest = document.querySelector('.quest'),
+		rightAnswer = document.querySelector('.right-answer'),
+		wrongAnswer = document.querySelector('.wrong-answer'),
+		hideMainButtons =  document.querySelector('.hide-main-buttons'),
+		nextQuestion = document.querySelector('.next-question'),
+		nextQuestButton = document.querySelector('.next-question--button'),
+
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
+
+		//FUNCTION ANSWER QUESTION
+		function answerQuestions(e){
+			//theCards.push(cardQuestionArr);
+			console.log(e.target);
+			theCards.forEach((item)=> {
+				item.addEventListener('click', function(){
+					hideMainButtons.classList.add('hide');
+					nextQuestion.classList.add('show');
+					quest.classList.add('hide');
+					if ( rightAnswer ) {
+						rightAnswer.classList.add('show');
+					}else if ( wrongAnswer ) {
+						wrongAnswer.classList.add('show');
+					}
+				});
+			});
+		}
+
 
 		//FUNCTION CHANGE BACKGROUND COLOR
 		function slidebackgroundColor(){
@@ -94,6 +123,9 @@ export default function () {
 			function dragMouseDown(e) {
 				e = e || window.event;
 				e.preventDefault();
+				if(e.target.classList.contains('active-card--button'))  {
+					return false;
+				}
 				// get the mouse cursor position at startup:
 				pos3 = e.clientX;
 				pos4 = e.clientY;
@@ -162,13 +194,14 @@ export default function () {
 
 
 		//RANDOMIZE  Q1-Q10 CARDS
-		function randomizeCards(){
-			//console.log('randomCards');
+		//condition ? exprIfTrue : exprIfFalse
+		function randomizeCards () {
 			theCards.forEach(function(item){
-                //randomize cards
+				//randomize cards
 				item.style.zIndex = Math.floor( random(5, 15) );
 				//cursor pointer
 				item.style.cursor = 'pointer';
+				console.log('randomizeCards ');
 			})
 		}
 
@@ -201,6 +234,7 @@ export default function () {
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
+		//answerQuestions();
         
 }
 
