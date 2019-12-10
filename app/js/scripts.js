@@ -163,8 +163,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }); //FUNCTION ANSWER QUESTION
 
 
-  function answerQuestions(e) {
-    console.log(e.target);
+  function answerQuestions() {
     theCards.forEach(function (item) {
       item.addEventListener('click', function () {
         hideMainButtons.classList.add('hide');

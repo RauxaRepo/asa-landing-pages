@@ -31,8 +31,7 @@ export default function () {
 		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
 
 		//FUNCTION ANSWER QUESTION
-		function answerQuestions(e){
-			console.log(e.target);
+		function answerQuestions(){
 			theCards.forEach((item)=> {
 				item.addEventListener('click', function(){
 					hideMainButtons.classList.add('hide');
