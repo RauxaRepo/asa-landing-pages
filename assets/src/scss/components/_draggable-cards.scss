@@ -1,9 +1,9 @@
-//div,
-//img,
-//p,
-//span {
-//  outline: 1px solid $red;
-//}
+ div,
+ img,
+ p,
+ span {
+   outline: 1px solid $red;
+ }
 
 $flightblue: #2774ae;
 $flightbgblue: #48a9c5;
@@ -11,7 +11,6 @@ $flightbgblue: #48a9c5;
 .main-page-card-center {
     height: 600px;
 }
-
 
 .main-page-card--question,
 .main-page-card--results  {
@@ -186,36 +185,24 @@ $flightbgblue: #48a9c5;
 
 //GRADIENT
 .gradient--slide {
-    background-image: linear-gradient(90deg, $flightbgblue, $flightbgblue, $flightblue, $flightblue);
-    background-size: 600% 600%;
-    //-webkit-animation: gradient 2s ease;
-    //-moz-animation: gradient 2s ease;
-    //animation: gradient 2s ease;
+    background-image: linear-gradient(90deg, 
+    $flightbgblue 3%, $flightblue 3%,
+    /*$flightbgblue 100%, $flightblue 100%,
+    $flightbgblue 100%, $flightblue 100%,
+    $flightbgblue 100%, $flightblue 100%,
+    $flightbgblue 100%, $flightblue 100%,
+    $flightbgblue 100%, $flightblue 100%,
+    $flightbgblue 100%, $flightblue 100%,
+    $flightbgblue 100%, $flightblue 100%,
+    $flightbgblue 100%, $flightblue 100%,
+    $flightbgblue 100%, $flightblue 100%*/
+    );
+    background-size: 120%;
 } 
-
-@-webkit-keyframes gradient {
-    0%{background-position:0% 49%}
-    50%{background-position:100% 52%}
-    100%{background-position:0% 49%}
-}
-
-@-moz-keyframes gradient {
-    0%{background-position:0% 49%}
-    50%{background-position:100% 52%}
-    100%{background-position:0% 49%}
-}
-
-@keyframes gradient {
-    0%{background-position:0% 49%}
-    50%{background-position:100% 52%}
-    100%{background-position:0% 49%}
-}
 
 
 //ANSWER CARDS
-
-
-.drag-text {
+drag-text {
     color: #656565;
     display: block;
     font-size: 12px;
@@ -227,7 +214,7 @@ $flightbgblue: #48a9c5;
 
 //RESULTS CARD
 .main-page-card--results {
-    z-index: 4;
+    z-index: 4;     
 
     p {
         padding-top: 15px;

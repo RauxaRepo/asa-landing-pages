@@ -24,9 +24,6 @@ export default function () {
 		cardQuestionArr = [];
 
 
-
-		
-
 		let answeredCorrect = [];
 		let answeredIncorrectly = [];
 		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
@@ -69,8 +66,12 @@ export default function () {
 
 		//FUNCTION CHANGE BACKGROUND COLOR
 		function slidebackgroundColor(){
-			theCards.push(cardQuestionArr);
-			//when card is dragged off-screen place at the end of array
+			TweenMax.to(document.querySelector('.gradient--slide'), time, {
+				backgroundImage:'linear-gradient(90deg, #48a9c5 -5%, #2774ae -5%)', 
+				ease:'sine.out'
+				//, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%
+			});
+			console.log('Gradient');
 		}
 
 
@@ -260,7 +261,7 @@ export default function () {
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
-		//answerQuestions();
+		slidebackgroundColor();
         
 }
 

@@ -1117,6 +1117,13 @@ section {
   background-repeat: no-repeat;
 }
 
+div,
+img,
+p,
+span {
+  outline: 1px solid #fc0404;
+}
+
 .main-page-card-center {
   height: 600px;
 }
@@ -1296,47 +1303,11 @@ section {
 }
 
 .gradient--slide {
-  background-image: linear-gradient(90deg, #48a9c5, #48a9c5, #2774ae, #2774ae);
-  background-size: 600% 600%;
+  background-image: linear-gradient(90deg, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%, #48a9c5 100%, #2774ae 100%);
+  background-size: 120%;
 }
 
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0% 49%;
-  }
-  50% {
-    background-position: 100% 52%;
-  }
-  100% {
-    background-position: 0% 49%;
-  }
-}
-
-@-moz-keyframes gradient {
-  0% {
-    background-position: 0% 49%;
-  }
-  50% {
-    background-position: 100% 52%;
-  }
-  100% {
-    background-position: 0% 49%;
-  }
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 49%;
-  }
-  50% {
-    background-position: 100% 52%;
-  }
-  100% {
-    background-position: 0% 49%;
-  }
-}
-
-.drag-text {
+drag-text {
   color: #656565;
   display: block;
   font-size: 12px;

@@ -234,7 +234,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }); //FUNCTION CHANGE BACKGROUND COLOR
 
   function slidebackgroundColor() {
-    theCards.push(cardQuestionArr); //when card is dragged off-screen place at the end of array
+    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(document.querySelector('.gradient--slide'), time, {
+      backgroundImage: 'linear-gradient(90deg, #48a9c5 -5%, #2774ae -5%)',
+      ease: 'sine.out' //, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%
+
+    });
+    console.log('Gradient');
   } //COLOR CARDS--SPREAD
 
 
@@ -442,7 +447,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   init(); //start touch controls
 
   allEventListeners(); //eventlisteners
-  //answerQuestions();
+
+  slidebackgroundColor();
 });
 
 /***/ }),
