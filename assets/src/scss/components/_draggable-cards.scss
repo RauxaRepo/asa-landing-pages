@@ -9,24 +9,31 @@ $flightblue: #2774ae;
 $flightbgblue: #48a9c5;
 
 .main-page-card-center {
-    height: 600px;
+    height: 412px;
+
+    @include bp(md) { 
+        height: 600px;
+    }
+
 }
 
-
 .main-page-card--question,
-.main-page-card--results  {
+.main-page-card--results {
     opacity: 1;
     border-radius: 10px;
     float: left;
-    height: 600px;
-
     //margin: 10px 0;
-    width: 360px;
     //overflow: hidden;
     position: absolute;
     display: none;
     opacity: 0;
+    height: 412px;
+    width: 250px;
 
+    @include bp(md) { 
+        height: 600px;
+        width: 360px;
+    }
 
 
     &.disable {
@@ -302,15 +309,7 @@ $flightbgblue: #48a9c5;
     }
 
     // QUESTION 1 (and all other odd questions, for now)
-    .q1,
-    .q3,
-    .q5,
-    .q7,
-    .q9 {
-        img {
-            width: 52%;
-        }
-    }
+
     
 }
 

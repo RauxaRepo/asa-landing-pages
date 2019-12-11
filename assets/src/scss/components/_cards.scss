@@ -14,9 +14,6 @@
     opacity: 0;
     z-index: 1;
 
-    @media (min-width: 375px) {
-      
-    }
     @include bp(md) {
       width: 370px; //250
       height: 610px; //412
