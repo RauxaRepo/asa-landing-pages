@@ -21,7 +21,8 @@ export default function () {
 		rightBounds = 0,
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-		cardQuestionArr = [];
+		gradientBody = document.querySelector('.gradient--slide'),
+		tl = gsap.timeline({repeat: 0, repeatDelay: 0});
 
 
 		let answeredCorrect = [];
@@ -66,12 +67,15 @@ export default function () {
 
 		//FUNCTION CHANGE BACKGROUND COLOR
 		function slidebackgroundColor(){
-			TweenMax.to(document.querySelector('.gradient--slide'), time, {
+			/*TweenMax.to(document.querySelector('.gradient--slide'), time, {
 				backgroundImage:'linear-gradient(90deg, #48a9c5 -5%, #2774ae -5%)', 
 				ease:'sine.out'
 				//, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%
-			});
-			console.log('Gradient');
+			});*/
+
+			tl.to(gradientBody, { duration: time, backgroundImage:'linear-gradient(90deg, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})
+				.to(gradientBody, { duration: time, backgroundImage:'linear-gradient(90deg, #2774ae -5%, #48a9c5 -5%)', ease:'sine.out'})
+			//console.log('Gradient');
 		}
 
 

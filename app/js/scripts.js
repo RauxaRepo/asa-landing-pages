@@ -189,7 +189,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       rightBounds = 0,
       leftBounds = 0,
       sm = window.matchMedia('(max-width: 576px)'),
-      cardQuestionArr = [];
+      gradientBody = document.querySelector('.gradient--slide'),
+      tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    repeat: 0,
+    repeatDelay: 0
+  });
 
   var answeredCorrect = [];
   var answeredIncorrectly = [];
@@ -234,12 +238,20 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }); //FUNCTION CHANGE BACKGROUND COLOR
 
   function slidebackgroundColor() {
-    gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(document.querySelector('.gradient--slide'), time, {
+    /*TweenMax.to(document.querySelector('.gradient--slide'), time, {
+    	backgroundImage:'linear-gradient(90deg, #48a9c5 -5%, #2774ae -5%)', 
+    	ease:'sine.out'
+    	//, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%
+    });*/
+    tl.to(gradientBody, {
+      duration: time,
       backgroundImage: 'linear-gradient(90deg, #48a9c5 -5%, #2774ae -5%)',
-      ease: 'sine.out' //, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%
-
-    });
-    console.log('Gradient');
+      ease: 'sine.out'
+    }).to(gradientBody, {
+      duration: time,
+      backgroundImage: 'linear-gradient(90deg, #2774ae -5%, #48a9c5 -5%)',
+      ease: 'sine.out'
+    }); //console.log('Gradient');
   } //COLOR CARDS--SPREAD
 
 

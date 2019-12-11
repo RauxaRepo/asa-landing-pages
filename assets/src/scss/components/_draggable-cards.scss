@@ -1,90 +1,100 @@
- div,
- img,
- p,
- span {
-   outline: 1px solid $red;
- }
+//div,
+//img,
+//p,
+//span {
+//  outline: 1px solid $red;
+//}
 
 $flightblue: #2774ae;
 $flightbgblue: #48a9c5;
+$grey: #656565;
+$white: #fff;
+
+$colorcardlightgreen: #b3d57d;
+$colorcarddrkgreen: #4da786;
+$colorcardlghtblue: #47a4bf;
+$colorcarddrkblue: #2672ab;
+
+$opacityblack: rgba(0, 0, 0, .5);
+
+
 
 .main-page-card-center {
-    height: 600px;
+  height: 600px;
 }
 
 .main-page-card--question,
 .main-page-card--results  {
+  border-radius: 10px;
+  float: left;
+  height: 0;
+  padding-bottom: 160%;
+  margin: 10px 0;
+  width: 100%;
+  //overflow: hidden;
+  position: absolute;
+  display: none;
+  opacity: 0;
+
+  &.disable {
+    pointer-events: none;
+  }
+
+  &.one {
+    display: block;
+    z-index: 11;
     opacity: 1;
-    border-radius: 10px;
-    float: left;
-    height: 0;
-    padding-bottom: 160%;
-    margin: 10px 0;
-    width: 100%;
-    //overflow: hidden;
-    position: absolute;
-    display: none;
-    opacity: 0;
+  }
 
-    &.disable {
-        pointer-events: none;
-    }
+  &.two {
+    display: block;
+    z-index: 10;
+  }
 
-    &.one {
-        display: block;
-        z-index: 11;
-        opacity: 1;
-    }
+  &.three {
+    display: block;
+    z-index: 9; 
+  }
+ 
+  &.four {
+    display: block;
+    z-index: 8;         
+  }
 
-    &.two {
-        display: block;
-        z-index: 10;
-    }
+  &.five {
+    display: block;
+    z-index: 7;  
+  }
 
-    &.three {
-        display: block;
-        z-index: 9; 
-    }
+  &.six {
+    display: block;
+    z-index: 6;  
+  }
 
-    &.four {
-        display: block;
-        z-index: 8;         
-    }
+  &.seven {
+    display: block;
+    z-index: 5;   
+  }
 
-    &.five {
-        display: block;
-        z-index: 7;  
-    }
+  &.eight {
+    display: block;
+    z-index: 4;  
+  }
 
-    &.six {
-        display: block;
-        z-index: 6;  
-    }
+  &.nine {
+    display: block;
+    z-index: 3;  
+  }
 
-    &.seven {
-        display: block;
-        z-index: 5;   
-    }
-
-    &.eight {
-        display: block;
-        z-index: 4;  
-    }
-
-    &.nine {
-        display: block;
-        z-index: 3;  
-    }
-
-    &.ten {
-        display: block;
-        z-index: 2;  
-    }
+  &.ten {
+    display: block;
+    z-index: 2;  
+  }
 }
 
 .main-page-card--results  {
-    display: block;
-    z-index: 1;  
+  display: block;
+  z-index: 1;  
 }
 
 //Display and Zindex
@@ -98,234 +108,224 @@ $flightbgblue: #48a9c5;
 .q8,
 .q9,
 .q10 {
-    display: flex;
-    //display: none;
+  display: flex;
+  //display: none;
 }
 
 
 //body color
 .background-color-blue {
-    background-color: $blue;
+  background-color: $blue;
 }
 
 //BACKGROUND COLOR CARDS
 .main-page-card--color {
-    opacity: 1;
-    border-radius: 10px;
-    display: block;
-    float: left;
-    height: 0;
-    padding-bottom: 160%;
-    margin: 10px 0;
-    top: 0;
-    transform-origin: '50% 50%';
-    width: 100%;
-    position: absolute;
-    z-index: 1;
+  opacity: 1;
+  border-radius: 10px;
+  display: block;
+  float: left;
+  height: 0;
+  padding-bottom: 160%;
+  margin: 10px 0;
+  top: 0;
+  transform-origin: '50% 50%';
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }
+
 .bg-color-card {
-    border-radius: 10px;
-    background-color: #fff;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
+  border-radius: 10px;
+  background-color: $white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 }
 
 .clr0 {
-    background-color: #ffffff;
+  background-color: $white;
 }
 
 .clr1 {
-    background-color: #b3d57d;
+  background-color: $colorcardlightgreen;
 }
 
 .clr2 {
-    background-color: #4da786;
+  background-color: $colorcarddrkgreen;
 }
 
 .clr3 {
-    background-color: #47a4bf;
+  background-color: $colorcardlghtblue;
 }
 
 .clr4 {
-    background-color: #2672ab;
+  background-color: $colorcardlghtblue;
 }
 
 .box-shadow {
-    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 4px 6px $opacityblack;
 }
 
 .opacity-zero {
-    opacity: 0;
+  opacity: 0;
 }
 
 .zIndex {
 
-    &-4 {
-        z-index: 4;
-    }
+  &-4 {
+    z-index: 4;
+  }
 
-    &-3 {
-        z-index: 3;
-    }
+  &-3 {
+    z-index: 3;
+  }
 
-    &-2 {
-        z-index: 2;
-    }
+  &-2 {
+    z-index: 2;
+  }
 
-    &-1 {
-        z-index: 1;
-    }
+  &-1 {
+    z-index: 1;
+  }
 }
 
 //GRADIENT
 .gradient--slide {
-    background-image: linear-gradient(90deg, 
-    $flightbgblue 3%, $flightblue 3%,
-    /*$flightbgblue 100%, $flightblue 100%,
-    $flightbgblue 100%, $flightblue 100%,
-    $flightbgblue 100%, $flightblue 100%,
-    $flightbgblue 100%, $flightblue 100%,
-    $flightbgblue 100%, $flightblue 100%,
-    $flightbgblue 100%, $flightblue 100%,
-    $flightbgblue 100%, $flightblue 100%,
-    $flightbgblue 100%, $flightblue 100%,
-    $flightbgblue 100%, $flightblue 100%*/
-    );
-    background-size: 120%;
+  background-image: linear-gradient(90deg, $flightbgblue 100%, $flightblue 100%);
+  background-size: 120%;
 } 
 
 
 //ANSWER CARDS
 drag-text {
-    color: #656565;
-    display: block;
-    font-size: 12px;
-    padding: 10px 0;
-    position: relative;
-    text-align: center;
-    width: 100%; 
+  color: $grey;
+  display: block;
+  font-size: 12px;
+  padding: 10px 0;
+  position: relative;
+  text-align: center;
+  width: 100%; 
 }
 
 //RESULTS CARD
 .main-page-card--results {
-    z-index: 4;     
+  z-index: 4;     
 
-    p {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        font-size: 24px;
-        line-height: 1.25;
-        text-align: center;
-        font-weight: bold;
-    }
+  p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 24px;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: bold;
+  }
 }
 
 .num-holder {
-    display: block;
-    position: relative;
-    text-align: center;
-    width: 170px;
+  display: block;
+  position: relative;
+  text-align: center;
+  width: 170px;
 }
 
 .results-num {
-    color: $flightblue;
-    font-size: 66px;
-    line-height: 1.25;
-    text-align: center;
-    font-weight: bold;
+  color: $flightblue;
+  font-size: 66px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
 
-    display: block;
-    float: left;
-    position: relative;
+  display: block;
+  float: left;
+  position: relative;
 }
 
 .correct-text {
-    font-size: 49px;
-    line-height: 1.25;
-    text-align: center;
-    font-weight: bold;
+  font-size: 49px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
 }
 
 
 
 //MEDIA QUERY
 @media only screen and (max-width: 576px) {
-    .main-page-inner {
-        min-width: 1800px;
-    }
-    
-    .active-card p {
-        padding-top: 21px;
-        padding-bottom: 15px;
-        font-size: 10px;
-        width: 124%;
-    }
+  .main-page-inner {
+    min-width: 1800px;
+  }
+  
+  .active-card p {
+    padding-top: 21px;
+    padding-bottom: 15px;
+    font-size: 10px;
+    width: 124%;
+  }
 
-    .active-card--buttonwrapper {
-        width: 124%;
-    }
+  .active-card--buttonwrapper {
+    width: 124%;
+  }
 
-    .active-card--button {
-        border-radius: 2px;
-        margin-top: 10px;
-        padding: 7px 0;
-        font-size: 10px;
-    }
+  .active-card--button {
+    border-radius: 2px;
+    margin-top: 10px;
+    padding: 7px 0;
+    font-size: 10px;
+  }
 
-    .active-card.q2 button {
-        font-size: 7px;
-    }
+  .active-card.q2 button {
+    font-size: 7px;
+  }
 
-    .active-card.q4 button {
-        font-size: 8px;
-    }
+  .active-card.q4 button {
+    font-size: 8px;
+  }
 
-    // QUESTION 1 (and all other odd questions, for now)
-    .q1,
-    .q3,
-    .q5,
-    .q7,
-    .q9 {
-        img {
-            width: 52%;
-        }
+  // QUESTION 1 (and all other odd questions, for now)
+  .q1,
+  .q3,
+  .q5,
+  .q7,
+  .q9 {
+    img {
+      width: 52%;
     }
+  }
     
 }
 
 @media only screen and (max-width: 768px) {
-    .drag-card-holder {
-        width: 20% !important;
-    }
-    
-    .active-card p {
-        padding-top: 20px;
-        padding-bottom: 15px;
-        font-size: 15px;
-        width: 114%;
-    }
+  .drag-card-holder {
+    width: 20% !important;
+  }
+  
+  .active-card p {
+    padding-top: 20px;
+    padding-bottom: 15px;
+    font-size: 15px;
+    width: 114%;
+  }
 
-    .active-card--buttonwrapper {
-        width: 114%;
-    }
+  .active-card--buttonwrapper {
+    width: 114%;
+  }
 
-    .active-card--button {
-        border-radius: 2px;
-        margin-top: 10px;
-        padding: 7px 0;
-        font-size: 10px;
-    }
+  .active-card--button {
+    border-radius: 2px;
+    margin-top: 10px;
+    padding: 7px 0;
+    font-size: 10px;
+  }
 
-    .active-card.q2 button, 
-    .active-card.q4 button {
-        font-size: 10px;
-    }
+  .active-card.q2 button, 
+  .active-card.q4 button {
+    font-size: 10px;
+  }
 
 }
 
