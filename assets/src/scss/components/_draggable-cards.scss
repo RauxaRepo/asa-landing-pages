@@ -44,9 +44,6 @@ $opacityblack: rgba(0, 0, 0, .5);
     display: block;
     z-index: 11;
     opacity: 1;
-<<<<<<< HEAD
-  }
-=======
     border-radius: 10px;
     float: left;
     height: 600px;
@@ -57,6 +54,8 @@ $opacityblack: rgba(0, 0, 0, .5);
     position: absolute;
     display: none;
     opacity: 0;
+
+  }
 
 
 
@@ -74,7 +73,6 @@ $opacityblack: rgba(0, 0, 0, .5);
         display: block;
         z-index: 10;
     }
->>>>>>> 09b6a99ed0523bf6cffe7039c2301c66f756f694
 
   &.two {
     display: block;
@@ -226,7 +224,7 @@ $opacityblack: rgba(0, 0, 0, .5);
 
 //GRADIENT
 .gradient--slide {
-  background-image: linear-gradient(90deg, $flightbgblue 100%, $flightblue 100%);
+  background-image: linear-gradient(90deg, rgba(72,169,197,1) 92%, rgba(39,116,174,1) 94%, rgba(39,116,174,1) 96%, rgba(72,169,197,1) 98%, rgba(72,169,197,1) 100%);
   background-size: 120%;
 } 
 

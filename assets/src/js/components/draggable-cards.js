@@ -67,15 +67,25 @@ export default function () {
 
 		//FUNCTION CHANGE BACKGROUND COLOR
 		function slidebackgroundColor(){
-			/*TweenMax.to(document.querySelector('.gradient--slide'), time, {
-				backgroundImage:'linear-gradient(90deg, #48a9c5 -5%, #2774ae -5%)', 
-				ease:'sine.out'
-				//, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%, #48a9c5 -5%, #2774ae -5%
-			});*/
-
-			tl.to(gradientBody, { duration: time, backgroundImage:'linear-gradient(90deg, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})
-				.to(gradientBody, { duration: time, backgroundImage:'linear-gradient(90deg, #2774ae -5%, #48a9c5 -5%)', ease:'sine.out'})
-			//console.log('Gradient');
+      tl.to(gradientBody, { duration: time, backgroundImage:'linear-gradient(90deg, #48a9c5 -1%, #2774ae -15%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q1')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
+        .addLabel('q3')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q4')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
+        .addLabel('q5')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q6')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
+        .addLabel('q7')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q8')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
+        .addLabel('q9')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q10')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
 		}
 
 
@@ -265,7 +275,7 @@ export default function () {
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
-		slidebackgroundColor();
+		//slidebackgroundColor();
         
 }
 
