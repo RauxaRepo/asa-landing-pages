@@ -1080,6 +1080,11 @@ section {
   background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
+  z-index: 12;
+}
+
+.cards-single.cta .cards-single--init-card.disable {
+  pointer-events: none;
 }
 
 .cards-single.tropical .cards-single--content {
@@ -1120,13 +1125,85 @@ section {
 .main-page-card--results {
   opacity: 1;
   border-radius: 10px;
-  display: block;
   float: left;
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
   width: 100%;
   position: absolute;
+  display: none;
+  opacity: 0;
+}
+
+.main-page-card--question.disable,
+.main-page-card--results.disable {
+  pointer-events: none;
+}
+
+.main-page-card--question.one,
+.main-page-card--results.one {
+  display: block;
+  z-index: 11;
+  opacity: 1;
+}
+
+.main-page-card--question.two,
+.main-page-card--results.two {
+  display: block;
+  z-index: 10;
+}
+
+.main-page-card--question.three,
+.main-page-card--results.three {
+  display: block;
+  z-index: 9;
+}
+
+.main-page-card--question.four,
+.main-page-card--results.four {
+  display: block;
+  z-index: 8;
+}
+
+.main-page-card--question.five,
+.main-page-card--results.five {
+  display: block;
+  z-index: 7;
+}
+
+.main-page-card--question.six,
+.main-page-card--results.six {
+  display: block;
+  z-index: 6;
+}
+
+.main-page-card--question.seven,
+.main-page-card--results.seven {
+  display: block;
+  z-index: 5;
+}
+
+.main-page-card--question.eight,
+.main-page-card--results.eight {
+  display: block;
+  z-index: 4;
+}
+
+.main-page-card--question.nine,
+.main-page-card--results.nine {
+  display: block;
+  z-index: 3;
+}
+
+.main-page-card--question.ten,
+.main-page-card--results.ten {
+  display: block;
+  z-index: 2;
+}
+
+.main-page-card--results {
+  display: block;
+  z-index: 1;
 }
 
 .q1,
@@ -1536,33 +1613,6 @@ main {
 .title-card-container {
   height: auto;
   position: relative;
-}
-
-.main-page-card-title {
-  background-image: url("../images/cards/Title_Card.png");
-  cursor: pointer;
-  position: relative;
-  z-index: 100;
-}
-
-.main-page-card-atlas {
-  background-image: url("../images/cards/Atlas.gif");
-}
-
-.main-page-card-breezeCard {
-  background-image: url("../images/cards/breezeCard.gif");
-}
-
-.main-page-card-palm {
-  background-image: url("../images/cards/palm.gif");
-}
-
-.main-page-card-tropical {
-  background-image: url("../images/cards/tropical.gif");
-}
-
-.main-page-card-midnight {
-  background-image: url("../images/cards/midnight.gif");
 }
 
 .main-page-footer {

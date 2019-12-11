@@ -146,8 +146,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
       activeCardButton = _toConsumableArray(document.querySelectorAll('.active-card--button')),
       wrapper = document.getElementById('drag-card-holder'),
-      rightBounds = 350,
-      leftBounds = 330,
+      rightBounds = 0,
+      leftBounds = 0,
       sm = window.matchMedia('(max-width: 576px)'),
       cardQuestionArr = [],
       //Answer Vars
@@ -156,29 +156,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       wrongAnswer = document.querySelector('.wrong-answer'),
       hideMainButtons = document.querySelector('.hide-main-buttons'),
       nextQuestion = document.querySelector('.next-question'),
-      nextQuestButton = document.querySelector('.next-question--button'),
-      tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: 0,
-    repeatDelay: 0
-  }); //FUNCTION ANSWER QUESTION
+      nextQuestButton = document.querySelector('.next-question--button');
 
+  var answeredCorrect = [];
 
-  function answerQuestions() {
-    theCards.forEach(function (item) {
-      item.addEventListener('click', function () {
-        hideMainButtons.classList.add('hide');
-        nextQuestion.classList.add('show');
-        quest.classList.add('hide');
+  var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button'));
 
-        if (rightAnswer) {
-          rightAnswer.classList.add('show');
-        } else if (wrongAnswer) {
-          wrongAnswer.classList.add('show');
-        }
-      });
-    });
-  } //FUNCTION CHANGE BACKGROUND COLOR
-
+  questionBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {});
+  }); //FUNCTION CHANGE BACKGROUND COLOR
 
   function slidebackgroundColor() {
     theCards.push(cardQuestionArr); //when card is dragged off-screen place at the end of array
@@ -230,24 +216,36 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
       if (elmnt.offsetLeft > wrapper.offsetLeft + rightBounds) {
-        //console.log('Right Bounds');
+        elmnt.classList.add('disable'); //console.log('Right Bounds');
+
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-          duration: time - 0.5,
-          x: '+=600',
-          opacity: 1,
-          ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+          duration: 1,
+          top: '+=100vh',
+          ease: 'sine.in'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+          duration: 1,
+          x: '+=100%',
+          yoyo: true,
+          ease: 'sine.inout'
         });
       }
     } else {
       //element is on left side of viewport
       //console.log('LEFT, ', pos);
       if (elmnt.offsetLeft < wrapper.offsetLeft - leftBounds) {
-        //console.log('Left Bounds');
+        elmnt.classList.add('disable'); //console.log('Left Bounds');
+
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-          duration: time - 0.5,
-          x: '-=600',
-          opacity: 1,
-          ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+          duration: 1,
+          top: '+=100vh',
+          ease: 'sine.in'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+          duration: 1,
+          x: '-=100%',
+          yoyo: true,
+          ease: 'sine.inout'
         });
       }
     }
@@ -285,7 +283,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
         duration: time - 0.7,
-        rotation: -40,
+        rotation: 0,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
       });
     }
@@ -344,7 +342,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       item.style.zIndex = Math.floor(random(5, 15)); //cursor pointer
 
       item.style.cursor = 'pointer';
-      console.log('randomizeCards ');
     });
   } //DRAG Q1-Q10 CARDS
 
@@ -371,8 +368,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   spreadTheCards(); //spread color cards
-
-  randomizeCards(); //randomize question cards
+  //randomizeCards();//randomize question cards
 
   dragCards(); //drag question cards
 
@@ -578,7 +574,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       yoyo: true,
       repeat: 1,
       ease: 'sine.in'
-    }, '-=1.5');
+    }, '-=1.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
+      autoAlpha: 1,
+      ease: 'sine.in'
+    }, '-=0');
   }; //setting card flip
 
 
@@ -616,7 +615,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var showCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({});
     var showGroupCards = allCardsshuffle([].concat(_toConsumableArray(column1Cards), _toConsumableArray(column2Cards), _toConsumableArray(column3Cards), _toConsumableArray(column4Cards), _toConsumableArray(column5Cards)));
-    showCards.to(cta, .5, {
+    showCards.to('.cards-single.cta', .5, {
       opacity: 1,
       ease: 'sine.in'
     }).to(showGroupCards, .6, {
@@ -662,6 +661,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           columnCards.pause(); //EventListener
 
           cta.addEventListener('click', function (e) {
+            cta.classList.add('disable');
             stackCards(showGroupCards);
           });
         }
@@ -679,7 +679,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     // select all cards except cta
     var allCards = _toConsumableArray(document.querySelectorAll('.cards-single:not(.cta)'));
 
-    var ctaCard = document.querySelector('.cards-single.cta'); //places cta in center
+    var ctaCard = document.querySelector('.cards-single.cta');
+    var getStartedBtn = document.querySelector('.cards-single--init-card'); //places cta in center
 
     gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(ctaCard, {
       x: '-50%',
@@ -701,7 +702,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }
 
       if (i == allCards.length - 1) {
-        scrollCards(ctaCard);
+        scrollCards(getStartedBtn);
       }
     });
   }; //
