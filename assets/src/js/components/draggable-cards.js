@@ -1,7 +1,11 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 import getBreakpoint from './breakpoints';
+import getClosest from './closest';
 
 export default function () {
+
+
+	
 	
 	let time = 1,
 		timeInterval,
@@ -13,38 +17,54 @@ export default function () {
 		//*Place all Cards in an Array using ('...' = spread)*//
 		theCards = [...document.querySelectorAll('.main-page-card--question')],
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
-		activeCardButton = [...document.querySelectorAll('.active-card--button')],
 		wrapper = document.getElementById('drag-card-holder'),
-		rightBounds = 350,
-		leftBounds = 330,
+		rightBounds = 0,
+		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-		cardQuestionArr = [],
+		cardQuestionArr = [];
 
-		//Answer Vars
-		quest = document.querySelector('.quest'),
-		rightAnswer = document.querySelector('.right-answer'),
-		wrongAnswer = document.querySelector('.wrong-answer'),
-		hideMainButtons =  document.querySelector('.hide-main-buttons'),
-		nextQuestion = document.querySelector('.next-question'),
-		nextQuestButton = document.querySelector('.next-question--button'),
 
-		tldrag = gsap.timeline({repeat: 0, repeatDelay: 0});
 
-		//FUNCTION ANSWER QUESTION
-		function answerQuestions(){
-			theCards.forEach((item)=> {
-				item.addEventListener('click', function(){
-					hideMainButtons.classList.add('hide');
-					nextQuestion.classList.add('show');
-					quest.classList.add('hide');
-					if ( rightAnswer ) {
-						rightAnswer.classList.add('show');
-					}else if ( wrongAnswer ) {
-						wrongAnswer.classList.add('show');
-					}
+		
+
+		let answeredCorrect = [];
+		let answeredIncorrectly = [];
+		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
+
+		questionBtns.forEach((btn) => {
+
+			btn.addEventListener('click', (e) => {
+
+				let btnHolder = e.target.parentNode.parentNode.parentNode;
+
+				let question = btnHolder.querySelector('.quest');
+				let answersBtns = e.target.parentNode;
+				let rightAnswer = btnHolder.querySelector('.right-answer'); 
+				let wrongAnswer =  btnHolder.querySelector('.wrong-answer');  
+				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
+				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
+
+				if(e.target.classList.contains('right-answer-bttn')) {
+					rightAnswer.classList.remove('hide');
+					answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
+				} else {
+					wrongAnswer.classList.remove('hide');
+					answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
+				}
+ 
+				question.classList.add('hide');
+				answersBtns.classList.add('hide');
+				nextQuestion.classList.remove('hide');
+
+				nextQuestButton.addEventListener('click', (e) => {
+					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
+					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 				});
+				
+				 
 			});
-		}
+		});
+
 
 
 		//FUNCTION CHANGE BACKGROUND COLOR
@@ -90,17 +110,24 @@ export default function () {
 			var ew = elmnt.offsetWidth; //width of the hovered element
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
+
+				
 				//console.log('RIGHT, ', pos);
 				if(elmnt.offsetLeft > (wrapper.offsetLeft + rightBounds)){
+					elmnt.classList.add('disable');
 					//console.log('Right Bounds');
-					gsap.to(elmnt,  {duration:time - 0.5, x: '+=600', opacity: 1, ease:Quad.easInOut});
+					
+					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
+					gsap.to(elmnt,  {duration:1, x: '+=100%', yoyo: true, ease:'sine.inout'});
 				}
 				
 			} else { //element is on left side of viewport
 				//console.log('LEFT, ', pos);
 				if(elmnt.offsetLeft < (wrapper.offsetLeft - leftBounds)){
+					elmnt.classList.add('disable');
 					//console.log('Left Bounds');
-					gsap.to(elmnt,  {duration:time - 0.5, x: '-=600', opacity: 1, ease:Quad.easInOut});
+					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
+					gsap.to(elmnt,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 				}
 			}
 
@@ -134,7 +161,7 @@ export default function () {
 				//rotate 
 				gsap.to(elmnt, {
 					duration: time - 0.7,
-					rotation: -40,
+					rotation: 0,
 					ease:Quad.easInOut
 				});
 			}
@@ -200,7 +227,7 @@ export default function () {
 				item.style.zIndex = Math.floor( random(7, 17) );
 				//cursor pointer
 				item.style.cursor = 'pointer';
-				console.log('randomizeCards ');
+				
 			})
 		}
 
@@ -229,7 +256,7 @@ export default function () {
 
 		//RUN FUNCTIONS
 		spreadTheCards();//spread color cards
-		randomizeCards();//randomize question cards
+		//randomizeCards();//randomize question cards
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners

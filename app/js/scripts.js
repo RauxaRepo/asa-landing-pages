@@ -109,6 +109,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../assets/src/js/components/closest.js":
+/*!**********************************************!*\
+  !*** ../assets/src/js/components/closest.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * Get the closest matching element up the DOM tree.
+ * @private
+ * @param  {Element} elem     Starting element
+ * @param  {String}  selector Selector to match against
+ * @return {Boolean|Element}  Returns null if not match found
+ */
+/* harmony default export */ __webpack_exports__["default"] = (function (elem, selector) {
+  // Element.matches() polyfill
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
+      var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+          i = matches.length;
+
+      while (--i >= 0 && matches.item(i) !== this) {}
+
+      return i > -1;
+    };
+  } // Get closest match
+
+
+  for (; elem && elem !== document; elem = elem.parentNode) {
+    if (elem.matches(selector)) return elem;
+  }
+
+  return null;
+});
+
+/***/ }),
+
 /***/ "../assets/src/js/components/draggable-cards.js":
 /*!******************************************************!*\
   !*** ../assets/src/js/components/draggable-cards.js ***!
@@ -120,6 +159,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
 /* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
+/* harmony import */ var _closest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./closest */ "../assets/src/js/components/closest.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -127,6 +167,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -144,41 +185,53 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //*Place all Cards in an Array using ('...' = spread)*//
   theCards = _toConsumableArray(document.querySelectorAll('.main-page-card--question')),
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
-      activeCardButton = _toConsumableArray(document.querySelectorAll('.active-card--button')),
       wrapper = document.getElementById('drag-card-holder'),
-      rightBounds = 350,
-      leftBounds = 330,
+      rightBounds = 0,
+      leftBounds = 0,
       sm = window.matchMedia('(max-width: 576px)'),
-      cardQuestionArr = [],
-      //Answer Vars
-  quest = document.querySelector('.quest'),
-      rightAnswer = document.querySelector('.right-answer'),
-      wrongAnswer = document.querySelector('.wrong-answer'),
-      hideMainButtons = document.querySelector('.hide-main-buttons'),
-      nextQuestion = document.querySelector('.next-question'),
-      nextQuestButton = document.querySelector('.next-question--button'),
-      tldrag = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: 0,
-    repeatDelay: 0
-  }); //FUNCTION ANSWER QUESTION
+      cardQuestionArr = [];
 
+  var answeredCorrect = [];
+  var answeredIncorrectly = [];
 
-  function answerQuestions() {
-    theCards.forEach(function (item) {
-      item.addEventListener('click', function () {
-        hideMainButtons.classList.add('hide');
-        nextQuestion.classList.add('show');
-        quest.classList.add('hide');
+  var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button:not(.next-question--button)'));
 
-        if (rightAnswer) {
-          rightAnswer.classList.add('show');
-        } else if (wrongAnswer) {
-          wrongAnswer.classList.add('show');
-        }
+  questionBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var btnHolder = e.target.parentNode.parentNode.parentNode;
+      var question = btnHolder.querySelector('.quest');
+      var answersBtns = e.target.parentNode;
+      var rightAnswer = btnHolder.querySelector('.right-answer');
+      var wrongAnswer = btnHolder.querySelector('.wrong-answer');
+      var nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
+      var nextQuestButton = nextQuestion.querySelector('.next-question--button');
+
+      if (e.target.classList.contains('right-answer-bttn')) {
+        rightAnswer.classList.remove('hide');
+        answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
+      } else {
+        wrongAnswer.classList.remove('hide');
+        answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
+      }
+
+      question.classList.add('hide');
+      answersBtns.classList.add('hide');
+      nextQuestion.classList.remove('hide');
+      nextQuestButton.addEventListener('click', function (e) {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
+          duration: 1,
+          top: '+=100vh',
+          ease: 'sine.in'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
+          duration: 1,
+          x: '-=100%',
+          yoyo: true,
+          ease: 'sine.inout'
+        });
       });
     });
-  } //FUNCTION CHANGE BACKGROUND COLOR
-
+  }); //FUNCTION CHANGE BACKGROUND COLOR
 
   function slidebackgroundColor() {
     theCards.push(cardQuestionArr); //when card is dragged off-screen place at the end of array
@@ -230,24 +283,36 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
       if (elmnt.offsetLeft > wrapper.offsetLeft + rightBounds) {
-        //console.log('Right Bounds');
+        elmnt.classList.add('disable'); //console.log('Right Bounds');
+
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-          duration: time - 0.5,
-          x: '+=600',
-          opacity: 1,
-          ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+          duration: 1,
+          top: '+=100vh',
+          ease: 'sine.in'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+          duration: 1,
+          x: '+=100%',
+          yoyo: true,
+          ease: 'sine.inout'
         });
       }
     } else {
       //element is on left side of viewport
       //console.log('LEFT, ', pos);
       if (elmnt.offsetLeft < wrapper.offsetLeft - leftBounds) {
-        //console.log('Left Bounds');
+        elmnt.classList.add('disable'); //console.log('Left Bounds');
+
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-          duration: time - 0.5,
-          x: '-=600',
-          opacity: 1,
-          ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+          duration: 1,
+          top: '+=100vh',
+          ease: 'sine.in'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
+          duration: 1,
+          x: '-=100%',
+          yoyo: true,
+          ease: 'sine.inout'
         });
       }
     }
@@ -285,7 +350,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
         duration: time - 0.7,
-        rotation: -40,
+        rotation: 0,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
       });
     }
@@ -344,7 +409,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       item.style.zIndex = Math.floor(random(7, 17)); //cursor pointer
 
       item.style.cursor = 'pointer';
-      console.log('randomizeCards ');
     });
   } //DRAG Q1-Q10 CARDS
 
@@ -371,8 +435,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
   spreadTheCards(); //spread color cards
-
-  randomizeCards(); //randomize question cards
+  //randomizeCards();//randomize question cards
 
   dragCards(); //drag question cards
 
@@ -578,7 +641,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       yoyo: true,
       repeat: 1,
       ease: 'sine.in'
-    }, '-=1.5');
+    }, '-=1.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
+      autoAlpha: 1,
+      ease: 'sine.in'
+    }, '-=0');
   }; //setting card flip
 
 
@@ -616,7 +682,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var showCards = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({});
     var showGroupCards = allCardsshuffle([].concat(_toConsumableArray(column1Cards), _toConsumableArray(column2Cards), _toConsumableArray(column3Cards), _toConsumableArray(column4Cards), _toConsumableArray(column5Cards)));
-    showCards.to(cta, .5, {
+    showCards.to('.cards-single.cta', .5, {
       opacity: 1,
       ease: 'sine.in'
     }).to(showGroupCards, .6, {
@@ -662,6 +728,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           columnCards.pause(); //EventListener
 
           cta.addEventListener('click', function (e) {
+            cta.classList.add('disable');
             stackCards(showGroupCards);
           });
         }
@@ -679,7 +746,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     // select all cards except cta
     var allCards = _toConsumableArray(document.querySelectorAll('.cards-single:not(.cta)'));
 
-    var ctaCard = document.querySelector('.cards-single.cta'); //places cta in center
+    var ctaCard = document.querySelector('.cards-single.cta');
+    var getStartedBtn = document.querySelector('.cards-single--init-card'); //places cta in center
 
     gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(ctaCard, {
       x: '-50%',
@@ -701,7 +769,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }
 
       if (i == allCards.length - 1) {
-        scrollCards(ctaCard);
+        scrollCards(getStartedBtn);
       }
     });
   }; //

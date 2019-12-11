@@ -71,7 +71,8 @@ export default function () {
     }})
     .to(cardsHolder,1, {backgroundColor: '#48a9c5',ease: 'sine.in'},'-=.3')
     .to([cardCta,cardQuestionOne], 1.25, {rotationY:'+=180', ease:'sine.inout'},'+=.2')
-    .to([cardCta,cardQuestionOne], .625, {z:'-=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5');
+    .to([cardCta,cardQuestionOne], .625, {z:'-=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5')
+    .to(['.main-page-card--question','.main-page-card--results'], .25, {autoAlpha:1, ease:'sine.in'},'-=0');
   }
 
 
@@ -111,7 +112,7 @@ export default function () {
     let showGroupCards = allCardsshuffle([...column1Cards,...column2Cards,...column3Cards,...column4Cards,...column5Cards]);
     
     showCards
-    .to(cta,.5,{opacity:1,ease:'sine.in'})
+    .to('.cards-single.cta',.5,{opacity:1,ease:'sine.in'})
     .to(showGroupCards,.6,{opacity:1,ease:'sine.in', stagger:{amount: 1}},'+=.1');
 
     columnCards
@@ -128,7 +129,9 @@ export default function () {
 				columnCards.pause();
 				//EventListener
 			  cta.addEventListener('click', (e) => {
+          cta.classList.add('disable');
           stackCards(showGroupCards);
+          
         });
 			}})
 			
@@ -146,6 +149,7 @@ export default function () {
     // select all cards except cta
     let allCards = [...document.querySelectorAll('.cards-single:not(.cta)')];
     let ctaCard = document.querySelector('.cards-single.cta');
+    let getStartedBtn = document.querySelector('.cards-single--init-card'); 
 
     //places cta in center
     gsap.set(ctaCard,{x:'-50%',y:'-50%'});
@@ -164,7 +168,7 @@ export default function () {
       }
 
       if(i == allCards.length - 1) {
-        scrollCards(ctaCard);
+        scrollCards(getStartedBtn);
       }
       
 
