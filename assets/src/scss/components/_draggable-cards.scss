@@ -17,7 +17,6 @@ $flightbgblue: #48a9c5;
 .main-page-card--results  {
     opacity: 1;
     border-radius: 10px;
-    display: block;
     float: left;
     height: 0;
     padding-bottom: 160%;
@@ -25,6 +24,68 @@ $flightbgblue: #48a9c5;
     width: 100%;
     //overflow: hidden;
     position: absolute;
+    display: none;
+    opacity: 0;
+
+    &.disable {
+        pointer-events: none;
+    }
+
+    &.one {
+        display: block;
+        z-index: 11;
+        opacity: 1;
+    }
+
+    &.two {
+        display: block;
+        z-index: 10;
+    }
+
+    &.three {
+        display: block;
+        z-index: 9; 
+    }
+
+    &.four {
+        display: block;
+        z-index: 8;         
+    }
+
+    &.five {
+        display: block;
+        z-index: 7;  
+    }
+
+    &.six {
+        display: block;
+        z-index: 6;  
+    }
+
+    &.seven {
+        display: block;
+        z-index: 5;   
+    }
+
+    &.eight {
+        display: block;
+        z-index: 4;  
+    }
+
+    &.nine {
+        display: block;
+        z-index: 3;  
+    }
+
+    &.ten {
+        display: block;
+        z-index: 2;  
+    }
+}
+
+.main-page-card--results  {
+    display: block;
+    z-index: 1;  
 }
 
 //Display and Zindex
@@ -42,18 +103,6 @@ $flightbgblue: #48a9c5;
     //display: none;
 }
 
-
-// show whichever card I'm actively working on
-//.q1 {display: flex; z-index: 30;}
-//.q2 {display: flex; z-index: 30;}
-//.q3 {display: flex; z-index: 30;}
-//.q4 {display: flex; z-index: 30;}
-//.q5 {display: flex; z-index: 30;}
-//.q6 {display: flex; z-index: 30;}
-//.q7 {display: flex; z-index: 30;}
-//.q8 {display: flex; z-index: 30;}
-//.q9 {display: flex; z-index: 30;}
-//.q10 {display: flex; z-index: 30;}
 
 //body color
 .background-color-blue {
@@ -164,17 +213,7 @@ $flightbgblue: #48a9c5;
 
 
 //ANSWER CARDS
-.right-answer, 
-.right-answer-a, 
-.right-answer-b, 
-.wrong-answer, 
-.wrong-answer-a, 
-.wrong-answer-b, 
-.wrong-answer-c,
-.answer-bttn,
-.next-question {
-    display: none;
-}
+
 
 .drag-text {
     color: #656565;
