@@ -937,6 +937,7 @@ section {
   position: absolute;
   width: 100%;
   height: 100%;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -950,9 +951,10 @@ section {
 }
 
 .active-card img {
-  height: auto;
   pointer-events: none;
   display: block;
+  width: 100%;
+  height: auto;
 }
 
 .active-card--buttonwrapper {
@@ -1003,22 +1005,6 @@ section {
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
-}
-
-.q1 img,
-.q3 img,
-.q5 img,
-.q7 img,
-.q9 img {
-  width: 34%;
-}
-
-.q2 img,
-.q4 img,
-.q6 img,
-.q8 img,
-.q10 img {
-  width: 80%;
 }
 
 .q1,
@@ -1126,10 +1112,8 @@ section {
   opacity: 1;
   border-radius: 10px;
   float: left;
-  height: 0;
-  padding-bottom: 160%;
-  margin: 10px 0;
-  width: 100%;
+  height: 600px;
+  width: 360px;
   position: absolute;
   display: none;
   opacity: 0;
