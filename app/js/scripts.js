@@ -185,7 +185,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //*Place all Cards in an Array using ('...' = spread)*//
   theCards = _toConsumableArray(document.querySelectorAll('.main-page-card--question')),
       theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color')),
-      activeCardButton = _toConsumableArray(document.querySelectorAll('.active-card--button')),
       wrapper = document.getElementById('drag-card-holder'),
       rightBounds = 0,
       leftBounds = 0,

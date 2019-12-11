@@ -17,7 +17,6 @@ export default function () {
 		//*Place all Cards in an Array using ('...' = spread)*//
 		theCards = [...document.querySelectorAll('.main-page-card--question')],
 		theColorCards = [...document.querySelectorAll('.main-page-card--color')],
-		activeCardButton = [...document.querySelectorAll('.active-card--button')],
 		wrapper = document.getElementById('drag-card-holder'),
 		rightBounds = 0,
 		leftBounds = 0,
@@ -54,7 +53,6 @@ export default function () {
 				}
  
 				question.classList.add('hide');
-				
 				answersBtns.classList.add('hide');
 				nextQuestion.classList.remove('hide');
 
