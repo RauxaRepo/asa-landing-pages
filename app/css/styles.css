@@ -1443,6 +1443,102 @@ section {
   }
 }
 
+div,
+img,
+p,
+span,
+svg {
+  outline: 1px solid #fc0404;
+}
+
+.count {
+  /* Safari */
+}
+
+.count-container {
+  background-color: #48a9c5;
+  height: 110px;
+  right: 100px;
+  top: 38%;
+  width: 110px;
+}
+
+.count-container span {
+  display: block;
+  float: left;
+  text-align: left;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.count-text-box {
+  left: 21px;
+  top: 36px;
+  width: auto;
+  position: absolute;
+}
+
+.count-text {
+  color: #fff;
+  position: relative;
+  display: block;
+  float: left;
+  width: 20px;
+}
+
+.count-loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #2774ae;
+  width: 90px;
+  height: 90px;
+}
+
+.count {
+  /* Safari */
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+svg path {
+  will-change: auto;
+  stroke-width: 10px;
+  stroke-miterlimit: round;
+  transition: stroke-dashoffset 850ms ease-in-out;
+}
+
 .intro-block {
   position: relative;
   width: 100%;

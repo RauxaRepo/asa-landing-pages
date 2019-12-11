@@ -148,6 +148,71 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../assets/src/js/components/counter.js":
+/*!**********************************************!*\
+  !*** ../assets/src/js/components/counter.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
+/* harmony import */ var _closest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./closest */ "../assets/src/js/components/closest.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var sm = window.matchMedia('(max-width: 576px)'); // Get all the Meters from SVG
+
+  var meters = document.querySelectorAll('svg[data-value] .meter'); //Percentages
+
+  var percentage = {
+    1: 125,
+    2: 120,
+    3: 80,
+    4: 60,
+    5: 0
+  }; //COUNTER
+
+  function counterMotion() {
+    meters.forEach(function (path) {
+      // Get the length of the path
+      var length = path.getTotalLength(); // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
+      // or uncomment to set it dynamically
+      // path.style.strokeDashoffset = length;
+      // path.style.strokeDasharray = length;
+      // Get the value of the meter
+
+      var value = parseInt(path.parentNode.getAttribute('data-value')); // Calculate the percentage of the total length
+
+      var to = length * ((0 - value) / 100); // Trigger Layout in Safari hack https://jakearchibald.com/2013/animated-line-drawing-svg/
+
+      path.getBoundingClientRect(); // Set the Offset
+
+      path.style.strokeDashoffset = Math.max(0, to);
+    });
+  }
+
+  function getPercentage() {} //MATCH MEDIA
+
+
+  function media576Px() {
+    if (sm.matches) {//console.log('rightBounds ',rightBounds, ' leftBounds ',leftBounds);
+    }
+  } //All EVENTLISTENERS
+
+
+  function allEventListeners() {
+    sm.addListener(media576Px);
+  } //RUN FUNCTIONS
+  //allEventListeners();
+
+});
+
+/***/ }),
+
 /***/ "../assets/src/js/components/draggable-cards.js":
 /*!******************************************************!*\
   !*** ../assets/src/js/components/draggable-cards.js ***!
@@ -855,10 +920,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/form.test */ "../assets/src/js/components/form.test.js");
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
 /* harmony import */ var _components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/draggable-cards */ "../assets/src/js/components/draggable-cards.js");
-/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
-/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
+/* harmony import */ var _components_counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/counter */ "../assets/src/js/components/counter.js");
+/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
+/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
 
  //import sampleJs from './components/sample.component';
+
 
 
 
@@ -879,11 +946,12 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_6__["default"])();
-  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(_components_counter__WEBPACK_IMPORTED_MODULE_5__["default"])();
 });
 
 /***/ }),
