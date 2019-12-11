@@ -109,6 +109,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../assets/src/js/components/closest.js":
+/*!**********************************************!*\
+  !*** ../assets/src/js/components/closest.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * Get the closest matching element up the DOM tree.
+ * @private
+ * @param  {Element} elem     Starting element
+ * @param  {String}  selector Selector to match against
+ * @return {Boolean|Element}  Returns null if not match found
+ */
+/* harmony default export */ __webpack_exports__["default"] = (function (elem, selector) {
+  // Element.matches() polyfill
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
+      var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+          i = matches.length;
+
+      while (--i >= 0 && matches.item(i) !== this) {}
+
+      return i > -1;
+    };
+  } // Get closest match
+
+
+  for (; elem && elem !== document; elem = elem.parentNode) {
+    if (elem.matches(selector)) return elem;
+  }
+
+  return null;
+});
+
+/***/ }),
+
 /***/ "../assets/src/js/components/draggable-cards.js":
 /*!******************************************************!*\
   !*** ../assets/src/js/components/draggable-cards.js ***!
@@ -120,6 +159,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
 /* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
+/* harmony import */ var _closest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./closest */ "../assets/src/js/components/closest.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -127,6 +167,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -149,21 +190,48 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       rightBounds = 0,
       leftBounds = 0,
       sm = window.matchMedia('(max-width: 576px)'),
-      cardQuestionArr = [],
-      //Answer Vars
-  quest = document.querySelector('.quest'),
-      rightAnswer = document.querySelector('.right-answer'),
-      wrongAnswer = document.querySelector('.wrong-answer'),
-      hideMainButtons = document.querySelector('.hide-main-buttons'),
-      nextQuestion = document.querySelector('.next-question'),
-      nextQuestButton = document.querySelector('.next-question--button');
+      cardQuestionArr = [];
 
   var answeredCorrect = [];
+  var answeredIncorrectly = [];
 
   var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button'));
 
   questionBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {});
+    btn.addEventListener('click', function (e) {
+      var btnHolder = e.target.parentNode.parentNode.parentNode;
+      var question = btnHolder.querySelector('.quest');
+      var answersBtns = e.target.parentNode;
+      var rightAnswer = btnHolder.querySelector('.right-answer');
+      var wrongAnswer = btnHolder.querySelector('.wrong-answer');
+      var nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
+      var nextQuestButton = nextQuestion.querySelector('.next-question--button');
+
+      if (e.target.classList.contains('right-answer-bttn')) {
+        rightAnswer.classList.remove('hide');
+        answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
+      } else {
+        wrongAnswer.classList.remove('hide');
+        answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
+      }
+
+      question.classList.add('hide');
+      answersBtns.classList.add('hide');
+      nextQuestion.classList.remove('hide');
+      nextQuestButton.addEventListener('click', function (e) {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
+          duration: 1,
+          top: '+=100vh',
+          ease: 'sine.in'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
+          duration: 1,
+          x: '-=100%',
+          yoyo: true,
+          ease: 'sine.inout'
+        });
+      });
+    });
   }); //FUNCTION CHANGE BACKGROUND COLOR
 
   function slidebackgroundColor() {

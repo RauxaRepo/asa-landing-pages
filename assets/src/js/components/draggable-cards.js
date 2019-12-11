@@ -1,5 +1,6 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 import getBreakpoint from './breakpoints';
+import getClosest from './closest';
 
 export default function () {
 
@@ -21,24 +22,48 @@ export default function () {
 		rightBounds = 0,
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-		cardQuestionArr = [],
+		cardQuestionArr = [];
 
-		//Answer Vars
-		quest = document.querySelector('.quest'),
-		rightAnswer = document.querySelector('.right-answer'),
-		wrongAnswer = document.querySelector('.wrong-answer'),
-		hideMainButtons =  document.querySelector('.hide-main-buttons'),
-		nextQuestion = document.querySelector('.next-question'),
-		nextQuestButton = document.querySelector('.next-question--button');
+
 
 		
 
 		let answeredCorrect = [];
+		let answeredIncorrectly = [];
 		let questionBtns = [...document.querySelectorAll('.active-card--button')];
 
 		questionBtns.forEach((btn) => {
-			btn.addEventListener('click', () => {
 
+			btn.addEventListener('click', (e) => {
+
+				let btnHolder = e.target.parentNode.parentNode.parentNode;
+
+				let question = btnHolder.querySelector('.quest');
+				let answersBtns = e.target.parentNode;
+				let rightAnswer = btnHolder.querySelector('.right-answer'); 
+				let wrongAnswer =  btnHolder.querySelector('.wrong-answer');  
+				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
+				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
+
+				if(e.target.classList.contains('right-answer-bttn')) {
+					rightAnswer.classList.remove('hide');
+					answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
+				} else {
+					wrongAnswer.classList.remove('hide');
+					answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
+				}
+ 
+				question.classList.add('hide');
+				
+				answersBtns.classList.add('hide');
+				nextQuestion.classList.remove('hide');
+
+				nextQuestButton.addEventListener('click', (e) => {
+					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
+					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+				});
+				
+				 
 			});
 		});
 
