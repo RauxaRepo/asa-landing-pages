@@ -30,7 +30,7 @@ export default function () {
 
 		let answeredCorrect = [];
 		let answeredIncorrectly = [];
-		let questionBtns = [...document.querySelectorAll('.active-card--button')];
+		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
 
 		questionBtns.forEach((btn) => {
 

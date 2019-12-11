@@ -195,7 +195,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var answeredCorrect = [];
   var answeredIncorrectly = [];
 
-  var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button'));
+  var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button:not(.next-question--button)'));
 
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
