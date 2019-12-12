@@ -38,7 +38,7 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = `/${theCards.length}`;
+		//totalCardCount.innerHTML = `/${theCards.length}`;
 
 		//bg animation
 		tl

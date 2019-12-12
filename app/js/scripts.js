@@ -148,6 +148,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../assets/src/js/components/confetti.js":
+/*!***********************************************!*\
+  !*** ../assets/src/js/components/confetti.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
+/* harmony import */ var _draggable_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./draggable-cards */ "../assets/src/js/components/draggable-cards.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  //VVRS
+  var wrapper = document.querySelector('.confetti-container'),
+      colorShuffle = function colorShuffle(array) {
+    return array.sort(function () {
+      return Math.random() - 0.5;
+    });
+  },
+      colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde'],
+      num = 100; //CONFETTI
+
+
+  function confettiSpread() {
+    for (var i = 0; i < num; i++) {
+      var confetti = document.createElement('div');
+      wrapper.appendChild(confetti);
+      confetti.style.position = 'absolute';
+      confetti.style.backgroundColor = '#ffffff'; //colorArr;
+
+      confetti.style.transformOrigin = '50% 50%';
+      confetti.style.height = Math.random() * 20 + 'px'; //Math.floor( random(4, 16) ) + 'px';
+
+      confetti.style.width = Math.random() * 10 + 'px'; //Math.floor( random(4, 10) ) + 'px';
+
+      confetti.style.rotation = Math.random() * -120;
+      confetti.style.left = Math.random() * window.innerWidth;
+      confetti.style.top = Math.random() * window.innerHeight; //confetti.style.zIndex = i+1;
+      //TweenMax.to(confetti, 1, {rotation: -3 * i});		
+      //console.log(confetti)	
+    }
+  } //RUN FUNCTIONS
+
+
+  confettiSpread();
+});
+
+/***/ }),
+
 /***/ "../assets/src/js/components/counter.js":
 /*!**********************************************!*\
   !*** ../assets/src/js/components/counter.js ***!
@@ -283,8 +336,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var correctCardCount = document.querySelector('.results-num.ten');
   var totalCardCount = document.querySelector('.results-num.hundred');
   var correctCardMessage = document.querySelector('.correct-text');
-  var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
-  totalCardCount.innerHTML = "/".concat(theCards.length); //bg animation
+  var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!']; //totalCardCount.innerHTML = `/${theCards.length}`;
+  //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
@@ -979,10 +1032,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
 /* harmony import */ var _components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/draggable-cards */ "../assets/src/js/components/draggable-cards.js");
 /* harmony import */ var _components_counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/counter */ "../assets/src/js/components/counter.js");
-/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
-/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
+/* harmony import */ var _components_confetti__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/confetti */ "../assets/src/js/components/confetti.js");
+/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
+/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
 
  //import sampleJs from './components/sample.component';
+
 
 
 
@@ -1004,12 +1059,13 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
   Object(_components_counter__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_components_confetti__WEBPACK_IMPORTED_MODULE_6__["default"])();
 });
 
 /***/ }),

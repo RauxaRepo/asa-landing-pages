@@ -6,6 +6,7 @@ import responsysTest from './components/form.test';
 import  intoAnimation from './components/intro-animation';
 import  draggableCards from './components/draggable-cards';
 import  counter from './components/counter';
+import  confetti from './components/confetti';
 import metaTags from './components/meta.tags';
 import socialSet from './components/social.set';
 
@@ -29,4 +30,5 @@ documentReady( function() {
   intoAnimation();
   draggableCards();
   counter();
+  confetti();
 });
