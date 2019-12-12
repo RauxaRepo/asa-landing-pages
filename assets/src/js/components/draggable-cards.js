@@ -24,10 +24,21 @@ export default function () {
 		gradientBody = document.querySelector('.gradient--slide'),
 		tl = gsap.timeline({repeat: 0, repeatDelay: 0});
 
-
+		//*********************//
 		let answeredCorrect = [];
 		let answeredIncorrectly = [];
 		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
+		let correctCardCount = document.querySelector('.results-num.ten');
+		let totalCardCount = document.querySelector('.results-num.hundred');
+		let correctCardMessage = document.querySelector('.correct-text');
+		let correctCardMessageOps = [
+			'NICE TRY!',
+			'GOOD WORK!',
+			'AMAZING!'
+		];
+
+		totalCardCount.innerHTML = `/${theCards.length}`;
+
 
 		questionBtns.forEach((btn) => {
 
@@ -44,10 +55,23 @@ export default function () {
 				if(e.target.classList.contains('right-answer-bttn')) {
 					rightAnswer.classList.remove('hide');
 					answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
+					correctCardCount.innerHTML = answeredCorrect.length;
+					
+
 				} else {
 					wrongAnswer.classList.remove('hide');
 					answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
 				}
+
+				if(answeredCorrect.length < 5) {
+					correctCardMessage.innerHTML = correctCardMessageOps[0];
+				} else if (answeredCorrect.length > 4 && answeredCorrect.length < 8) {
+					correctCardMessage.innerHTML = correctCardMessageOps[1];
+				} else if (answeredCorrect.length > 7) {
+					correctCardMessage.innerHTML = correctCardMessageOps[2];
+				}
+				
+				
 
 				btnHolder.classList.remove('na');
  
