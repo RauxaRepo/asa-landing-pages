@@ -1,0 +1,78 @@
+//div,
+//img,
+//p,
+//span,
+//svg {
+//  outline: 1px solid $red;
+//}
+
+//Number of Questions
+.count {
+
+  &-container {
+    background-color: $flightbgblue;
+    height: 167px;
+    right: 100px;
+    top: 38%;
+    width: 230px;
+  }
+
+  &-text--box {
+    font-weight: bold;
+    left: 91px;
+    top: 69px;
+    width: 60px;
+    position: relative;
+  }
+
+  &-text  {
+    color: $white;
+    position: relative;
+    display: block;
+    float: left;
+    width: 20px;
+  }
+
+  &-text--quest {
+    color: $white;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 18px;
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+  }
+
+
+  span {
+    display: block;
+    float: left;
+    text-align: left;
+  }
+
+
+}
+
+.progress-container {
+  text-align: center;
+  width: 100%;
+}
+
+svg path {
+  will-change: auto;
+  stroke-width: 10px;
+  stroke-miterlimit: round;
+  transition: stroke-dashoffset 850ms ease-in-out;
+}
+
+//MEDIA QUERY
+@media only screen and (max-width: 576px) {
+
+
+}
+
+@media only screen and (max-width: 768px) {
+
+
+}
+

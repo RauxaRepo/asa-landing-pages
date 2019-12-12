@@ -1552,6 +1552,58 @@ drag-text {
   }
 }
 
+.count-container {
+  background-color: #48a9c5;
+  height: 167px;
+  right: 100px;
+  top: 38%;
+  width: 230px;
+}
+
+.count-text--box {
+  font-weight: bold;
+  left: 91px;
+  top: 69px;
+  width: 60px;
+  position: relative;
+}
+
+.count-text {
+  color: #fff;
+  position: relative;
+  display: block;
+  float: left;
+  width: 20px;
+}
+
+.count-text--quest {
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 18px;
+  margin-top: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.count span {
+  display: block;
+  float: left;
+  text-align: left;
+}
+
+.progress-container {
+  text-align: center;
+  width: 100%;
+}
+
+svg path {
+  will-change: auto;
+  stroke-width: 10px;
+  stroke-miterlimit: round;
+  transition: stroke-dashoffset 850ms ease-in-out;
+}
+
 .intro-block {
   position: relative;
   width: 100%;
