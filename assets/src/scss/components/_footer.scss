@@ -1,4 +1,57 @@
 
-.footer {
+
+
+// FOOTER
+.main-page-footer {
+    background-color: $footercolor;
+    bottom: 0;
+    color: $footertextcolor;
+    font-size: 10px;
+    height: $footerheight;
+    position: relative;
+    text-align: center;
+    width: 100%;
     z-index: 6;
-}
+  
+    p {
+      line-height: 17px;
+      margin: 0;
+      padding: 0 24px;
+    }
+  
+    a {
+      text-decoration: underline;
+      color: $footertextcolor;
+    }
+  
+    p:nth-child(1) {
+      padding-top: 40px;
+    }
+  
+    p:nth-child(:last-child) {
+      padding-bottom: 40px;
+    }
+  }
+  
+  .main-page-footer-slide {
+    bottom: -141px;
+    position: fixed;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+
+    &.active {
+        pointer-events: auto;
+        opacity: 1;
+    }
+  }
+  
+  .main-page-footer-mobile {
+    p:nth-child(1) {
+      padding-top: 8%;
+    }
+  
+    p {
+      line-height: 14px;
+    }
+  }
