@@ -92,6 +92,30 @@ $flightbgblue: #48a9c5;
     }
 }
 
+.results-share-fb {
+    display: inline-block;
+
+    button {
+        width: 40px;
+        height: 40px;
+        background-image: url('../images/fb_icon.png');
+        background-size: 100%;
+        border: 0;
+    }
+}
+
+.results-share-twitter {
+    display: inline-block; 
+
+    button {
+        width: 40px;
+        height: 40px;
+        background-image: url('../images/twitter_icon.png');
+        background-size: 100%;
+        border: 0;
+    }
+}
+
 .main-page-card--results  {
     display: block;
     z-index: 1;  
