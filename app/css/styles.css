@@ -946,7 +946,13 @@ section {
 }
 
 .active-card.q2 button {
-  font-size: 14px;
+  font-size: 11px;
+}
+
+@media (min-width: 768px) {
+  .active-card.q2 button {
+    font-size: 14px;
+  }
 }
 
 .active-card img {
@@ -965,18 +971,27 @@ section {
 .active-card--button {
   position: relative;
   display: block;
-  margin-top: 15px;
+  margin-top: 10px;
   width: 100%;
-  padding: 15px 0;
+  padding: 13px 0;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 4px;
   border: 0;
-  font-size: 16px;
+  font-size: 12px;
   transition: .3s;
   background-color: #48a9c5;
   color: #fff;
+}
+
+@media (min-width: 768px) {
+  .active-card--button {
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 15px 0;
+    margin-top: 15px;
+  }
 }
 
 .active-card--button:hover {
@@ -999,28 +1014,18 @@ section {
 
 .active-card p {
   padding-top: 5%;
-  padding-bottom: 3%;
-  font-size: 24px;
+  padding-bottom: 2%;
+  font-size: 18px;
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
 }
 
-.q1,
-.q2,
-.q3,
-.q4,
-.q5,
-.q6,
-.q7,
-.q8,
-.q9,
-.q10 {
-  display: none;
-}
-
-.q1 {
-  display: flex;
+@media (min-width: 768px) {
+  .active-card p {
+    font-size: 24px;
+    padding-bottom: 0;
+  }
 }
 
 .cards {
@@ -1386,8 +1391,6 @@ section {
     min-width: 1800px;
   }
   .active-card p {
-    padding-top: 21px;
-    padding-bottom: 15px;
     font-size: 10px;
     width: 124%;
   }
@@ -1395,16 +1398,7 @@ section {
     width: 124%;
   }
   .active-card--button {
-    border-radius: 2px;
     margin-top: 10px;
-    padding: 7px 0;
-    font-size: 10px;
-  }
-  .active-card.q2 button {
-    font-size: 7px;
-  }
-  .active-card.q4 button {
-    font-size: 8px;
   }
 }
 
@@ -1413,23 +1407,11 @@ section {
     width: 20% !important;
   }
   .active-card p {
-    padding-top: 20px;
-    padding-bottom: 15px;
     font-size: 15px;
     width: 114%;
   }
   .active-card--buttonwrapper {
     width: 114%;
-  }
-  .active-card--button {
-    border-radius: 2px;
-    margin-top: 10px;
-    padding: 7px 0;
-    font-size: 10px;
-  }
-  .active-card.q2 button,
-  .active-card.q4 button {
-    font-size: 10px;
   }
 }
 
