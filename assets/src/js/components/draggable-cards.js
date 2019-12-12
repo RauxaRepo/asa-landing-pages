@@ -1,6 +1,5 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
-import getBreakpoint from './breakpoints';
-import getClosest from './closest';
+import { countingMe } from './counter';
 
 export default function () {
 
@@ -21,7 +20,6 @@ export default function () {
 		rightBounds = 0,
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-		gradientBody = document.querySelector('.gradient--slide'),
 		tl = gsap.timeline({paused:true});
 
 		//*********************//
@@ -31,6 +29,12 @@ export default function () {
 		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
 		let correctCardCount = document.querySelector('.results-num.ten');
 		let totalCardCount = document.querySelector('.results-num.hundred');
+		let counterTotalCount = document.querySelector('.count-text-amount');
+		let counterRemainCount = document.querySelector('.dynamic-count');
+
+		let counterCurrentCount = '01';
+		let counterCurrentCountHolder = document.querySelector('.count-text-num');
+
 		let correctCardMessage = document.querySelector('.correct-text');
 		let correctCardMessageOps = [
 			'NICE TRY!',
@@ -38,7 +42,13 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = `/${theCards.length}`;
+		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
+		counterCurrentCountHolder.innerHTML = counterCurrentCount;
+		counterRemainCount.innerHTML = 9;
+		countingMe.counterMotion(countingMe.counterPercent(0));
+		
+		
+		
 
 		//bg animation
 		tl
@@ -105,6 +115,11 @@ export default function () {
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 					tl.tweenTo(`q${questionCount+1}`);
+
+					
+					counterCurrentCount++
+					countingMe.counterMotion(countingMe.counterPercent(counterCurrentCount-1));
+					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 					questionCount++;
 				});
 				

@@ -1284,12 +1284,6 @@ section {
   z-index: 10;
 }
 
-.main-page-card--question.two,
-.main-page-card--results.two {
-  display: block;
-  z-index: 10;
-}
-
 .main-page-card--question.three,
 .main-page-card--results.three {
   display: block;
@@ -1486,7 +1480,7 @@ drag-text {
 }
 
 .main-page-card--results {
-  z-index: 4;
+  z-index: 1;
 }
 
 .main-page-card--results p {
@@ -1553,7 +1547,6 @@ drag-text {
 }
 
 .count-container {
-  background-color: #48a9c5;
   height: 167px;
   right: 100px;
   top: 38%;
