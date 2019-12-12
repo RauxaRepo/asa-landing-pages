@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 
 //import sampleJs from './components/sample.component';
 import responsysTest from './components/form.test';
-import  intoAnimation from './components/intro-animation';
+import  introAnimation from './components/intro-animation';
 import  draggableCards from './components/draggable-cards';
 import  counter from './components/counter';
 import metaTags from './components/meta.tags';
@@ -26,7 +26,7 @@ documentReady( function() {
   socialSet();
   metaTags();
   responsysTest();
-  intoAnimation();
+  introAnimation();
   draggableCards();
   counter();
 });
