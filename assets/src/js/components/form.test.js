@@ -14,7 +14,7 @@ export default function () {
    // let respSubmitted = document.querySelector('.submitted-params');
     let landingUrl = window.location.href;
     let disctountRibbon = document.querySelector('.main-page-header');
-    let discountLegal = document.querySelector('.main-page-footer');
+    let discountLegal = document.querySelector('.main-page-footer-slide');
     let customerId = document.querySelector('input[name="id"]');
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');

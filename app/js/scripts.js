@@ -527,7 +527,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   // let respSubmitted = document.querySelector('.submitted-params');
   var landingUrl = window.location.href;
   var disctountRibbon = document.querySelector('.main-page-header');
-  var discountLegal = document.querySelector('.main-page-footer');
+  var discountLegal = document.querySelector('.main-page-footer-slide');
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');

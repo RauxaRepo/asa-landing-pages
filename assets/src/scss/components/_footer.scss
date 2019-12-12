@@ -11,7 +11,6 @@
     position: relative;
     text-align: center;
     width: 100%;
-    z-index: 6;
   
     p {
       line-height: 17px;
@@ -39,10 +38,12 @@
     width: 100%;
     opacity: 0;
     pointer-events: none;
+ 
 
     &.active {
         pointer-events: auto;
         opacity: 1;
+        z-index: 6;
     }
   }
   

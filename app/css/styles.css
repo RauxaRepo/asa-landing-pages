@@ -923,7 +923,6 @@ section {
   position: relative;
   text-align: center;
   width: 100%;
-  z-index: 6;
 }
 
 .main-page-footer p {
@@ -956,6 +955,7 @@ section {
 .main-page-footer-slide.active {
   pointer-events: auto;
   opacity: 1;
+  z-index: 6;
 }
 
 .main-page-footer-mobile p:nth-child(1) {
