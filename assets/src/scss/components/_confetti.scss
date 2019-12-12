@@ -1,0 +1,14 @@
+div,
+img,
+p,
+span,
+svg {
+  outline: 1px solid $red;
+}
+
+.confetti {
+  &-container {
+    height: auto;
+    width: 100%
+  }
+}
