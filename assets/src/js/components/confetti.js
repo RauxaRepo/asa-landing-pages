@@ -6,6 +6,8 @@ export default function () {
 
     //VVRS
     let wrapper = document.querySelector('.confetti-container'),
+      width = window.innerWidth,
+      height = window.innerHeight,
       colorShuffle = (array) => array.sort(() => Math.random() - 0.5),
       colorArr = ['#55dded','#5599e0','#516673','#aaccdd','#41bbde','#41bbde'],
       num = 100;
@@ -17,16 +19,16 @@ export default function () {
         let confetti = document.createElement('div');
         wrapper.appendChild(confetti);
         confetti.style.position = 'absolute';
-        confetti.style.backgroundColor = '#ffffff';//colorArr;
-				confetti.style.transformOrigin = '50% 50%';
+        confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+				//confetti.style.transformOrigin = '50% 50%';
         confetti.style.height = Math.random() * 20 + 'px';//Math.floor( random(4, 16) ) + 'px';
         confetti.style.width = Math.random() * 10 + 'px';//Math.floor( random(4, 10) ) + 'px';
-        confetti.style.rotation = Math.random() * -120;
-        confetti.style.left = Math.random() * window.innerWidth;
-        confetti.style.top = Math.random() * window.innerHeight;
+        confetti.style.transform = 'rotate(45deg) scale(1.5)';// scale(Math.random() * 1.5) skewX(Math.random() * 20) skewY(Math.random() * -20) perspective(Math.random() * 2)';
+        confetti.style.top = Math.random() * width;
+        confetti.style.left = Math.random() * height - height;
         //confetti.style.zIndex = i+1;
 				//TweenMax.to(confetti, 1, {rotation: -3 * i});		
-				//console.log(confetti)	
+				//console.log('window.innerWidth', window.innerWidth, 'window.innerHeight', window.innerHeight, ' confetti ', confetti)	
 			}
     }
 
