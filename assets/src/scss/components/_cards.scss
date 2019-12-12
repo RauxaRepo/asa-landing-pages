@@ -10,9 +10,12 @@
     
     @include bp(md) {
       display: flex;
+      opacity: 0;
+      transform: translateY(25%);
       justify-content: center;
       width:33%;
       height: 100%;
+      pointer-events: none;
 
       img {
         align-self: center;
@@ -25,6 +28,8 @@
 
   &-progress {
     display: none;
+    opacity: 0;
+    transform: translateY(25%);
     
     @include bp(md) {
       position: absolute;
