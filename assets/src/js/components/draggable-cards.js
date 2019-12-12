@@ -22,19 +22,48 @@ export default function () {
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
 		gradientBody = document.querySelector('.gradient--slide'),
-		tl = gsap.timeline({repeat: 0, repeatDelay: 0});
+		tl = gsap.timeline({paused:true});
 
-
+		//*********************//
 		let answeredCorrect = [];
 		let answeredIncorrectly = [];
+		let questionCount = 1;
 		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
+		let correctCardCount = document.querySelector('.results-num.ten');
+		let totalCardCount = document.querySelector('.results-num.hundred');
+		let correctCardMessage = document.querySelector('.correct-text');
+		let correctCardMessageOps = [
+			'NICE TRY!',
+			'GOOD WORK!',
+			'AMAZING!'
+		];
+
+		totalCardCount.innerHTML = `/${theCards.length}`;
+
+		//bg animation
+		tl
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q2')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
+		.addLabel('q3')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q4')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
+		.addLabel('q5')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q6')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
+		.addLabel('q7')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q8')
+
+
 
 		questionBtns.forEach((btn) => {
 
 			btn.addEventListener('click', (e) => {
 
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
-
 				let question = btnHolder.querySelector('.quest');
 				let answersBtns = e.target.parentNode;
 				let rightAnswer = btnHolder.querySelector('.right-answer'); 
@@ -45,18 +74,38 @@ export default function () {
 				if(e.target.classList.contains('right-answer-bttn')) {
 					rightAnswer.classList.remove('hide');
 					answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
+					correctCardCount.innerHTML = answeredCorrect.length;
+					
+
 				} else {
 					wrongAnswer.classList.remove('hide');
 					answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
 				}
+
+				
+
+				if(answeredCorrect.length < 5) {
+					correctCardMessage.innerHTML = correctCardMessageOps[0];
+				} else if (answeredCorrect.length > 4 && answeredCorrect.length < 8) {
+					correctCardMessage.innerHTML = correctCardMessageOps[1];
+				} else if (answeredCorrect.length > 7) {
+					correctCardMessage.innerHTML = correctCardMessageOps[2];
+				}
+				
+				
+
+				btnHolder.classList.remove('na');
  
 				question.classList.add('hide');
 				answersBtns.classList.add('hide');
 				nextQuestion.classList.remove('hide');
 
 				nextQuestButton.addEventListener('click', (e) => {
+					
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+					tl.tweenTo(`q${questionCount+1}`);
+					questionCount++;
 				});
 				
 				 
@@ -65,29 +114,8 @@ export default function () {
 
 
 
-		//FUNCTION CHANGE BACKGROUND COLOR
-		function slidebackgroundColor(){
-      tl.to(gradientBody, { duration: time, backgroundImage:'linear-gradient(90deg, #48a9c5 -1%, #2774ae -15%)', ease:'sine.out'})//light blue to dark
-        .addLabel('q1')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
-        .addLabel('q3')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
-        .addLabel('q4')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
-        .addLabel('q5')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
-        .addLabel('q6')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
-        .addLabel('q7')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
-        .addLabel('q8')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
-        .addLabel('q9')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
-        .addLabel('q10')
-        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
-		}
 
+		
 
 		//COLOR CARDS--SPREAD
 		function spreadTheCards(){
@@ -164,7 +192,9 @@ export default function () {
 				e = e || window.event;
 				e.preventDefault();
 				//stop drag over buttons
-				if(e.target.classList.contains('active-card--button'))  {
+				
+				// stopping drage over buttons and when card has 'na' class
+				if(e.target.classList.contains('active-card--button') || e.target.classList.contains('na'))  {
 					return false;
 				}
 				// get the mouse cursor position at startup:
@@ -275,7 +305,7 @@ export default function () {
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
-		//slidebackgroundColor();
+		
         
 }
 
