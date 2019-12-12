@@ -1078,6 +1078,7 @@ section {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  background-size: 120%;
 }
 
 .cards-single {
@@ -1355,7 +1356,7 @@ section {
 }
 
 .gradient--slide {
-  background-image: linear-gradient(90deg, #48a9c5 92%, #2774ae 94%, #2774ae 96%, #48a9c5 98%, #48a9c5 100%);
+  background-image: linear-gradient(to right, #48a9c5 97%, #2774ae 100%);
   background-size: 120%;
 }
 

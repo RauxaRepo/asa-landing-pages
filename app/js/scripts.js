@@ -191,8 +191,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       sm = window.matchMedia('(max-width: 576px)'),
       gradientBody = document.querySelector('.gradient--slide'),
       tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: 0,
-    repeatDelay: 0
+    paused: true
   }); //*********************//
 
 
@@ -205,7 +204,24 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var totalCardCount = document.querySelector('.results-num.hundred');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
-  totalCardCount.innerHTML = "/".concat(theCards.length);
+  totalCardCount.innerHTML = "/".concat(theCards.length); //bg animation
+
+  tl.to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    ease: 'sine.out'
+  }).addLabel('q2').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q3').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    ease: 'sine.out'
+  }).addLabel('q4').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q5').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    ease: 'sine.out'
+  }).addLabel('q6');
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       var btnHolder = e.target.parentNode.parentNode.parentNode;
@@ -224,6 +240,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         wrongAnswer.classList.remove('hide');
         answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
       }
+
+      tl.play('q1');
 
       if (answeredCorrect.length < 5) {
         correctCardMessage.innerHTML = correctCardMessageOps[0];
@@ -251,70 +269,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
       });
     });
-  }); //FUNCTION CHANGE BACKGROUND COLOR
-
-  function slidebackgroundColor() {
-    tl.to(gradientBody, {
-      duration: time,
-      backgroundImage: 'linear-gradient(90deg, #48a9c5 -1%, #2774ae -15%)',
-      ease: 'sine.out'
-    }) //light blue to dark
-    .addLabel('q1').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)',
-      ease: 'sine.out'
-    }) // dark blue to light
-    .addLabel('q3').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)',
-      ease: 'sine.out'
-    }) //light blue to dark
-    .addLabel('q4').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)',
-      ease: 'sine.out'
-    }) // dark blue to light
-    .addLabel('q5').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)',
-      ease: 'sine.out'
-    }) //light blue to dark
-    .addLabel('q6').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)',
-      ease: 'sine.out'
-    }) // dark blue to light
-    .addLabel('q7').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)',
-      ease: 'sine.out'
-    }) //light blue to dark
-    .addLabel('q8').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)',
-      ease: 'sine.out'
-    }) // dark blue to light
-    .addLabel('q9').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)',
-      ease: 'sine.out'
-    }) //light blue to dark
-    .addLabel('q10').to(gradientBody, {
-      delay: time,
-      duration: time,
-      backgroundImage: 'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)',
-      ease: 'sine.out'
-    }); // dark blue to light
-  } //COLOR CARDS--SPREAD
-
+  }); //COLOR CARDS--SPREAD
 
   function spreadTheCards() {
     var i = 0;
@@ -521,7 +476,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   init(); //start touch controls
 
   allEventListeners(); //eventlisteners
-  //slidebackgroundColor();
 });
 
 /***/ }),
@@ -709,8 +663,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           });
         }
       }
-    }).to(cardsHolder, 1, {
-      backgroundColor: '#48a9c5',
+    }).to('.cards', 1, {
+      backgroundImage: 'linear-gradient(to left, #2774ae 97%,  #48a9c5 100%)',
       ease: 'sine.in'
     }, '-=.3').to([cardCta, cardQuestionOne], 1.25, {
       rotationY: '+=180',

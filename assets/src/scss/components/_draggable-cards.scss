@@ -224,11 +224,12 @@ $opacityblack: rgba(0, 0, 0, .5);
 
 //GRADIENT
 .gradient--slide {
-  background-image: linear-gradient(90deg, rgba(72,169,197,1) 92%, rgba(39,116,174,1) 94%, rgba(39,116,174,1) 96%, rgba(72,169,197,1) 98%, rgba(72,169,197,1) 100%);
+  background-image: linear-gradient(to right, #48a9c5 97%, #2774ae 100%);
   background-size: 120%;
 } 
-
-
+//
+//$flightblue: #2774ae;
+//$flightbgblue: #48a9c5;
 //ANSWER CARDS
 drag-text {
   color: $grey;
