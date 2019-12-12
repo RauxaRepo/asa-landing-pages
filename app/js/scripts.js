@@ -197,6 +197,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var answeredCorrect = [];
   var answeredIncorrectly = [];
+  var questionCount = 1;
 
   var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button:not(.next-question--button)'));
 
@@ -221,7 +222,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }).addLabel('q5').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
-  }).addLabel('q6');
+  }).addLabel('q6').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q7').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    ease: 'sine.out'
+  }).addLabel('q8');
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       var btnHolder = e.target.parentNode.parentNode.parentNode;
@@ -240,8 +247,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         wrongAnswer.classList.remove('hide');
         answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
       }
-
-      tl.play('q1');
 
       if (answeredCorrect.length < 5) {
         correctCardMessage.innerHTML = correctCardMessageOps[0];
@@ -267,6 +272,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
+        tl.tweenTo("q".concat(questionCount + 1));
+        questionCount++;
       });
     });
   }); //COLOR CARDS--SPREAD
