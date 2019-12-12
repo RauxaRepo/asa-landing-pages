@@ -1053,6 +1053,7 @@ section {
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
+  pointer-events: none;
 }
 
 .q1,

@@ -34,7 +34,6 @@ export default function () {
 			btn.addEventListener('click', (e) => {
 
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
-
 				let question = btnHolder.querySelector('.quest');
 				let answersBtns = e.target.parentNode;
 				let rightAnswer = btnHolder.querySelector('.right-answer'); 
@@ -49,6 +48,8 @@ export default function () {
 					wrongAnswer.classList.remove('hide');
 					answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
 				}
+
+				btnHolder.classList.remove('na');
  
 				question.classList.add('hide');
 				answersBtns.classList.add('hide');
@@ -164,7 +165,9 @@ export default function () {
 				e = e || window.event;
 				e.preventDefault();
 				//stop drag over buttons
-				if(e.target.classList.contains('active-card--button'))  {
+				
+				// stopping drage over buttons and when card has 'na' class
+				if(e.target.classList.contains('active-card--button') || e.target.classList.contains('na'))  {
 					return false;
 				}
 				// get the mouse cursor position at startup:

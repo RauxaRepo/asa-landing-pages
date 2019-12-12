@@ -218,6 +218,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
       }
 
+      btnHolder.classList.remove('na');
       question.classList.add('hide');
       answersBtns.classList.add('hide');
       nextQuestion.classList.remove('hide');
@@ -398,8 +399,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     function dragMouseDown(e) {
       e = e || window.event;
       e.preventDefault(); //stop drag over buttons
+      // stopping drage over buttons and when card has 'na' class
 
-      if (e.target.classList.contains('active-card--button')) {
+      if (e.target.classList.contains('active-card--button') || e.target.classList.contains('na')) {
         return false;
       } // get the mouse cursor position at startup:
 
