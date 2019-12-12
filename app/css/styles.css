@@ -1603,16 +1603,9 @@ svg path {
   transition: stroke-dashoffset 850ms ease-in-out;
 }
 
-div,
-img,
-p,
-span,
-svg {
-  outline: 1px solid #f00000;
-}
-
 .confetti-container {
-  height: 900px;
+  height: auto;
+  position: absolute;
   width: 100%;
 }
 

@@ -173,8 +173,8 @@ __webpack_require__.r(__webpack_exports__);
       return Math.random() - 0.5;
     });
   },
-      colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde'],
-      num = 100; //CONFETTI
+      colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#f00000', '#ffff00'],
+      num = 200; //CONFETTI
 
 
   function confettiSpread() {
@@ -184,16 +184,15 @@ __webpack_require__.r(__webpack_exports__);
       confetti.style.position = 'absolute';
       confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)]; //confetti.style.transformOrigin = '50% 50%';
 
-      confetti.style.height = Math.random() * 20 + 'px'; //Math.floor( random(4, 16) ) + 'px';
-
-      confetti.style.width = Math.random() * 10 + 'px'; //Math.floor( random(4, 10) ) + 'px';
-
-      confetti.style.transform = 'rotate(45deg) scale(1.5)'; // scale(Math.random() * 1.5) skewX(Math.random() * 20) skewY(Math.random() * -20) perspective(Math.random() * 2)';
-
-      confetti.style.top = Math.random() * width;
-      confetti.style.left = Math.random() * height - height; //confetti.style.zIndex = i+1;
-      //TweenMax.to(confetti, 1, {rotation: -3 * i});		
-      //console.log('window.innerWidth', window.innerWidth, 'window.innerHeight', window.innerHeight, ' confetti ', confetti)	
+      confetti.style.height = Math.random() * 20 + 'px';
+      confetti.style.width = Math.random() * 10 + 'px';
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confetti, {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        rotation: Math.random() * 45,
+        scale: Math.random() * 1.2,
+        skew: Math.random() * 30
+      }); //console.log(' confetti ', confetti);
     }
   } //RUN FUNCTIONS
 
