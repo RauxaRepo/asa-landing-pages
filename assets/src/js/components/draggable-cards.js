@@ -21,11 +21,9 @@ export default function () {
 		rightBounds = 0,
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-		cardQuestionArr = [];
+		gradientBody = document.querySelector('.gradient--slide'),
+		tl = gsap.timeline({repeat: 0, repeatDelay: 0});
 
-
-
-		
 
 		let answeredCorrect = [];
 		let answeredIncorrectly = [];
@@ -69,8 +67,25 @@ export default function () {
 
 		//FUNCTION CHANGE BACKGROUND COLOR
 		function slidebackgroundColor(){
-			theCards.push(cardQuestionArr);
-			//when card is dragged off-screen place at the end of array
+      tl.to(gradientBody, { duration: time, backgroundImage:'linear-gradient(90deg, #48a9c5 -1%, #2774ae -15%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q1')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
+        .addLabel('q3')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q4')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
+        .addLabel('q5')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q6')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
+        .addLabel('q7')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q8')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
+        .addLabel('q9')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to right, #48a9c5 -5%, #2774ae -5%)', ease:'sine.out'})//light blue to dark
+        .addLabel('q10')
+        .to(gradientBody, { delay: time, duration: time, backgroundImage:'linear-gradient(to left, #48a9c5 100%, #2774ae 100%)', ease:'sine.out'})// dark blue to light
 		}
 
 
@@ -224,7 +239,7 @@ export default function () {
 		function randomizeCards () {
 			theCards.forEach(function(item){
 				//randomize cards
-				item.style.zIndex = Math.floor( random(5, 15) );
+				item.style.zIndex = Math.floor( random(7, 17) );
 				//cursor pointer
 				item.style.cursor = 'pointer';
 				
@@ -260,7 +275,7 @@ export default function () {
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
-		//answerQuestions();
+		//slidebackgroundColor();
         
 }
 
