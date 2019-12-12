@@ -1339,27 +1339,41 @@ section {
 }
 
 .results-share-fb {
+  position: relative;
   display: inline-block;
-}
-
-.results-share-fb button {
   width: 40px;
   height: 40px;
   background-image: url("../images/fb_icon.png");
   background-size: 100%;
   border: 0;
+  overflow: hidden;
+}
+
+.results-share-fb .fb-share-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  opacity: 0;
 }
 
 .results-share-twitter {
+  position: relative;
   display: inline-block;
-}
-
-.results-share-twitter button {
   width: 40px;
   height: 40px;
   background-image: url("../images/twitter_icon.png");
   background-size: 100%;
   border: 0;
+  overflow: hidden;
+}
+
+.results-share-twitter iframe {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 0%) scale(2);
+  opacity: 0;
 }
 
 .main-page-card--results {

@@ -406,10 +406,26 @@
                 <p>Share the&nbsp;fun:</p>
                 <div>
                   <div class="results-share-fb">
-                    <button></button>
+                    
+                    <div class="fb-share-button"
+                    data-href="-"
+                    data-layout="button"
+                    data-size="large">
+                      <a target="_blank"
+                      href="-" class="fb-xfbml-parse-ignore">
+                      Share</a>
+                    </div>
+
                   </div>
                   <div class="results-share-twitter">
-                    <button></button>
+                      <a class="twitter-share-button"
+                      href="https://twitter.com/intent/tweet"
+                      data-size="large"
+                      data-text="I just checked my Alaska know-how with this trivia quiz: bit.ly/1234567"
+                      data-url="bit.ly/1234567"
+                      data-hashtags="alaskayearintrivia,iflyalaska"
+                      data-via="AlaskaAir"
+                      >Tweet</a>
                   </div>
                 </div>
               </div>
@@ -422,7 +438,7 @@
         <div class="cards-progress">
           <div class="cards-progress-container">
             <img src="images/progress_fpo.png" alt="">
-            <p>Answer 5 more questions to unlock your 15% discount.</p>
+            <p><span class="q-left">9</span> questions left!</p>
           </div>
         </div>
 
@@ -446,29 +462,30 @@
   </footer>
 
   
-  <div class="social-test">
-    <div class="fb-share-button"
-      data-href="-"
-      data-layout="button"
-      data-size="large">
-        <a target="_blank"
-        href="-" class="fb-xfbml-parse-ignore">
-        Share</a>
-    </div>
 
-    <a class="twitter-share-button"
-      href="https://twitter.com/intent/tweet"
-      data-size="large"
-      data-text="I just checked my Alaska know-how with this trivia quiz: bit.ly/1234567"
-      data-url="bit.ly/1234567"
-      data-hashtags="alaskayearintrivia,iflyalaska"
-      data-via="AlaskaAir"
-      >Tweet</a>
-
-  </div>
   
 
   <script src="js/scripts.js"></script>
+
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=740721686425849&autoLogAppEvents=1"></script>
+
+  <script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+  
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
 
 
 </body>
