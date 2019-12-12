@@ -985,17 +985,22 @@ section {
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 24px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px;
   color: #48a9c5;
 }
 
 .active-card.q2 button {
-  font-size: 14px;
+  font-size: 11px;
+}
+
+@media (min-width: 768px) {
+  .active-card.q2 button {
+    font-size: 14px;
+  }
 }
 
 .active-card img {
@@ -1014,18 +1019,27 @@ section {
 .active-card--button {
   position: relative;
   display: block;
-  margin-top: 15px;
+  margin-top: 10px;
   width: 100%;
-  padding: 15px 0;
+  padding: 13px 0;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 4px;
   border: 0;
-  font-size: 16px;
+  font-size: 12px;
   transition: .3s;
   background-color: #48a9c5;
   color: #fff;
+}
+
+@media (min-width: 768px) {
+  .active-card--button {
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 15px 0;
+    margin-top: 15px;
+  }
 }
 
 .active-card--button:hover {
@@ -1047,30 +1061,20 @@ section {
 }
 
 .active-card p {
-  padding-top: 40px;
-  padding-bottom: 15px;
-  font-size: 24px;
+  padding-top: 5%;
+  padding-bottom: 2%;
+  font-size: 18px;
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
   pointer-events: none;
 }
 
-.q1,
-.q2,
-.q3,
-.q4,
-.q5,
-.q6,
-.q7,
-.q8,
-.q9,
-.q10 {
-  display: none;
-}
-
-.q1 {
-  display: flex;
+@media (min-width: 768px) {
+  .active-card p {
+    font-size: 24px;
+    padding-bottom: 0;
+  }
 }
 
 .cards {
@@ -1079,6 +1083,60 @@ section {
   height: 100vh;
   overflow: hidden;
   background-size: 120%;
+}
+
+.cards-lockup {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cards-lockup {
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    height: 100%;
+  }
+  .cards-lockup img {
+    align-self: center;
+    width: 90%;
+    max-width: 332px;
+    height: auto;
+  }
+}
+
+.cards-progress {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cards-progress {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 33%;
+    height: 100%;
+  }
+  .cards-progress-container {
+    width: 260px;
+    height: 260px;
+    align-self: center;
+  }
+  .cards-progress-container img {
+    align-self: center;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 139px;
+    height: auto;
+  }
+  .cards-progress-container p {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+  }
 }
 
 .cards-single {
@@ -1154,7 +1212,13 @@ section {
 }
 
 .main-page-card-center {
-  height: 600px;
+  height: 412px;
+}
+
+@media (min-width: 768px) {
+  .main-page-card-center {
+    height: 600px;
+  }
 }
 
 .main-page-card--question,
@@ -1182,11 +1246,19 @@ section {
   opacity: 1;
   border-radius: 10px;
   float: left;
-  height: 600px;
-  width: 360px;
   position: absolute;
   display: none;
   opacity: 0;
+  height: 412px;
+  width: 250px;
+}
+
+@media (min-width: 768px) {
+  .main-page-card--question,
+  .main-page-card--results {
+    height: 600px;
+    width: 360px;
+  }
 }
 
 .main-page-card--question.disable,
@@ -1259,6 +1331,30 @@ section {
 .main-page-card--results.ten {
   display: block;
   z-index: 2;
+}
+
+.results-share-fb {
+  display: inline-block;
+}
+
+.results-share-fb button {
+  width: 40px;
+  height: 40px;
+  background-image: url("../images/fb_icon.png");
+  background-size: 100%;
+  border: 0;
+}
+
+.results-share-twitter {
+  display: inline-block;
+}
+
+.results-share-twitter button {
+  width: 40px;
+  height: 40px;
+  background-image: url("../images/twitter_icon.png");
+  background-size: 100%;
+  border: 0;
 }
 
 .main-page-card--results {
@@ -1413,8 +1509,6 @@ drag-text {
     min-width: 1800px;
   }
   .active-card p {
-    padding-top: 21px;
-    padding-bottom: 15px;
     font-size: 10px;
     width: 124%;
   }
@@ -1422,23 +1516,7 @@ drag-text {
     width: 124%;
   }
   .active-card--button {
-    border-radius: 2px;
     margin-top: 10px;
-    padding: 7px 0;
-    font-size: 10px;
-  }
-  .active-card.q2 button {
-    font-size: 7px;
-  }
-  .active-card.q4 button {
-    font-size: 8px;
-  }
-  .q1 img,
-  .q3 img,
-  .q5 img,
-  .q7 img,
-  .q9 img {
-    width: 52%;
   }
 }
 
@@ -1447,23 +1525,11 @@ drag-text {
     width: 20% !important;
   }
   .active-card p {
-    padding-top: 20px;
-    padding-bottom: 15px;
     font-size: 15px;
     width: 114%;
   }
   .active-card--buttonwrapper {
     width: 114%;
-  }
-  .active-card--button {
-    border-radius: 2px;
-    margin-top: 10px;
-    padding: 7px 0;
-    font-size: 10px;
-  }
-  .active-card.q2 button,
-  .active-card.q4 button {
-    font-size: 10px;
   }
 }
 

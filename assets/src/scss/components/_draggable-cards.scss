@@ -20,43 +20,31 @@ $opacityblack: rgba(0, 0, 0, .5);
 
 
 .main-page-card-center {
-  height: 600px;
+    height: 412px;
+
+    @include bp(md) { 
+        height: 600px;
+    }
+
 }
 
 .main-page-card--question,
-.main-page-card--results  {
-  border-radius: 10px;
-  float: left;
-  height: 0;
-  padding-bottom: 160%;
-  margin: 10px 0;
-  width: 100%;
-  //overflow: hidden;
-  position: absolute;
-  display: none;
-  opacity: 0;
-
-  &.disable {
-    pointer-events: none;
-  }
-
-  &.one {
-    display: block;
-    z-index: 11;
+.main-page-card--results {
     opacity: 1;
     border-radius: 10px;
     float: left;
-    height: 600px;
-
     //margin: 10px 0;
-    width: 360px;
     //overflow: hidden;
     position: absolute;
     display: none;
     opacity: 0;
+    height: 412px;
+    width: 250px;
 
-  }
-
+    @include bp(md) { 
+        height: 600px;
+        width: 360px;
+    }
 
 
     &.disable {
@@ -118,6 +106,30 @@ $opacityblack: rgba(0, 0, 0, .5);
     display: block;
     z-index: 2;  
   }
+}
+
+.results-share-fb {
+    display: inline-block;
+
+    button {
+        width: 40px;
+        height: 40px;
+        background-image: url('../images/fb_icon.png');
+        background-size: 100%;
+        border: 0;
+    }
+}
+
+.results-share-twitter {
+    display: inline-block; 
+
+    button {
+        width: 40px;
+        height: 40px;
+        background-image: url('../images/twitter_icon.png');
+        background-size: 100%;
+        border: 0;
+    }
 }
 
 .main-page-card--results  {
@@ -285,76 +297,45 @@ drag-text {
 
 //MEDIA QUERY
 @media only screen and (max-width: 576px) {
-  .main-page-inner {
-    min-width: 1800px;
-  }
-  
-  .active-card p {
-    padding-top: 21px;
-    padding-bottom: 15px;
-    font-size: 10px;
-    width: 124%;
-  }
-
-  .active-card--buttonwrapper {
-    width: 124%;
-  }
-
-  .active-card--button {
-    border-radius: 2px;
-    margin-top: 10px;
-    padding: 7px 0;
-    font-size: 10px;
-  }
-
-  .active-card.q2 button {
-    font-size: 7px;
-  }
-
-  .active-card.q4 button {
-    font-size: 8px;
-  }
-
-  // QUESTION 1 (and all other odd questions, for now)
-  .q1,
-  .q3,
-  .q5,
-  .q7,
-  .q9 {
-    img {
-      width: 52%;
+    .main-page-inner {
+        min-width: 1800px;
     }
-  }
+    
+    .active-card p {
+        font-size: 10px;
+        width: 124%;
+    }
+
+    .active-card--buttonwrapper {
+        width: 124%;
+    }
+
+    .active-card--button {
+        margin-top: 10px;
+        // padding: 7px 0;
+    }
+
+
+
+    // QUESTION 1 (and all other odd questions, for now)
+
     
 }
 
 @media only screen and (max-width: 768px) {
-  .drag-card-holder {
-    width: 20% !important;
-  }
-  
-  .active-card p {
-    padding-top: 20px;
-    padding-bottom: 15px;
-    font-size: 15px;
-    width: 114%;
-  }
+    .drag-card-holder {
+        width: 20% !important;
+    }
+    
+    .active-card p {
+        font-size: 15px;
+        width: 114%;
+    }
 
-  .active-card--buttonwrapper {
-    width: 114%;
-  }
+    .active-card--buttonwrapper {
+        width: 114%;
+    }
 
-  .active-card--button {
-    border-radius: 2px;
-    margin-top: 10px;
-    padding: 7px 0;
-    font-size: 10px;
-  }
-
-  .active-card.q2 button, 
-  .active-card.q4 button {
-    font-size: 10px;
-  }
 
 }
 
