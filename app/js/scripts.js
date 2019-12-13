@@ -86,104 +86,76 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../assets/src/js/components/breakpoints.js":
-/*!**************************************************!*\
-  !*** ../assets/src/js/components/breakpoints.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function (breakpoint) {
-  var breakpoints = {
-    // default breakpoints from bootstrap
-    xs: '320px',
-    sm: '576px',
-    md: '768px',
-    lg: '992px',
-    xl: '1200px'
-  };
-  return breakpoints[breakpoint];
-});
-
-/***/ }),
-
-/***/ "../assets/src/js/components/closest.js":
-/*!**********************************************!*\
-  !*** ../assets/src/js/components/closest.js ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/**
- * Get the closest matching element up the DOM tree.
- * @private
- * @param  {Element} elem     Starting element
- * @param  {String}  selector Selector to match against
- * @return {Boolean|Element}  Returns null if not match found
- */
-/* harmony default export */ __webpack_exports__["default"] = (function (elem, selector) {
-  // Element.matches() polyfill
-  if (!Element.prototype.matches) {
-    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
-      var matches = (this.document || this.ownerDocument).querySelectorAll(s),
-          i = matches.length;
-
-      while (--i >= 0 && matches.item(i) !== this) {}
-
-      return i > -1;
-    };
-  } // Get closest match
-
-
-  for (; elem && elem !== document; elem = elem.parentNode) {
-    if (elem.matches(selector)) return elem;
-  }
-
-  return null;
-});
-
-/***/ }),
-
 /***/ "../assets/src/js/components/counter.js":
 /*!**********************************************!*\
   !*** ../assets/src/js/components/counter.js ***!
   \**********************************************/
-/*! exports provided: default */
+/*! exports provided: countingMe */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
-/* harmony import */ var _closest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./closest */ "../assets/src/js/components/closest.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countingMe", function() { return countingMe; });
+var sm = window.matchMedia('(max-width: 576px)'),
+    //percentage for progress counter
+thePercentage = 174; // Get all the Meters from SVG
+
+var meters = document.querySelectorAll('svg[data-value] .meter'); //Percentages
+
+var percentage = {
+  1: 174,
+  2: 167,
+  3: 160,
+  4: 153,
+  5: 137,
+  6: 125,
+  7: 118,
+  8: 106,
+  9: 95,
+  10: 50
+}; //COUNTER
+
+/*
+function counterMotion(thePercentage){
+meters.forEach( (path) => {
+    // Get the length of the path
+    let length = path.getTotalLength();
+    // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
+    // or uncomment to set it dynamically
+    // path.style.strokeDashoffset = length;
+    // path.style.strokeDasharray = length;
+  
+    // Get the value of the meter
+    let value = parseInt(path.parentNode.getAttribute('data-value'));
+    // Calculate the percentage of the total length
+    let to = length * ((thePercentage - value) / 100);
+    // Trigger Layout in Safari hack https://jakearchibald.com/2013/animated-line-drawing-svg/
+    path.getBoundingClientRect();
+    // Set the Offset
+    path.style.strokeDashoffset = Math.max(0, to);  
+  });
+}
+*/
+//PROGRESS OF THE COUNTER
+
+function getPercentage() {
+  Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
+  });
+} //MATCH MEDIA
 
 
+function media576Px() {
+  if (sm.matches) {//console.log('rightBounds ',rightBounds, ' leftBounds ',leftBounds);
+  }
+} //All EVENTLISTENERS
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  var sm = window.matchMedia('(max-width: 576px)'),
-      //percentage for progress counter
-  thePercentage = 0; // Get all the Meters from SVG
 
-  var meters = document.querySelectorAll('svg[data-value] .meter'); //Percentages
+function allEventListeners() {
+  sm.addListener(media576Px);
+}
 
-  var percentage = {
-    1: 174,
-    2: 167,
-    3: 160,
-    4: 153,
-    5: 137,
-    6: 125,
-    7: 118,
-    8: 106,
-    9: 95,
-    10: 50
-  }; //COUNTER
-
-  function counterMotion() {
+var countingMe = {
+  counterMotion: function counterMotion(thePercentage) {
     meters.forEach(function (path) {
       // Get the length of the path
       var length = path.getTotalLength(); // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
@@ -200,30 +172,17 @@ __webpack_require__.r(__webpack_exports__);
 
       path.style.strokeDashoffset = Math.max(0, to);
     });
-  } //PROGRESS OF THE COUNTER
+  },
+  counterPercent: function counterPercent(card) {
+    var percentage = [174, 167, 160, 153, 137, 125, 118, 106, 95, 50];
+    return percentage[card];
+  }
+}; //RUN FUNCTIONS
+//allEventListeners();
+//counterMotion();
+//getPercentage();
 
 
-  function getPercentage() {
-    Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
-    });
-  } //MATCH MEDIA
-
-
-  function media576Px() {
-    if (sm.matches) {//console.log('rightBounds ',rightBounds, ' leftBounds ',leftBounds);
-    }
-  } //All EVENTLISTENERS
-
-
-  function allEventListeners() {
-    sm.addListener(media576Px);
-  } //RUN FUNCTIONS
-  //allEventListeners();
-
-
-  counterMotion();
-  getPercentage();
-});
 
 /***/ }),
 
@@ -237,8 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
-/* harmony import */ var _closest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./closest */ "../assets/src/js/components/closest.js");
+/* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter */ "../assets/src/js/components/counter.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -249,11 +207,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var time = 1,
       timeInterval,
-      htmlBody = document.getElementsByTagName('BODY')[0],
       //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
   //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
   theCardsshuffle = function theCardsshuffle(array) {
@@ -268,7 +224,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       rightBounds = 0,
       leftBounds = 0,
       sm = window.matchMedia('(max-width: 576px)'),
-      gradientBody = document.querySelector('.gradient--slide'),
       tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     paused: true
   }); //*********************//
@@ -282,9 +237,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var correctCardCount = document.querySelector('.results-num.ten');
   var totalCardCount = document.querySelector('.results-num.hundred');
+  var counterTotalCount = document.querySelector('.count-text-amount');
+  var counterRemainCount = document.querySelector('.dynamic-count');
+  var counterCurrentCount = '01';
+  var counterCurrentCountHolder = document.querySelector('.count-text-num');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
-  totalCardCount.innerHTML = "/".concat(theCards.length); //bg animation
+  totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
+  counterCurrentCountHolder.innerHTML = counterCurrentCount;
+  counterRemainCount.innerHTML = '9 questions left!';
+  _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(0)); //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
@@ -352,6 +314,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           ease: 'sine.inout'
         });
         tl.tweenTo("q".concat(questionCount + 1));
+        counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(counterCurrentCount - 1));
+        counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
+
+        if (!e.target.classList.contains('last')) {
+          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+        } else {
+          counterRemainCount.innerHTML = 'You did it!';
+        }
+
         questionCount++;
       });
     });
@@ -398,6 +370,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var ew = elmnt.offsetWidth; //width of the hovered element
 
+    var thebtn = elmnt.querySelector('.next-question');
+
     if (pos.x > ww / 2) {
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
@@ -415,6 +389,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
+        console.log(thebtn);
+        thebtn.click();
       }
     } else {
       //element is on left side of viewport
@@ -433,6 +409,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
+        thebtn.click();
       }
     }
   } //DRAGGABLE CARDS CODE
@@ -588,6 +565,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');
+  var bookBtn = document.querySelector('.as-book');
   var campaignName = 'Offercode_Email';
   var emailName = 'email';
   var getToken;
@@ -606,6 +584,8 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   if (urlVars()['CUSTOMER_ID_'] != undefined) {
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
+    bookBtn.classList.add('active');
+    bookBtn.setAttribute('href', "https://us.as.com/?CUSTOMER_ID_=".concat(urlVars()['CUSTOMER_ID_'], "&OFFER_CODE=").concat(urlVars()['OFFER_CODE'], "&OFFER_AUTHORIZATION=").concat(urlVars()['OFFER_AUTHORIZATION']));
   } // 
 
 
@@ -756,7 +736,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       rotationY: '+=180',
       ease: 'sine.inout'
     }, '+=.2').to([cardCta, cardQuestionOne], .625, {
-      z: '-=100',
+      z: '+=100',
       yoyo: true,
       repeat: 1,
       ease: 'sine.in'
@@ -781,9 +761,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     perspectiveOrigin: '50% 50% 0px'
   });
   gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(cardQuestionOne, {
+    backfaceVisibility: "hidden",
+    transformStyle: "preserve-3d",
     rotationY: -180
   });
   gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set([cardCta, cardQuestionOne], {
+    transformStyle: "preserve-3d",
     backfaceVisibility: "hidden"
   }); //
   // function to animate columns of cards
@@ -848,9 +831,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         delay: time - 0.5,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
         onComplete: function onComplete() {
-          columnCards.pause(); //EventListener
+          columnCards.pause();
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
+            duration: .8,
+            opacity: 1
+          }); //EventListener
 
-          cta.addEventListener('click', function (e) {
+          cta.querySelector('button').addEventListener('click', function (e) {
             cta.classList.add('disable');
             stackCards(showGroupCards);
           });
@@ -978,12 +965,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/form.test */ "../assets/src/js/components/form.test.js");
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
 /* harmony import */ var _components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/draggable-cards */ "../assets/src/js/components/draggable-cards.js");
-/* harmony import */ var _components_counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/counter */ "../assets/src/js/components/counter.js");
-/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
-/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
+/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
+/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
 
  //import sampleJs from './components/sample.component';
-
 
 
 
@@ -1004,12 +989,11 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  Object(_components_counter__WEBPACK_IMPORTED_MODULE_5__["default"])();
 });
 
 /***/ }),

@@ -1,6 +1,5 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
-import getBreakpoint from './breakpoints';
-import getClosest from './closest';
+import { countingMe } from './counter';
 
 export default function () {
 
@@ -9,7 +8,6 @@ export default function () {
 	
 	let time = 1,
 		timeInterval,
-		htmlBody = document.getElementsByTagName('BODY')[0],
 
 		//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
 		//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
@@ -21,7 +19,6 @@ export default function () {
 		rightBounds = 0,
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-		gradientBody = document.querySelector('.gradient--slide'),
 		tl = gsap.timeline({paused:true});
 
 		//*********************//
@@ -31,6 +28,12 @@ export default function () {
 		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
 		let correctCardCount = document.querySelector('.results-num.ten');
 		let totalCardCount = document.querySelector('.results-num.hundred');
+		let counterTotalCount = document.querySelector('.count-text-amount');
+		let counterRemainCount = document.querySelector('.dynamic-count');
+
+		let counterCurrentCount = '01';
+		let counterCurrentCountHolder = document.querySelector('.count-text-num');
+
 		let correctCardMessage = document.querySelector('.correct-text');
 		let correctCardMessageOps = [
 			'NICE TRY!',
@@ -38,7 +41,13 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = `/${theCards.length}`;
+		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
+		counterCurrentCountHolder.innerHTML = counterCurrentCount;
+		counterRemainCount.innerHTML = '9 questions left!';
+		countingMe.counterMotion(countingMe.counterPercent(0));
+		
+		
+		
 
 		//bg animation
 		tl
@@ -105,6 +114,20 @@ export default function () {
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 					tl.tweenTo(`q${questionCount+1}`);
+
+					
+					
+					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+					countingMe.counterMotion(countingMe.counterPercent(counterCurrentCount-1));
+					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
+					
+					if(!e.target.classList.contains('last')) {
+						counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+					} else {
+						counterRemainCount.innerHTML = 'You did it!';
+					}
+					
+
 					questionCount++;
 				});
 				
@@ -151,6 +174,7 @@ export default function () {
 			var ww = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); //width of the window
 			var pos = getPosition(elmnt); //position of the hovered element relative to window
 			var ew = elmnt.offsetWidth; //width of the hovered element
+			let thebtn = elmnt.querySelector('.next-question');
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
 
@@ -162,6 +186,10 @@ export default function () {
 					
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '+=100%', yoyo: true, ease:'sine.inout'});
+					console.log(thebtn);
+					
+					thebtn.click();
+					
 				}
 				
 			} else { //element is on left side of viewport
@@ -171,8 +199,14 @@ export default function () {
 					//console.log('Left Bounds');
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+					
+					thebtn.click();
+
+					
 				}
 			}
+
+
 
 		 }
 

@@ -62,10 +62,6 @@ $opacityblack: rgba(0, 0, 0, .5);
         z-index: 10;
     }
 
-  &.two {
-    display: block;
-    z-index: 10;
-  }
 
   &.three {
     display: block;
@@ -248,16 +244,12 @@ $opacityblack: rgba(0, 0, 0, .5);
   }
 }
 
-//GRADIENT
-.gradient--slide {
-  background-image: linear-gradient(to right, #48a9c5 97%, #2774ae 100%);
-  background-size: 120%;
-} 
+
 //
 //$flightblue: #2774ae;
 //$flightbgblue: #48a9c5;
 //ANSWER CARDS
-drag-text {
+.drag-text {
   color: $grey;
   display: block;
   font-size: 12px;
@@ -269,7 +261,7 @@ drag-text {
 
 //RESULTS CARD
 .main-page-card--results {
-  z-index: 4;     
+  z-index: 1;     
 
   p {
     padding-top: 15px;
