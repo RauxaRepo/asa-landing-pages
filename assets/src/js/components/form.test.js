@@ -10,22 +10,23 @@ export default function () {
 
 
 
-    let respSubmitBtn = document.querySelector('.submit-btn');
-    let respSubmitted = document.querySelector('.submitted-params');
+   //let respSubmitBtn = document.querySelector('.submit-btn');
+   // let respSubmitted = document.querySelector('.submitted-params');
     let landingUrl = window.location.href;
+    let disctountRibbon = document.querySelector('.main-page-header');
+    let discountLegal = document.querySelector('.main-page-footer-slide');
     let customerId = document.querySelector('input[name="id"]');
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
+
+    let bookBtn = document.querySelector('.as-book');
+
     
     let campaignName = 'Offercode_Email';
     let emailName = 'email';
     let getToken;
     let getEndpoint;
     let getTokenUrl = `https://cors-anywhere.herokuapp.com/https://login5.responsys.net/rest/api/v1.3/auth/token?user_name=${config.creds.user}&password=${config.creds.pass}&auth_type=password`;
-
-    //
-
-
 
 
     // function to grab params from url
@@ -38,10 +39,27 @@ export default function () {
         return vars;
     }
 
+    // checking for customer ID to display discount ribbon
+    if(urlVars()['CUSTOMER_ID_'] != undefined ) {
+        disctountRibbon.classList.add('active');
+        discountLegal.classList.add('active');
+        bookBtn.classList.add('active');
+        bookBtn.setAttribute('href',`https://us.as.com/?CUSTOMER_ID_=${urlVars()['CUSTOMER_ID_']}&OFFER_CODE=${urlVars()['OFFER_CODE']}&OFFER_AUTHORIZATION=${urlVars()['OFFER_AUTHORIZATION']}`);
+    }
+
+    // 
+    let uri = landingUrl.toString();
+	if (uri.indexOf("?") > 0) {
+	    var clean_uri = uri.substring(0, uri.indexOf("?"));
+	    window.history.replaceState({}, document.title, clean_uri);
+	}
+
     // setting inputs based on url params
-    customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
-    offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-    offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
+    //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
+    //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
+    //offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
+    //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
+    /// need to add UTM |
 
 
 
@@ -67,6 +85,7 @@ export default function () {
 
 
     // getting Token
+    /*
     respSubmitBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
@@ -96,7 +115,7 @@ export default function () {
 
         
     });
-
+    */
 
     fetch(getTokenUrl, {
         method : "POST",

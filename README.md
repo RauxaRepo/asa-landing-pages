@@ -2,17 +2,29 @@
 
 ## getting started
 i prefer Yarn but you can also use NPM  
-'yarn install' or 'npm install'.  These will install all dependencies.  
+'yarn install' or 'npm install'.  These will install all dependencies. 
+
+
+# we have four envinronments:
+develop
+qa
+stage
+prod
+
+Build files will be dropped in 'app' directory  
+*please build files base on destination.  
+
+develop => `yarn run devbuild` or `npm run devbuild`  
+qa => `yarn run qabuild` or `npm run qabuild`  
+stage/prod => `yarn run prodbuild` or `npm run prodbuild`
 
 # Run Locally
-`yarn run devbuild` or `npm run devbuild`  
+*only local will launch browser  
+`yarn run localbuild` or `npm run localbuild`  
 this will launch browswer http://127.0.0.1:8081/  
 this will serve files from 'app' directory.
 
-# Prod Build
-you can run `yarn run prodbuild` or `npm run prodbuild`  
-this does not launch browser  
-this will trigger a build with minified files, you can find thes files in the 'assets/dist' directory.
+
 
 # directories
 .gb => this directory contains Gulp task and config file  

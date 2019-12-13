@@ -1,0 +1,347 @@
+//div,
+//img,
+//p,
+//span {
+//  outline: 1px solid $red;
+//}
+
+$flightblue: #2774ae;
+$flightbgblue: #48a9c5;
+$grey: #656565;
+$white: #fff;
+
+$colorcardlightgreen: #b3d57d;
+$colorcarddrkgreen: #4da786;
+$colorcardlghtblue: #47a4bf;
+$colorcarddrkblue: #2672ab;
+
+$opacityblack: rgba(0, 0, 0, .5);
+
+
+
+.main-page-card-center {
+    height: 412px;
+
+    @include bp(md) { 
+        height: 600px;
+    }
+
+}
+
+.main-page-card--question,
+.main-page-card--results {
+    opacity: 1;
+    border-radius: 10px;
+    float: left;
+    //margin: 10px 0;
+    //overflow: hidden;
+    position: absolute;
+    display: none;
+    opacity: 0;
+    height: 412px;
+    width: 250px;
+
+    @include bp(md) { 
+        height: 600px;
+        width: 360px;
+    }
+
+
+    &.disable {
+        pointer-events: none;
+    }
+
+    &.one {
+        display: block;
+        z-index: 11;
+        opacity: 1;
+    }
+
+    &.two {
+        display: block;
+        z-index: 10;
+    }
+
+
+  &.three {
+    display: block;
+    z-index: 9; 
+  }
+ 
+  &.four {
+    display: block;
+    z-index: 8;         
+  }
+
+  &.five {
+    display: block;
+    z-index: 7;  
+  }
+
+  &.six {
+    display: block;
+    z-index: 6;  
+  }
+
+  &.seven {
+    display: block;
+    z-index: 5;   
+  }
+
+  &.eight {
+    display: block;
+    z-index: 4;  
+  }
+
+  &.nine {
+    display: block;
+    z-index: 3;  
+  }
+
+  &.ten {
+    display: block;
+    z-index: 2;  
+  }
+}
+
+.results-share-fb {
+  position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/fb_icon.png');
+    background-size: 100%;
+    border: 0;
+    overflow: hidden;
+
+    .fb-share-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%) scale(2);
+      opacity: 0;
+    }
+}
+
+.results-share-twitter {
+  position: relative;
+    display: inline-block; 
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/twitter_icon.png');
+    background-size: 100%;
+    border: 0;
+    overflow: hidden;
+
+    iframe {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, 0%) scale(2);
+      opacity: 0;
+    }
+}
+
+.main-page-card--results  {
+  display: block;
+  z-index: 1;  
+}
+
+//Display and Zindex
+.q1,
+.q2,
+.q3,
+.q4,
+.q5,
+.q6,
+.q7,
+.q8,
+.q9,
+.q10 {
+  display: flex;
+  //display: none;
+}
+
+
+//body color
+.background-color-blue {
+  background-color: $blue;
+}
+
+//BACKGROUND COLOR CARDS
+.main-page-card--color {
+  opacity: 1;
+  border-radius: 10px;
+  display: block;
+  float: left;
+  height: 0;
+  padding-bottom: 160%;
+  margin: 10px 0;
+  top: 0;
+  transform-origin: '50% 50%';
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.bg-color-card {
+  border-radius: 10px;
+  background-color: $white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.clr0 {
+  background-color: $white;
+}
+
+.clr1 {
+  background-color: $colorcardlightgreen;
+}
+
+.clr2 {
+  background-color: $colorcarddrkgreen;
+}
+
+.clr3 {
+  background-color: $colorcardlghtblue;
+}
+
+.clr4 {
+  background-color: $colorcardlghtblue;
+}
+
+.box-shadow {
+  box-shadow: 3px 4px 6px $opacityblack;
+}
+
+.opacity-zero {
+  opacity: 0;
+}
+
+.zIndex {
+
+  &-4 {
+    z-index: 4;
+  }
+
+  &-3 {
+    z-index: 3;
+  }
+
+  &-2 {
+    z-index: 2;
+  }
+
+  &-1 {
+    z-index: 1;
+  }
+}
+
+
+//
+//$flightblue: #2774ae;
+//$flightbgblue: #48a9c5;
+//ANSWER CARDS
+.drag-text {
+  color: $grey;
+  display: block;
+  font-size: 12px;
+  padding: 10px 0;
+  position: relative;
+  text-align: center;
+  width: 100%; 
+}
+
+//RESULTS CARD
+.main-page-card--results {
+  z-index: 1;     
+
+  p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 24px;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+.num-holder {
+  display: block;
+  position: relative;
+  text-align: center;
+  width: 170px;
+}
+
+.results-num {
+  color: $flightblue;
+  font-size: 66px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
+
+  display: block;
+  float: left;
+  position: relative;
+}
+
+.correct-text {
+  font-size: 49px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+//MEDIA QUERY
+@media only screen and (max-width: 576px) {
+    .main-page-inner {
+        min-width: 1800px;
+    }
+    
+    .active-card p {
+        font-size: 10px;
+        width: 124%;
+    }
+
+    .active-card--buttonwrapper {
+        width: 124%;
+    }
+
+    .active-card--button {
+        margin-top: 10px;
+        // padding: 7px 0;
+    }
+
+
+
+    // QUESTION 1 (and all other odd questions, for now)
+
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .drag-card-holder {
+        width: 20% !important;
+    }
+    
+    .active-card p {
+        font-size: 15px;
+        width: 114%;
+    }
+
+    .active-card--buttonwrapper {
+        width: 114%;
+    }
+
+
+}
+

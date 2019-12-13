@@ -97,4 +97,16 @@ section {
 
 }
 
+//Hide 
+.hide {
+  display: none;
+  visibility: hidden;
+}
+
+//Show
+.show {
+  display: block;
+  visibility: visible;
+}
+
 @include grid-create;
