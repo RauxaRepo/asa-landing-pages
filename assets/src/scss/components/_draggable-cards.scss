@@ -274,10 +274,11 @@ $opacityblack: rgba(0, 0, 0, .5);
 }
 
 .num-holder {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   text-align: center;
-  width: 170px;
+  width: 100%;
 }
 
 .results-num {
@@ -286,7 +287,6 @@ $opacityblack: rgba(0, 0, 0, .5);
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
-
   display: block;
   float: left;
   position: relative;

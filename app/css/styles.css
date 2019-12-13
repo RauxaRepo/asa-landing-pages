@@ -1528,10 +1528,11 @@ section {
 }
 
 .num-holder {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   text-align: center;
-  width: 170px;
+  width: 100%;
 }
 
 .results-num {
@@ -1662,20 +1663,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 41%;
+    left: 47%;
     opacity: 1.0;
   }
   25% {
-    left: 56%;
+    left: 63%;
   }
   50% {
-    left: 42%;
+    left: 2%;
   }
   75% {
-    left: 27%;
+    left: 44%;
   }
   100% {
-    left: 75%;
+    left: 74%;
   }
 }
 
