@@ -1032,6 +1032,7 @@ section {
   display: block;
   width: 100%;
   height: auto;
+  flex-shrink: 0;
 }
 
 .active-card--buttonwrapper {
@@ -1408,6 +1409,8 @@ section {
   top: 50%;
   transform: translate(-50%, 0%) scale(2);
   opacity: 0;
+  width: 40px !important;
+  height: 40px !important;
 }
 
 .main-page-card--results {
@@ -1663,20 +1666,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 47%;
+    left: 29%;
     opacity: 1.0;
   }
   25% {
-    left: 63%;
+    left: 55%;
   }
   50% {
-    left: 2%;
+    left: 85%;
   }
   75% {
-    left: 44%;
+    left: 81%;
   }
   100% {
-    left: 74%;
+    left: 92%;
   }
 }
 

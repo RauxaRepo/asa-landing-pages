@@ -139,6 +139,8 @@ $opacityblack: rgba(0, 0, 0, .5);
       top: 50%;
       transform: translate(-50%, 0%) scale(2);
       opacity: 0;
+      width: 40px !important;
+      height: 40px !important;
     }
 }
 
