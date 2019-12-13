@@ -177,7 +177,7 @@ $opacityblack: rgba(0, 0, 0, .5);
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
-  top: 0;
+  top: -4px;
   transform-origin: '50% 50%';
   width: 100%;
   position: absolute;
@@ -216,6 +216,16 @@ $opacityblack: rgba(0, 0, 0, .5);
 .clr4 {
   background-color: $colorcardlghtblue;
 }
+
+.clr0,
+.clr1,
+.clr2,
+.clr3,
+.clr4 {
+  height: 600px;
+  width: 360px;
+}
+
 
 .box-shadow {
   box-shadow: 3px 4px 6px $opacityblack;

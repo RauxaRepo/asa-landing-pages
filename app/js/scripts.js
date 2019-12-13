@@ -678,10 +678,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function allEventListeners() {
     sm.addListener(media576Px);
   } //RUN FUNCTIONS
-
-
-  spreadTheCards(); //spread color cards
+  //spreadTheCards();//spread color cards
   //randomizeCards();//randomize question cards
+
 
   dragCards(); //drag question cards
 
@@ -837,7 +836,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var cardHolder = document.querySelector('.cards');
+  var cardHolder = document.querySelector('.cards'),
+      theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color'));
 
   if (!cardHolder) {
     return;
@@ -895,9 +895,38 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ease: 'sine.inout'
     }, '-=.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
       autoAlpha: 1,
-      ease: 'sine.in'
+      ease: 'sine.in',
+      onComplete: function onComplete() {
+        spreadTheCards(); //spread color cards
+      }
     }, '-=0');
-  }; //setting card flip
+  }; //COLOR CARDS--SPREAD
+
+
+  function spreadTheCards() {
+    var i = 0;
+
+    for (var _i = 0; _i < theColorCards.length; _i++) {
+      //show cards except for the first
+      if (_i > 0) {
+        theColorCards[_i].style.opacity = 1;
+        theColorCards[_i].style.visibility = 'visible';
+      } //rotation
+
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
+        rotation: -2.2 * _i
+      });
+    }
+  } //HIDE COLOR CARDS
+
+
+  function hideColorCards() {
+    theColorCards.forEach(function (item) {
+      item.style.opacity = 0;
+      item.style.visibility = 'hidden';
+    });
+  } //setting card flip
 
 
   var cardsHolder = document.querySelector('.cards');
@@ -1051,7 +1080,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (c == cardCount) {
       addPos();
     }
-  }
+  } //RUN FUNCTIONS
+
+
+  hideColorCards();
 });
 
 /***/ }),

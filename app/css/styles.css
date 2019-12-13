@@ -1440,7 +1440,7 @@ section {
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
-  top: 0;
+  top: -4px;
   transform-origin: '50% 50%';
   width: 100%;
   position: absolute;
@@ -1478,6 +1478,15 @@ section {
 
 .clr4 {
   background-color: #47a4bf;
+}
+
+.clr0,
+.clr1,
+.clr2,
+.clr3,
+.clr4 {
+  height: 600px;
+  width: 360px;
 }
 
 .box-shadow {
@@ -1662,20 +1671,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 41%;
+    left: 70%;
     opacity: 1.0;
   }
   25% {
-    left: 56%;
+    left: 80%;
   }
   50% {
-    left: 42%;
+    left: 64%;
   }
   75% {
-    left: 27%;
+    left: 75%;
   }
   100% {
-    left: 75%;
+    left: 32%;
   }
 }
 
