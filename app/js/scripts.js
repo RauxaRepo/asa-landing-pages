@@ -275,17 +275,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var btnHolder = e.target.parentNode.parentNode.parentNode;
       var question = btnHolder.querySelector('.quest');
       var answersBtns = e.target.parentNode;
-      var rightAnswer = btnHolder.querySelector('.right-answer');
-      var wrongAnswer = btnHolder.querySelector('.wrong-answer');
+      var answerSelected = btn.getAttribute('data-res');
       var nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
       var nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
       if (e.target.classList.contains('right-answer-bttn')) {
-        rightAnswer.classList.remove('hide');
         answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
         correctCardCount.innerHTML = answeredCorrect.length;
       } else {
-        wrongAnswer.classList.remove('hide');
         answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
       }
 
@@ -297,6 +294,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         correctCardMessage.innerHTML = correctCardMessageOps[2];
       }
 
+      btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
       btnHolder.classList.remove('na');
       question.classList.add('hide');
       answersBtns.classList.add('hide');
@@ -370,8 +368,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var ew = elmnt.offsetWidth; //width of the hovered element
 
-    var thebtn = elmnt.querySelector('.next-question');
-
     if (pos.x > ww / 2) {
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
@@ -389,8 +385,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        console.log(thebtn);
-        thebtn.click();
       }
     } else {
       //element is on left side of viewport
@@ -409,7 +403,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        thebtn.click();
       }
     }
   } //DRAGGABLE CARDS CODE
@@ -471,11 +464,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       document.onmouseup = null;
       document.onmousemove = null; //rotate back
 
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-        duration: time - 0.7,
-        rotation: 0,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
-      });
+      var thebtn = elmnt.querySelector('.next-question button');
+      thebtn.click();
     }
   } //TOUCH CONTROL
 

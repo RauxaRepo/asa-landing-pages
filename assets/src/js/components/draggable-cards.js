@@ -75,23 +75,22 @@ export default function () {
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
 				let question = btnHolder.querySelector('.quest');
 				let answersBtns = e.target.parentNode;
-				let rightAnswer = btnHolder.querySelector('.right-answer'); 
-				let wrongAnswer =  btnHolder.querySelector('.wrong-answer');  
+
+				let answerSelected = btn.getAttribute('data-res');
+				
+
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
 				if(e.target.classList.contains('right-answer-bttn')) {
-					rightAnswer.classList.remove('hide');
+					
 					answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
 					correctCardCount.innerHTML = answeredCorrect.length;
 					
-
 				} else {
-					wrongAnswer.classList.remove('hide');
+					
 					answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
 				}
-
-				
 
 				if(answeredCorrect.length < 5) {
 					correctCardMessage.innerHTML = correctCardMessageOps[0];
@@ -102,7 +101,7 @@ export default function () {
 				}
 				
 				
-
+				btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
 				btnHolder.classList.remove('na');
  
 				question.classList.add('hide');
@@ -127,7 +126,6 @@ export default function () {
 						counterRemainCount.innerHTML = 'You did it!';
 					}
 					
-
 					questionCount++;
 				});
 				
@@ -174,35 +172,36 @@ export default function () {
 			var ww = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); //width of the window
 			var pos = getPosition(elmnt); //position of the hovered element relative to window
 			var ew = elmnt.offsetWidth; //width of the hovered element
-			let thebtn = elmnt.querySelector('.next-question');
+			
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
 
 				
 				//console.log('RIGHT, ', pos);
 				if(elmnt.offsetLeft > (wrapper.offsetLeft + rightBounds)){
+					
+					
 					elmnt.classList.add('disable');
 					//console.log('Right Bounds');
 					
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '+=100%', yoyo: true, ease:'sine.inout'});
-					console.log(thebtn);
 					
-					thebtn.click();
+
 					
 				}
 				
 			} else { //element is on left side of viewport
 				//console.log('LEFT, ', pos);
 				if(elmnt.offsetLeft < (wrapper.offsetLeft - leftBounds)){
+					
+					
 					elmnt.classList.add('disable');
 					//console.log('Left Bounds');
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 					
-					thebtn.click();
 
-					
 				}
 			}
 
@@ -256,7 +255,10 @@ export default function () {
 				// set the element's new position:
 				elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
 				//check if card on left / right side of screen
+				
 				changeCardPos(elmnt);
+				
+				
 			}
 		  
 			function closeDragElement() {
@@ -264,11 +266,10 @@ export default function () {
 				document.onmouseup = null;
 				document.onmousemove = null;
 				//rotate back
-				gsap.to(elmnt, {
-					duration: time - 0.7,
-					rotation: 0,
-					ease:Quad.easInOut
-				});
+
+				let thebtn = elmnt.querySelector('.next-question button');
+				
+				thebtn.click();
 			}
 		}
 
