@@ -75,23 +75,22 @@ export default function () {
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
 				let question = btnHolder.querySelector('.quest');
 				let answersBtns = e.target.parentNode;
-				let rightAnswer = btnHolder.querySelector('.right-answer'); 
-				let wrongAnswer =  btnHolder.querySelector('.wrong-answer');  
+
+				let answerSelected = btn.getAttribute('data-res');
+				
+
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
 				if(e.target.classList.contains('right-answer-bttn')) {
-					rightAnswer.classList.remove('hide');
+					
 					answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
 					correctCardCount.innerHTML = answeredCorrect.length;
 					
-
 				} else {
-					wrongAnswer.classList.remove('hide');
+					
 					answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
 				}
-
-				
 
 				if(answeredCorrect.length < 5) {
 					correctCardMessage.innerHTML = correctCardMessageOps[0];
@@ -102,7 +101,7 @@ export default function () {
 				}
 				
 				
-
+				btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
 				btnHolder.classList.remove('na');
  
 				question.classList.add('hide');
@@ -127,7 +126,6 @@ export default function () {
 						counterRemainCount.innerHTML = 'You did it!';
 					}
 					
-
 					questionCount++;
 				});
 				
@@ -268,11 +266,7 @@ export default function () {
 				document.onmouseup = null;
 				document.onmousemove = null;
 				//rotate back
-				gsap.to(elmnt, {
-					duration: time - 0.7,
-					rotation: 0,
-					ease:Quad.easInOut
-				});
+
 				let thebtn = elmnt.querySelector('.next-question button');
 				
 				thebtn.click();
