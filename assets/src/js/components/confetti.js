@@ -29,7 +29,7 @@ export default function () {
           confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
           confetti.style.height = Math.random() * 20 + 'px';
           confetti.style.width = Math.random() * 10 + 'px';
-          gsap.set(confetti,{x:Math.random() * width, y:Math.random() * height - (height + 10), rotation:Math.random() *45, scale: Math.random() * 1.2});
+          gsap.set(confetti,{x:Math.random() * width, y:Math.random() * height - (height + 50), rotation:Math.random() *45, scale: Math.random() * 1.2});
           confettiArr.push(confetti);
           //console.log(' confetti ', i);
       }
@@ -41,10 +41,12 @@ export default function () {
         gsap.to(item, {
           duration: 3,
           delay: .005 * index, 
-          top: '+=210vh', 
+          y: '+=220vh', 
           rotation: Math.floor(Math.random() * -180),
-          ease:'sine.in'
-        })
+          ease:'sine.in',
+          onComplete: function(){
+            gsap.set(item, {duration:0, y: Math.random() * height - (height + 50)});
+        }})
         console.log(' RAIN ');   	
       })
     }
@@ -75,7 +77,7 @@ export default function () {
           delay: .02 * index, 
           y: '-=150',
           left: Math.floor( random(200, -200)),
-          rotation: Math.floor(Math.random() * -180),
+          rotation: Math.floor( random(180, -360)),
           ease:'sine.in',
           onComplete: function(){
             gsap.to(item, {
@@ -83,7 +85,13 @@ export default function () {
               delay: .001 * index, 
               top: '+=100', 
               opacity:0, 
-              ease:'sine.in'});
+              ease:'sine.in',
+              onComplete: function(){
+                gsap.set(item, {duration:0,
+                  y: 0,
+                  x: 0
+                });
+            }});
         }});
         gsap.to(item, {duration:.5, delay:.02 * index,x:'+=100%',yoyo:true});	
       })
@@ -91,7 +99,7 @@ export default function () {
     }
 
 		//RUN FUNCTIONS
-    //confettiBuildRain();
+    confettiBuildRain();
     //confettiRain();
     confettiBuildBurst();
     confettiBurst();
