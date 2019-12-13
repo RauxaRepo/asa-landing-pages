@@ -210,7 +210,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var time = 1,
       timeInterval,
-      htmlBody = document.getElementsByTagName('BODY')[0],
       //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
   //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
   theCardsshuffle = function theCardsshuffle(array) {
@@ -554,6 +553,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');
+  var bookBtn = document.querySelector('.as-book');
   var campaignName = 'Offercode_Email';
   var emailName = 'email';
   var getToken;
@@ -572,6 +572,8 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   if (urlVars()['CUSTOMER_ID_'] != undefined) {
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
+    bookBtn.classList.add('active');
+    bookBtn.setAttribute('href', "https://us.as.com/?CUSTOMER_ID_=".concat(urlVars()['CUSTOMER_ID_'], "&OFFER_CODE=").concat(urlVars()['OFFER_CODE'], "&OFFER_AUTHORIZATION=").concat(urlVars()['OFFER_AUTHORIZATION']));
   } // 
 
 
@@ -722,7 +724,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       rotationY: '+=180',
       ease: 'sine.inout'
     }, '+=.2').to([cardCta, cardQuestionOne], .625, {
-      z: '-=100',
+      z: '+=100',
       yoyo: true,
       repeat: 1,
       ease: 'sine.in'
@@ -747,9 +749,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     perspectiveOrigin: '50% 50% 0px'
   });
   gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(cardQuestionOne, {
+    backfaceVisibility: "hidden",
+    transformStyle: "preserve-3d",
     rotationY: -180
   });
   gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set([cardCta, cardQuestionOne], {
+    transformStyle: "preserve-3d",
     backfaceVisibility: "hidden"
   }); //
   // function to animate columns of cards
@@ -814,9 +819,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         delay: time - 0.5,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
         onComplete: function onComplete() {
-          columnCards.pause(); //EventListener
+          columnCards.pause();
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
+            duration: .8,
+            opacity: 1
+          }); //EventListener
 
-          cta.addEventListener('click', function (e) {
+          cta.querySelector('button').addEventListener('click', function (e) {
             cta.classList.add('disable');
             stackCards(showGroupCards);
           });

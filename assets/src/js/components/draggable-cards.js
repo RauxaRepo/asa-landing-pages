@@ -8,7 +8,6 @@ export default function () {
 	
 	let time = 1,
 		timeInterval,
-		htmlBody = document.getElementsByTagName('BODY')[0],
 
 		//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
 		//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.

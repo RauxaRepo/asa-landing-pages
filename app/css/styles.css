@@ -899,6 +899,30 @@ section {
   border: 1px solid #000;
 }
 
+.as-book {
+  border-radius: 6px;
+  background-color: #01426a;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 14px;
+  position: relative;
+  width: 200px;
+  text-align: center;
+  font-weight: 700;
+  margin: 33px auto 0 auto;
+  display: none;
+  pointer-events: none;
+}
+
+.as-book.active {
+  display: block;
+  pointer-events: auto;
+}
+
+.as-book:hover {
+  background-color: #2774ae;
+}
+
 .responsys-test label {
   position: relative;
   min-width: 150px;

@@ -73,7 +73,7 @@ export default function () {
       backgroundImage: 'linear-gradient(to left, #2774ae 97%,  #48a9c5 100%)',
       ease: 'sine.in'},'-=.3')
     .to([cardCta,cardQuestionOne], 1.25, {rotationY:'+=180', ease:'sine.inout'},'+=.2')
-    .to([cardCta,cardQuestionOne], .625, {z:'-=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5')
+    .to([cardCta,cardQuestionOne], .625, {z:'+=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5')
     .to('.cards-lockup,.cards-progress', .6, {opacity:1,y:0, ease:'sine.inout'},'-=.5')
     .to(['.main-page-card--question','.main-page-card--results'], .25, {autoAlpha:1, ease:'sine.in'},'-=0');
   }
@@ -92,10 +92,13 @@ export default function () {
   });
 
   gsap.set(cardQuestionOne,{
-    rotationY:-180
+    backfaceVisibility:"hidden",
+    transformStyle: "preserve-3d",
+    rotationY:-180,
   });
 
   gsap.set([cardCta,cardQuestionOne],{
+    transformStyle:"preserve-3d",
     backfaceVisibility:"hidden"
   });
   //
@@ -129,9 +132,11 @@ export default function () {
     let raiseFooter = function() {
 			clearInterval(introStop);
 			gsap.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
-				columnCards.pause();
+        columnCards.pause();
+        
+        gsap.to(cta.querySelector('button'),{duration:.8, opacity:1});
 				//EventListener
-			  cta.addEventListener('click', (e) => {
+			  cta.querySelector('button').addEventListener('click', (e) => {
           cta.classList.add('disable');
           stackCards(showGroupCards);
           
