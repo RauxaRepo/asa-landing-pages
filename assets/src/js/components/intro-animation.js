@@ -66,7 +66,9 @@ export default function () {
       stagger:{
         amount: 1.5,
         onComplete: function(e) {
-          gsap.to(e._targets,{duration:.25,autoAlpha:0});
+ 
+            gsap.to(e._targets,{duration:.25,autoAlpha:0});
+          
         }
     }})
     .to('.cards',1, {

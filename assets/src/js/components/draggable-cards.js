@@ -43,7 +43,7 @@ export default function () {
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = 9;
+		counterRemainCount.innerHTML = '9 questions left!';
 		countingMe.counterMotion(countingMe.counterPercent(0));
 		
 		
@@ -118,9 +118,16 @@ export default function () {
 					
 					
 					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-					counterRemainCount.innerHTML = theCards.length - counterCurrentCount;
 					countingMe.counterMotion(countingMe.counterPercent(counterCurrentCount-1));
 					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
+					
+					if(!e.target.classList.contains('last')) {
+						counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+					} else {
+						counterRemainCount.innerHTML = 'You did it!';
+					}
+					
+
 					questionCount++;
 				});
 				
@@ -167,6 +174,7 @@ export default function () {
 			var ww = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); //width of the window
 			var pos = getPosition(elmnt); //position of the hovered element relative to window
 			var ew = elmnt.offsetWidth; //width of the hovered element
+			let thebtn = elmnt.querySelector('.next-question');
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
 
@@ -178,6 +186,10 @@ export default function () {
 					
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '+=100%', yoyo: true, ease:'sine.inout'});
+					console.log(thebtn);
+					
+					thebtn.click();
+					
 				}
 				
 			} else { //element is on left side of viewport
@@ -187,8 +199,14 @@ export default function () {
 					//console.log('Left Bounds');
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+					
+					thebtn.click();
+
+					
 				}
 			}
+
+
 
 		 }
 

@@ -245,7 +245,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = 9;
+  counterRemainCount.innerHTML = '9 questions left!';
   _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(0)); //bg animation
 
   tl.to('.cards', 1, {
@@ -315,9 +315,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
         tl.tweenTo("q".concat(questionCount + 1));
         counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-        counterRemainCount.innerHTML = theCards.length - counterCurrentCount;
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(counterCurrentCount - 1));
         counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
+
+        if (!e.target.classList.contains('last')) {
+          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+        } else {
+          counterRemainCount.innerHTML = 'You did it!';
+        }
+
         questionCount++;
       });
     });
@@ -364,6 +370,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var ew = elmnt.offsetWidth; //width of the hovered element
 
+    var thebtn = elmnt.querySelector('.next-question');
+
     if (pos.x > ww / 2) {
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
@@ -381,6 +389,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
+        console.log(thebtn);
+        thebtn.click();
       }
     } else {
       //element is on left side of viewport
@@ -399,6 +409,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
+        thebtn.click();
       }
     }
   } //DRAGGABLE CARDS CODE
