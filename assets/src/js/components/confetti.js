@@ -45,7 +45,9 @@ export default function () {
           rotation: Math.floor(Math.random() * -180),
           ease:'sine.in',
           onComplete: function(){
-            gsap.set(item, {duration:0, y: Math.random() * height - (height + 50)});
+            gsap.set(item, {
+              y: Math.random() * height - (height + 50)
+            });
         }})
         console.log(' RAIN ');   	
       })
@@ -56,40 +58,40 @@ export default function () {
       for (let i=0; i<150; i++){
         let confettib = document.createElement('div');
         burstWrapper.appendChild(confettib);
-        confettib.style.opacity = 0;
+        confettib.style.transform = 'scale(0)';
         confettib.style.transformOrigin = '50% 50%';
         confettib.style.position = 'absolute';
+        confettib.style.zIndex = Math.floor( Math.random() * 2 );
         confettib.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
         confettib.style.height = Math.random() * 20 + 'px';
         confettib.style.width = Math.random() * 10 + 'px';
-        gsap.set(confettib,{rotation:Math.random() *45, scale: Math.random() * 1.2});
+        gsap.set(confettib,{rotation:Math.random() *45});
         confettiArrBurst.push(confettib);
       }
     }
     //burst
     function confettiBurst(){
-      //gsap.registerPlugin(MotionPathPlugin);
       confettiArrBurst.forEach(function(item, index){
-        item.style.zIndex = Math.floor( Math.random() * 2 );
-        item.style.opacity = 1;
         gsap.to(item, {
           duration: 0.5,
           delay: .02 * index, 
           y: '-=150',
           left: Math.floor( random(200, -200)),
           rotation: Math.floor( random(180, -360)),
+          scale: Math.random() * 1.2,
           ease:'sine.in',
           onComplete: function(){
             gsap.to(item, {
               duration: 0.5, 
               delay: .001 * index, 
               top: '+=100', 
-              opacity:0, 
+              opacity: 0, 
               ease:'sine.in',
               onComplete: function(){
-                gsap.set(item, {duration:0,
-                  y: 0,
-                  x: 0
+                gsap.set(item, {
+                  left: 0,
+                  top: 0,
+                  scale: 0
                 });
             }});
         }});
@@ -100,9 +102,9 @@ export default function () {
 
 		//RUN FUNCTIONS
     confettiBuildRain();
-    //confettiRain();
+    confettiRain();
     confettiBuildBurst();
-    confettiBurst();
+    //confettiBurst();
         
 }
 

@@ -172,7 +172,6 @@ __webpack_require__.r(__webpack_exports__);
         ease: 'sine.in',
         onComplete: function onComplete() {
           gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
-            duration: 0,
             y: Math.random() * height - (height + 50)
           });
         }
@@ -186,15 +185,15 @@ __webpack_require__.r(__webpack_exports__);
     for (var i = 0; i < 150; i++) {
       var confettib = document.createElement('div');
       burstWrapper.appendChild(confettib);
-      confettib.style.opacity = 0;
+      confettib.style.transform = 'scale(0)';
       confettib.style.transformOrigin = '50% 50%';
       confettib.style.position = 'absolute';
+      confettib.style.zIndex = Math.floor(Math.random() * 2);
       confettib.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
       confettib.style.height = Math.random() * 20 + 'px';
       confettib.style.width = Math.random() * 10 + 'px';
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confettib, {
-        rotation: Math.random() * 45,
-        scale: Math.random() * 1.2
+        rotation: Math.random() * 45
       });
       confettiArrBurst.push(confettib);
     }
@@ -202,16 +201,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
   function confettiBurst() {
-    //gsap.registerPlugin(MotionPathPlugin);
     confettiArrBurst.forEach(function (item, index) {
-      item.style.zIndex = Math.floor(Math.random() * 2);
-      item.style.opacity = 1;
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
         duration: 0.5,
         delay: .02 * index,
         y: '-=150',
         left: Math.floor(random(200, -200)),
         rotation: Math.floor(random(180, -360)),
+        scale: Math.random() * 1.2,
         ease: 'sine.in',
         onComplete: function onComplete() {
           gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
@@ -222,9 +219,9 @@ __webpack_require__.r(__webpack_exports__);
             ease: 'sine.in',
             onComplete: function onComplete() {
               gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
-                duration: 0,
-                y: 0,
-                x: 0
+                left: 0,
+                top: 0,
+                scale: 0
               });
             }
           });
@@ -241,10 +238,9 @@ __webpack_require__.r(__webpack_exports__);
   } //RUN FUNCTIONS
 
 
-  confettiBuildRain(); //confettiRain();
-
-  confettiBuildBurst();
-  confettiBurst();
+  confettiBuildRain();
+  confettiRain();
+  confettiBuildBurst(); //confettiBurst();
 });
 
 /***/ }),
