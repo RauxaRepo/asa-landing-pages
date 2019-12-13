@@ -370,8 +370,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var ew = elmnt.offsetWidth; //width of the hovered element
 
-    var thebtn = elmnt.querySelector('.next-question');
-
     if (pos.x > ww / 2) {
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
@@ -389,8 +387,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        console.log(thebtn);
-        thebtn.click();
       }
     } else {
       //element is on left side of viewport
@@ -409,7 +405,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        thebtn.click();
       }
     }
   } //DRAGGABLE CARDS CODE
@@ -476,6 +471,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         rotation: 0,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
       });
+      var thebtn = elmnt.querySelector('.next-question button');
+      thebtn.click();
     }
   } //TOUCH CONTROL
 

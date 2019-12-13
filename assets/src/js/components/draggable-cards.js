@@ -174,35 +174,36 @@ export default function () {
 			var ww = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); //width of the window
 			var pos = getPosition(elmnt); //position of the hovered element relative to window
 			var ew = elmnt.offsetWidth; //width of the hovered element
-			let thebtn = elmnt.querySelector('.next-question');
+			
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
 
 				
 				//console.log('RIGHT, ', pos);
 				if(elmnt.offsetLeft > (wrapper.offsetLeft + rightBounds)){
+					
+					
 					elmnt.classList.add('disable');
 					//console.log('Right Bounds');
 					
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '+=100%', yoyo: true, ease:'sine.inout'});
-					console.log(thebtn);
 					
-					thebtn.click();
+
 					
 				}
 				
 			} else { //element is on left side of viewport
 				//console.log('LEFT, ', pos);
 				if(elmnt.offsetLeft < (wrapper.offsetLeft - leftBounds)){
+					
+					
 					elmnt.classList.add('disable');
 					//console.log('Left Bounds');
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 					
-					thebtn.click();
 
-					
 				}
 			}
 
@@ -256,7 +257,10 @@ export default function () {
 				// set the element's new position:
 				elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
 				//check if card on left / right side of screen
+				
 				changeCardPos(elmnt);
+				
+				
 			}
 		  
 			function closeDragElement() {
@@ -269,6 +273,9 @@ export default function () {
 					rotation: 0,
 					ease:Quad.easInOut
 				});
+				let thebtn = elmnt.querySelector('.next-question button');
+				
+				thebtn.click();
 			}
 		}
 
