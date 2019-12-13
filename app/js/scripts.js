@@ -314,7 +314,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           ease: 'sine.inout'
         });
         tl.tweenTo("q".concat(questionCount + 1));
-        counterCurrentCount++;
+        counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+        counterRemainCount.innerHTML = theCards.length - counterCurrentCount;
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(counterCurrentCount - 1));
         counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
         questionCount++;

@@ -116,7 +116,9 @@ export default function () {
 					tl.tweenTo(`q${questionCount+1}`);
 
 					
-					counterCurrentCount++
+					
+					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+					counterRemainCount.innerHTML = theCards.length - counterCurrentCount;
 					countingMe.counterMotion(countingMe.counterPercent(counterCurrentCount-1));
 					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 					questionCount++;
