@@ -1632,6 +1632,53 @@ svg path {
   transition: stroke-dashoffset 850ms ease-in-out;
 }
 
+.confetti-container {
+  height: auto;
+  position: absolute;
+  width: 100%;
+}
+
+.confetti-container--burst {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  width: 20px;
+}
+
+.confetti-flip {
+  animation: flip 0.5s infinite;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes fallsway {
+  0% {
+    left: 41%;
+    opacity: 1.0;
+  }
+  25% {
+    left: 56%;
+  }
+  50% {
+    left: 42%;
+  }
+  75% {
+    left: 27%;
+  }
+  100% {
+    left: 75%;
+  }
+}
+
 .intro-block {
   position: relative;
   width: 100%;
