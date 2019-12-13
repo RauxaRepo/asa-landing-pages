@@ -18,6 +18,9 @@ export default function () {
     let customerId = document.querySelector('input[name="id"]');
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
+
+    let bookBtn = document.querySelector('.as-book');
+
     
     let campaignName = 'Offercode_Email';
     let emailName = 'email';
@@ -40,6 +43,8 @@ export default function () {
     if(urlVars()['CUSTOMER_ID_'] != undefined ) {
         disctountRibbon.classList.add('active');
         discountLegal.classList.add('active');
+        bookBtn.classList.add('active');
+        bookBtn.setAttribute('href',`https://us.as.com/?CUSTOMER_ID_=${urlVars()['CUSTOMER_ID_']}&OFFER_CODE=${urlVars()['OFFER_CODE']}&OFFER_AUTHORIZATION=${urlVars()['OFFER_AUTHORIZATION']}`);
     }
 
     // 
