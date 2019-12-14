@@ -111,22 +111,10 @@ export default function () {
   let cardCta = document.querySelector('.cards-single.cta .cards-single--init-card');
   let cardQuestionOne = document.querySelector('.cards-single.cta .main-page-card--question');
 
-  gsap.set(cardFlipWrapper, {
-    transformStyle:"preserve-3d",
-    perspective: 800,
-    perspectiveOrigin:'50% 50% 0px'
-  });
-
-  gsap.set(cardQuestionOne,{
-    backfaceVisibility:"hidden",
-    transformStyle: "preserve-3d",
-    rotationY:-180,
-  });
-
-  gsap.set([cardCta,cardQuestionOne],{
-    transformStyle:"preserve-3d",
-    backfaceVisibility:"hidden"
-  });
+  gsap.set(cardFlipWrapper, { transformStyle:"preserve-3d", perspective: 800, perspectiveOrigin:'50% 50% 0px'});
+  gsap.set(cardQuestionOne,{ backfaceVisibility:"hidden", transformStyle: "preserve-3d",rotationY:-180,});
+  gsap.set('.cards-single--init-card button',{ backfaceVisibility:"hidden", transformStyle: "preserve-3d"})
+  gsap.set([cardCta,cardQuestionOne],{ transformStyle:"preserve-3d",backfaceVisibility:"hidden" });
   //
     
 

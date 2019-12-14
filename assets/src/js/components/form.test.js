@@ -40,11 +40,11 @@ export default function () {
     }
 
     // checking for customer ID to display discount ribbon
-    if(urlVars()['CUSTOMER_ID_'] != undefined ) {
+    if(urlVars()['utm_campaign'] != undefined ) {
         disctountRibbon.classList.add('active');
         discountLegal.classList.add('active');
         bookBtn.classList.add('active');
-        bookBtn.setAttribute('href',`https://us.as.com/?CUSTOMER_ID_=${urlVars()['CUSTOMER_ID_']}&OFFER_CODE=${urlVars()['OFFER_CODE']}&OFFER_AUTHORIZATION=${urlVars()['OFFER_AUTHORIZATION']}`);
+        bookBtn.setAttribute('href',`https://us.as.com/?eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}`);
     }
 
     // 
@@ -53,7 +53,6 @@ export default function () {
 	    var clean_uri = uri.substring(0, uri.indexOf("?"));
 	    window.history.replaceState({}, document.title, clean_uri);
 	}
-
     // setting inputs based on url params
     //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
     //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';

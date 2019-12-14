@@ -102,7 +102,7 @@ export default function () {
 
 		//RUN FUNCTIONS
     confettiBuildRain();
-    confettiRain();
+   // confettiRain();
     confettiBuildBurst();
     //confettiBurst();
         
