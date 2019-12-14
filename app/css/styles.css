@@ -1250,6 +1250,7 @@ section {
   border-radius: 6px;
   opacity: 0;
   z-index: 45;
+  outline: none;
 }
 
 .cards-single.cta .cards-single--init-card.disable {
@@ -1390,6 +1391,7 @@ section {
   background-size: 100%;
   border: 0;
   overflow: hidden;
+  margin: 0 4px;
 }
 
 .results-share-fb .fb-share-button {
@@ -1409,6 +1411,7 @@ section {
   background-size: 100%;
   border: 0;
   overflow: hidden;
+  margin: 0 4px;
 }
 
 .results-share-twitter iframe {
@@ -1674,20 +1677,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 86%;
+    left: 64%;
     opacity: 1;
   }
   25% {
-    left: 64%;
+    left: 83%;
   }
   50% {
-    left: 19%;
+    left: 73%;
   }
   75% {
-    left: 92%;
+    left: 54%;
   }
   100% {
-    left: 26%;
+    left: 67%;
   }
 }
 
