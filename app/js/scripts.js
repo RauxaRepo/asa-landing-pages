@@ -735,11 +735,11 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   }; // checking for customer ID to display discount ribbon
 
 
-  if (urlVars()['CUSTOMER_ID_'] != undefined) {
+  if (urlVars()['utm_campaign'] != undefined) {
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
-    bookBtn.setAttribute('href', "https://us.as.com/?CUSTOMER_ID_=".concat(urlVars()['CUSTOMER_ID_'], "&OFFER_CODE=").concat(urlVars()['OFFER_CODE'], "&OFFER_AUTHORIZATION=").concat(urlVars()['OFFER_AUTHORIZATION']));
+    bookBtn.setAttribute('href', "https://us.as.com/?eml=".concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
 
