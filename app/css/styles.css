@@ -1410,8 +1410,8 @@ section {
   top: 50%;
   transform: translate(-50%, 0%) scale(2);
   opacity: 0;
-  width: 40px !important;
-  height: 40px !important;
+  width: 40px;
+  height: 40px;
 }
 
 .main-page-card--results {
@@ -1449,6 +1449,7 @@ section {
   width: 97%;
   position: absolute;
   z-index: 1;
+  pointer-events: none;
 }
 
 .bg-color-card {
@@ -1670,20 +1671,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 56%;
+    left: 72%;
     opacity: 1.0;
   }
   25% {
-    left: 34%;
+    left: 25%;
   }
   50% {
-    left: 3%;
+    left: 87%;
   }
   75% {
-    left: 88%;
+    left: 49%;
   }
   100% {
-    left: 63%;
+    left: 87%;
   }
 }
 

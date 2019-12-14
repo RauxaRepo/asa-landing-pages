@@ -943,6 +943,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     transformStyle: "preserve-3d",
     rotationY: -180
   });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.cards-single--init-card button', {
+    backfaceVisibility: "hidden",
+    transformStyle: "preserve-3d"
+  });
   gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set([cardCta, cardQuestionOne], {
     transformStyle: "preserve-3d",
     backfaceVisibility: "hidden"

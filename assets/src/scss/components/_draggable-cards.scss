@@ -140,8 +140,8 @@ $opacityblacklight: rgba(0, 0, 0, .25);
       top: 50%;
       transform: translate(-50%, 0%) scale(2);
       opacity: 0;
-      width: 40px !important;
-      height: 40px !important;
+      width: 40px;
+      height: 40px;
     }
 }
 
@@ -185,6 +185,7 @@ $opacityblacklight: rgba(0, 0, 0, .25);
   width: 97%;
   position: absolute;
   z-index: 1;
+  pointer-events: none;
 }
 
 .bg-color-card {
