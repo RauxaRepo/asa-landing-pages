@@ -16,6 +16,7 @@ $colorcardlghtblue: #47a4bf;
 $colorcarddrkblue: #2672ab;
 
 $opacityblack: rgba(0, 0, 0, .5);
+$opacityblacklight: rgba(0, 0, 0, .25);
 
 
 
@@ -175,11 +176,11 @@ $opacityblack: rgba(0, 0, 0, .5);
   display: block;
   float: left;
   height: 0;
-  padding-bottom: 160%;
+  padding-bottom: 167%;
   margin: 10px 0;
   top: -4px;
   transform-origin: '50% 50%';
-  width: 100%;
+  width: 97%;
   position: absolute;
   z-index: 1;
 }
@@ -203,27 +204,21 @@ $opacityblack: rgba(0, 0, 0, .5);
 
 .clr1 {
   background-color: $colorcardlightgreen;
+  box-shadow: 3px 4px 7px $opacityblacklight;
 }
 
 .clr2 {
   background-color: $colorcarddrkgreen;
+  box-shadow: 3px 4px 7px $opacityblacklight;
 }
 
 .clr3 {
   background-color: $colorcardlghtblue;
+  box-shadow: 3px 4px 7px $opacityblacklight;
 }
 
 .clr4 {
-  background-color: $colorcardlghtblue;
-}
-
-.clr0,
-.clr1,
-.clr2,
-.clr3,
-.clr4 {
-  height: 600px;
-  width: 360px;
+  background-color: $colorcarddrkblue;
 }
 
 
