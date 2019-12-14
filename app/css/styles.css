@@ -1093,6 +1093,7 @@ section {
   text-align: center;
   font-weight: bold;
   pointer-events: none;
+  width: 100%;
 }
 
 .active-card p span {
@@ -1673,20 +1674,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 32%;
+    left: 86%;
     opacity: 1;
   }
   25% {
-    left: 36%;
+    left: 64%;
   }
   50% {
-    left: 34%;
+    left: 19%;
   }
   75% {
-    left: 12%;
+    left: 92%;
   }
   100% {
-    left: 61%;
+    left: 26%;
   }
 }
 
