@@ -390,7 +390,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var answeredCorrect = [];
   var answeredIncorrectly = [];
-  var questionCount = 1;
+  var questionCount = 0;
 
   var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button:not(.next-question--button)'));
 
@@ -398,37 +398,43 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var totalCardCount = document.querySelector('.results-num.hundred');
   var counterTotalCount = document.querySelector('.count-text-amount');
   var counterRemainCount = document.querySelector('.dynamic-count');
-  var counterCurrentCount = '01';
+  var counterCurrentCount = '00';
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = '9 questions left!';
-  _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(0)); //bg animation
+  counterRemainCount.innerHTML = '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
+  //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
-  }).addLabel('q2').to('.cards', 1, {
+  }).addLabel('q1').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q2').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q3').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
     ease: 'sine.out'
   }).addLabel('q4').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q5').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
-    ease: 'sine.out'
-  }).addLabel('q6').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
     ease: 'sine.out'
-  }).addLabel('q7').to('.cards', 1, {
+  }).addLabel('q6').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
-  }).addLabel('q8');
+  }).addLabel('q7').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q8').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    ease: 'sine.out'
+  }).addLabel('q9');
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       var btnHolder = e.target.parentNode.parentNode.parentNode;
@@ -472,7 +478,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
         tl.tweenTo("q".concat(questionCount + 1));
         counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(counterCurrentCount - 1));
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
         counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
 
         if (!e.target.classList.contains('last')) {
