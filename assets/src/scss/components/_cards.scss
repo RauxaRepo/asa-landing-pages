@@ -7,13 +7,13 @@
 
   &-lockup {
     display: none;
-    
+
     @include bp(md) {
       display: flex;
       opacity: 0;
       transform: translateY(25%);
       justify-content: center;
-      width:33%;
+      width: 33%;
       height: 100%;
       pointer-events: none;
 
@@ -30,7 +30,7 @@
     display: none;
     opacity: 0;
     transform: translateY(25%);
-    
+
     @include bp(md) {
       position: absolute;
       top: 0;
@@ -38,7 +38,7 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
-      width:33%;
+      width: 33%;
       height: 100%;
 
       &-container {
@@ -83,17 +83,20 @@
       height: 610px; //412
     }
 
-    
 
     &.cta {
       z-index: 5;
 
-      
       .cards-single--content {
         overflow: visible;
-        
+
       }
-      
+
+      .main-page-card--question {
+        // sass-lint:disable no-vendor-prefixes
+        -webkit-backface-visibility: hidden;
+        -webkit-transform-style: preserve-3d;
+      }
 
       .cards-single--init-card {
         background-image: url('../images/cards/Title_Card_b.png');
@@ -105,6 +108,8 @@
         background-size: 100%;
         background-position: center center;
         background-repeat: no-repeat;
+        -webkit-backface-visibility: hidden; // sass-lint:disable no-vendor-prefixes
+        -webkit-transform-style: preserve-3d; // sass-lint:disable no-vendor-prefixes
         z-index: 16;
 
         button {
@@ -112,7 +117,7 @@
           bottom: 29px;
           width: 198px;
           left: 50%;
-          transform: translate(-50%,-50%);
+          transform: translate(-50%, -50%);
           border: 0;
           padding: 14px;
           text-transform: uppercase;
@@ -131,31 +136,33 @@
     }
 
     &.tropical {
+
       .cards-single--content {
         background-image: url('../images/cards/tropical.gif');
       }
-      
+
     }
 
     &.midnight {
       .cards-single--content {
         background-image: url('../images/cards/midnight.gif');
       }
-      
+
     }
 
     &.breezecard {
+
       .cards-single--content {
         background-image: url('../images/cards/breezeCard.gif');
       }
-      
+
     }
 
     &.palm {
       .cards-single--content {
         background-image: url('../images/cards/palm.gif');
       }
-      
+
     }
 
   }
@@ -169,7 +176,6 @@
     transform: translate(-50%, -50%);
     border-radius: 10px;
     overflow: hidden;
-  
     background-size: 100%;
     background-position: center center;
     background-repeat: no-repeat;

@@ -115,17 +115,12 @@ main {
   border-radius: 10px;
   background-repeat: no-repeat;
   display: flex;
- // height: 0;
- // padding-bottom: 160%;
   margin: 10px 0;
   width: 360px;
   height: 600px;
-  //for intro animation
-  //opacity: 0;
 
   &-container {
     display: block;
-   // float: left;
     height: 100%;
     position: relative;
     width: 240px;

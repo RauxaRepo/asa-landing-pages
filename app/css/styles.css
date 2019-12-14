@@ -909,7 +909,7 @@ section {
   width: 200px;
   text-align: center;
   font-weight: 700;
-  margin: 33px auto 0 auto;
+  margin: 33px auto 0;
   display: none;
   pointer-events: none;
 }
@@ -1105,7 +1105,7 @@ section {
 @media (min-width: 768px) {
   .active-card p {
     font-size: 24px;
-    line-height: 30/24;
+    line-height: calc(30/24);
     padding-bottom: 0;
   }
 }
@@ -1214,6 +1214,11 @@ section {
   overflow: visible;
 }
 
+.cards-single.cta .main-page-card--question {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+
 .cards-single.cta .cards-single--init-card {
   background-image: url("../images/cards/Title_Card_b.png");
   position: absolute;
@@ -1224,6 +1229,8 @@ section {
   background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
   z-index: 16;
 }
 
@@ -1290,7 +1297,6 @@ section {
 
 .main-page-card--question,
 .main-page-card--results {
-  opacity: 1;
   border-radius: 10px;
   float: left;
   position: absolute;
@@ -1416,7 +1422,16 @@ section {
 
 .main-page-card--results {
   display: block;
-  z-index: 1;
+  z-index: 5;
+}
+
+.main-page-card--results p {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 24px;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: bold;
 }
 
 .q1,
@@ -1522,19 +1537,6 @@ section {
   width: 100%;
 }
 
-.main-page-card--results {
-  z-index: 5;
-}
-
-.main-page-card--results p {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-size: 24px;
-  line-height: 1.25;
-  text-align: center;
-  font-weight: bold;
-}
-
 .num-holder {
   display: flex;
   justify-content: center;
@@ -1579,7 +1581,7 @@ section {
 
 @media only screen and (max-width: 768px) {
   .drag-card-holder {
-    width: 20% !important;
+    width: 20%;
   }
   .active-card p {
     font-size: 15px;
@@ -1657,7 +1659,7 @@ svg path {
 }
 
 .confetti-flip {
-  animation: flip 0.5s infinite;
+  animation: flip .5s infinite;
 }
 
 @keyframes flip {
@@ -1671,20 +1673,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 72%;
-    opacity: 1.0;
+    left: 32%;
+    opacity: 1;
   }
   25% {
-    left: 25%;
+    left: 36%;
   }
   50% {
-    left: 87%;
+    left: 34%;
   }
   75% {
-    left: 49%;
+    left: 12%;
   }
   100% {
-    left: 87%;
+    left: 61%;
   }
 }
 

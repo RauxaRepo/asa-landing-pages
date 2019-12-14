@@ -238,8 +238,8 @@ __webpack_require__.r(__webpack_exports__);
   } //RUN FUNCTIONS
 
 
-  confettiBuildRain();
-  confettiRain();
+  confettiBuildRain(); // confettiRain();
+
   confettiBuildBurst(); //confettiBurst();
 });
 
