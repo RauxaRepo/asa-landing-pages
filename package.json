@@ -55,6 +55,7 @@
     "webpack": "^4.35.0",
     "webpack-stream": "^5.2.1",
     "whatwg-fetch": "^3.0.0",
-    "yargs": "^15.0.2"
+    "yargs": "^15.0.2",
+    "yarn": "^1.21.1"
   }
 }
