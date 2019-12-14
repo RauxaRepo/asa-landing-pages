@@ -1032,6 +1032,7 @@ section {
   display: block;
   width: 100%;
   height: auto;
+  flex-shrink: 0;
 }
 
 .active-card--buttonwrapper {
@@ -1409,6 +1410,8 @@ section {
   top: 50%;
   transform: translate(-50%, 0%) scale(2);
   opacity: 0;
+  width: 40px !important;
+  height: 40px !important;
 }
 
 .main-page-card--results {
@@ -1532,10 +1535,11 @@ section {
 }
 
 .num-holder {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   text-align: center;
-  width: 170px;
+  width: 100%;
 }
 
 .results-num {
@@ -1666,6 +1670,7 @@ svg path {
 
 @keyframes fallsway {
   0% {
+<<<<<<< HEAD
     left: 56%;
     opacity: 1.0;
   }
@@ -1680,6 +1685,22 @@ svg path {
   }
   100% {
     left: 55%;
+=======
+    left: 16%;
+    opacity: 1.0;
+  }
+  25% {
+    left: 36%;
+  }
+  50% {
+    left: 22%;
+  }
+  75% {
+    left: 42%;
+  }
+  100% {
+    left: 58%;
+>>>>>>> d6148f1f385d82c33b93f46f9547b139754d51c0
   }
 }
 
