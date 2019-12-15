@@ -1,5 +1,6 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 import { countingMe } from './counter';
+import { confetti } from './confetti';
 
 export default function () {
 
@@ -24,14 +25,14 @@ export default function () {
 		//*********************//
 		let answeredCorrect = [];
 		let answeredIncorrectly = [];
-		let questionCount = 1;
+		let questionCount = 0;
 		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
 		let correctCardCount = document.querySelector('.results-num.ten');
 		let totalCardCount = document.querySelector('.results-num.hundred');
 		let counterTotalCount = document.querySelector('.count-text-amount');
 		let counterRemainCount = document.querySelector('.dynamic-count');
 
-		let counterCurrentCount = '01';
+		let counterCurrentCount = '00';
 		let counterCurrentCountHolder = document.querySelector('.count-text-num');
 
 		let correctCardMessage = document.querySelector('.correct-text');
@@ -43,8 +44,8 @@ export default function () {
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = '9 questions left!';
-		countingMe.counterMotion(countingMe.counterPercent(0));
+		counterRemainCount.innerHTML = '10 questions left!';
+		//countingMe.counterMotion(countingMe.counterPercent(0));
 		
 		
 		
@@ -52,19 +53,24 @@ export default function () {
 		//bg animation
 		tl
 		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q1')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
 		.addLabel('q2')
-		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
 		.addLabel('q3')
-		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
 		.addLabel('q4')
-		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
 		.addLabel('q5')
-		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
-		.addLabel('q6')
 		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
-		.addLabel('q7')
+		.addLabel('q6')
 		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q7')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
 		.addLabel('q8')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q9');
+		
 
 
 
@@ -114,10 +120,15 @@ export default function () {
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 					tl.tweenTo(`q${questionCount+1}`);
 
-					
+					if( questionCount+1 == 5) {
+						confetti.burst();
+						
+					} else if (questionCount+1 == 10) {
+						confetti.rain();
+					}
 					
 					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-					countingMe.counterMotion(countingMe.counterPercent(counterCurrentCount-1));
+					countingMe.counterMotion(countingMe.counterPercent(questionCount));
 					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 					
 					if(!e.target.classList.contains('last')) {
@@ -335,7 +346,7 @@ export default function () {
 
 
 		//RUN FUNCTIONS
-		spreadTheCards();//spread color cards
+		//spreadTheCards();//spread color cards
 		//randomizeCards();//randomize question cards
 		dragCards();//drag question cards
 		init();//start touch controls

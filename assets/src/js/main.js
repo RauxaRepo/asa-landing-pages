@@ -5,7 +5,7 @@ import 'whatwg-fetch';
 import responsysTest from './components/form.test';
 import  introAnimation from './components/intro-animation';
 import  draggableCards from './components/draggable-cards';
-
+import  confetti from './components/confetti';
 import metaTags from './components/meta.tags';
 import socialSet from './components/social.set';
 
@@ -28,5 +28,4 @@ documentReady( function() {
   responsysTest();
   introAnimation();
   draggableCards();
-  
 });
