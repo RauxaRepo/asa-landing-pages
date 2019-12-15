@@ -8,18 +8,23 @@
 
 .confetti {
   &-container {
-    height: auto;
+    height: 100vh;
     position: absolute;
     width: 100%;
+    pointer-events: none;
+    top: 0;
+    z-index: 20;
+    overflow: hidden;
   }
 
   &-container--burst {
-    left: 0;
-    right: 0;
+    right: 100px;
     margin: 0 auto;
     position: absolute;
     top: 50%;
     width: 20px;
+    pointer-events: none;
+    z-index: 20;
   }
 }
 

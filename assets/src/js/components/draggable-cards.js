@@ -1,5 +1,6 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 import { countingMe } from './counter';
+import { confetti } from './confetti';
 
 export default function () {
 
@@ -119,7 +120,12 @@ export default function () {
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 					tl.tweenTo(`q${questionCount+1}`);
 
-					
+					if( questionCount+1 == 5) {
+						confetti.burst();
+						
+					} else if (questionCount+1 == 10) {
+						confetti.rain();
+					}
 					
 					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
 					countingMe.counterMotion(countingMe.counterPercent(questionCount));

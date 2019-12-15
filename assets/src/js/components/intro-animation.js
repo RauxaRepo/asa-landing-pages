@@ -1,4 +1,5 @@
 import {gsap, TweenMax, TimelineMax, Power, Power2, Linear} from 'gsap';
+import { confetti } from './confetti';
 
 export default function () {
 
@@ -93,7 +94,16 @@ export default function () {
         theColorCards[i].style.visibility = 'visible';
       }
       //rotation
-      gsap.to(theColorCards[i], 1, {rotation: - 2.2 * i});
+      gsap.to(theColorCards[i], 1, {rotation: - 2.2 * i, ease: 'back.out'});
+
+      if( i == theColorCards.length - 1 ) {
+
+        setTimeout( ()=> {
+          confetti.buildRain();
+          confetti.buildBurst();
+        }, 1000)
+      }
+
     }
   }
   //HIDE COLOR CARDS
