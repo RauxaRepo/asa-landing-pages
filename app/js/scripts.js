@@ -86,102 +86,56 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../assets/src/js/components/breakpoints.js":
-/*!**************************************************!*\
-  !*** ../assets/src/js/components/breakpoints.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function (breakpoint) {
-  var breakpoints = {
-    // default breakpoints from bootstrap
-    xs: '320px',
-    sm: '576px',
-    md: '768px',
-    lg: '992px',
-    xl: '1200px'
-  };
-  return breakpoints[breakpoint];
-});
-
-/***/ }),
-
 /***/ "../assets/src/js/components/confetti.js":
 /*!***********************************************!*\
   !*** ../assets/src/js/components/confetti.js ***!
   \***********************************************/
-/*! exports provided: default */
+/*! exports provided: confetti */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confetti", function() { return confetti; });
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
+ //VARS
 
+var wrapper = document.querySelector('.confetti-container'),
+    burstWrapper = document.querySelector('.confetti-container--burst'),
+    width = window.innerWidth,
+    height = window.innerHeight,
+    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521'],
+    confettiArr = [],
+    confettiArrBurst = [],
+    num = 800,
+    tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+  repeat: 0,
+  repeatDelay: 0
+}); //RANDOM MIN MAX
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  //VARS
-  var wrapper = document.querySelector('.confetti-container'),
-      burstWrapper = document.querySelector('.confetti-container--burst'),
-      width = window.innerWidth,
-      height = window.innerHeight,
-      colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521'],
-      confettiArr = [],
-      confettiArrBurst = [],
-      num = 800,
-      tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: 0,
-    repeatDelay: 0
-  }); //RANDOM MIN MAX
+function random(min, max) {
+  return min + Math.random() * (max - min);
+}
 
-  function random(min, max) {
-    return min + Math.random() * (max - min);
-  } //CONFETTI RAIN
-
-
-  function confettiBuildRain(isRain) {
+var confetti = {
+  buildRain: function buildRain() {
     for (var i = 0; i < num; i++) {
-      var confetti = document.createElement('div');
-      wrapper.appendChild(confetti);
-      confetti.style.position = 'absolute';
-      confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
-      confetti.style.height = Math.random() * 20 + 'px';
-      confetti.style.width = Math.random() * 10 + 'px';
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confetti, {
+      var _confetti = document.createElement('div');
+
+      wrapper.appendChild(_confetti);
+      _confetti.style.position = 'absolute';
+      _confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+      _confetti.style.height = Math.random() * 20 + 'px';
+      _confetti.style.width = Math.random() * 10 + 'px';
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti, {
         x: Math.random() * width,
         y: Math.random() * height - (height + 50),
         rotation: Math.random() * 45,
         scale: Math.random() * 1.2
       });
-      confettiArr.push(confetti); //console.log(' confetti ', i);
+      confettiArr.push(_confetti); //console.log(' confetti ', i);
     }
-  } //
-
-
-  function confettiRain() {
-    confettiArr.forEach(function (item, index) {
-      item.style.zIndex = Math.floor(Math.random() * 2);
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-        duration: 3,
-        delay: .005 * index,
-        y: '+=220vh',
-        rotation: Math.floor(Math.random() * -180),
-        ease: 'sine.in',
-        onComplete: function onComplete() {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
-            y: Math.random() * height - (height + 50)
-          });
-        }
-      });
-      console.log(' RAIN ');
-    });
-  } //CONFETTI BURST
-
-
-  function confettiBuildBurst(isBurst) {
+  },
+  buildBurst: function buildBurst() {
     for (var i = 0; i < 150; i++) {
       var confettib = document.createElement('div');
       burstWrapper.appendChild(confettib);
@@ -197,10 +151,25 @@ __webpack_require__.r(__webpack_exports__);
       });
       confettiArrBurst.push(confettib);
     }
-  } //burst
-
-
-  function confettiBurst() {
+  },
+  rain: function rain() {
+    confettiArr.forEach(function (item, index) {
+      item.style.zIndex = Math.floor(Math.random() * 2);
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
+        duration: 3,
+        delay: .005 * index,
+        y: '+=220vh',
+        rotation: Math.floor(Math.random() * -180),
+        ease: 'sine.in',
+        onComplete: function onComplete() {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
+            y: Math.random() * height - (height + 50)
+          });
+        }
+      });
+    });
+  },
+  burst: function burst() {
     confettiArrBurst.forEach(function (item, index) {
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
         duration: 0.5,
@@ -234,14 +203,9 @@ __webpack_require__.r(__webpack_exports__);
         yoyo: true
       });
     });
-    console.log(' BURST ');
-  } //RUN FUNCTIONS
+  }
+};
 
-
-  confettiBuildRain(); // confettiRain();
-
-  confettiBuildBurst(); //confettiBurst();
-});
 
 /***/ }),
 
@@ -356,6 +320,7 @@ var countingMe = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
 /* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter */ "../assets/src/js/components/counter.js");
+/* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -363,6 +328,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -477,6 +443,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           ease: 'sine.inout'
         });
         tl.tweenTo("q".concat(questionCount + 1));
+
+        if (questionCount + 1 == 5) {
+          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
+        } else if (questionCount + 1 == 10) {
+          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
+        }
+
         counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
         counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
@@ -832,6 +805,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+/* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -839,6 +813,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
@@ -921,8 +896,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
-        rotation: -2.2 * _i
+        rotation: -2.2 * _i,
+        ease: 'back.out'
       });
+
+      if (_i == theColorCards.length - 1) {
+        setTimeout(function () {
+          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildRain();
+          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildBurst();
+        }, 1000);
+      }
     }
   } //HIDE COLOR CARDS
 
@@ -1187,7 +1170,6 @@ documentReady(function () {
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  Object(_components_confetti__WEBPACK_IMPORTED_MODULE_5__["default"])();
 });
 
 /***/ }),

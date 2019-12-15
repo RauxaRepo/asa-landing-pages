@@ -1648,18 +1648,32 @@ svg path {
 }
 
 .confetti-container {
-  height: auto;
+  height: 100vh;
   position: absolute;
   width: 100%;
+  pointer-events: none;
+  top: 0;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.confetti-container--burst-holder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .confetti-container--burst {
-  left: 0;
-  right: 0;
+  right: 17%;
   margin: 0 auto;
   position: absolute;
-  top: 50%;
+  top: 44%;
   width: 20px;
+  pointer-events: none;
+  z-index: 20;
 }
 
 .confetti-flip {
@@ -1677,20 +1691,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 64%;
+    left: 88%;
     opacity: 1;
   }
   25% {
-    left: 83%;
+    left: 92%;
   }
   50% {
-    left: 73%;
+    left: 45%;
   }
   75% {
-    left: 54%;
+    left: 12%;
   }
   100% {
-    left: 67%;
+    left: 12%;
   }
 }
 

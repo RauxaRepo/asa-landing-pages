@@ -28,5 +28,4 @@ documentReady( function() {
   responsysTest();
   introAnimation();
   draggableCards();
-  confetti();
 });
