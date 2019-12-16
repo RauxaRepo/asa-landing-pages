@@ -1479,6 +1479,13 @@ section {
   pointer-events: none;
 }
 
+@media (min-width: 576px) {
+  .main-page-card--color {
+    padding-bottom: 171%;
+    width: 101%;
+  }
+}
+
 .bg-color-card {
   border-radius: 10px;
   background-color: #fff;
@@ -1588,10 +1595,6 @@ section {
   }
   .active-card--button {
     margin-top: 10px;
-  }
-  .main-page-card--color {
-    padding-bottom: 171%;
-    width: 101%;
   }
 }
 
@@ -1703,20 +1706,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 32%;
+    left: 80%;
     opacity: 1;
   }
   25% {
-    left: 14%;
+    left: 25%;
   }
   50% {
-    left: 51%;
+    left: 9%;
   }
   75% {
-    left: 76%;
+    left: 67%;
   }
   100% {
-    left: 13%;
+    left: 6%;
   }
 }
 

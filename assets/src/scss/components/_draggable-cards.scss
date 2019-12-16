@@ -197,6 +197,11 @@ $opacityblacklight: rgba(0, 0, 0, .25);
   position: absolute;
   z-index: 1;
   pointer-events: none;
+
+  @include bp(sm) {
+    padding-bottom: 171%;  
+    width: 101%; 
+  }
 }
 
 .bg-color-card {
@@ -327,10 +332,6 @@ $opacityblacklight: rgba(0, 0, 0, .25);
     // padding: 7px 0;
   }
 
-  .main-page-card--color {  
-    padding-bottom: 171%;  
-    width: 101%;  
-  }
 }
 
 @media only screen and (max-width: 768px) {
