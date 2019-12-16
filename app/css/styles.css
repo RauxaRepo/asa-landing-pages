@@ -1286,6 +1286,14 @@ section {
   background-repeat: no-repeat;
 }
 
+@media only screen and (max-width: 576px) {
+  .cards-single.cta .cards-single--init-card button {
+    bottom: 16px;
+    width: 160px;
+    font-size: 12px;
+  }
+}
+
 .main-page-card-center {
   height: 412px;
 }
@@ -1566,32 +1574,43 @@ section {
   font-weight: bold;
 }
 
-@media only screen and (max-width: 576px) {
-  .main-page-inner {
-    min-width: 1800px;
-  }
-  .active-card p {
-    font-size: 10px;
-    width: 124%;
-  }
-  .active-card--buttonwrapper {
-    width: 124%;
-  }
-  .active-card--button {
-    margin-top: 10px;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .drag-card-holder {
     width: 20%;
   }
   .active-card p {
-    font-size: 15px;
+    font-size: 18px;
+    width: 100%;
+  }
+  .active-card--buttonwrapper {
+    width: 100%;
+  }
+  .main-page-card--color {
+    padding-bottom: 167%;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .main-page-inner {
+    min-width: 1800px;
+  }
+  .active-card p {
+    font-size: 14px;
     width: 114%;
   }
   .active-card--buttonwrapper {
     width: 114%;
+  }
+  .active-card--button {
+    margin-top: 10px;
+  }
+  .main-page-card--color {
+    padding-bottom: 171%;
+    width: 101%;
+  }
+  .next-question .drag-text {
+    font-size: 0.75rem;
   }
 }
 
@@ -1690,20 +1709,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 92%;
+    left: 53%;
     opacity: 1;
   }
   25% {
-    left: 58%;
+    left: 88%;
   }
   50% {
-    left: 76%;
+    left: 33%;
   }
   75% {
-    left: 8%;
+    left: 23%;
   }
   100% {
-    left: 48%;
+    left: 53%;
   }
 }
 
