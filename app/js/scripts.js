@@ -999,11 +999,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ease: 'none'
     }, 0); // timer for footer and animation intro stop
 
+    var topOffer = document.querySelector('.main-page-header');
+
     var raiseFooter = function raiseFooter() {
       clearInterval(introStop);
       columnCards.pause(); //pause card animation
 
-      document.querySelector('.main-page-footer-slide').style.display = 'block'; //make footer under cards
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(topOffer, {
+        duration: .5,
+        top: topOffer.offsetTop - (topOffer.clientHeight + 10)
+      }); //hide header
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
         duration: .8,

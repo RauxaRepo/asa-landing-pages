@@ -153,10 +153,11 @@ export default function () {
 
 
     // timer for footer and animation intro stop
+    let topOffer = document.querySelector('.main-page-header');
     let raiseFooter = function() {
       clearInterval(introStop);
       columnCards.pause();//pause card animation
-      document.querySelector('.main-page-footer-slide').style.display = 'block';//make footer under cards
+      gsap.to(topOffer,{duration:.5, top:topOffer.offsetTop - (topOffer.clientHeight + 10)});//hide header
       gsap.to(cta.querySelector('button'),{duration:.8, opacity:1});
         //EventListener
         cta.querySelector('button').addEventListener('click', (e) => {
