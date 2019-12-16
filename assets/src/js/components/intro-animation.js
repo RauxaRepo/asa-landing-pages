@@ -154,22 +154,19 @@ export default function () {
 
     // timer for footer and animation intro stop
     let raiseFooter = function() {
-			clearInterval(introStop);
-			gsap.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
-        columnCards.pause();
-        
-        gsap.to(cta.querySelector('button'),{duration:.8, opacity:1});
-				//EventListener
-			  cta.querySelector('button').addEventListener('click', (e) => {
+      clearInterval(introStop);
+      columnCards.pause();//pause card animation
+      document.querySelector('.main-page-footer-slide').style.display = 'block';//make footer under cards
+      gsap.to(cta.querySelector('button'),{duration:.8, opacity:1});
+        //EventListener
+        cta.querySelector('button').addEventListener('click', (e) => {
           cta.classList.add('disable');
-          stackCards(showGroupCards);
-          
-        });
-			}})
+          stackCards(showGroupCards); 
+      });
 			
     }
     //SLIDE IN FOOTER & STOP CARD ANIMATION
-    let introStop = setInterval(raiseFooter, 5000);
+    let introStop = setInterval(raiseFooter, 8000);
 
   }
 

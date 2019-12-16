@@ -33,12 +33,10 @@
 }
 
 .main-page-footer-slide {
-  bottom: -141px;
-  position: fixed;
+  display: none;
   width: 100%;
-  opacity: 0;
   pointer-events: none;
-
+  z-index: 17;
 
   &.active {
     pointer-events: auto;

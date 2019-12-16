@@ -969,11 +969,10 @@ section {
 }
 
 .main-page-footer-slide {
-  bottom: -141px;
-  position: fixed;
+  display: none;
   width: 100%;
-  opacity: 0;
   pointer-events: none;
+  z-index: 17;
 }
 
 .main-page-footer-slide.active {
@@ -1691,20 +1690,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 47%;
+    left: 92%;
     opacity: 1;
   }
   25% {
-    left: 27%;
+    left: 58%;
   }
   50% {
-    left: 12%;
+    left: 76%;
   }
   75% {
-    left: 31%;
+    left: 8%;
   }
   100% {
-    left: 39%;
+    left: 48%;
   }
 }
 
