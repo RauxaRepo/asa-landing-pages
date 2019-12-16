@@ -967,27 +967,23 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     var raiseFooter = function raiseFooter() {
       clearInterval(introStop);
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theFooterSlide, time - 0.5, {
-        bottom: 0,
-        delay: time - 0.5,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
-        onComplete: function onComplete() {
-          columnCards.pause();
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
-            duration: .8,
-            opacity: 1
-          }); //EventListener
+      columnCards.pause(); //pause card animation
 
-          cta.querySelector('button').addEventListener('click', function (e) {
-            cta.classList.add('disable');
-            stackCards(showGroupCards);
-          });
-        }
+      document.querySelector('.main-page-footer-slide').style.display = 'block'; //make footer under cards
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
+        duration: .8,
+        opacity: 1
+      }); //EventListener
+
+      cta.querySelector('button').addEventListener('click', function (e) {
+        cta.classList.add('disable');
+        stackCards(showGroupCards);
       });
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
 
-    var introStop = setInterval(raiseFooter, 5000);
+    var introStop = setInterval(raiseFooter, 8000);
   }; //
   // places all cards in grid based on array coors
   //
