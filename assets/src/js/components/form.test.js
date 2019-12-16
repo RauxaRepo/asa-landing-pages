@@ -44,7 +44,7 @@ export default function () {
         disctountRibbon.classList.add('active');
         discountLegal.classList.add('active');
         bookBtn.classList.add('active');
-        bookBtn.setAttribute('href',`https://us.as.com/?eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}`);
+        bookBtn.setAttribute('href',`https://www.alaskaair.com/planbook/?eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}`);
     }
 
     // 
