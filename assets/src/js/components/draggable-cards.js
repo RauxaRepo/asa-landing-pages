@@ -112,23 +112,16 @@ export default function () {
  
 				question.classList.add('hide');
 				answersBtns.classList.add('hide');
-				nextQuestion.classList.remove('hide');
-
-				nextQuestButton.addEventListener('click', (e) => {
-					
-					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
-					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
-					tl.tweenTo(`q${questionCount+1}`);
-
+        nextQuestion.classList.remove('hide');
+        
+          //Move
 					if( questionCount+1 == 5) {
 						confetti.burst();
 						
-					} else if (questionCount+1 == 10) {
-						confetti.rain();
 					}
 					
 					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-					countingMe.counterMotion(countingMe.counterPercent(questionCount));
+          countingMe.counterMotion(countingMe.counterPercent(questionCount));
 					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 					
 					if(!e.target.classList.contains('last')) {
@@ -136,7 +129,18 @@ export default function () {
 					} else {
 						counterRemainCount.innerHTML = 'You did it!';
 					}
+           
+        //Next Question
+				nextQuestButton.addEventListener('click', (e) => {
 					
+					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
+					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+					tl.tweenTo(`q${questionCount+1}`);
+
+          if (questionCount+1 == 10) {
+						confetti.rain();
+					}
+           
 					questionCount++;
 				});
 				

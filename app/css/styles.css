@@ -1710,6 +1710,7 @@ svg path {
 
 @keyframes fallsway {
   0% {
+<<<<<<< HEAD
     left: 85%;
     opacity: 1;
   }
@@ -1724,6 +1725,22 @@ svg path {
   }
   100% {
     left: 51%;
+=======
+    left: 47%;
+    opacity: 1;
+  }
+  25% {
+    left: 27%;
+  }
+  50% {
+    left: 12%;
+  }
+  75% {
+    left: 31%;
+  }
+  100% {
+    left: 39%;
+>>>>>>> dd06053b4a3dd403a428c5392343fd95c4e1352f
   }
 }
 
