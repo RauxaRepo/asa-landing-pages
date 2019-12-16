@@ -327,8 +327,10 @@ $opacityblacklight: rgba(0, 0, 0, .25);
     // padding: 7px 0;
   }
 
-  // QUESTION 1 (and all other odd questions, for now)
-
+  .main-page-card--color {  
+    padding-bottom: 171%;  
+    width: 101%;  
+  }
 }
 
 @media only screen and (max-width: 768px) {
