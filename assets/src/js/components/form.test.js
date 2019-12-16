@@ -6,10 +6,6 @@ export default function () {
 
 
 
-
-
-
-
    //let respSubmitBtn = document.querySelector('.submit-btn');
    // let respSubmitted = document.querySelector('.submitted-params');
     let landingUrl = window.location.href;
@@ -53,16 +49,6 @@ export default function () {
 	    var clean_uri = uri.substring(0, uri.indexOf("?"));
 	    window.history.replaceState({}, document.title, clean_uri);
 	}
-    // setting inputs based on url params
-    //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
-    //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-    //offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
-    //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
-    /// need to add UTM |
-
-
-
-
 
 
     let respTriggerEmail = function(authToken, endPoint) {
@@ -82,39 +68,6 @@ export default function () {
     }
 
 
-
-    // getting Token
-    /*
-    respSubmitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        let respParms = {
-            CUSTOMER_ID_ : customerId.value,
-            OFFER_CODE : offerCode.value,
-            OFFER_AUTHORIZATION : offerAuth.value
-        };
-
-        console.log(respParms);
-        console.log(getToken);
-        console.log(getEndpoint);
-
-        let url = `https://cors-anywhere.herokuapp.com/${getEndpoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
-
-        fetch(url, {
-            method : "POST",
-            mode: 'cors', // no-cors, *cors, same-origin
-            headers: {
-                'Authorization': getToken, 
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-            body : JSON.stringify(respParms)
-        })
-        .then(response => response.json())
-        .then(json => console.log(json));
-
-        
-    });
-    */
 
     fetch(getTokenUrl, {
         method : "POST",
