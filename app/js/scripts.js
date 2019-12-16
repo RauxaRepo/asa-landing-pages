@@ -86,65 +86,126 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../assets/src/js/components/breakpoints.js":
-/*!**************************************************!*\
-  !*** ../assets/src/js/components/breakpoints.js ***!
-  \**************************************************/
-/*! exports provided: default */
+/***/ "../assets/src/js/components/confetti.js":
+/*!***********************************************!*\
+  !*** ../assets/src/js/components/confetti.js ***!
+  \***********************************************/
+/*! exports provided: confetti */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function (breakpoint) {
-  var breakpoints = {
-    // default breakpoints from bootstrap
-    xs: '320px',
-    sm: '576px',
-    md: '768px',
-    lg: '992px',
-    xl: '1200px'
-  };
-  return breakpoints[breakpoint];
-});
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confetti", function() { return confetti; });
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+ //VARS
 
-/***/ }),
+var wrapper = document.querySelector('.confetti-container'),
+    burstWrapper = document.querySelector('.confetti-container--burst'),
+    width = window.innerWidth,
+    height = window.innerHeight,
+    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521'],
+    confettiArr = [],
+    confettiArrBurst = [],
+    num = 800,
+    tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+  repeat: 0,
+  repeatDelay: 0
+}); //RANDOM MIN MAX
 
-/***/ "../assets/src/js/components/closest.js":
-/*!**********************************************!*\
-  !*** ../assets/src/js/components/closest.js ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+function random(min, max) {
+  return min + Math.random() * (max - min);
+}
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/**
- * Get the closest matching element up the DOM tree.
- * @private
- * @param  {Element} elem     Starting element
- * @param  {String}  selector Selector to match against
- * @return {Boolean|Element}  Returns null if not match found
- */
-/* harmony default export */ __webpack_exports__["default"] = (function (elem, selector) {
-  // Element.matches() polyfill
-  if (!Element.prototype.matches) {
-    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
-      var matches = (this.document || this.ownerDocument).querySelectorAll(s),
-          i = matches.length;
+var confetti = {
+  buildRain: function buildRain() {
+    for (var i = 0; i < num; i++) {
+      var _confetti = document.createElement('div');
 
-      while (--i >= 0 && matches.item(i) !== this) {}
-
-      return i > -1;
-    };
-  } // Get closest match
-
-
-  for (; elem && elem !== document; elem = elem.parentNode) {
-    if (elem.matches(selector)) return elem;
+      wrapper.appendChild(_confetti);
+      _confetti.style.position = 'absolute';
+      _confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+      _confetti.style.height = Math.random() * 20 + 'px';
+      _confetti.style.width = Math.random() * 10 + 'px';
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti, {
+        x: Math.random() * width,
+        y: Math.random() * height - (height + 50),
+        rotation: Math.random() * 45,
+        scale: Math.random() * 1.2
+      });
+      confettiArr.push(_confetti); //console.log(' confetti ', i);
+    }
+  },
+  buildBurst: function buildBurst() {
+    for (var i = 0; i < 150; i++) {
+      var confettib = document.createElement('div');
+      burstWrapper.appendChild(confettib);
+      confettib.style.transform = 'scale(0)';
+      confettib.style.transformOrigin = '50% 50%';
+      confettib.style.position = 'absolute';
+      confettib.style.zIndex = Math.floor(Math.random() * 2);
+      confettib.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+      confettib.style.height = Math.random() * 20 + 'px';
+      confettib.style.width = Math.random() * 10 + 'px';
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confettib, {
+        rotation: Math.random() * 45
+      });
+      confettiArrBurst.push(confettib);
+    }
+  },
+  rain: function rain() {
+    confettiArr.forEach(function (item, index) {
+      item.style.zIndex = Math.floor(Math.random() * 2);
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
+        duration: 3,
+        delay: .005 * index,
+        y: '+=220vh',
+        rotation: Math.floor(Math.random() * -180),
+        ease: 'sine.in',
+        onComplete: function onComplete() {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
+            y: Math.random() * height - (height + 50)
+          });
+        }
+      });
+    });
+  },
+  burst: function burst() {
+    confettiArrBurst.forEach(function (item, index) {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
+        duration: 0.5,
+        delay: .02 * index,
+        y: '-=150',
+        left: Math.floor(random(200, -200)),
+        rotation: Math.floor(random(180, -360)),
+        scale: Math.random() * 1.2,
+        ease: 'sine.in',
+        onComplete: function onComplete() {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
+            duration: 0.5,
+            delay: .001 * index,
+            top: '+=100',
+            opacity: 0,
+            ease: 'sine.in',
+            onComplete: function onComplete() {
+              gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
+                left: 0,
+                top: 0,
+                scale: 0
+              });
+            }
+          });
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
+        duration: .5,
+        delay: .02 * index,
+        x: '+=100%',
+        yoyo: true
+      });
+    });
   }
+};
 
-  return null;
-});
 
 /***/ }),
 
@@ -175,38 +236,72 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ../assets/src/js/components/counter.js ***!
   \**********************************************/
-/*! exports provided: default */
+/*! exports provided: countingMe */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
-/* harmony import */ var _closest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./closest */ "../assets/src/js/components/closest.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countingMe", function() { return countingMe; });
+var sm = window.matchMedia('(max-width: 576px)'),
+    //percentage for progress counter
+thePercentage = 174; // Get all the Meters from SVG
+
+var meters = document.querySelectorAll('svg[data-value] .meter'); //Percentages
+
+var percentage = {
+  1: 174,
+  2: 167,
+  3: 160,
+  4: 153,
+  5: 137,
+  6: 125,
+  7: 118,
+  8: 106,
+  9: 95,
+  10: 50
+}; //COUNTER
+
+/*
+function counterMotion(thePercentage){
+meters.forEach( (path) => {
+    // Get the length of the path
+    let length = path.getTotalLength();
+    // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
+    // or uncomment to set it dynamically
+    // path.style.strokeDashoffset = length;
+    // path.style.strokeDasharray = length;
+  
+    // Get the value of the meter
+    let value = parseInt(path.parentNode.getAttribute('data-value'));
+    // Calculate the percentage of the total length
+    let to = length * ((thePercentage - value) / 100);
+    // Trigger Layout in Safari hack https://jakearchibald.com/2013/animated-line-drawing-svg/
+    path.getBoundingClientRect();
+    // Set the Offset
+    path.style.strokeDashoffset = Math.max(0, to);  
+  });
+}
+*/
+//PROGRESS OF THE COUNTER
+
+function getPercentage() {
+  Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
+  });
+} //MATCH MEDIA
 
 
+function media576Px() {
+  if (sm.matches) {//console.log('rightBounds ',rightBounds, ' leftBounds ',leftBounds);
+  }
+} //All EVENTLISTENERS
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  var sm = window.matchMedia('(max-width: 576px)'),
-      //percentage for progress counter
-  thePercentage = 0; // Get all the Meters from SVG
 
-  var meters = document.querySelectorAll('svg[data-value] .meter'); //Percentages
+function allEventListeners() {
+  sm.addListener(media576Px);
+}
 
-  var percentage = {
-    1: 174,
-    2: 167,
-    3: 160,
-    4: 153,
-    5: 137,
-    6: 125,
-    7: 118,
-    8: 106,
-    9: 95,
-    10: 50
-  }; //COUNTER
-
-  function counterMotion() {
+var countingMe = {
+  counterMotion: function counterMotion(thePercentage) {
     meters.forEach(function (path) {
       // Get the length of the path
       var length = path.getTotalLength(); // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
@@ -223,30 +318,17 @@ __webpack_require__.r(__webpack_exports__);
 
       path.style.strokeDashoffset = Math.max(0, to);
     });
-  } //PROGRESS OF THE COUNTER
+  },
+  counterPercent: function counterPercent(card) {
+    var percentage = [174, 167, 160, 153, 137, 125, 118, 106, 95, 50];
+    return percentage[card];
+  }
+}; //RUN FUNCTIONS
+//allEventListeners();
+//counterMotion();
+//getPercentage();
 
 
-  function getPercentage() {
-    Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
-    });
-  } //MATCH MEDIA
-
-
-  function media576Px() {
-    if (sm.matches) {//console.log('rightBounds ',rightBounds, ' leftBounds ',leftBounds);
-    }
-  } //All EVENTLISTENERS
-
-
-  function allEventListeners() {
-    sm.addListener(media576Px);
-  } //RUN FUNCTIONS
-  //allEventListeners();
-
-
-  counterMotion();
-  getPercentage();
-});
 
 /***/ }),
 
@@ -260,8 +342,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
-/* harmony import */ var _closest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./closest */ "../assets/src/js/components/closest.js");
+/* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter */ "../assets/src/js/components/counter.js");
+/* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -276,7 +358,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var time = 1,
       timeInterval,
-      htmlBody = document.getElementsByTagName('BODY')[0],
       //*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
   //Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
   theCardsshuffle = function theCardsshuffle(array) {
@@ -291,7 +372,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       rightBounds = 0,
       leftBounds = 0,
       sm = window.matchMedia('(max-width: 576px)'),
-      gradientBody = document.querySelector('.gradient--slide'),
       tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     paused: true
   }); //*********************//
@@ -299,54 +379,64 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var answeredCorrect = [];
   var answeredIncorrectly = [];
-  var questionCount = 1;
+  var questionCount = 0;
 
   var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button:not(.next-question--button)'));
 
   var correctCardCount = document.querySelector('.results-num.ten');
   var totalCardCount = document.querySelector('.results-num.hundred');
+  var counterTotalCount = document.querySelector('.count-text-amount');
+  var counterRemainCount = document.querySelector('.dynamic-count');
+  var counterCurrentCount = '00';
+  var counterCurrentCountHolder = document.querySelector('.count-text-num');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
-  totalCardCount.innerHTML = "/".concat(theCards.length); //bg animation
+  totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
+  counterCurrentCountHolder.innerHTML = counterCurrentCount;
+  counterRemainCount.innerHTML = '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
+  //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
-  }).addLabel('q2').to('.cards', 1, {
+  }).addLabel('q1').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q2').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q3').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
     ease: 'sine.out'
   }).addLabel('q4').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q5').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
-    ease: 'sine.out'
-  }).addLabel('q6').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
     ease: 'sine.out'
-  }).addLabel('q7').to('.cards', 1, {
+  }).addLabel('q6').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
-  }).addLabel('q8');
+  }).addLabel('q7').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q8').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    ease: 'sine.out'
+  }).addLabel('q9');
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       var btnHolder = e.target.parentNode.parentNode.parentNode;
       var question = btnHolder.querySelector('.quest');
       var answersBtns = e.target.parentNode;
-      var rightAnswer = btnHolder.querySelector('.right-answer');
-      var wrongAnswer = btnHolder.querySelector('.wrong-answer');
+      var answerSelected = btn.getAttribute('data-res');
       var nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
       var nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
       if (e.target.classList.contains('right-answer-bttn')) {
-        rightAnswer.classList.remove('hide');
         answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
         correctCardCount.innerHTML = answeredCorrect.length;
       } else {
-        wrongAnswer.classList.remove('hide');
         answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
       }
 
@@ -358,6 +448,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         correctCardMessage.innerHTML = correctCardMessageOps[2];
       }
 
+      btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
       btnHolder.classList.remove('na');
       question.classList.add('hide');
       answersBtns.classList.add('hide');
@@ -375,6 +466,23 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           ease: 'sine.inout'
         });
         tl.tweenTo("q".concat(questionCount + 1));
+
+        if (questionCount + 1 == 5) {
+          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
+        } else if (questionCount + 1 == 10) {
+          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
+        }
+
+        counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+        counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
+
+        if (!e.target.classList.contains('last')) {
+          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+        } else {
+          counterRemainCount.innerHTML = 'You did it!';
+        }
+
         questionCount++;
       });
     });
@@ -517,11 +625,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       document.onmouseup = null;
       document.onmousemove = null; //rotate back
 
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
-        duration: time - 0.7,
-        rotation: 0,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
-      });
+      var thebtn = elmnt.querySelector('.next-question button');
+      thebtn.click();
     }
   } //TOUCH CONTROL
 
@@ -575,10 +680,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function allEventListeners() {
     sm.addListener(media576Px);
   } //RUN FUNCTIONS
-
-
-  spreadTheCards(); //spread color cards
+  //spreadTheCards();//spread color cards
   //randomizeCards();//randomize question cards
+
 
   dragCards(); //drag question cards
 
@@ -611,6 +715,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');
+  var bookBtn = document.querySelector('.as-book');
   var campaignName = 'Offercode_Email';
   var emailName = 'email';
   var getToken;
@@ -626,9 +731,11 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   }; // checking for customer ID to display discount ribbon
 
 
-  if (urlVars()['CUSTOMER_ID_'] != undefined) {
+  if (urlVars()['utm_campaign'] != undefined) {
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
+    bookBtn.classList.add('active');
+    bookBtn.setAttribute('href', "https://us.as.com/?eml=".concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
 
@@ -721,6 +828,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+/* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -730,8 +838,10 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var cardHolder = document.querySelector('.cards');
+  var cardHolder = document.querySelector('.cards'),
+      theColorCards = _toConsumableArray(document.querySelectorAll('.main-page-card--color'));
 
   if (!cardHolder) {
     return;
@@ -779,7 +889,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       rotationY: '+=180',
       ease: 'sine.inout'
     }, '+=.2').to([cardCta, cardQuestionOne], .625, {
-      z: '-=100',
+      z: '+=100',
       yoyo: true,
       repeat: 1,
       ease: 'sine.in'
@@ -789,9 +899,46 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ease: 'sine.inout'
     }, '-=.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
       autoAlpha: 1,
-      ease: 'sine.in'
+      ease: 'sine.in',
+      onComplete: function onComplete() {
+        spreadTheCards(); //spread color cards
+      }
     }, '-=0');
-  }; //setting card flip
+  }; //COLOR CARDS--SPREAD
+
+
+  function spreadTheCards() {
+    var i = 0;
+
+    for (var _i = 0; _i < theColorCards.length; _i++) {
+      //show cards except for the first
+      if (_i > 0) {
+        theColorCards[_i].style.opacity = 1;
+        theColorCards[_i].style.visibility = 'visible';
+      } //rotation
+
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
+        rotation: -2.2 * _i,
+        ease: 'back.out'
+      });
+
+      if (_i == theColorCards.length - 1) {
+        setTimeout(function () {
+          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildRain();
+          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildBurst();
+        }, 1000);
+      }
+    }
+  } //HIDE COLOR CARDS
+
+
+  function hideColorCards() {
+    theColorCards.forEach(function (item) {
+      item.style.opacity = 0;
+      item.style.visibility = 'hidden';
+    });
+  } //setting card flip
 
 
   var cardsHolder = document.querySelector('.cards');
@@ -804,9 +951,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     perspectiveOrigin: '50% 50% 0px'
   });
   gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(cardQuestionOne, {
+    backfaceVisibility: "hidden",
+    transformStyle: "preserve-3d",
     rotationY: -180
   });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.cards-single--init-card button', {
+    backfaceVisibility: "hidden",
+    transformStyle: "preserve-3d"
+  });
   gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set([cardCta, cardQuestionOne], {
+    transformStyle: "preserve-3d",
     backfaceVisibility: "hidden"
   }); //
   // function to animate columns of cards
@@ -871,9 +1025,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         delay: time - 0.5,
         ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
         onComplete: function onComplete() {
-          columnCards.pause(); //EventListener
+          columnCards.pause();
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
+            duration: .8,
+            opacity: 1
+          }); //EventListener
 
-          cta.addEventListener('click', function (e) {
+          cta.querySelector('button').addEventListener('click', function (e) {
             cta.classList.add('disable');
             stackCards(showGroupCards);
           });
@@ -938,7 +1096,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (c == cardCount) {
       addPos();
     }
-  }
+  } //RUN FUNCTIONS
+
+
+  hideColorCards();
 });
 
 /***/ }),
@@ -1001,10 +1162,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/form.test */ "../assets/src/js/components/form.test.js");
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
 /* harmony import */ var _components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/draggable-cards */ "../assets/src/js/components/draggable-cards.js");
+<<<<<<< HEAD
 /* harmony import */ var _components_counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/counter */ "../assets/src/js/components/counter.js");
 /* harmony import */ var _components_confetti__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/confetti */ "../assets/src/js/components/confetti.js");
 /* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
 /* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
+=======
+/* harmony import */ var _components_confetti__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/confetti */ "../assets/src/js/components/confetti.js");
+/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
+/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
+>>>>>>> c1a6e51918e81a56144f190300fcc9180a6a5c54
 
  //import sampleJs from './components/sample.component';
 
@@ -1034,8 +1201,11 @@ documentReady(function () {
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
+<<<<<<< HEAD
   Object(_components_counter__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_components_confetti__WEBPACK_IMPORTED_MODULE_6__["default"])();
+=======
+>>>>>>> c1a6e51918e81a56144f190300fcc9180a6a5c54
 });
 
 /***/ }),
@@ -18655,7 +18825,7 @@ if (!self.fetch) {
 /*! exports provided: name, version, description, scripts, babel, homepage, repository, author, license, browserslist, dependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"gulp-boostrap\",\"version\":\"0.0.1\",\"description\":\"gulp process to generate static pages for templates\",\"scripts\":{\"localbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks localbuild\",\"devbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks devbuild\",\"qabuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks qabuild\",\"prodbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks prodbuild --production\"},\"babel\":{\"presets\":[\"env\"],\"babelrc\":false},\"homepage\":\"http://\",\"repository\":{\"type\":\"git\",\"url\":\"https://\"},\"author\":\"Rauxa\",\"license\":\"MIT\",\"browserslist\":[\"ie >= 11\",\"last 2 version\",\"> 5%\"],\"dependencies\":{\"@babel/core\":\"^7.4.5\",\"@babel/polyfill\":\"^7.4.4\",\"@babel/preset-env\":\"^7.4.5\",\"babel-core\":\"^6.26.3\",\"babel-loader\":\"^8.0.6\",\"babel-preset-env\":\"^1.7.0\",\"base-64\":\"^0.1.0\",\"browser-sync\":\"^2.26.7\",\"cssnano\":\"^4.1.10\",\"gsap\":\"^3.0.1\",\"gulp\":\"^4.0.2\",\"gulp-autoprefixer\":\"^6.1.0\",\"gulp-babel\":\"^8.0.0\",\"gulp-clean\":\"^0.4.0\",\"gulp-if\":\"^3.0.0\",\"gulp-postcss\":\"^8.0.0\",\"gulp-remove-html-comments\":\"^1.0.1\",\"gulp-rename\":\"^1.4.0\",\"gulp-sass\":\"^4.0.2\",\"gulp-sass-lint\":\"^1.4.0\",\"gulp-server-livereload\":\"^1.9.2\",\"gulp-sourcemaps\":\"^2.6.5\",\"merge-stream\":\"^2.0.0\",\"normalize-scss\":\"^7.0.1\",\"postcss-discard-comments\":\"^4.0.2\",\"webpack\":\"^4.35.0\",\"webpack-stream\":\"^5.2.1\",\"whatwg-fetch\":\"^3.0.0\",\"yargs\":\"^15.0.2\"}}");
+module.exports = JSON.parse("{\"name\":\"gulp-boostrap\",\"version\":\"0.0.1\",\"description\":\"gulp process to generate static pages for templates\",\"scripts\":{\"localbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks localbuild\",\"devbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks devbuild\",\"qabuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks qabuild\",\"prodbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks prodbuild --production\"},\"babel\":{\"presets\":[\"env\"],\"babelrc\":false},\"homepage\":\"http://\",\"repository\":{\"type\":\"git\",\"url\":\"https://\"},\"author\":\"Rauxa\",\"license\":\"MIT\",\"browserslist\":[\"ie >= 11\",\"last 2 version\",\"> 5%\"],\"dependencies\":{\"@babel/core\":\"^7.4.5\",\"@babel/polyfill\":\"^7.4.4\",\"@babel/preset-env\":\"^7.4.5\",\"babel-core\":\"^6.26.3\",\"babel-loader\":\"^8.0.6\",\"babel-preset-env\":\"^1.7.0\",\"base-64\":\"^0.1.0\",\"browser-sync\":\"^2.26.7\",\"cssnano\":\"^4.1.10\",\"gsap\":\"^3.0.1\",\"gulp\":\"^4.0.2\",\"gulp-autoprefixer\":\"^6.1.0\",\"gulp-babel\":\"^8.0.0\",\"gulp-clean\":\"^0.4.0\",\"gulp-if\":\"^3.0.0\",\"gulp-postcss\":\"^8.0.0\",\"gulp-remove-html-comments\":\"^1.0.1\",\"gulp-rename\":\"^1.4.0\",\"gulp-sass\":\"^4.0.2\",\"gulp-sass-lint\":\"^1.4.0\",\"gulp-server-livereload\":\"^1.9.2\",\"gulp-sourcemaps\":\"^2.6.5\",\"merge-stream\":\"^2.0.0\",\"normalize-scss\":\"^7.0.1\",\"postcss-discard-comments\":\"^4.0.2\",\"webpack\":\"^4.35.0\",\"webpack-stream\":\"^5.2.1\",\"whatwg-fetch\":\"^3.0.0\",\"yargs\":\"^15.0.2\",\"yarn\":\"^1.21.1\"}}");
 
 /***/ }),
 

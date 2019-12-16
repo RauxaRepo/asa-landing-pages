@@ -1,12 +1,10 @@
-import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
-import getBreakpoint from './breakpoints';
-import getClosest from './closest';
 
-export default function () {
+
+
 
     let sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
-    thePercentage = 0;
+    thePercentage = 174;
     // Get all the Meters from SVG
     const meters = document.querySelectorAll('svg[data-value] .meter');
     //Percentages
@@ -23,8 +21,9 @@ export default function () {
         10: 50  
     };
 
-		//COUNTER
-		function counterMotion(){
+    //COUNTER
+    /*
+		function counterMotion(thePercentage){
 			meters.forEach( (path) => {
         // Get the length of the path
         let length = path.getTotalLength();
@@ -43,6 +42,7 @@ export default function () {
         path.style.strokeDashoffset = Math.max(0, to);  
       });
     }
+    */
     
 
     //PROGRESS OF THE COUNTER
@@ -62,13 +62,57 @@ export default function () {
 		//All EVENTLISTENERS
 		function allEventListeners(){
 			sm.addListener(media576Px);
-		}
+    }
+    
+
+    const countingMe = {
+
+      counterMotion: (thePercentage) => {
+        meters.forEach( (path) => {
+          // Get the length of the path
+          let length = path.getTotalLength();
+          // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
+          // or uncomment to set it dynamically
+          // path.style.strokeDashoffset = length;
+          // path.style.strokeDasharray = length;
+        
+          // Get the value of the meter
+          let value = parseInt(path.parentNode.getAttribute('data-value'));
+          // Calculate the percentage of the total length
+          let to = length * ((thePercentage - value) / 100);
+          // Trigger Layout in Safari hack https://jakearchibald.com/2013/animated-line-drawing-svg/
+          path.getBoundingClientRect();
+          // Set the Offset
+          path.style.strokeDashoffset = Math.max(0, to);  
+        });
+      },
+
+      counterPercent: (card) => {
+        let percentage = [
+          174,
+          167,
+          160,
+          153,
+          137,
+          125,
+          118,
+          106,
+          95,
+          50  
+        ];
+        
+        return percentage[card];
+      }
+
+    }
 
 
 		//RUN FUNCTIONS
     //allEventListeners();
-    counterMotion();
-    getPercentage();
+    //counterMotion();
+    //getPercentage();
         
-}
 
+
+
+export { countingMe };

@@ -1,6 +1,6 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
-import getBreakpoint from './breakpoints';
-import getClosest from './closest';
+import { countingMe } from './counter';
+import { confetti } from './confetti';
 
 export default function () {
 
@@ -9,7 +9,6 @@ export default function () {
 	
 	let time = 1,
 		timeInterval,
-		htmlBody = document.getElementsByTagName('BODY')[0],
 
 		//*RANDOMIZE ARRAY AND PLACE ALL CARDS IN ARRAY*//
 		//Math.random() - 0.5 is a random number that may be positive or negative, so the sorting function reorders elements randomly.
@@ -21,16 +20,21 @@ export default function () {
 		rightBounds = 0,
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-		gradientBody = document.querySelector('.gradient--slide'),
 		tl = gsap.timeline({paused:true});
 
 		//*********************//
 		let answeredCorrect = [];
 		let answeredIncorrectly = [];
-		let questionCount = 1;
+		let questionCount = 0;
 		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
 		let correctCardCount = document.querySelector('.results-num.ten');
 		let totalCardCount = document.querySelector('.results-num.hundred');
+		let counterTotalCount = document.querySelector('.count-text-amount');
+		let counterRemainCount = document.querySelector('.dynamic-count');
+
+		let counterCurrentCount = '00';
+		let counterCurrentCountHolder = document.querySelector('.count-text-num');
+
 		let correctCardMessage = document.querySelector('.correct-text');
 		let correctCardMessageOps = [
 			'NICE TRY!',
@@ -38,24 +42,35 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = `/${theCards.length}`;
+		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
+		counterCurrentCountHolder.innerHTML = counterCurrentCount;
+		counterRemainCount.innerHTML = '10 questions left!';
+		//countingMe.counterMotion(countingMe.counterPercent(0));
+		
+		
+		
 
 		//bg animation
 		tl
 		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q1')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
 		.addLabel('q2')
-		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
 		.addLabel('q3')
-		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
 		.addLabel('q4')
-		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
 		.addLabel('q5')
-		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
-		.addLabel('q6')
 		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
-		.addLabel('q7')
+		.addLabel('q6')
 		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q7')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)', ease:'sine.out'})
 		.addLabel('q8')
+		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
+		.addLabel('q9');
+		
 
 
 
@@ -66,23 +81,22 @@ export default function () {
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
 				let question = btnHolder.querySelector('.quest');
 				let answersBtns = e.target.parentNode;
-				let rightAnswer = btnHolder.querySelector('.right-answer'); 
-				let wrongAnswer =  btnHolder.querySelector('.wrong-answer');  
+
+				let answerSelected = btn.getAttribute('data-res');
+				
+
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
 				if(e.target.classList.contains('right-answer-bttn')) {
-					rightAnswer.classList.remove('hide');
+					
 					answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
 					correctCardCount.innerHTML = answeredCorrect.length;
 					
-
 				} else {
-					wrongAnswer.classList.remove('hide');
+					
 					answeredIncorrectly.push(e.target.parentNode.parentNode.parentNode);
 				}
-
-				
 
 				if(answeredCorrect.length < 5) {
 					correctCardMessage.innerHTML = correctCardMessageOps[0];
@@ -93,7 +107,7 @@ export default function () {
 				}
 				
 				
-
+				btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
 				btnHolder.classList.remove('na');
  
 				question.classList.add('hide');
@@ -105,6 +119,24 @@ export default function () {
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 					tl.tweenTo(`q${questionCount+1}`);
+
+					if( questionCount+1 == 5) {
+						confetti.burst();
+						
+					} else if (questionCount+1 == 10) {
+						confetti.rain();
+					}
+					
+					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+					countingMe.counterMotion(countingMe.counterPercent(questionCount));
+					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
+					
+					if(!e.target.classList.contains('last')) {
+						counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+					} else {
+						counterRemainCount.innerHTML = 'You did it!';
+					}
+					
 					questionCount++;
 				});
 				
@@ -151,28 +183,40 @@ export default function () {
 			var ww = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); //width of the window
 			var pos = getPosition(elmnt); //position of the hovered element relative to window
 			var ew = elmnt.offsetWidth; //width of the hovered element
+			
 		 
 			if (pos.x > (ww / 2)) { //element is on right side of viewport
 
 				
 				//console.log('RIGHT, ', pos);
 				if(elmnt.offsetLeft > (wrapper.offsetLeft + rightBounds)){
+					
+					
 					elmnt.classList.add('disable');
 					//console.log('Right Bounds');
 					
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '+=100%', yoyo: true, ease:'sine.inout'});
+					
+
+					
 				}
 				
 			} else { //element is on left side of viewport
 				//console.log('LEFT, ', pos);
 				if(elmnt.offsetLeft < (wrapper.offsetLeft - leftBounds)){
+					
+					
 					elmnt.classList.add('disable');
 					//console.log('Left Bounds');
 					gsap.to(elmnt,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(elmnt,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+					
+
 				}
 			}
+
+
 
 		 }
 
@@ -222,7 +266,10 @@ export default function () {
 				// set the element's new position:
 				elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
 				//check if card on left / right side of screen
+				
 				changeCardPos(elmnt);
+				
+				
 			}
 		  
 			function closeDragElement() {
@@ -230,11 +277,10 @@ export default function () {
 				document.onmouseup = null;
 				document.onmousemove = null;
 				//rotate back
-				gsap.to(elmnt, {
-					duration: time - 0.7,
-					rotation: 0,
-					ease:Quad.easInOut
-				});
+
+				let thebtn = elmnt.querySelector('.next-question button');
+				
+				thebtn.click();
 			}
 		}
 
@@ -300,7 +346,7 @@ export default function () {
 
 
 		//RUN FUNCTIONS
-		spreadTheCards();//spread color cards
+		//spreadTheCards();//spread color cards
 		//randomizeCards();//randomize question cards
 		dragCards();//drag question cards
 		init();//start touch controls

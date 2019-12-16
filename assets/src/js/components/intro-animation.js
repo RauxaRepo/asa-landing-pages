@@ -1,9 +1,10 @@
 import {gsap, TweenMax, TimelineMax, Power, Power2, Linear} from 'gsap';
-
+import { confetti } from './confetti';
 
 export default function () {
 
-  let cardHolder = document.querySelector('.cards');
+  let cardHolder = document.querySelector('.cards'),
+    theColorCards = [...document.querySelectorAll('.main-page-card--color')];
 
   if(!cardHolder) {
     return;
@@ -66,16 +67,51 @@ export default function () {
       stagger:{
         amount: 1.5,
         onComplete: function(e) {
-          gsap.to(e._targets,{duration:.25,autoAlpha:0});
+ 
+            gsap.to(e._targets,{duration:.25,autoAlpha:0});
+          
         }
     }})
     .to('.cards',1, {
       backgroundImage: 'linear-gradient(to left, #2774ae 97%,  #48a9c5 100%)',
       ease: 'sine.in'},'-=.3')
     .to([cardCta,cardQuestionOne], 1.25, {rotationY:'+=180', ease:'sine.inout'},'+=.2')
-    .to([cardCta,cardQuestionOne], .625, {z:'-=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5')
+    .to([cardCta,cardQuestionOne], .625, {z:'+=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5')
     .to('.cards-lockup,.cards-progress', .6, {opacity:1,y:0, ease:'sine.inout'},'-=.5')
-    .to(['.main-page-card--question','.main-page-card--results'], .25, {autoAlpha:1, ease:'sine.in'},'-=0');
+    .to(['.main-page-card--question','.main-page-card--results'], .25, {autoAlpha:1, ease:'sine.in',
+        onComplete: function(){
+          spreadTheCards();//spread color cards
+        }},'-=0');
+  }
+
+  //COLOR CARDS--SPREAD
+  function spreadTheCards(){
+    let i = 0;
+    for (let i = 0;i<theColorCards.length; i++){
+      //show cards except for the first
+      if( i > 0 ){
+        theColorCards[i].style.opacity = 1;
+        theColorCards[i].style.visibility = 'visible';
+      }
+      //rotation
+      gsap.to(theColorCards[i], 1, {rotation: - 2.2 * i, ease: 'back.out'});
+
+      if( i == theColorCards.length - 1 ) {
+
+        setTimeout( ()=> {
+          confetti.buildRain();
+          confetti.buildBurst();
+        }, 1000)
+      }
+
+    }
+  }
+  //HIDE COLOR CARDS
+  function hideColorCards() {
+    theColorCards.forEach(function(item){
+      item.style.opacity = 0;
+      item.style.visibility = 'hidden';
+    })
   }
 
 
@@ -85,19 +121,10 @@ export default function () {
   let cardCta = document.querySelector('.cards-single.cta .cards-single--init-card');
   let cardQuestionOne = document.querySelector('.cards-single.cta .main-page-card--question');
 
-  gsap.set(cardFlipWrapper, {
-    transformStyle:"preserve-3d",
-    perspective: 800,
-    perspectiveOrigin:'50% 50% 0px'
-  });
-
-  gsap.set(cardQuestionOne,{
-    rotationY:-180
-  });
-
-  gsap.set([cardCta,cardQuestionOne],{
-    backfaceVisibility:"hidden"
-  });
+  gsap.set(cardFlipWrapper, { transformStyle:"preserve-3d", perspective: 800, perspectiveOrigin:'50% 50% 0px'});
+  gsap.set(cardQuestionOne,{ backfaceVisibility:"hidden", transformStyle: "preserve-3d",rotationY:-180,});
+  gsap.set('.cards-single--init-card button',{ backfaceVisibility:"hidden", transformStyle: "preserve-3d"})
+  gsap.set([cardCta,cardQuestionOne],{ transformStyle:"preserve-3d",backfaceVisibility:"hidden" });
   //
     
 
@@ -129,9 +156,11 @@ export default function () {
     let raiseFooter = function() {
 			clearInterval(introStop);
 			gsap.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
-				columnCards.pause();
+        columnCards.pause();
+        
+        gsap.to(cta.querySelector('button'),{duration:.8, opacity:1});
 				//EventListener
-			  cta.addEventListener('click', (e) => {
+			  cta.querySelector('button').addEventListener('click', (e) => {
           cta.classList.add('disable');
           stackCards(showGroupCards);
           
@@ -173,13 +202,9 @@ export default function () {
       if(i == allCards.length - 1) {
         scrollCards(getStartedBtn);
       }
-      
-
-
-      
+       
     });
   }
-
   //
   // creates 40 divs ad adds class for background image
   //
@@ -205,7 +230,8 @@ export default function () {
   }
           
 
-  
+  //RUN FUNCTIONS
+  hideColorCards();
 
 }
 

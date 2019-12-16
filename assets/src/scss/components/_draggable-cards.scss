@@ -16,139 +16,149 @@ $colorcardlghtblue: #47a4bf;
 $colorcarddrkblue: #2672ab;
 
 $opacityblack: rgba(0, 0, 0, .5);
+$opacityblacklight: rgba(0, 0, 0, .25);
 
 
 
 .main-page-card-center {
-    height: 412px;
 
-    @include bp(md) { 
-        height: 600px;
-    }
+  height: 412px;
+
+  @include bp(md) {
+    height: 600px;
+  }
 
 }
 
 .main-page-card--question,
 .main-page-card--results {
+
+  border-radius: 10px;
+  float: left;
+  //margin: 10px 0;
+  //overflow: hidden;
+  position: absolute;
+  display: none;
+  opacity: 0;
+  height: 412px;
+  width: 250px;
+
+  @include bp(md) {
+    height: 600px;
+    width: 360px;
+  }
+
+  &.disable {
+    pointer-events: none;
+  }
+
+  &.one {
+    display: block;
+    z-index: 15;
     opacity: 1;
-    border-radius: 10px;
-    float: left;
-    //margin: 10px 0;
-    //overflow: hidden;
-    position: absolute;
-    display: none;
-    opacity: 0;
-    height: 412px;
-    width: 250px;
-
-    @include bp(md) { 
-        height: 600px;
-        width: 360px;
-    }
-
-
-    &.disable {
-        pointer-events: none;
-    }
-
-    &.one {
-        display: block;
-        z-index: 11;
-        opacity: 1;
-    }
-
-    &.two {
-        display: block;
-        z-index: 10;
-    }
+  }
 
   &.two {
     display: block;
-    z-index: 10;
+    z-index: 14;
   }
+
 
   &.three {
     display: block;
-    z-index: 9; 
+    z-index: 13;
   }
- 
+
   &.four {
     display: block;
-    z-index: 8;         
+    z-index: 12;
   }
 
   &.five {
     display: block;
-    z-index: 7;  
+    z-index: 11;
   }
 
   &.six {
     display: block;
-    z-index: 6;  
+    z-index: 10;
   }
 
   &.seven {
     display: block;
-    z-index: 5;   
+    z-index: 9;
   }
 
   &.eight {
     display: block;
-    z-index: 4;  
+    z-index: 8;
   }
 
   &.nine {
     display: block;
-    z-index: 3;  
+    z-index: 7;
   }
 
   &.ten {
     display: block;
-    z-index: 2;  
+    z-index: 6;
   }
 }
 
 .results-share-fb {
   position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background-image: url('../images/fb_icon.png');
-    background-size: 100%;
-    border: 0;
-    overflow: hidden;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-image: url('../images/fb_icon.png');
+  background-size: 100%;
+  border: 0;
+  overflow: hidden;
+  margin: 0 4px;
 
-    .fb-share-button {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%) scale(2);
-      opacity: 0;
-    }
+  .fb-share-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
 }
 
 .results-share-twitter {
   position: relative;
-    display: inline-block; 
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-image: url('../images/twitter_icon.png');
+  background-size: 100%;
+  border: 0;
+  overflow: hidden;
+  margin: 0 4px;
+
+  iframe {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%) scale(2);
+    opacity: 0;
     width: 40px;
     height: 40px;
-    background-image: url('../images/twitter_icon.png');
-    background-size: 100%;
-    border: 0;
-    overflow: hidden;
-
-    iframe {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, 0%) scale(2);
-      opacity: 0;
-    }
+  }
 }
 
 .main-page-card--results  {
   display: block;
-  z-index: 1;  
+  z-index: 5;
+
+  p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 24px;
+    line-height: 1.25;
+    text-align: center;
+    font-weight: bold;
+  }
 }
 
 //Display and Zindex
@@ -179,13 +189,14 @@ $opacityblack: rgba(0, 0, 0, .5);
   display: block;
   float: left;
   height: 0;
-  padding-bottom: 160%;
+  padding-bottom: 167%;
   margin: 10px 0;
-  top: 0;
+  top: -4px;
   transform-origin: '50% 50%';
-  width: 100%;
+  width: 97%;
   position: absolute;
   z-index: 1;
+  pointer-events: none;
 }
 
 .bg-color-card {
@@ -207,19 +218,23 @@ $opacityblack: rgba(0, 0, 0, .5);
 
 .clr1 {
   background-color: $colorcardlightgreen;
+  box-shadow: 3px 4px 7px $opacityblacklight;
 }
 
 .clr2 {
   background-color: $colorcarddrkgreen;
+  box-shadow: 3px 4px 7px $opacityblacklight;
 }
 
 .clr3 {
   background-color: $colorcardlghtblue;
+  box-shadow: 3px 4px 7px $opacityblacklight;
 }
 
 .clr4 {
-  background-color: $colorcardlghtblue;
+  background-color: $colorcarddrkblue;
 }
+
 
 .box-shadow {
   box-shadow: 3px 4px 6px $opacityblack;
@@ -248,44 +263,27 @@ $opacityblack: rgba(0, 0, 0, .5);
   }
 }
 
-//GRADIENT
-.gradient--slide {
-  background-image: linear-gradient(to right, #48a9c5 97%, #2774ae 100%);
-  background-size: 120%;
-} 
+
 //
 //$flightblue: #2774ae;
 //$flightbgblue: #48a9c5;
 //ANSWER CARDS
-drag-text {
+.drag-text {
   color: $grey;
   display: block;
   font-size: 12px;
   padding: 10px 0;
   position: relative;
   text-align: center;
-  width: 100%; 
-}
-
-//RESULTS CARD
-.main-page-card--results {
-  z-index: 4;     
-
-  p {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 24px;
-    line-height: 1.25;
-    text-align: center;
-    font-weight: bold;
-  }
+  width: 100%;
 }
 
 .num-holder {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   text-align: center;
-  width: 170px;
+  width: 100%;
 }
 
 .results-num {
@@ -294,7 +292,6 @@ drag-text {
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
-
   display: block;
   float: left;
   position: relative;
@@ -310,46 +307,56 @@ drag-text {
 
 
 //MEDIA QUERY
-@media only screen and (max-width: 576px) {
-    .main-page-inner {
-        min-width: 1800px;
-    }
-    
-    .active-card p {
-        font-size: 10px;
-        width: 124%;
-    }
-
-    .active-card--buttonwrapper {
-        width: 124%;
-    }
-
-    .active-card--button {
-        margin-top: 10px;
-        // padding: 7px 0;
-    }
-
-
-
-    // QUESTION 1 (and all other odd questions, for now)
-
-    
-}
-
 @media only screen and (max-width: 768px) {
-    .drag-card-holder {
-        width: 20% !important;
-    }
-    
-    .active-card p {
-        font-size: 15px;
-        width: 114%;
-    }
 
-    .active-card--buttonwrapper {
-        width: 114%;
-    }
+  .drag-card-holder {
+    width: 20%;
+  }
 
+  .active-card p {
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .active-card--buttonwrapper {
+    width: 100%;
+  }
+
+  .main-page-card--color { 
+    padding-bottom: 167%;
+    width: 100%;
+  }
 
 }
 
+@media only screen and (max-width: 576px) {
+
+  .main-page-inner {
+    min-width: 1800px;
+  }
+
+  .active-card p {
+    font-size: 14px;
+    width: 114%;
+  }
+
+  .active-card--buttonwrapper {
+    width: 114%;
+  }
+
+  .active-card--button {
+    margin-top: 10px;
+    // padding: 7px 0;
+  
+  }
+
+  .main-page-card--color {  
+    padding-bottom: 171%;  
+    width: 101%;  
+  }
+
+  .next-question .drag-text {
+    font-size: 0.75rem;
+  }
+
+}
