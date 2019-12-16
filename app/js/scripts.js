@@ -209,29 +209,6 @@ var confetti = {
 
 /***/ }),
 
-/***/ "../assets/src/js/components/confetti.js":
-/*!***********************************************!*\
-  !*** ../assets/src/js/components/confetti.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
-
-
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  //let a = window.matchMedia('(max-width: 576px)'),
-  //CONFETTI
-  function confettiRun() {} //RUN FUNCTIONS
-  //allEventListeners();
-
-});
-
-/***/ }),
-
 /***/ "../assets/src/js/components/counter.js":
 /*!**********************************************!*\
   !*** ../assets/src/js/components/counter.js ***!
@@ -1162,19 +1139,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/form.test */ "../assets/src/js/components/form.test.js");
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
 /* harmony import */ var _components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/draggable-cards */ "../assets/src/js/components/draggable-cards.js");
-<<<<<<< HEAD
-/* harmony import */ var _components_counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/counter */ "../assets/src/js/components/counter.js");
-/* harmony import */ var _components_confetti__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/confetti */ "../assets/src/js/components/confetti.js");
-/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
-/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
-=======
 /* harmony import */ var _components_confetti__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/confetti */ "../assets/src/js/components/confetti.js");
 /* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
 /* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
->>>>>>> c1a6e51918e81a56144f190300fcc9180a6a5c54
 
  //import sampleJs from './components/sample.component';
-
 
 
 
@@ -1196,16 +1165,11 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
-<<<<<<< HEAD
-  Object(_components_counter__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  Object(_components_confetti__WEBPACK_IMPORTED_MODULE_6__["default"])();
-=======
->>>>>>> c1a6e51918e81a56144f190300fcc9180a6a5c54
 });
 
 /***/ }),

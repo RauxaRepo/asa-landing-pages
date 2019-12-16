@@ -1,21 +1,4 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
-<<<<<<< HEAD
-import getBreakpoint from './breakpoints';
-
-export default function () {
-
-    //let a = window.matchMedia('(max-width: 576px)'),
-
-		//CONFETTI
-		function confettiRun(){
-		
-    }
-
-		//RUN FUNCTIONS
-    //allEventListeners();
-        
-}
-=======
 
 
 
@@ -133,5 +116,4 @@ export default function () {
 export { confetti };
         
 
->>>>>>> c1a6e51918e81a56144f190300fcc9180a6a5c54
 
