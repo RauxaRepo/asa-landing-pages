@@ -1005,11 +1005,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       clearInterval(introStop);
       columnCards.pause(); //pause card animation
 
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(topOffer, {
-        duration: .5,
-        top: topOffer.offsetTop - (topOffer.clientHeight + 10)
-      }); //hide header
-
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
         duration: .8,
         opacity: 1
@@ -1018,6 +1013,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       cta.querySelector('button').addEventListener('click', function (e) {
         cta.classList.add('disable');
         stackCards(showGroupCards);
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(topOffer, {
+          duration: .5,
+          top: topOffer.offsetTop - (topOffer.clientHeight + 10)
+        }); //hide header
       });
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
