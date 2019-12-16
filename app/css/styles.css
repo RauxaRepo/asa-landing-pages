@@ -1479,13 +1479,6 @@ section {
   pointer-events: none;
 }
 
-@media (min-width: 576px) {
-  .main-page-card--color {
-    padding-bottom: 171%;
-    width: 101%;
-  }
-}
-
 .bg-color-card {
   border-radius: 10px;
   background-color: #fff;
@@ -1582,32 +1575,43 @@ section {
   font-weight: bold;
 }
 
-@media only screen and (max-width: 576px) {
-  .main-page-inner {
-    min-width: 1800px;
-  }
-  .active-card p {
-    font-size: 10px;
-    width: 124%;
-  }
-  .active-card--buttonwrapper {
-    width: 124%;
-  }
-  .active-card--button {
-    margin-top: 10px;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .drag-card-holder {
     width: 20%;
   }
   .active-card p {
-    font-size: 15px;
+    font-size: 18px;
+    width: 100%;
+  }
+  .active-card--buttonwrapper {
+    width: 100%;
+  }
+  .main-page-card--color {
+    padding-bottom: 167%;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .main-page-inner {
+    min-width: 1800px;
+  }
+  .active-card p {
+    font-size: 14px;
     width: 114%;
   }
   .active-card--buttonwrapper {
     width: 114%;
+  }
+  .active-card--button {
+    margin-top: 10px;
+  }
+  .main-page-card--color {
+    padding-bottom: 171%;
+    width: 101%;
+  }
+  .next-question .drag-text {
+    font-size: 0.75rem;
   }
 }
 
@@ -1706,20 +1710,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 80%;
+    left: 85%;
     opacity: 1;
   }
   25% {
-    left: 25%;
+    left: 26%;
   }
   50% {
-    left: 9%;
+    left: 68%;
   }
   75% {
-    left: 67%;
+    left: 35%;
   }
   100% {
-    left: 6%;
+    left: 51%;
   }
 }
 
