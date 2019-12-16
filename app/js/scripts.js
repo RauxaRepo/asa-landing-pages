@@ -429,7 +429,23 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       btnHolder.classList.remove('na');
       question.classList.add('hide');
       answersBtns.classList.add('hide');
-      nextQuestion.classList.remove('hide');
+      nextQuestion.classList.remove('hide'); //Move
+
+      if (questionCount + 1 == 5) {
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
+      }
+
+      counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+      _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+      counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
+
+      if (!e.target.classList.contains('last')) {
+        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+      } else {
+        counterRemainCount.innerHTML = 'You did it!';
+      } //Next Question
+
+
       nextQuestButton.addEventListener('click', function (e) {
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
           duration: 1,
@@ -444,20 +460,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
         tl.tweenTo("q".concat(questionCount + 1));
 
-        if (questionCount + 1 == 5) {
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
-        } else if (questionCount + 1 == 10) {
+        if (questionCount + 1 == 10) {
           _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
-        }
-
-        counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
-        counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
-
-        if (!e.target.classList.contains('last')) {
-          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
-        } else {
-          counterRemainCount.innerHTML = 'You did it!';
         }
 
         questionCount++;
