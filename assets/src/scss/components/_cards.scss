@@ -185,3 +185,11 @@
   }
 
 }
+
+@media only screen and (max-width: 576px) {
+  .cards-single.cta .cards-single--init-card button { 
+    bottom: 16px;
+    width: 160px;
+    font-size: 12px;  
+  }
+}

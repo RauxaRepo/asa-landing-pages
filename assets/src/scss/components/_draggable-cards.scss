@@ -307,30 +307,6 @@ $opacityblacklight: rgba(0, 0, 0, .25);
 
 
 //MEDIA QUERY
-@media only screen and (max-width: 576px) {
-
-  .main-page-inner {
-    min-width: 1800px;
-  }
-
-  .active-card p {
-    font-size: 10px;
-    width: 124%;
-  }
-
-  .active-card--buttonwrapper {
-    width: 124%;
-  }
-
-  .active-card--button {
-    margin-top: 10px;
-    // padding: 7px 0;
-  }
-
-  // QUESTION 1 (and all other odd questions, for now)
-
-}
-
 @media only screen and (max-width: 768px) {
 
   .drag-card-holder {
@@ -338,12 +314,49 @@ $opacityblacklight: rgba(0, 0, 0, .25);
   }
 
   .active-card p {
-    font-size: 15px;
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .active-card--buttonwrapper {
+    width: 100%;
+  }
+
+  .main-page-card--color { 
+    padding-bottom: 167%;
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width: 576px) {
+
+  .main-page-inner {
+    min-width: 1800px;
+  }
+
+  .active-card p {
+    font-size: 14px;
     width: 114%;
   }
 
   .active-card--buttonwrapper {
     width: 114%;
+  }
+
+  .active-card--button {
+    margin-top: 10px;
+    // padding: 7px 0;
+  
+  }
+
+  .main-page-card--color {  
+    padding-bottom: 171%;  
+    width: 101%;  
+  }
+
+  .next-question .drag-text {
+    font-size: 0.75rem;
   }
 
 }
