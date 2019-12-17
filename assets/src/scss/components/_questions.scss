@@ -20,8 +20,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 28px;  
-  // padding: 8%;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +32,7 @@
   &.q2 button {
     font-size: 11px;
 
-    @include bp(md) { 
+    @include bp(md) {
       font-size: 14px;
     }
   }
@@ -67,7 +66,7 @@
     font-size: 12px;
     transition: .3s;
 
-    @include bp(md) { 
+    @include bp(md) {
       font-size: 16px;
       border-radius: 5px;
       padding: 15px 0;
@@ -91,6 +90,9 @@
   &.q6,
   &.q8,
   &.q10 {
+    // ALT paragraph text colors
+    color: $atlasblue;
+
     button {
       background-color: $atlasblue;
       color: $white;
@@ -99,8 +101,7 @@
         background-color: $darkblue;
       }
     }
-    // ALT paragraph text colors
-    color: $atlasblue;
+
   }
 
   // PARAGRAPH styles
@@ -112,6 +113,7 @@
     text-align: center;
     font-weight: bold;
     pointer-events: none;
+    width: 100%;
 
     span {
       display: block;
@@ -120,10 +122,10 @@
       margin-bottom: 24px;
     }
 
-      // desktop p style
-    @include bp(md) { 
+    // desktop p style
+    @include bp(md) {
       font-size: 24px;
-      line-height: 30/24;
+      line-height: calc(30/24);
       padding-bottom: 0;
     }
   }

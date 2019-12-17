@@ -86,102 +86,56 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../assets/src/js/components/breakpoints.js":
-/*!**************************************************!*\
-  !*** ../assets/src/js/components/breakpoints.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function (breakpoint) {
-  var breakpoints = {
-    // default breakpoints from bootstrap
-    xs: '320px',
-    sm: '576px',
-    md: '768px',
-    lg: '992px',
-    xl: '1200px'
-  };
-  return breakpoints[breakpoint];
-});
-
-/***/ }),
-
 /***/ "../assets/src/js/components/confetti.js":
 /*!***********************************************!*\
   !*** ../assets/src/js/components/confetti.js ***!
   \***********************************************/
-/*! exports provided: default */
+/*! exports provided: confetti */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confetti", function() { return confetti; });
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breakpoints */ "../assets/src/js/components/breakpoints.js");
+ //VARS
 
+var wrapper = document.querySelector('.confetti-container'),
+    burstWrapper = document.querySelector('.confetti-container--burst'),
+    width = window.innerWidth,
+    height = window.innerHeight,
+    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521'],
+    confettiArr = [],
+    confettiArrBurst = [],
+    num = 800,
+    tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+  repeat: 0,
+  repeatDelay: 0
+}); //RANDOM MIN MAX
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  //VARS
-  var wrapper = document.querySelector('.confetti-container'),
-      burstWrapper = document.querySelector('.confetti-container--burst'),
-      width = window.innerWidth,
-      height = window.innerHeight,
-      colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521'],
-      confettiArr = [],
-      confettiArrBurst = [],
-      num = 800,
-      tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
-    repeat: 0,
-    repeatDelay: 0
-  }); //RANDOM MIN MAX
+function random(min, max) {
+  return min + Math.random() * (max - min);
+}
 
-  function random(min, max) {
-    return min + Math.random() * (max - min);
-  } //CONFETTI RAIN
-
-
-  function confettiBuildRain(isRain) {
+var confetti = {
+  buildRain: function buildRain() {
     for (var i = 0; i < num; i++) {
-      var confetti = document.createElement('div');
-      wrapper.appendChild(confetti);
-      confetti.style.position = 'absolute';
-      confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
-      confetti.style.height = Math.random() * 20 + 'px';
-      confetti.style.width = Math.random() * 10 + 'px';
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confetti, {
+      var _confetti = document.createElement('div');
+
+      wrapper.appendChild(_confetti);
+      _confetti.style.position = 'absolute';
+      _confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+      _confetti.style.height = Math.random() * 20 + 'px';
+      _confetti.style.width = Math.random() * 10 + 'px';
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti, {
         x: Math.random() * width,
         y: Math.random() * height - (height + 50),
         rotation: Math.random() * 45,
         scale: Math.random() * 1.2
       });
-      confettiArr.push(confetti); //console.log(' confetti ', i);
+      confettiArr.push(_confetti); //console.log(' confetti ', i);
     }
-  } //
-
-
-  function confettiRain() {
-    confettiArr.forEach(function (item, index) {
-      item.style.zIndex = Math.floor(Math.random() * 2);
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-        duration: 3,
-        delay: .005 * index,
-        y: '+=220vh',
-        rotation: Math.floor(Math.random() * -180),
-        ease: 'sine.in',
-        onComplete: function onComplete() {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
-            y: Math.random() * height - (height + 50)
-          });
-        }
-      });
-      console.log(' RAIN ');
-    });
-  } //CONFETTI BURST
-
-
-  function confettiBuildBurst(isBurst) {
+  },
+  buildBurst: function buildBurst() {
     for (var i = 0; i < 150; i++) {
       var confettib = document.createElement('div');
       burstWrapper.appendChild(confettib);
@@ -197,10 +151,25 @@ __webpack_require__.r(__webpack_exports__);
       });
       confettiArrBurst.push(confettib);
     }
-  } //burst
-
-
-  function confettiBurst() {
+  },
+  rain: function rain() {
+    confettiArr.forEach(function (item, index) {
+      item.style.zIndex = Math.floor(Math.random() * 2);
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
+        duration: 3,
+        delay: .005 * index,
+        y: '+=220vh',
+        rotation: Math.floor(Math.random() * -180),
+        ease: 'sine.in',
+        onComplete: function onComplete() {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
+            y: Math.random() * height - (height + 50)
+          });
+        }
+      });
+    });
+  },
+  burst: function burst() {
     confettiArrBurst.forEach(function (item, index) {
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
         duration: 0.5,
@@ -234,14 +203,9 @@ __webpack_require__.r(__webpack_exports__);
         yoyo: true
       });
     });
-    console.log(' BURST ');
-  } //RUN FUNCTIONS
+  }
+};
 
-
-  confettiBuildRain();
-  confettiRain();
-  confettiBuildBurst(); //confettiBurst();
-});
 
 /***/ }),
 
@@ -257,45 +221,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countingMe", function() { return countingMe; });
 var sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
-thePercentage = 174; // Get all the Meters from SVG
+thePercentage = 178; // Get all the Meters from SVG
 
-var meters = document.querySelectorAll('svg[data-value] .meter'); //Percentages
-
-var percentage = {
-  1: 174,
-  2: 167,
-  3: 160,
-  4: 153,
-  5: 137,
-  6: 125,
-  7: 118,
-  8: 106,
-  9: 95,
-  10: 50
-}; //COUNTER
-
-/*
-function counterMotion(thePercentage){
-meters.forEach( (path) => {
-    // Get the length of the path
-    let length = path.getTotalLength();
-    // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
-    // or uncomment to set it dynamically
-    // path.style.strokeDashoffset = length;
-    // path.style.strokeDasharray = length;
-  
-    // Get the value of the meter
-    let value = parseInt(path.parentNode.getAttribute('data-value'));
-    // Calculate the percentage of the total length
-    let to = length * ((thePercentage - value) / 100);
-    // Trigger Layout in Safari hack https://jakearchibald.com/2013/animated-line-drawing-svg/
-    path.getBoundingClientRect();
-    // Set the Offset
-    path.style.strokeDashoffset = Math.max(0, to);  
-  });
-}
-*/
-//PROGRESS OF THE COUNTER
+var meters = document.querySelectorAll('svg[data-value] .meter'); //PROGRESS OF THE COUNTER
 
 function getPercentage() {
   Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
@@ -333,14 +261,10 @@ var countingMe = {
     });
   },
   counterPercent: function counterPercent(card) {
-    var percentage = [174, 167, 160, 153, 137, 125, 118, 106, 95, 50];
+    var percentage = [178, 167, 160, 153, 137, 125, 118, 106, 95, 50];
     return percentage[card];
   }
-}; //RUN FUNCTIONS
-//allEventListeners();
-//counterMotion();
-//getPercentage();
-
+};
 
 
 /***/ }),
@@ -356,6 +280,7 @@ var countingMe = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
 /* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter */ "../assets/src/js/components/counter.js");
+/* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -363,6 +288,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -390,7 +316,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var answeredCorrect = [];
   var answeredIncorrectly = [];
-  var questionCount = 1;
+  var questionCount = 0;
 
   var questionBtns = _toConsumableArray(document.querySelectorAll('.active-card--button:not(.next-question--button)'));
 
@@ -398,37 +324,45 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var totalCardCount = document.querySelector('.results-num.hundred');
   var counterTotalCount = document.querySelector('.count-text-amount');
   var counterRemainCount = document.querySelector('.dynamic-count');
-  var counterCurrentCount = '01';
+  var counterCurrentCount = '00';
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
+  var bookButton = document.querySelector('.book-container'); //book button
+
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = '9 questions left!';
-  _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(0)); //bg animation
+  counterRemainCount.innerHTML = '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
+  //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
-  }).addLabel('q2').to('.cards', 1, {
+  }).addLabel('q1').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q2').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q3').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
     ease: 'sine.out'
   }).addLabel('q4').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q5').to('.cards', 1, {
-    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
-    ease: 'sine.out'
-  }).addLabel('q6').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
     ease: 'sine.out'
-  }).addLabel('q7').to('.cards', 1, {
+  }).addLabel('q6').to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
-  }).addLabel('q8');
+  }).addLabel('q7').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to right, #2774ae -6%,  #48a9c5 -4%)',
+    ease: 'sine.out'
+  }).addLabel('q8').to('.cards', 1, {
+    backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
+    ease: 'sine.out'
+  }).addLabel('q9');
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       var btnHolder = e.target.parentNode.parentNode.parentNode;
@@ -457,7 +391,29 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       btnHolder.classList.remove('na');
       question.classList.add('hide');
       answersBtns.classList.add('hide');
-      nextQuestion.classList.remove('hide');
+      nextQuestion.classList.remove('hide'); //Confetti Burst /Add Book 15% off button
+
+      if (questionCount + 1 == 5) {
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
+        bookButton.style.visibility = 'visible';
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
+          duration: 1,
+          opacity: 1,
+          ease: 'back.out'
+        });
+      }
+
+      counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+      _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+      counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
+
+      if (!e.target.classList.contains('last')) {
+        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+      } else {
+        counterRemainCount.innerHTML = 'You did it!';
+      } //Next Question
+
+
       nextQuestButton.addEventListener('click', function (e) {
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
           duration: 1,
@@ -471,14 +427,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           ease: 'sine.inout'
         });
         tl.tweenTo("q".concat(questionCount + 1));
-        counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(counterCurrentCount - 1));
-        counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
 
-        if (!e.target.classList.contains('last')) {
-          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
-        } else {
-          counterRemainCount.innerHTML = 'You did it!';
+        if (questionCount + 1 == 10) {
+          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
         }
 
         questionCount++;
@@ -713,7 +664,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');
-  var bookBtn = document.querySelector('.as-book');
+  var bookBtn = document.querySelector('a[data-discount]');
   var campaignName = 'Offercode_Email';
   var emailName = 'email';
   var getToken;
@@ -726,14 +677,15 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
       vars[key] = value;
     });
     return vars;
-  }; // checking for customer ID to display discount ribbon
+  }; //
+  // checking for customer ID to display discount ribbon
 
 
-  if (urlVars()['CUSTOMER_ID_'] != undefined) {
+  if (urlVars()['utm_campaign'] != undefined) {
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
-    bookBtn.setAttribute('href', "https://us.as.com/?CUSTOMER_ID_=".concat(urlVars()['CUSTOMER_ID_'], "&OFFER_CODE=").concat(urlVars()['OFFER_CODE'], "&OFFER_AUTHORIZATION=").concat(urlVars()['OFFER_AUTHORIZATION']));
+    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
 
@@ -742,13 +694,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   if (uri.indexOf("?") > 0) {
     var clean_uri = uri.substring(0, uri.indexOf("?"));
     window.history.replaceState({}, document.title, clean_uri);
-  } // setting inputs based on url params
-  //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
-  //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-  //offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
-  //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
-  /// need to add UTM |
-
+  }
 
   var respTriggerEmail = function respTriggerEmail(authToken, endPoint) {
     var url = "https://cors-anywhere.herokuapp.com/".concat(endPoint, "/rest/api/v1.3/campaigns/").concat(campaignName, "/").concat(emailName);
@@ -766,52 +712,24 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     }).then(function (json) {
       return console.log(json);
     });
-  }; // getting Token
-
+  };
   /*
-  respSubmitBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-       let respParms = {
-          CUSTOMER_ID_ : customerId.value,
-          OFFER_CODE : offerCode.value,
-          OFFER_AUTHORIZATION : offerAuth.value
-      };
-       console.log(respParms);
-      console.log(getToken);
-      console.log(getEndpoint);
-       let url = `https://cors-anywhere.herokuapp.com/${getEndpoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
-       fetch(url, {
-          method : "POST",
-          mode: 'cors', // no-cors, *cors, same-origin
-          headers: {
-              'Authorization': getToken, 
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-          body : JSON.stringify(respParms)
-      })
-      .then(response => response.json())
-      .then(json => console.log(json));
-       
-  });
+  fetch(getTokenUrl, {
+      method : "POST",
+      mode: 'cors', // no-cors, *cors, same-origin
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+  })
+  .then(response => response.json())
+  .then(json => {
+      //respTriggerEmail(json.authToken,json.endPoint);
+      getToken = json.authToken;
+      getEndpoint = json.endPoint;
+   });
   */
 
-
-  fetch(getTokenUrl, {
-    method: "POST",
-    mode: 'cors',
-    // no-cors, *cors, same-origin
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).then(function (response) {
-    return response.json();
-  }).then(function (json) {
-    console.log(json); //respTriggerEmail(json.authToken,json.endPoint);
-
-    getToken = json.authToken;
-    getEndpoint = json.endPoint;
-  });
 });
 
 /***/ }),
@@ -826,6 +744,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
+/* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -833,6 +752,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
@@ -915,8 +835,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
-        rotation: -2.2 * _i
+        rotation: -2.2 * _i,
+        ease: 'back.out'
       });
+
+      if (_i == theColorCards.length - 1) {
+        setTimeout(function () {
+          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildRain();
+          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildBurst();
+        }, 1000);
+      }
     }
   } //HIDE COLOR CARDS
 
@@ -942,6 +870,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     backfaceVisibility: "hidden",
     transformStyle: "preserve-3d",
     rotationY: -180
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set('.cards-single--init-card button', {
+    backfaceVisibility: "hidden",
+    transformStyle: "preserve-3d"
   });
   gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set([cardCta, cardQuestionOne], {
     transformStyle: "preserve-3d",
@@ -1002,29 +934,29 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ease: 'none'
     }, 0); // timer for footer and animation intro stop
 
+    var topOffer = document.querySelector('.main-page-header');
+
     var raiseFooter = function raiseFooter() {
       clearInterval(introStop);
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theFooterSlide, time - 0.5, {
-        bottom: 0,
-        delay: time - 0.5,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
-        onComplete: function onComplete() {
-          columnCards.pause();
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
-            duration: .8,
-            opacity: 1
-          }); //EventListener
+      columnCards.pause(); //pause card animation
 
-          cta.querySelector('button').addEventListener('click', function (e) {
-            cta.classList.add('disable');
-            stackCards(showGroupCards);
-          });
-        }
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
+        duration: .8,
+        opacity: 1
+      }); //EventListener
+
+      cta.querySelector('button').addEventListener('click', function (e) {
+        cta.classList.add('disable');
+        stackCards(showGroupCards);
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(topOffer, {
+          duration: .5,
+          top: topOffer.offsetTop - (topOffer.clientHeight + 10)
+        }); //hide header
       });
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
 
-    var introStop = setInterval(raiseFooter, 5000);
+    var introStop = setInterval(raiseFooter, 8000);
   }; //
   // places all cards in grid based on array coors
   //
@@ -1146,13 +1078,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/form.test */ "../assets/src/js/components/form.test.js");
 /* harmony import */ var _components_intro_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/intro-animation */ "../assets/src/js/components/intro-animation.js");
 /* harmony import */ var _components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/draggable-cards */ "../assets/src/js/components/draggable-cards.js");
-/* harmony import */ var _components_counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/counter */ "../assets/src/js/components/counter.js");
-/* harmony import */ var _components_confetti__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/confetti */ "../assets/src/js/components/confetti.js");
-/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
-/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
+/* harmony import */ var _components_confetti__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/confetti */ "../assets/src/js/components/confetti.js");
+/* harmony import */ var _components_meta_tags__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/meta.tags */ "../assets/src/js/components/meta.tags.js");
+/* harmony import */ var _components_social_set__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/social.set */ "../assets/src/js/components/social.set.js");
 
  //import sampleJs from './components/sample.component';
-
 
 
 
@@ -1174,13 +1104,11 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_components_social_set__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_components_meta_tags__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_components_form_test__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_components_intro_animation__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_components_draggable_cards__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  Object(_components_counter__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  Object(_components_confetti__WEBPACK_IMPORTED_MODULE_6__["default"])();
 });
 
 /***/ }),
@@ -18800,7 +18728,7 @@ if (!self.fetch) {
 /*! exports provided: name, version, description, scripts, babel, homepage, repository, author, license, browserslist, dependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"gulp-boostrap\",\"version\":\"0.0.1\",\"description\":\"gulp process to generate static pages for templates\",\"scripts\":{\"localbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks localbuild\",\"devbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks devbuild\",\"qabuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks qabuild\",\"prodbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks prodbuild --production\"},\"babel\":{\"presets\":[\"env\"],\"babelrc\":false},\"homepage\":\"http://\",\"repository\":{\"type\":\"git\",\"url\":\"https://\"},\"author\":\"Rauxa\",\"license\":\"MIT\",\"browserslist\":[\"ie >= 11\",\"last 2 version\",\"> 5%\"],\"dependencies\":{\"@babel/core\":\"^7.4.5\",\"@babel/polyfill\":\"^7.4.4\",\"@babel/preset-env\":\"^7.4.5\",\"babel-core\":\"^6.26.3\",\"babel-loader\":\"^8.0.6\",\"babel-preset-env\":\"^1.7.0\",\"base-64\":\"^0.1.0\",\"browser-sync\":\"^2.26.7\",\"cssnano\":\"^4.1.10\",\"gsap\":\"^3.0.1\",\"gulp\":\"^4.0.2\",\"gulp-autoprefixer\":\"^6.1.0\",\"gulp-babel\":\"^8.0.0\",\"gulp-clean\":\"^0.4.0\",\"gulp-if\":\"^3.0.0\",\"gulp-postcss\":\"^8.0.0\",\"gulp-remove-html-comments\":\"^1.0.1\",\"gulp-rename\":\"^1.4.0\",\"gulp-sass\":\"^4.0.2\",\"gulp-sass-lint\":\"^1.4.0\",\"gulp-server-livereload\":\"^1.9.2\",\"gulp-sourcemaps\":\"^2.6.5\",\"merge-stream\":\"^2.0.0\",\"normalize-scss\":\"^7.0.1\",\"postcss-discard-comments\":\"^4.0.2\",\"webpack\":\"^4.35.0\",\"webpack-stream\":\"^5.2.1\",\"whatwg-fetch\":\"^3.0.0\",\"yargs\":\"^15.0.2\"}}");
+module.exports = JSON.parse("{\"name\":\"gulp-boostrap\",\"version\":\"0.0.1\",\"description\":\"gulp process to generate static pages for templates\",\"scripts\":{\"localbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks localbuild\",\"devbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks devbuild\",\"qabuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks qabuild\",\"prodbuild\":\"gulp --require babel-register --gulpfile ./.gb/tasks prodbuild --production\"},\"babel\":{\"presets\":[\"env\"],\"babelrc\":false},\"homepage\":\"http://\",\"repository\":{\"type\":\"git\",\"url\":\"https://\"},\"author\":\"Rauxa\",\"license\":\"MIT\",\"browserslist\":[\"ie >= 11\",\"last 2 version\",\"> 5%\"],\"dependencies\":{\"@babel/core\":\"^7.4.5\",\"@babel/polyfill\":\"^7.4.4\",\"@babel/preset-env\":\"^7.4.5\",\"babel-core\":\"^6.26.3\",\"babel-loader\":\"^8.0.6\",\"babel-preset-env\":\"^1.7.0\",\"base-64\":\"^0.1.0\",\"browser-sync\":\"^2.26.7\",\"cssnano\":\"^4.1.10\",\"gsap\":\"^3.0.1\",\"gulp\":\"^4.0.2\",\"gulp-autoprefixer\":\"^6.1.0\",\"gulp-babel\":\"^8.0.0\",\"gulp-clean\":\"^0.4.0\",\"gulp-if\":\"^3.0.0\",\"gulp-postcss\":\"^8.0.0\",\"gulp-remove-html-comments\":\"^1.0.1\",\"gulp-rename\":\"^1.4.0\",\"gulp-sass\":\"^4.0.2\",\"gulp-sass-lint\":\"^1.4.0\",\"gulp-server-livereload\":\"^1.9.2\",\"gulp-sourcemaps\":\"^2.6.5\",\"merge-stream\":\"^2.0.0\",\"normalize-scss\":\"^7.0.1\",\"postcss-discard-comments\":\"^4.0.2\",\"webpack\":\"^4.35.0\",\"webpack-stream\":\"^5.2.1\",\"whatwg-fetch\":\"^3.0.0\",\"yargs\":\"^15.0.2\",\"yarn\":\"^1.21.1\"}}");
 
 /***/ }),
 

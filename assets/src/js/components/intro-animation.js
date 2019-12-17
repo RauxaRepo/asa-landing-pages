@@ -1,4 +1,5 @@
 import {gsap, TweenMax, TimelineMax, Power, Power2, Linear} from 'gsap';
+import { confetti } from './confetti';
 
 export default function () {
 
@@ -93,7 +94,16 @@ export default function () {
         theColorCards[i].style.visibility = 'visible';
       }
       //rotation
-      gsap.to(theColorCards[i], 1, {rotation: - 2.2 * i});
+      gsap.to(theColorCards[i], 1, {rotation: - 2.2 * i, ease: 'back.out'});
+
+      if( i == theColorCards.length - 1 ) {
+
+        setTimeout( ()=> {
+          confetti.buildRain();
+          confetti.buildBurst();
+        }, 1000)
+      }
+
     }
   }
   //HIDE COLOR CARDS
@@ -111,22 +121,10 @@ export default function () {
   let cardCta = document.querySelector('.cards-single.cta .cards-single--init-card');
   let cardQuestionOne = document.querySelector('.cards-single.cta .main-page-card--question');
 
-  gsap.set(cardFlipWrapper, {
-    transformStyle:"preserve-3d",
-    perspective: 800,
-    perspectiveOrigin:'50% 50% 0px'
-  });
-
-  gsap.set(cardQuestionOne,{
-    backfaceVisibility:"hidden",
-    transformStyle: "preserve-3d",
-    rotationY:-180,
-  });
-
-  gsap.set([cardCta,cardQuestionOne],{
-    transformStyle:"preserve-3d",
-    backfaceVisibility:"hidden"
-  });
+  gsap.set(cardFlipWrapper, { transformStyle:"preserve-3d", perspective: 800, perspectiveOrigin:'50% 50% 0px'});
+  gsap.set(cardQuestionOne,{ backfaceVisibility:"hidden", transformStyle: "preserve-3d",rotationY:-180,});
+  gsap.set('.cards-single--init-card button',{ backfaceVisibility:"hidden", transformStyle: "preserve-3d"})
+  gsap.set([cardCta,cardQuestionOne],{ transformStyle:"preserve-3d",backfaceVisibility:"hidden" });
   //
     
 
@@ -155,23 +153,21 @@ export default function () {
 
 
     // timer for footer and animation intro stop
+    let topOffer = document.querySelector('.main-page-header');
     let raiseFooter = function() {
-			clearInterval(introStop);
-			gsap.to(theFooterSlide, time - 0.5,{bottom:0, delay:time-0.5, ease:Linear, onComplete: function(){
-        columnCards.pause();
-        
-        gsap.to(cta.querySelector('button'),{duration:.8, opacity:1});
-				//EventListener
-			  cta.querySelector('button').addEventListener('click', (e) => {
+      clearInterval(introStop);
+      columnCards.pause();//pause card animation
+      gsap.to(cta.querySelector('button'),{duration:.8, opacity:1});
+        //EventListener
+        cta.querySelector('button').addEventListener('click', (e) => {
           cta.classList.add('disable');
-          stackCards(showGroupCards);
-          
-        });
-			}})
+          stackCards(showGroupCards); 
+          gsap.to(topOffer,{duration:.5, top:topOffer.offsetTop - (topOffer.clientHeight + 10)});//hide header
+      });
 			
     }
     //SLIDE IN FOOTER & STOP CARD ANIMATION
-    let introStop = setInterval(raiseFooter, 5000);
+    let introStop = setInterval(raiseFooter, 8000);
 
   }
 
