@@ -969,11 +969,9 @@ section {
 }
 
 .main-page-footer-slide {
-  bottom: -141px;
-  position: fixed;
   width: 100%;
-  opacity: 0;
   pointer-events: none;
+  z-index: 17;
 }
 
 .main-page-footer-slide.active {
@@ -1741,20 +1739,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 9%;
+    left: 82%;
     opacity: 1;
   }
   25% {
-    left: 93%;
+    left: 27%;
   }
   50% {
-    left: 93%;
+    left: 87%;
   }
   75% {
-    left: 15%;
+    left: 94%;
   }
   100% {
-    left: 23%;
+    left: 24%;
   }
 }
 
@@ -1787,7 +1785,7 @@ main {
   text-align: center;
   width: 100%;
   z-index: 2;
-  transform: translateY(-100%);
+  transform: translateY(0%);
   transition: transform .25s ease;
 }
 
