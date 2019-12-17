@@ -79,7 +79,6 @@ export default function () {
     })
     .then(response => response.json())
     .then(json => {
-        console.log(json);
         //respTriggerEmail(json.authToken,json.endPoint);
         getToken = json.authToken;
         getEndpoint = json.endPoint;

@@ -756,8 +756,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   }).then(function (response) {
     return response.json();
   }).then(function (json) {
-    console.log(json); //respTriggerEmail(json.authToken,json.endPoint);
-
+    //respTriggerEmail(json.authToken,json.endPoint);
     getToken = json.authToken;
     getEndpoint = json.endPoint;
   });
