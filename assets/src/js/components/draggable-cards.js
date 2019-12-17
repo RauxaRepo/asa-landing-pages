@@ -41,7 +41,10 @@ export default function () {
 			'NICE TRY!',
 			'GOOD WORK!',
 			'AMAZING!'
-		];
+    ];
+    
+    //Book 15% button
+    let bookBtnContainer = document.querySelector('.book-container');//Book 15% button
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
@@ -117,8 +120,8 @@ export default function () {
         
           //Confetti Burst /Add Book 15% off button
 					if( questionCount+1 == 5) {
-            confetti.burst();
-            bookButton.style.visibility = 'visible';
+            confetti.burst();//confetti
+            bookBtnContainer.classList.add('active');
             gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
 					}
 					

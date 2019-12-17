@@ -1703,6 +1703,11 @@ svg path {
   width: 100%;
 }
 
+.book-container.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 .book-button {
   position: relative;
   display: block;
@@ -1773,20 +1778,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 32%;
+    left: 84%;
     opacity: 1;
   }
   25% {
-    left: 73%;
+    left: 83%;
   }
   50% {
-    left: 77%;
+    left: 23%;
   }
   75% {
-    left: 7%;
+    left: 86%;
   }
   100% {
-    left: 7%;
+    left: 76%;
   }
 }
 

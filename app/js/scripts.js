@@ -329,7 +329,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var bookButton = document.querySelector('.book-container'); //book button
 
   var correctCardMessage = document.querySelector('.correct-text');
-  var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
+  var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!']; //Book 15% button
+
+  var bookBtnContainer = document.querySelector('.book-container'); //Book 15% button
+
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
   counterRemainCount.innerHTML = '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
@@ -394,8 +397,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       nextQuestion.classList.remove('hide'); //Confetti Burst /Add Book 15% off button
 
       if (questionCount + 1 == 5) {
-        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
-        bookButton.style.visibility = 'visible';
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti
+
+        bookBtnContainer.classList.add('active');
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
           duration: 1,
           opacity: 1,
@@ -664,7 +668,8 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');
-  var bookBtn = document.querySelector('a[data-discount]');
+  var bookBtn = document.querySelector('a[data-discount]'); //Book 15% button
+
   var campaignName = 'Offercode_Email';
   var emailName = 'email';
   var getToken;
@@ -684,7 +689,6 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   if (urlVars()['utm_campaign'] != undefined) {
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
-    bookBtn.classList.add('active');
     bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
