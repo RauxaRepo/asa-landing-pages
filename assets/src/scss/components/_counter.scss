@@ -70,10 +70,12 @@ svg path {
 
   &-container {
     display: block;
-    position: relative;
     height: 100px;
+    opacity: 0;
+    position: relative;
     top: 10px;
     text-align: center;
+    visibility: hidden;
     width: 100%;
   }
 
@@ -96,7 +98,7 @@ svg path {
 }
 
 .book-button:hover {
-  background-color: $atlasblue;
+  background-color: $darkblue;
   color:$off-white;
 }
 

@@ -33,7 +33,8 @@ export default function () {
 		let counterRemainCount = document.querySelector('.dynamic-count');
 
 		let counterCurrentCount = '00';
-		let counterCurrentCountHolder = document.querySelector('.count-text-num');
+    let counterCurrentCountHolder = document.querySelector('.count-text-num');
+    let bookButton = document.querySelector('.book-container');//book button
 
 		let correctCardMessage = document.querySelector('.correct-text');
 		let correctCardMessageOps = [
@@ -114,10 +115,11 @@ export default function () {
 				answersBtns.classList.add('hide');
         nextQuestion.classList.remove('hide');
         
-          //Move
+          //Confetti Burst /Add Book 15% off button
 					if( questionCount+1 == 5) {
-						confetti.burst();
-						
+            confetti.burst();
+            bookButton.style.visibility = 'visible';
+            gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
 					}
 					
 					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;

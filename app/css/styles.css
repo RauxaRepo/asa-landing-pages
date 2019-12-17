@@ -1666,10 +1666,12 @@ svg path {
 
 .book-container {
   display: block;
-  position: relative;
   height: 100px;
+  opacity: 0;
+  position: relative;
   top: 10px;
   text-align: center;
+  visibility: hidden;
   width: 100%;
 }
 
@@ -1691,7 +1693,7 @@ svg path {
 }
 
 .book-button:hover {
-  background-color: #2774ae;
+  background-color: #01426a;
   color: #f1f1f1;
 }
 
@@ -1739,20 +1741,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 82%;
+    left: 91%;
     opacity: 1;
   }
   25% {
-    left: 27%;
+    left: 35%;
   }
   50% {
-    left: 87%;
+    left: 12%;
   }
   75% {
-    left: 94%;
+    left: 64%;
   }
   100% {
-    left: 24%;
+    left: 22%;
   }
 }
 

@@ -366,6 +366,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var counterRemainCount = document.querySelector('.dynamic-count');
   var counterCurrentCount = '00';
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
+  var bookButton = document.querySelector('.book-container'); //book button
+
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
@@ -429,10 +431,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       btnHolder.classList.remove('na');
       question.classList.add('hide');
       answersBtns.classList.add('hide');
-      nextQuestion.classList.remove('hide'); //Move
+      nextQuestion.classList.remove('hide'); //Confetti Burst /Add Book 15% off button
 
       if (questionCount + 1 == 5) {
         _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
+        bookButton.style.visibility = 'visible';
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
+          duration: 1,
+          opacity: 1,
+          ease: 'back.out'
+        });
       }
 
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
