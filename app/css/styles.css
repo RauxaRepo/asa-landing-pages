@@ -1697,6 +1697,10 @@ svg path {
   color: #f1f1f1;
 }
 
+.book-button:focus {
+  outline: none;
+}
+
 .confetti-container {
   height: 100vh;
   position: absolute;
@@ -1741,20 +1745,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 91%;
+    left: 26%;
     opacity: 1;
   }
   25% {
-    left: 35%;
+    left: 74%;
   }
   50% {
-    left: 12%;
+    left: 82%;
   }
   75% {
-    left: 64%;
+    left: 73%;
   }
   100% {
-    left: 22%;
+    left: 2%;
   }
 }
 

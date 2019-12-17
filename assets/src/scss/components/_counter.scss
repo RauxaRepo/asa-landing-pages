@@ -101,5 +101,8 @@ svg path {
   background-color: $darkblue;
   color:$off-white;
 }
+.book-button:focus {
+  outline: none;
+}
 
 
