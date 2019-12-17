@@ -923,6 +923,30 @@ section {
   background-color: #2774ae;
 }
 
+.main-page-header {
+  background-color: #2774ae;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  font-size: 12px;
+  height: 61px;
+  padding: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+  transform: translateY(-100%);
+  transition: transform .25s ease;
+}
+
+.main-page-header.active {
+  transform: translateY(0%);
+}
+
+.main-page-header p {
+  padding: 20px 0 0;
+  width: 100%;
+}
+
 .responsys-test label {
   position: relative;
   min-width: 150px;
@@ -1745,20 +1769,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 81%;
+    left: 39%;
     opacity: 1;
   }
   25% {
-    left: 56%;
+    left: 29%;
   }
   50% {
-    left: 89%;
+    left: 49%;
   }
   75% {
-    left: 4%;
+    left: 6%;
   }
   100% {
-    left: 23%;
+    left: 37%;
   }
 }
 
@@ -1778,30 +1802,6 @@ main {
   align-items: center;
   justify-content: center;
   background-color: #f1f1f1;
-}
-
-.main-page-header {
-  background-color: #2774ae;
-  border-bottom: 2px solid #fff;
-  color: #fff;
-  font-size: 12px;
-  height: 61px;
-  padding: 0;
-  position: fixed;
-  text-align: center;
-  width: 100%;
-  z-index: 2;
-  transform: translateY(0%);
-  transition: transform .25s ease;
-}
-
-.main-page-header.active {
-  transform: translateY(0%);
-}
-
-.main-page-header p {
-  padding: 20px 0 0;
-  width: 100%;
 }
 
 .main-page-outer {
