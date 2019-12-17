@@ -15,7 +15,7 @@ export default function () {
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
 
-    let bookBtn = document.querySelector('a[data-discount]');
+    let bookBtn = document.querySelector('a[data-discount]');//Book 15% button
 
     
     let campaignName = 'Offercode_Email';
@@ -42,7 +42,6 @@ export default function () {
     if(urlVars()['utm_campaign'] != undefined ) {
         disctountRibbon.classList.add('active');
         discountLegal.classList.add('active');
-        bookBtn.classList.add('active');
         bookBtn.setAttribute('href',`https://www.alaskaair.com/planbook/?ODAI=${urlVars()['ODAI']}&offid=${urlVars()['offid']}&eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}`);
     }
 

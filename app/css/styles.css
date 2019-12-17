@@ -928,12 +928,12 @@ section {
   border-bottom: 2px solid #fff;
   color: #fff;
   font-size: 12px;
-  height: 61px;
+  height: 35px;
   padding: 0;
   position: fixed;
   text-align: center;
   width: 100%;
-  z-index: 2;
+  z-index: 9;
   transform: translateY(-100%);
   transition: transform .25s ease;
 }
@@ -943,7 +943,7 @@ section {
 }
 
 .main-page-header p {
-  padding: 20px 0 0;
+  padding: 10px 0 0;
   width: 100%;
 }
 
@@ -994,11 +994,14 @@ section {
 
 .main-page-footer-slide {
   width: 100%;
+  display: none;
+  opacity: 0;
   pointer-events: none;
   z-index: 17;
 }
 
 .main-page-footer-slide.active {
+  display: block;
   pointer-events: auto;
   opacity: 1;
   z-index: 6;
@@ -1700,6 +1703,11 @@ svg path {
   width: 100%;
 }
 
+.book-container.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 .book-button {
   position: relative;
   display: block;
@@ -1770,37 +1778,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-<<<<<<< HEAD
-    left: 28%;
+    left: 4%;
     opacity: 1;
   }
   25% {
-    left: 67%;
+    left: 16%;
   }
   50% {
-    left: 9%;
+    left: 74%;
   }
   75% {
-    left: 65%;
+    left: 78%;
   }
   100% {
-    left: 7%;
-=======
-    left: 91%;
-    opacity: 1;
-  }
-  25% {
-    left: 84%;
-  }
-  50% {
-    left: 77%;
-  }
-  75% {
-    left: 26%;
-  }
-  100% {
-    left: 84%;
->>>>>>> d4e1304f2b4999dfe7b050f9cde94dbd87a31178
+    left: 21%;
   }
 }
 
