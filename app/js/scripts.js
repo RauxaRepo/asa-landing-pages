@@ -223,43 +223,7 @@ var sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
 thePercentage = 174; // Get all the Meters from SVG
 
-var meters = document.querySelectorAll('svg[data-value] .meter'); //Percentages
-
-var percentage = {
-  1: 174,
-  2: 167,
-  3: 160,
-  4: 153,
-  5: 137,
-  6: 125,
-  7: 118,
-  8: 106,
-  9: 95,
-  10: 50
-}; //COUNTER
-
-/*
-function counterMotion(thePercentage){
-meters.forEach( (path) => {
-    // Get the length of the path
-    let length = path.getTotalLength();
-    // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
-    // or uncomment to set it dynamically
-    // path.style.strokeDashoffset = length;
-    // path.style.strokeDasharray = length;
-  
-    // Get the value of the meter
-    let value = parseInt(path.parentNode.getAttribute('data-value'));
-    // Calculate the percentage of the total length
-    let to = length * ((thePercentage - value) / 100);
-    // Trigger Layout in Safari hack https://jakearchibald.com/2013/animated-line-drawing-svg/
-    path.getBoundingClientRect();
-    // Set the Offset
-    path.style.strokeDashoffset = Math.max(0, to);  
-  });
-}
-*/
-//PROGRESS OF THE COUNTER
+var meters = document.querySelectorAll('svg[data-value] .meter'); //PROGRESS OF THE COUNTER
 
 function getPercentage() {
   Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
@@ -300,11 +264,7 @@ var countingMe = {
     var percentage = [174, 167, 160, 153, 137, 125, 118, 106, 95, 50];
     return percentage[card];
   }
-}; //RUN FUNCTIONS
-//allEventListeners();
-//counterMotion();
-//getPercentage();
-
+};
 
 
 /***/ }),
@@ -366,6 +326,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var counterRemainCount = document.querySelector('.dynamic-count');
   var counterCurrentCount = '00';
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
+  var bookButton = document.querySelector('.book-container'); //book button
+
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
@@ -429,7 +391,29 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       btnHolder.classList.remove('na');
       question.classList.add('hide');
       answersBtns.classList.add('hide');
-      nextQuestion.classList.remove('hide');
+      nextQuestion.classList.remove('hide'); //Confetti Burst /Add Book 15% off button
+
+      if (questionCount + 1 == 5) {
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
+        bookButton.style.visibility = 'visible';
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
+          duration: 1,
+          opacity: 1,
+          ease: 'back.out'
+        });
+      }
+
+      counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+      _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+      counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
+
+      if (!e.target.classList.contains('last')) {
+        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+      } else {
+        counterRemainCount.innerHTML = 'You did it!';
+      } //Next Question
+
+
       nextQuestButton.addEventListener('click', function (e) {
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
           duration: 1,
@@ -444,20 +428,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
         tl.tweenTo("q".concat(questionCount + 1));
 
-        if (questionCount + 1 == 5) {
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
-        } else if (questionCount + 1 == 10) {
+        if (questionCount + 1 == 10) {
           _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
-        }
-
-        counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
-        counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
-
-        if (!e.target.classList.contains('last')) {
-          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
-        } else {
-          counterRemainCount.innerHTML = 'You did it!';
         }
 
         questionCount++;
@@ -712,7 +684,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
-    bookBtn.setAttribute('href', "https://us.as.com/?eml=".concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
+    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?eml=".concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
 
@@ -721,13 +693,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   if (uri.indexOf("?") > 0) {
     var clean_uri = uri.substring(0, uri.indexOf("?"));
     window.history.replaceState({}, document.title, clean_uri);
-  } // setting inputs based on url params
-  //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
-  //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-  //offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
-  //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
-  /// need to add UTM |
-
+  }
 
   var respTriggerEmail = function respTriggerEmail(authToken, endPoint) {
     var url = "https://cors-anywhere.herokuapp.com/".concat(endPoint, "/rest/api/v1.3/campaigns/").concat(campaignName, "/").concat(emailName);
@@ -745,35 +711,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     }).then(function (json) {
       return console.log(json);
     });
-  }; // getting Token
-
-  /*
-  respSubmitBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-       let respParms = {
-          CUSTOMER_ID_ : customerId.value,
-          OFFER_CODE : offerCode.value,
-          OFFER_AUTHORIZATION : offerAuth.value
-      };
-       console.log(respParms);
-      console.log(getToken);
-      console.log(getEndpoint);
-       let url = `https://cors-anywhere.herokuapp.com/${getEndpoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
-       fetch(url, {
-          method : "POST",
-          mode: 'cors', // no-cors, *cors, same-origin
-          headers: {
-              'Authorization': getToken, 
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-          body : JSON.stringify(respParms)
-      })
-      .then(response => response.json())
-      .then(json => console.log(json));
-       
-  });
-  */
-
+  };
 
   fetch(getTokenUrl, {
     method: "POST",
@@ -786,8 +724,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   }).then(function (response) {
     return response.json();
   }).then(function (json) {
-    console.log(json); //respTriggerEmail(json.authToken,json.endPoint);
-
+    //respTriggerEmail(json.authToken,json.endPoint);
     getToken = json.authToken;
     getEndpoint = json.endPoint;
   });
@@ -995,29 +932,29 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ease: 'none'
     }, 0); // timer for footer and animation intro stop
 
+    var topOffer = document.querySelector('.main-page-header');
+
     var raiseFooter = function raiseFooter() {
       clearInterval(introStop);
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theFooterSlide, time - 0.5, {
-        bottom: 0,
-        delay: time - 0.5,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Linear"],
-        onComplete: function onComplete() {
-          columnCards.pause();
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
-            duration: .8,
-            opacity: 1
-          }); //EventListener
+      columnCards.pause(); //pause card animation
 
-          cta.querySelector('button').addEventListener('click', function (e) {
-            cta.classList.add('disable');
-            stackCards(showGroupCards);
-          });
-        }
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
+        duration: .8,
+        opacity: 1
+      }); //EventListener
+
+      cta.querySelector('button').addEventListener('click', function (e) {
+        cta.classList.add('disable');
+        stackCards(showGroupCards);
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(topOffer, {
+          duration: .5,
+          top: topOffer.offsetTop - (topOffer.clientHeight + 10)
+        }); //hide header
       });
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
 
-    var introStop = setInterval(raiseFooter, 5000);
+    var introStop = setInterval(raiseFooter, 8000);
   }; //
   // places all cards in grid based on array coors
   //

@@ -33,7 +33,8 @@ export default function () {
 		let counterRemainCount = document.querySelector('.dynamic-count');
 
 		let counterCurrentCount = '00';
-		let counterCurrentCountHolder = document.querySelector('.count-text-num');
+    let counterCurrentCountHolder = document.querySelector('.count-text-num');
+    let bookButton = document.querySelector('.book-container');//book button
 
 		let correctCardMessage = document.querySelector('.correct-text');
 		let correctCardMessageOps = [
@@ -112,23 +113,17 @@ export default function () {
  
 				question.classList.add('hide');
 				answersBtns.classList.add('hide');
-				nextQuestion.classList.remove('hide');
-
-				nextQuestButton.addEventListener('click', (e) => {
-					
-					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
-					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
-					tl.tweenTo(`q${questionCount+1}`);
-
+        nextQuestion.classList.remove('hide');
+        
+          //Confetti Burst /Add Book 15% off button
 					if( questionCount+1 == 5) {
-						confetti.burst();
-						
-					} else if (questionCount+1 == 10) {
-						confetti.rain();
+            confetti.burst();
+            bookButton.style.visibility = 'visible';
+            gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
 					}
 					
 					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-					countingMe.counterMotion(countingMe.counterPercent(questionCount));
+          countingMe.counterMotion(countingMe.counterPercent(questionCount));
 					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 					
 					if(!e.target.classList.contains('last')) {
@@ -136,7 +131,18 @@ export default function () {
 					} else {
 						counterRemainCount.innerHTML = 'You did it!';
 					}
+           
+        //Next Question
+				nextQuestButton.addEventListener('click', (e) => {
 					
+					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
+					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+					tl.tweenTo(`q${questionCount+1}`);
+
+          if (questionCount+1 == 10) {
+						confetti.rain();
+					}
+           
 					questionCount++;
 				});
 				
