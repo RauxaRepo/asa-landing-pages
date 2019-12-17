@@ -684,7 +684,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
-    bookBtn.setAttribute('href', "https://us.as.com/?eml=".concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
+    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?eml=".concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
 
@@ -693,13 +693,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   if (uri.indexOf("?") > 0) {
     var clean_uri = uri.substring(0, uri.indexOf("?"));
     window.history.replaceState({}, document.title, clean_uri);
-  } // setting inputs based on url params
-  //customerId.value = urlVars()['CUSTOMER_ID_'] != undefined ? urlVars()['CUSTOMER_ID_'] : '';
-  //offerCode.value = urlVars()['OFFER_CODE'] != undefined ? urlVars()['OFFER_CODE'] : '';
-  //offerAuth.value = urlVars()['OFFER_AUTHORIZATION'] != undefined ? urlVars()['OFFER_AUTHORIZATION'] : '';
-  //offerTracking.value = urlVars()['UTM'] != undefined ? urlVars()['UTM'] : '';
-  /// need to add UTM |
-
+  }
 
   var respTriggerEmail = function respTriggerEmail(authToken, endPoint) {
     var url = "https://cors-anywhere.herokuapp.com/".concat(endPoint, "/rest/api/v1.3/campaigns/").concat(campaignName, "/").concat(emailName);
@@ -717,35 +711,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     }).then(function (json) {
       return console.log(json);
     });
-  }; // getting Token
-
-  /*
-  respSubmitBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-       let respParms = {
-          CUSTOMER_ID_ : customerId.value,
-          OFFER_CODE : offerCode.value,
-          OFFER_AUTHORIZATION : offerAuth.value
-      };
-       console.log(respParms);
-      console.log(getToken);
-      console.log(getEndpoint);
-       let url = `https://cors-anywhere.herokuapp.com/${getEndpoint}/rest/api/v1.3/campaigns/${campaignName}/${emailName}`;
-       fetch(url, {
-          method : "POST",
-          mode: 'cors', // no-cors, *cors, same-origin
-          headers: {
-              'Authorization': getToken, 
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-          body : JSON.stringify(respParms)
-      })
-      .then(response => response.json())
-      .then(json => console.log(json));
-       
-  });
-  */
-
+  };
 
   fetch(getTokenUrl, {
     method: "POST",
@@ -758,8 +724,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   }).then(function (response) {
     return response.json();
   }).then(function (json) {
-    console.log(json); //respTriggerEmail(json.authToken,json.endPoint);
-
+    //respTriggerEmail(json.authToken,json.endPoint);
     getToken = json.authToken;
     getEndpoint = json.endPoint;
   });
