@@ -335,7 +335,7 @@ export default function () {
 
 
 		//RUN FUNCTIONS
-		spreadTheCards();//spread color cards
+		//spreadTheCards();//spread color cards
 		//randomizeCards();//randomize question cards
 		dragCards();//drag question cards
 		init();//start touch controls

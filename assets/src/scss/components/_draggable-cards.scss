@@ -53,54 +53,54 @@ $opacityblack: rgba(0, 0, 0, .5);
 
     &.one {
         display: block;
-        z-index: 11;
+        z-index: 15;
         opacity: 1;
     }
 
     &.two {
         display: block;
-        z-index: 10;
+        z-index: 14;
     }
 
 
   &.three {
     display: block;
-    z-index: 9; 
+    z-index: 13; 
   }
  
   &.four {
     display: block;
-    z-index: 8;         
+    z-index: 12;         
   }
 
   &.five {
     display: block;
-    z-index: 7;  
+    z-index: 11;  
   }
 
   &.six {
     display: block;
-    z-index: 6;  
+    z-index: 10;  
   }
 
   &.seven {
     display: block;
-    z-index: 5;   
+    z-index: 9;   
   }
 
   &.eight {
     display: block;
-    z-index: 4;  
+    z-index: 8;  
   }
 
   &.nine {
     display: block;
-    z-index: 3;  
+    z-index: 7;  
   }
 
   &.ten {
     display: block;
-    z-index: 2;  
+    z-index: 6;  
   }
 }
 
@@ -179,7 +179,7 @@ $opacityblack: rgba(0, 0, 0, .5);
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
-  top: 0;
+  top: -4px;
   transform-origin: '50% 50%';
   width: 100%;
   position: absolute;
@@ -218,6 +218,16 @@ $opacityblack: rgba(0, 0, 0, .5);
 .clr4 {
   background-color: $colorcardlghtblue;
 }
+
+.clr0,
+.clr1,
+.clr2,
+.clr3,
+.clr4 {
+  height: 600px;
+  width: 360px;
+}
+
 
 .box-shadow {
   box-shadow: 3px 4px 6px $opacityblack;
@@ -263,7 +273,7 @@ $opacityblack: rgba(0, 0, 0, .5);
 
 //RESULTS CARD
 .main-page-card--results {
-  z-index: 1;     
+  z-index: 5;     
 
   p {
     padding-top: 15px;

@@ -1224,7 +1224,7 @@ section {
   background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
-  z-index: 12;
+  z-index: 16;
 }
 
 .cards-single.cta .cards-single--init-card button {
@@ -1241,6 +1241,7 @@ section {
   background-color: #48a9c5;
   border-radius: 6px;
   opacity: 0;
+  z-index: 45;
 }
 
 .cards-single.cta .cards-single--init-card.disable {
@@ -1315,62 +1316,62 @@ section {
 .main-page-card--question.one,
 .main-page-card--results.one {
   display: block;
-  z-index: 11;
+  z-index: 15;
   opacity: 1;
 }
 
 .main-page-card--question.two,
 .main-page-card--results.two {
   display: block;
-  z-index: 10;
+  z-index: 14;
 }
 
 .main-page-card--question.three,
 .main-page-card--results.three {
   display: block;
-  z-index: 9;
+  z-index: 13;
 }
 
 .main-page-card--question.four,
 .main-page-card--results.four {
   display: block;
-  z-index: 8;
+  z-index: 12;
 }
 
 .main-page-card--question.five,
 .main-page-card--results.five {
   display: block;
-  z-index: 7;
+  z-index: 11;
 }
 
 .main-page-card--question.six,
 .main-page-card--results.six {
   display: block;
-  z-index: 6;
+  z-index: 10;
 }
 
 .main-page-card--question.seven,
 .main-page-card--results.seven {
   display: block;
-  z-index: 5;
+  z-index: 9;
 }
 
 .main-page-card--question.eight,
 .main-page-card--results.eight {
   display: block;
-  z-index: 4;
+  z-index: 8;
 }
 
 .main-page-card--question.nine,
 .main-page-card--results.nine {
   display: block;
-  z-index: 3;
+  z-index: 7;
 }
 
 .main-page-card--question.ten,
 .main-page-card--results.ten {
   display: block;
-  z-index: 2;
+  z-index: 6;
 }
 
 .results-share-fb {
@@ -1443,7 +1444,7 @@ section {
   height: 0;
   padding-bottom: 160%;
   margin: 10px 0;
-  top: 0;
+  top: -4px;
   transform-origin: '50% 50%';
   width: 100%;
   position: absolute;
@@ -1483,6 +1484,15 @@ section {
   background-color: #47a4bf;
 }
 
+.clr0,
+.clr1,
+.clr2,
+.clr3,
+.clr4 {
+  height: 600px;
+  width: 360px;
+}
+
 .box-shadow {
   box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.5);
 }
@@ -1518,7 +1528,7 @@ section {
 }
 
 .main-page-card--results {
-  z-index: 1;
+  z-index: 5;
 }
 
 .main-page-card--results p {
@@ -1666,20 +1676,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 16%;
+    left: 95%;
     opacity: 1.0;
   }
   25% {
-    left: 36%;
+    left: 69%;
   }
   50% {
-    left: 22%;
+    left: 74%;
   }
   75% {
-    left: 42%;
+    left: 46%;
   }
   100% {
-    left: 58%;
+    left: 62%;
   }
 }
 
