@@ -928,7 +928,7 @@ section {
   border-bottom: 2px solid #fff;
   color: #fff;
   font-size: 12px;
-  height: 61px;
+  height: 35px;
   padding: 0;
   position: fixed;
   text-align: center;
@@ -943,7 +943,7 @@ section {
 }
 
 .main-page-header p {
-  padding: 20px 0 0;
+  padding: 10px 0 0;
   width: 100%;
 }
 
@@ -1778,20 +1778,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 84%;
+    left: 4%;
     opacity: 1;
   }
   25% {
-    left: 83%;
+    left: 16%;
   }
   50% {
-    left: 23%;
+    left: 74%;
   }
   75% {
-    left: 86%;
+    left: 78%;
   }
   100% {
-    left: 76%;
+    left: 21%;
   }
 }
 
