@@ -969,7 +969,6 @@ section {
 }
 
 .main-page-footer-slide {
-  display: none;
   width: 100%;
   pointer-events: none;
   z-index: 17;
@@ -1618,13 +1617,13 @@ section {
   height: 167px;
   right: 100px;
   top: 38%;
-  width: 230px;
+  width: 100%;
 }
 
 .count-text--box {
   font-weight: bold;
-  left: 91px;
-  top: 69px;
+  left: 107px;
+  top: 73px;
   width: 60px;
   position: relative;
 }
@@ -1663,6 +1662,43 @@ svg path {
   stroke-width: 10px;
   stroke-miterlimit: round;
   transition: stroke-dashoffset 850ms ease-in-out;
+}
+
+.book-container {
+  display: block;
+  height: 100px;
+  opacity: 0;
+  position: relative;
+  top: 10px;
+  text-align: center;
+  visibility: hidden;
+  width: 100%;
+}
+
+.book-button {
+  position: relative;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  padding: 13px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 4px;
+  border: 0;
+  font-size: 12px;
+  transition: .3s;
+  background-color: #f1f1f1;
+  color: #044268;
+}
+
+.book-button:hover {
+  background-color: #01426a;
+  color: #f1f1f1;
+}
+
+.book-button:focus {
+  outline: none;
 }
 
 .confetti-container {
@@ -1709,6 +1745,7 @@ svg path {
 
 @keyframes fallsway {
   0% {
+<<<<<<< HEAD
     left: 42%;
     opacity: 1;
   }
@@ -1723,6 +1760,22 @@ svg path {
   }
   100% {
     left: 39%;
+=======
+    left: 26%;
+    opacity: 1;
+  }
+  25% {
+    left: 74%;
+  }
+  50% {
+    left: 82%;
+  }
+  75% {
+    left: 73%;
+  }
+  100% {
+    left: 2%;
+>>>>>>> dca825f6c80e91001823218997e8e1f4c2c86124
   }
 }
 
@@ -1755,7 +1808,7 @@ main {
   text-align: center;
   width: 100%;
   z-index: 2;
-  transform: translateY(-100%);
+  transform: translateY(0%);
   transition: transform .25s ease;
 }
 

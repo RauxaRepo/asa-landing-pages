@@ -1,3 +1,5 @@
+@import './colors';
+
 //div,
 //img,
 //p,
@@ -13,13 +15,13 @@
     height: 167px;
     right: 100px;
     top: 38%;
-    width: 230px;
+    width: 100%;
   }
 
   &-text--box {
     font-weight: bold;
-    left: 91px;
-    top: 69px;
+    left: 107px;
+    top: 73px;
     width: 60px;
     position: relative;
   }
@@ -62,6 +64,45 @@ svg path {
   stroke-width: 10px;
   stroke-miterlimit: round;
   transition: stroke-dashoffset 850ms ease-in-out;
+}
+
+.book {
+
+  &-container {
+    display: block;
+    height: 100px;
+    opacity: 0;
+    position: relative;
+    top: 10px;
+    text-align: center;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  &-button {
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+    padding: 13px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 0;
+    font-size: 12px;
+    transition: .3s;
+    background-color: $off-white;
+    color: $counterbarblue;
+  }
+}
+
+.book-button:hover {
+  background-color: $darkblue;
+  color:$off-white;
+}
+.book-button:focus {
+  outline: none;
 }
 
 

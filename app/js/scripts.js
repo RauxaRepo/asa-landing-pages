@@ -223,43 +223,7 @@ var sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
 thePercentage = 174; // Get all the Meters from SVG
 
-var meters = document.querySelectorAll('svg[data-value] .meter'); //Percentages
-
-var percentage = {
-  1: 174,
-  2: 167,
-  3: 160,
-  4: 153,
-  5: 137,
-  6: 125,
-  7: 118,
-  8: 106,
-  9: 95,
-  10: 50
-}; //COUNTER
-
-/*
-function counterMotion(thePercentage){
-meters.forEach( (path) => {
-    // Get the length of the path
-    let length = path.getTotalLength();
-    // console.log(length) once and hardcode the stroke-dashoffset and stroke-dasharray in the SVG if possible 
-    // or uncomment to set it dynamically
-    // path.style.strokeDashoffset = length;
-    // path.style.strokeDasharray = length;
-  
-    // Get the value of the meter
-    let value = parseInt(path.parentNode.getAttribute('data-value'));
-    // Calculate the percentage of the total length
-    let to = length * ((thePercentage - value) / 100);
-    // Trigger Layout in Safari hack https://jakearchibald.com/2013/animated-line-drawing-svg/
-    path.getBoundingClientRect();
-    // Set the Offset
-    path.style.strokeDashoffset = Math.max(0, to);  
-  });
-}
-*/
-//PROGRESS OF THE COUNTER
+var meters = document.querySelectorAll('svg[data-value] .meter'); //PROGRESS OF THE COUNTER
 
 function getPercentage() {
   Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
@@ -300,11 +264,7 @@ var countingMe = {
     var percentage = [174, 167, 160, 153, 137, 125, 118, 106, 95, 50];
     return percentage[card];
   }
-}; //RUN FUNCTIONS
-//allEventListeners();
-//counterMotion();
-//getPercentage();
-
+};
 
 
 /***/ }),
@@ -366,6 +326,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var counterRemainCount = document.querySelector('.dynamic-count');
   var counterCurrentCount = '00';
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
+  var bookButton = document.querySelector('.book-container'); //book button
+
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
@@ -429,10 +391,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       btnHolder.classList.remove('na');
       question.classList.add('hide');
       answersBtns.classList.add('hide');
-      nextQuestion.classList.remove('hide'); //Move
+      nextQuestion.classList.remove('hide'); //Confetti Burst /Add Book 15% off button
 
       if (questionCount + 1 == 5) {
         _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
+        bookButton.style.visibility = 'visible';
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
+          duration: 1,
+          opacity: 1,
+          ease: 'back.out'
+        });
       }
 
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
@@ -964,11 +932,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ease: 'none'
     }, 0); // timer for footer and animation intro stop
 
+    var topOffer = document.querySelector('.main-page-header');
+
     var raiseFooter = function raiseFooter() {
       clearInterval(introStop);
       columnCards.pause(); //pause card animation
-
-      document.querySelector('.main-page-footer-slide').style.display = 'block'; //make footer under cards
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
         duration: .8,
@@ -978,6 +946,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       cta.querySelector('button').addEventListener('click', function (e) {
         cta.classList.add('disable');
         stackCards(showGroupCards);
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(topOffer, {
+          duration: .5,
+          top: topOffer.offsetTop - (topOffer.clientHeight + 10)
+        }); //hide header
       });
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
