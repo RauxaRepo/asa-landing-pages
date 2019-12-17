@@ -15,7 +15,7 @@ export default function () {
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
 
-    let bookBtn = document.querySelector('.as-book');
+    let bookBtn = document.querySelector('a[data-discount]');
 
     
     let campaignName = 'Offercode_Email';
@@ -35,12 +35,15 @@ export default function () {
         return vars;
     }
 
+    //
+
+
     // checking for customer ID to display discount ribbon
     if(urlVars()['utm_campaign'] != undefined ) {
         disctountRibbon.classList.add('active');
         discountLegal.classList.add('active');
         bookBtn.classList.add('active');
-        bookBtn.setAttribute('href',`https://www.alaskaair.com/planbook/?eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}`);
+        bookBtn.setAttribute('href',`https://www.alaskaair.com/planbook/?ODAI=${urlVars()['ODAI']}&offid=${urlVars()['offid']}&eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}`);
     }
 
     // 
@@ -68,7 +71,7 @@ export default function () {
     }
 
 
-
+    /*
     fetch(getTokenUrl, {
         method : "POST",
         mode: 'cors', // no-cors, *cors, same-origin
@@ -84,6 +87,7 @@ export default function () {
         getEndpoint = json.endPoint;
 
     });
+    */
 
 
 
