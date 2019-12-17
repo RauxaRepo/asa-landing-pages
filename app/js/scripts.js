@@ -221,7 +221,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countingMe", function() { return countingMe; });
 var sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
-thePercentage = 174; // Get all the Meters from SVG
+thePercentage = 178; // Get all the Meters from SVG
 
 var meters = document.querySelectorAll('svg[data-value] .meter'); //PROGRESS OF THE COUNTER
 
@@ -261,7 +261,7 @@ var countingMe = {
     });
   },
   counterPercent: function counterPercent(card) {
-    var percentage = [174, 167, 160, 153, 137, 125, 118, 106, 95, 50];
+    var percentage = [178, 167, 160, 153, 137, 125, 118, 106, 95, 50];
     return percentage[card];
   }
 };
