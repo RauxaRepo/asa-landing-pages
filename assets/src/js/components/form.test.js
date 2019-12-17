@@ -15,7 +15,7 @@ export default function () {
     let offerCode = document.querySelector('input[name="offer"]');
     let offerAuth = document.querySelector('input[name="auth"]');
 
-    let bookBtn = document.querySelector('.as-book');
+    let bookBtn = document.querySelector('a[data-discount]');
 
     
     let campaignName = 'Offercode_Email';
@@ -71,7 +71,7 @@ export default function () {
     }
 
 
-
+    /*
     fetch(getTokenUrl, {
         method : "POST",
         mode: 'cors', // no-cors, *cors, same-origin
@@ -87,6 +87,7 @@ export default function () {
         getEndpoint = json.endPoint;
 
     });
+    */
 
 
 
