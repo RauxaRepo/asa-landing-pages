@@ -677,14 +677,15 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
       vars[key] = value;
     });
     return vars;
-  }; // checking for customer ID to display discount ribbon
+  }; //
+  // checking for customer ID to display discount ribbon
 
 
   if (urlVars()['utm_campaign'] != undefined) {
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
-    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?eml=".concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
+    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
 
