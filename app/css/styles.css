@@ -1434,7 +1434,8 @@ section {
 
 .results-share-twitter {
   position: relative;
-  display: inline-block;
+  display: block;
+  float: right;
   width: 40px;
   height: 40px;
   background-image: url("../images/twitter_icon.png");
@@ -1703,7 +1704,7 @@ svg path {
   position: relative;
   display: block;
   margin: 10px auto;
-  width: 80%;
+  width: 65%;
   padding: 13px 0;
   text-align: center;
   text-transform: uppercase;
@@ -1769,6 +1770,7 @@ svg path {
 
 @keyframes fallsway {
   0% {
+<<<<<<< HEAD
     left: 28%;
     opacity: 1;
   }
@@ -1783,6 +1785,22 @@ svg path {
   }
   100% {
     left: 7%;
+=======
+    left: 91%;
+    opacity: 1;
+  }
+  25% {
+    left: 84%;
+  }
+  50% {
+    left: 77%;
+  }
+  75% {
+    left: 26%;
+  }
+  100% {
+    left: 84%;
+>>>>>>> d4e1304f2b4999dfe7b050f9cde94dbd87a31178
   }
 }
 

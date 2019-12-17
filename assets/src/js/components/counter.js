@@ -4,7 +4,7 @@
 
     let sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
-    thePercentage = 174;
+    thePercentage = 178;
     // Get all the Meters from SVG
     const meters = document.querySelectorAll('svg[data-value] .meter');
 
@@ -52,7 +52,7 @@
 
       counterPercent: (card) => {
         let percentage = [
-          174,
+          178,
           167,
           160,
           153,
