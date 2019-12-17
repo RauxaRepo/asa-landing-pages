@@ -664,7 +664,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var customerId = document.querySelector('input[name="id"]');
   var offerCode = document.querySelector('input[name="offer"]');
   var offerAuth = document.querySelector('input[name="auth"]');
-  var bookBtn = document.querySelector('.as-book');
+  var bookBtn = document.querySelector('a[data-discount]');
   var campaignName = 'Offercode_Email';
   var emailName = 'email';
   var getToken;
@@ -677,14 +677,15 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
       vars[key] = value;
     });
     return vars;
-  }; // checking for customer ID to display discount ribbon
+  }; //
+  // checking for customer ID to display discount ribbon
 
 
   if (urlVars()['utm_campaign'] != undefined) {
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
-    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?eml=".concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
+    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
 
@@ -712,22 +713,23 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
       return console.log(json);
     });
   };
-
+  /*
   fetch(getTokenUrl, {
-    method: "POST",
-    mode: 'cors',
-    // no-cors, *cors, same-origin
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).then(function (response) {
-    return response.json();
-  }).then(function (json) {
-    //respTriggerEmail(json.authToken,json.endPoint);
-    getToken = json.authToken;
-    getEndpoint = json.endPoint;
-  });
+      method : "POST",
+      mode: 'cors', // no-cors, *cors, same-origin
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+  })
+  .then(response => response.json())
+  .then(json => {
+      //respTriggerEmail(json.authToken,json.endPoint);
+      getToken = json.authToken;
+      getEndpoint = json.endPoint;
+   });
+  */
+
 });
 
 /***/ }),
