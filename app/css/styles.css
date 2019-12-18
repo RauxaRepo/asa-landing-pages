@@ -1138,6 +1138,7 @@ section {
 
 .next-question {
   padding-top: 15%;
+  opacity: 0;
 }
 
 .next-question .drag-text {
@@ -1601,6 +1602,12 @@ section {
   font-weight: bold;
 }
 
+.next-question,
+.right-answer,
+.wrong-answer {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 768px) {
   .drag-card-holder {
     width: 20%;
@@ -1637,7 +1644,7 @@ section {
     width: 101%;
   }
   .next-question .drag-text {
-    font-size: 0.75rem;
+    font-size: .75rem;
   }
 }
 
@@ -1778,20 +1785,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 4%;
+    left: 50%;
     opacity: 1;
   }
   25% {
-    left: 16%;
-  }
-  50% {
-    left: 74%;
-  }
-  75% {
     left: 78%;
   }
+  50% {
+    left: 56%;
+  }
+  75% {
+    left: 29%;
+  }
   100% {
-    left: 21%;
+    left: 88%;
   }
 }
 
