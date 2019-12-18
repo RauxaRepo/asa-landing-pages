@@ -18,7 +18,13 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
     //RANDOM MIN MAX
 		function random(min, max) {
 			return min + Math.random() * (max - min);
-		}
+    }
+    
+    //resize width for confetti rain
+    window.addEventListener('resize', function() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+    }, true);
 
 
     const confetti = {
@@ -51,7 +57,7 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
           confettib.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
           confettib.style.height = Math.random() * 20 + 'px';
           confettib.style.width = Math.random() * 10 + 'px';
-          gsap.set(confettib,{rotation:Math.random() *45});
+          gsap.set(confettib,{rotation:Math.random() * 45});
           confettiArrBurst.push(confettib);
           
         }
@@ -107,7 +113,7 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
           gsap.to(item, {duration:.5, delay:.02 * index,x:'+=100%',yoyo:true});	
         });
 
-      }
+      },
 
     };
 

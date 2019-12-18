@@ -1,6 +1,3 @@
-
-
-
 .main-page-header {
   background-color: $flightblue;
   border-bottom: 2px solid $white;
@@ -14,13 +11,12 @@
   z-index: 9;
   transform: translateY(-100%);//(-100%);
   transition: transform .25s ease;
-
   &.active {
     transform: translateY(0%);
   }
-
   p {
     padding: 10px 0 0;
     width: 100%;
     }
   }
+  

@@ -77,11 +77,6 @@ svg path {
     text-align: center;
     visibility: hidden;
     width: 100%;
-
-    &.active {
-      opacity: 1;
-      visibility: visible;
-    }
   }
 
   &-button {
@@ -104,9 +99,8 @@ svg path {
 
 .book-button:hover {
   background-color: $darkblue;
-  color: $off-white;
+  color:$off-white;
 }
-
 .book-button:focus {
   outline: none;
 }

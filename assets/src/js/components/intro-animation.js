@@ -99,7 +99,6 @@ export default function () {
       if( i == theColorCards.length - 1 ) {
 
         setTimeout( ()=> {
-          confetti.buildRain();
           confetti.buildBurst();
         }, 1000)
       }
