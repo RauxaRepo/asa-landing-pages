@@ -1138,7 +1138,6 @@ section {
 
 .next-question {
   padding-top: 15%;
-  opacity: 0;
 }
 
 .next-question .drag-text {
@@ -1644,7 +1643,7 @@ section {
     width: 101%;
   }
   .next-question .drag-text {
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -1708,11 +1707,6 @@ svg path {
   text-align: center;
   visibility: hidden;
   width: 100%;
-}
-
-.book-container.active {
-  opacity: 1;
-  visibility: visible;
 }
 
 .book-button {
@@ -1785,20 +1779,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 71%;
+    left: 5%;
     opacity: 1;
   }
   25% {
-    left: 72%;
+    left: 53%;
   }
   50% {
-    left: 12%;
+    left: 93%;
   }
   75% {
-    left: 43%;
+    left: 52%;
   }
   100% {
-    left: 41%;
+    left: 81%;
   }
 }
 

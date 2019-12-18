@@ -11,11 +11,10 @@ export default function () {
     let landingUrl = window.location.href;
     let disctountRibbon = document.querySelector('.main-page-header');
     let discountLegal = document.querySelector('.main-page-footer-slide');
-    let customerId = document.querySelector('input[name="id"]');
-    let offerCode = document.querySelector('input[name="offer"]');
-    let offerAuth = document.querySelector('input[name="auth"]');
+    
 
-    let bookBtn = document.querySelector('a[data-discount]');//Book 15% button
+    let bookBtn = document.querySelector('a[data-discount]');
+
 
     
     let campaignName = 'Offercode_Email';
@@ -40,8 +39,11 @@ export default function () {
 
     // checking for customer ID to display discount ribbon
     if(urlVars()['utm_campaign'] != undefined ) {
+        bookBtn.parentNode.classList.add('active')
+
         disctountRibbon.classList.add('active');
         discountLegal.classList.add('active');
+        bookBtn.classList.add('active');
         bookBtn.setAttribute('href',`https://www.alaskaair.com/planbook/?ODAI=${urlVars()['ODAI']}&offid=${urlVars()['offid']}&eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}`);
     }
 
