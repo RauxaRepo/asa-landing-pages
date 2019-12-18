@@ -35,6 +35,7 @@ export default function () {
 		let counterCurrentCount = '00';
     let counterCurrentCountHolder = document.querySelector('.count-text-num');
     let bookButton = document.querySelector('.book-container');//book button
+    let bookBtnContainer = document.querySelector('.book-container');
 
 		let correctCardMessage = document.querySelector('.correct-text');
 		let correctCardMessageOps = [
@@ -108,12 +109,28 @@ export default function () {
 				}
 				
 				
-				btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
-				btnHolder.classList.remove('na');
- 
-				question.classList.add('hide');
-				answersBtns.classList.add('hide');
-        nextQuestion.classList.remove('hide');
+
+        gsap.to(question, 0.5,{opacity: 0, ease: 'power4.inOut'})
+        gsap.to(answersBtns, 0.5,{ 
+          opacity: 0, 
+          ease: 'power4.inOut',
+          onComplete: function(){
+            btnHolder.classList.remove('na');
+            question.classList.add('hide');
+            answersBtns.classList.add('hide');
+            nextQuestion.classList.remove('hide');
+            btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
+          }
+        })
+        gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
+          delay: 0.5,
+          opacity: 1, 
+          ease: 'power4.inOut',
+          onComplete: function(){
+            btnHolder.classList.remove('na');
+          }
+        })
+        gsap.to(nextQuestion,{ delay: 0.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
         
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
@@ -142,7 +159,7 @@ export default function () {
 
            
         //Next Question
-				nextQuestButton.addEventListener('click', (e) => {
+			nextQuestButton.addEventListener('click', (e) => {
 					
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});

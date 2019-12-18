@@ -328,6 +328,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
   var bookButton = document.querySelector('.book-container'); //book button
 
+  var bookBtnContainer = document.querySelector('.book-container');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
@@ -387,21 +388,39 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         correctCardMessage.innerHTML = correctCardMessageOps[2];
       }
 
-<<<<<<< HEAD
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(question, 0.5, {
+        opacity: 0,
+        ease: 'power4.inOut'
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(answersBtns, 0.5, {
+        opacity: 0,
+        ease: 'power4.inOut',
+        onComplete: function onComplete() {
+          btnHolder.classList.remove('na');
+          question.classList.add('hide');
+          answersBtns.classList.add('hide');
+          nextQuestion.classList.remove('hide');
+          btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")), 0.5, {
+        delay: 0.5,
+        opacity: 1,
+        ease: 'power4.inOut',
+        onComplete: function onComplete() {
+          btnHolder.classList.remove('na');
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(nextQuestion, {
+        delay: 0.5,
+        duration: 1,
+        opacity: 1,
+        ease: 'power4.inOut'
+      }); //Confetti Burst /Add Book 15% off button
+
       if (questionCount + 1 == 5 && bookBtnContainer.classList.contains('active')) {
         _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti
 
-=======
-      btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
-      btnHolder.classList.remove('na');
-      question.classList.add('hide');
-      answersBtns.classList.add('hide');
-      nextQuestion.classList.remove('hide'); //Confetti Burst /Add Book 15% off button
-
-      if (questionCount + 1 == 5) {
-        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
-        bookButton.style.visibility = 'visible';
->>>>>>> 9e8df55c324bc39816db8c145f7d84abba78906f
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
           duration: 1,
           opacity: 1,
@@ -673,15 +692,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var landingUrl = window.location.href;
   var disctountRibbon = document.querySelector('.main-page-header');
   var discountLegal = document.querySelector('.main-page-footer-slide');
-<<<<<<< HEAD
-  var bookBtn = document.querySelector('a[data-discount]'); //Book 15% button
-
-=======
-  var customerId = document.querySelector('input[name="id"]');
-  var offerCode = document.querySelector('input[name="offer"]');
-  var offerAuth = document.querySelector('input[name="auth"]');
   var bookBtn = document.querySelector('a[data-discount]');
->>>>>>> 9e8df55c324bc39816db8c145f7d84abba78906f
   var campaignName = 'Offercode_Email';
   var emailName = 'email';
   var getToken;
