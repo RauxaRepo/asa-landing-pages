@@ -1,4 +1,4 @@
-import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
+import {gsap, TweenMax, TimelineMax, power4, linear, quad} from 'gsap';
 import { countingMe } from './counter';
 import { confetti } from './confetti';
 
@@ -20,7 +20,8 @@ export default function () {
 		rightBounds = 0,
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-		tl = gsap.timeline({paused:true});
+    tl = gsap.timeline({paused:true}),
+    tl2 = gsap.timeline({repeat:0, repeatDelay:0});
 
 	//*********************//
 	let answeredCorrect = [];
@@ -33,8 +34,8 @@ export default function () {
 	let counterRemainCount = document.querySelector('.dynamic-count');
 
 	let counterCurrentCount = '00';
-    let counterCurrentCountHolder = document.querySelector('.count-text-num');
-    let bookButton = document.querySelector('.book-container');//book button
+  let counterCurrentCountHolder = document.querySelector('.count-text-num');
+  let bookButton = document.querySelector('.book-container');//book button
 
 	let correctCardMessage = document.querySelector('.correct-text');
 	let correctCardMessageOps = [
@@ -43,8 +44,8 @@ export default function () {
 			'AMAZING!'
     ];
     
-    //Book 15% button
-    let bookBtnContainer = document.querySelector('.book-container');//Book 15% button
+  //Book 15% button
+  let bookBtnContainer = document.querySelector('.book-container');//Book 15% button
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
@@ -108,15 +109,38 @@ export default function () {
 					correctCardMessage.innerHTML = correctCardMessageOps[2];
 				}
 				
-				
-				btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
-				btnHolder.classList.remove('na');
- 
-				question.classList.add('hide');
-				answersBtns.classList.add('hide');
-        		nextQuestion.classList.remove('hide');
+				//Show Answers
+        //btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');//remove class
+				//btnHolder.classList.remove('na');
         
-          		//Confetti Burst /Add Book 15% off button
+        //Hide Answers
+				//question.classList.add('hide');
+				//answersBtns.classList.add('hide');
+        //nextQuestion.classList.remove('hide');
+
+        gsap.to(question, 0.5,{opacity: 0, ease: 'power4.inOut'})
+        gsap.to(answersBtns, 0.5,{ 
+          opacity: 0, 
+          ease: 'power4.inOut',
+          onComplete: function(){
+            btnHolder.classList.remove('na');
+            question.classList.add('hide');
+            answersBtns.classList.add('hide');
+            nextQuestion.classList.remove('hide');
+            btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
+          }
+        })
+        gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
+          delay: 0.5,
+          opacity: 1, 
+          ease: 'power4.inOut',
+          onComplete: function(){
+            btnHolder.classList.remove('na');
+          }
+        })
+        gsap.to(nextQuestion,{ delay: 0.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
+        
+        //Confetti Burst /Add Book 15% off button
 				if( questionCount+1 == 5) {
 					confetti.burst();//confetti
 					bookBtnContainer.classList.add('active');
@@ -124,7 +148,7 @@ export default function () {
 				}
 					
 				counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-          		countingMe.counterMotion(countingMe.counterPercent(questionCount));
+        countingMe.counterMotion(countingMe.counterPercent(questionCount));
 				counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 				
 				if(!e.target.classList.contains('last')) {
@@ -133,7 +157,7 @@ export default function () {
 					counterRemainCount.innerHTML = 'You did it!';
 				}
            
-        		//Next Question
+        //Next Question
 				nextQuestButton.addEventListener('click', (e) => {
 					
 				gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});

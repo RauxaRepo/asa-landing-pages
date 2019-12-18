@@ -311,6 +311,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       sm = window.matchMedia('(max-width: 576px)'),
       tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
     paused: true
+  }),
+      tl2 = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    repeat: 0,
+    repeatDelay: 0
   }); //*********************//
 
 
@@ -388,13 +392,44 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         correctCardMessage.innerHTML = correctCardMessageOps[1];
       } else if (answeredCorrect.length > 7) {
         correctCardMessage.innerHTML = correctCardMessageOps[2];
-      }
+      } //Show Answers
+      //btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');//remove class
+      //btnHolder.classList.remove('na');
+      //Hide Answers
+      //question.classList.add('hide');
+      //answersBtns.classList.add('hide');
+      //nextQuestion.classList.remove('hide');
 
-      btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
-      btnHolder.classList.remove('na');
-      question.classList.add('hide');
-      answersBtns.classList.add('hide');
-      nextQuestion.classList.remove('hide'); //Confetti Burst /Add Book 15% off button
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(question, 0.5, {
+        opacity: 0,
+        ease: 'power4.inOut'
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(answersBtns, 0.5, {
+        opacity: 0,
+        ease: 'power4.inOut',
+        onComplete: function onComplete() {
+          btnHolder.classList.remove('na');
+          question.classList.add('hide');
+          answersBtns.classList.add('hide');
+          nextQuestion.classList.remove('hide');
+          btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")), 0.5, {
+        delay: 0.5,
+        opacity: 1,
+        ease: 'power4.inOut',
+        onComplete: function onComplete() {
+          btnHolder.classList.remove('na');
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(nextQuestion, {
+        delay: 0.5,
+        duration: 1,
+        opacity: 1,
+        ease: 'power4.inOut'
+      }); //Confetti Burst /Add Book 15% off button
 
       if (questionCount + 1 == 5) {
         _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti
@@ -555,7 +590,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
         duration: time - 0.7,
         rotation: 0,
-        ease: gsap__WEBPACK_IMPORTED_MODULE_0__["Quad"].easInOut
+        ease: Quad.easInOut
       });
     }
 

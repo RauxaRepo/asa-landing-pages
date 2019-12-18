@@ -35,8 +35,6 @@ $opacityblacklight: rgba(0, 0, 0, .25);
 
   border-radius: 10px;
   float: left;
-  //margin: 10px 0;
-  //overflow: hidden;
   position: absolute;
   display: none;
   opacity: 0;
@@ -305,6 +303,11 @@ $opacityblacklight: rgba(0, 0, 0, .25);
   font-weight: bold;
 }
 
+.next-question,  
+.right-answer,
+.wrong-answer {
+  opacity: 0;
+}
 
 
 //MEDIA QUERY
