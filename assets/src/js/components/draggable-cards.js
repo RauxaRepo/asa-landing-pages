@@ -115,7 +115,6 @@ export default function () {
 				answersBtns.classList.add('hide');
         nextQuestion.classList.remove('hide');
         
-<<<<<<< HEAD
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
 				confetti.burst();//confetti
@@ -141,24 +140,6 @@ export default function () {
 
 
 
-=======
-          //Confetti Burst /Add Book 15% off button
-					if( questionCount+1 == 5) {
-            confetti.burst();
-            bookButton.style.visibility = 'visible';
-            gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
-					}
-					
-					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-          countingMe.counterMotion(countingMe.counterPercent(questionCount));
-					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
-					
-					if(!e.target.classList.contains('last')) {
-						counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
-					} else {
-						counterRemainCount.innerHTML = 'You did it!';
-					}
->>>>>>> 9e8df55c324bc39816db8c145f7d84abba78906f
            
         //Next Question
 				nextQuestButton.addEventListener('click', (e) => {
@@ -167,16 +148,12 @@ export default function () {
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 					tl.tweenTo(`q${questionCount+1}`);
 
-<<<<<<< HEAD
 				
 				if(e.target.classList.contains('last')) {
 					counterRemainCount.innerHTML = 'You did it!';
 				}
 
 				if (questionCount+1 == 10) {
-=======
-          if (questionCount+1 == 10) {
->>>>>>> 9e8df55c324bc39816db8c145f7d84abba78906f
 						confetti.rain();
 					}
            
