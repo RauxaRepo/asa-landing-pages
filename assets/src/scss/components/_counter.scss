@@ -77,6 +77,11 @@ svg path {
     text-align: center;
     visibility: hidden;
     width: 100%;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   &-button {
