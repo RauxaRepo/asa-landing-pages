@@ -464,7 +464,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        tl.tweenTo("q".concat(questionCount + 1)); //Confetti Rain if 10 Answers Completed
+        tl.tweenTo("q".concat(questionCount + 1));
 
         if (e.target.classList.contains('last')) {
           counterRemainCount.innerHTML = 'You did it!';

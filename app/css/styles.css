@@ -928,12 +928,12 @@ section {
   border-bottom: 2px solid #fff;
   color: #fff;
   font-size: 12px;
-  height: 61px;
+  height: 35px;
   padding: 0;
   position: fixed;
   text-align: center;
   width: 100%;
-  z-index: 2;
+  z-index: 9;
   transform: translateY(-100%);
   transition: transform .25s ease;
 }
@@ -943,7 +943,7 @@ section {
 }
 
 .main-page-header p {
-  padding: 20px 0 0;
+  padding: 10px 0 0;
   width: 100%;
 }
 
@@ -994,11 +994,14 @@ section {
 
 .main-page-footer-slide {
   width: 100%;
+  display: none;
+  opacity: 0;
   pointer-events: none;
   z-index: 17;
 }
 
 .main-page-footer-slide.active {
+  display: block;
   pointer-events: auto;
   opacity: 1;
   z-index: 6;
@@ -1598,6 +1601,12 @@ section {
   font-weight: bold;
 }
 
+.next-question,
+.right-answer,
+.wrong-answer {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 768px) {
   .drag-card-holder {
     width: 20%;
@@ -1770,37 +1779,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-<<<<<<< HEAD
-    left: 43%;
+    left: 5%;
     opacity: 1;
   }
   25% {
-    left: 65%;
+    left: 53%;
   }
   50% {
-    left: 27%;
+    left: 93%;
   }
   75% {
-    left: 68%;
+    left: 52%;
   }
   100% {
-    left: 83%;
-=======
-    left: 71%;
-    opacity: 1;
-  }
-  25% {
-    left: 72%;
-  }
-  50% {
-    left: 12%;
-  }
-  75% {
-    left: 43%;
-  }
-  100% {
-    left: 41%;
->>>>>>> ce48fabba472f606e5eed1cb39d75f5060d12a77
+    left: 81%;
   }
 }
 
