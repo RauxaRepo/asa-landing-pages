@@ -182,6 +182,7 @@ export default function () {
 				}
 
 				if (questionCount+1 == 10) {
+            confetti.buildRain();
 						confetti.rain();
 					}
            
@@ -192,10 +193,7 @@ export default function () {
 			});
 		});
 
-
-
-
-		
+    
 
 		//COLOR CARDS--SPREAD
 		function spreadTheCards(){
@@ -394,12 +392,9 @@ export default function () {
 
 
 		//RUN FUNCTIONS
-		//spreadTheCards();//spread color cards
-		//randomizeCards();//randomize question cards
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
-		
-        
+		       
 }
 

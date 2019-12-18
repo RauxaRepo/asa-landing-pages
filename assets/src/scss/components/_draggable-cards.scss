@@ -305,6 +305,11 @@ $opacityblacklight: rgba(0, 0, 0, .25);
   font-weight: bold;
 }
 
+.next-question,
+.right-answer,
+.wrong-answer {
+  opacity: 0;
+}
 
 
 //MEDIA QUERY
