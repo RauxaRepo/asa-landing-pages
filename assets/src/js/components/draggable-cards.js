@@ -1,4 +1,4 @@
-import {gsap, TweenMax, TimelineMax, power4, linear, quad} from 'gsap';
+import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 import { countingMe } from './counter';
 import { confetti } from './confetti';
 
@@ -20,37 +20,35 @@ export default function () {
 		rightBounds = 0,
 		leftBounds = 0,
 		sm = window.matchMedia('(max-width: 576px)'),
-    tl = gsap.timeline({paused:true}),
-    tl2 = gsap.timeline({repeat:0, repeatDelay:0});
+		tl = gsap.timeline({paused:true});
 
-	//*********************//
-	let answeredCorrect = [];
-	let answeredIncorrectly = [];
-	let questionCount = 0;
-	let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
-	let correctCardCount = document.querySelector('.results-num.ten');
-	let totalCardCount = document.querySelector('.results-num.hundred');
-	let counterTotalCount = document.querySelector('.count-text-amount');
-	let counterRemainCount = document.querySelector('.dynamic-count');
+		//*********************//
+		let answeredCorrect = [];
+		let answeredIncorrectly = [];
+		let questionCount = 0;
+		let questionBtns = [...document.querySelectorAll('.active-card--button:not(.next-question--button)')];
+		let correctCardCount = document.querySelector('.results-num.ten');
+		let totalCardCount = document.querySelector('.results-num.hundred');
+		let counterTotalCount = document.querySelector('.count-text-amount');
+		let counterRemainCount = document.querySelector('.dynamic-count');
 
-	let counterCurrentCount = '00';
-  let counterCurrentCountHolder = document.querySelector('.count-text-num');
-  let bookButton = document.querySelector('.book-container');//book button
+		let counterCurrentCount = '00';
+    let counterCurrentCountHolder = document.querySelector('.count-text-num');
+    let bookButton = document.querySelector('.book-container');//book button
 
-	let correctCardMessage = document.querySelector('.correct-text');
-	let correctCardMessageOps = [
+		let correctCardMessage = document.querySelector('.correct-text');
+		let correctCardMessageOps = [
 			'NICE TRY!',
 			'GOOD WORK!',
 			'AMAZING!'
-    ];
-    
-  //Book 15% button
-  let bookBtnContainer = document.querySelector('.book-container');//Book 15% button
+		];
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
 		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!';
 		//countingMe.counterMotion(countingMe.counterPercent(0));
+		
+		
 		
 
 		//bg animation
@@ -109,37 +107,15 @@ export default function () {
 					correctCardMessage.innerHTML = correctCardMessageOps[2];
 				}
 				
-				//Show Answers
-        //btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');//remove class
-				//btnHolder.classList.remove('na');
+				
+				btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
+				btnHolder.classList.remove('na');
+ 
+				question.classList.add('hide');
+				answersBtns.classList.add('hide');
+        nextQuestion.classList.remove('hide');
         
-        //Hide Answers
-				//question.classList.add('hide');
-				//answersBtns.classList.add('hide');
-        //nextQuestion.classList.remove('hide');
-
-        gsap.to(question, 0.5,{opacity: 0, ease: 'power4.inOut'})
-        gsap.to(answersBtns, 0.5,{ 
-          opacity: 0, 
-          ease: 'power4.inOut',
-          onComplete: function(){
-            btnHolder.classList.remove('na');
-            question.classList.add('hide');
-            answersBtns.classList.add('hide');
-            nextQuestion.classList.remove('hide');
-            btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
-          }
-        })
-        gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
-          delay: 0.5,
-          opacity: 1, 
-          ease: 'power4.inOut',
-          onComplete: function(){
-            btnHolder.classList.remove('na');
-          }
-        })
-        gsap.to(nextQuestion,{ delay: 0.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
-        
+<<<<<<< HEAD
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
 				confetti.burst();//confetti
@@ -165,20 +141,42 @@ export default function () {
 
 
 
+=======
+          //Confetti Burst /Add Book 15% off button
+					if( questionCount+1 == 5) {
+            confetti.burst();
+            bookButton.style.visibility = 'visible';
+            gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
+					}
+					
+					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+          countingMe.counterMotion(countingMe.counterPercent(questionCount));
+					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
+					
+					if(!e.target.classList.contains('last')) {
+						counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+					} else {
+						counterRemainCount.innerHTML = 'You did it!';
+					}
+>>>>>>> 9e8df55c324bc39816db8c145f7d84abba78906f
            
         //Next Question
 				nextQuestButton.addEventListener('click', (e) => {
 					
-				gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
-				gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
-				tl.tweenTo(`q${questionCount+1}`);
+					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
+					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+					tl.tweenTo(`q${questionCount+1}`);
 
+<<<<<<< HEAD
 				
 				if(e.target.classList.contains('last')) {
 					counterRemainCount.innerHTML = 'You did it!';
 				}
 
 				if (questionCount+1 == 10) {
+=======
+          if (questionCount+1 == 10) {
+>>>>>>> 9e8df55c324bc39816db8c145f7d84abba78906f
 						confetti.rain();
 					}
            

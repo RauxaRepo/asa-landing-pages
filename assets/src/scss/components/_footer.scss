@@ -34,13 +34,10 @@
 
 .main-page-footer-slide {
   width: 100%;
-  display: none;
-  opacity: 0;
   pointer-events: none;
   z-index: 17;
 
   &.active {
-    display: block;
     pointer-events: auto;
     opacity: 1;
     z-index: 6;
