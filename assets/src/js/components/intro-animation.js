@@ -196,10 +196,9 @@ export default function () {
         cardYCounter++;
         
       }
-
-      if(i == allCards.length - 1) {
+      /*if(i == allCards.length - 1) {
         scrollCards(getStartedBtn);
-      }
+      }*/
        
     });
   }
@@ -226,10 +225,43 @@ export default function () {
     }
 
   }
+
+  //PRELOAD SPRITESHEETS | IMAGES
+  function loadSpriteSheet() {
+    var loadedImages = 0;
+    var imageArr = [
+    '../images/cards/tropical.gif',
+    '../images/cards/midnight.gif',
+    '../images/cards/breezeCard.gif',
+    '../images/cards/palm.gif',
+    '../images/cards/Title_Card_b.png'
+    ];
+
+    preloadImages();
+
+    function preloadImages(){
+      for(var i = 0; i<imageArr.length;i++){
+        var tempImage = new Image();
+        tempImage.src = imageArr[i];
+        tempImage.onload = trackProgress();
+      }
+      //console.log('loadedImages ',imageArr);
+    };
+
+    function trackProgress(){
+      loadedImages++;
+      if(loadedImages == imageArr.length){
+        //*RUN FUNCTION HERE*
+        hideColorCards();
+        scrollCards(document.querySelector('.cards-single--init-card'));
+      }
+    };
+
+  }
           
 
   //RUN FUNCTIONS
-  hideColorCards();
+  loadSpriteSheet();
 
 }
 
