@@ -1637,7 +1637,7 @@ section {
     width: 101%;
   }
   .next-question .drag-text {
-    font-size: 0.75rem;
+    font-size: .75rem;
   }
 }
 
@@ -1778,20 +1778,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 15%;
+    left: 42%;
     opacity: 1;
   }
   25% {
-    left: 76%;
+    left: 43%;
   }
   50% {
-    left: 36%;
+    left: 40%;
   }
   75% {
-    left: 48%;
+    left: 52%;
   }
   100% {
-    left: 45%;
+    left: 17%;
   }
 }
 
