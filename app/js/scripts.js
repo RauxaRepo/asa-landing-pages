@@ -435,8 +435,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
 
-      if (bookBtnContainer.classList.contains('active')) {
-        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount * 2));
+      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent((questionCount + 1) * 2));
+      } else if (bookBtnContainer.classList.contains('active') && counterCurrentCount > 4) {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
       } else {
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
       }
@@ -465,6 +467,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           ease: 'sine.inout'
         });
         tl.tweenTo("q".concat(questionCount + 1));
+
+        if (questionCount + 1 == 5) {
+          counterTotalCount.innerHTML = "/".concat(theCards.length);
+          _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+        }
 
         if (e.target.classList.contains('last')) {
           counterRemainCount.innerHTML = 'You did it!';

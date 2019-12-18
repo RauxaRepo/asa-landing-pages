@@ -140,8 +140,11 @@ export default function () {
       
       
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-      if (bookBtnContainer.classList.contains('active')) {
-        countingMe.counterMotion(countingMe.counterPercent(questionCount*2));
+      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
+        countingMe.counterMotion(countingMe.counterPercent((questionCount+1)*2));
+        
+      } else if(bookBtnContainer.classList.contains('active') && counterCurrentCount > 4){
+        countingMe.counterMotion(countingMe.counterPercent(questionCount));
       } else {
         
         countingMe.counterMotion(countingMe.counterPercent(questionCount));
@@ -174,7 +177,14 @@ export default function () {
 					
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
-					tl.tweenTo(`q${questionCount+1}`);
+          tl.tweenTo(`q${questionCount+1}`);
+          
+         
+        
+          if(questionCount+1 == 5) {
+            counterTotalCount.innerHTML = `/${theCards.length}`;
+            countingMe.counterMotion(countingMe.counterPercent(questionCount));
+          }
 
 				
 				if(e.target.classList.contains('last')) {
