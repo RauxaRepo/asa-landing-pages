@@ -1785,45 +1785,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    left: 80%;
+    left: 85%;
     opacity: 1;
   }
   25% {
-    left: 48%;
+    left: 39%;
   }
   50% {
-    left: 18%;
+    left: 15%;
   }
   75% {
-    left: 17%;
+    left: 26%;
   }
   100% {
-    left: 34%;
-=======
-    left: 4%;
-=======
-    left: 50%;
->>>>>>> e4b2a7396223febe4e425474e230725c3c099273
-    opacity: 1;
-  }
-  25% {
-    left: 78%;
-  }
-  50% {
-    left: 56%;
-  }
-  75% {
-    left: 29%;
-  }
-  100% {
-<<<<<<< HEAD
-    left: 21%;
->>>>>>> 9fbf67547df608095d9cc4116b4c94de3c6b42a6
-=======
-    left: 88%;
->>>>>>> e4b2a7396223febe4e425474e230725c3c099273
+    left: 75%;
   }
 }
 
