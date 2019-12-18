@@ -151,8 +151,16 @@ export default function () {
 			counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 
 
-			counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${theCards.length - counterCurrentCount} questions to unlock your 15% discount` : `${theCards.length - counterCurrentCount} questions left!`;
-			console.log(bookBtnContainer.classList.contains('active'));
+			if(counterCurrentCount < 5) {
+				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} questions to unlock your 15% discount` : `${theCards.length - counterCurrentCount} questions left!`;
+			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
+				counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
+			}
+			 else {
+				counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+			}
+			
+
 				
 
 
@@ -165,7 +173,10 @@ export default function () {
 				gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 				tl.tweenTo(`q${questionCount+1}`);
 
-				//counterRemainCount.innerHTML = 'You did it!';
+				
+				if(e.target.classList.contains('last')) {
+					counterRemainCount.innerHTML = 'You did it!';
+				}
 
 				if (questionCount+1 == 10) {
 						confetti.rain();

@@ -444,8 +444,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
       _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
       counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
-      counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length - counterCurrentCount, " questions to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " questions left!");
-      console.log(bookBtnContainer.classList.contains('active')); //Next Question
+
+      if (counterCurrentCount < 5) {
+        counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length / 2 - counterCurrentCount, " questions to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " questions left!");
+      } else if (counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
+        counterRemainCount.innerHTML = "You've unlocked 15% off a flight!";
+      } else {
+        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+      } //Next Question
+
 
       nextQuestButton.addEventListener('click', function (e) {
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
@@ -459,7 +466,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        tl.tweenTo("q".concat(questionCount + 1)); //counterRemainCount.innerHTML = 'You did it!';
+        tl.tweenTo("q".concat(questionCount + 1));
+
+        if (e.target.classList.contains('last')) {
+          counterRemainCount.innerHTML = 'You did it!';
+        }
 
         if (questionCount + 1 == 10) {
           _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
