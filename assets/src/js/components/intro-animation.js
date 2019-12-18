@@ -146,10 +146,10 @@ export default function () {
     .to(showGroupCards,.6,{opacity:1,ease:'sine.in', stagger:{amount: 1}},'+=.1');
 
     columnCards
-    .fromTo(column1Cards, 5, {top: '-140%', ease: 'none'}, {top: '194%',ease: 'none' },0)
-    .fromTo(column2Cards, 5, {top:'194%', ease: 'none'}, {top:'-140%', ease: 'none' },0)
-    .fromTo(column4Cards, 5, {top:'-125%', ease: 'none'}, {top:'209%', ease: 'none'},0)
-    .fromTo(column5Cards, 5, {top:'209%', ease: 'none'}, {top:'-125%', ease: 'none'},0);
+    .fromTo(column1Cards, 15, {top: '-140%', ease: 'none'}, {top: '194%',ease: 'none' },0)
+    .fromTo(column2Cards, 13, {top:'194%', ease: 'none'}, {top:'-140%', ease: 'none' },0)
+    .fromTo(column4Cards, 13.5, {top:'-125%', ease: 'none'}, {top:'209%', ease: 'none'},0)
+    .fromTo(column5Cards, 15, {top:'209%', ease: 'none'}, {top:'-125', ease: 'none'},0);
 
 
     // timer for footer and animation intro stop
@@ -196,10 +196,9 @@ export default function () {
         cardYCounter++;
         
       }
-
-      if(i == allCards.length - 1) {
+      /*if(i == allCards.length - 1) {
         scrollCards(getStartedBtn);
-      }
+      }*/
        
     });
   }
@@ -226,10 +225,55 @@ export default function () {
     }
 
   }
+
+  //PRELOAD SPRITESHEETS | IMAGES
+  let imArr = [
+    '../images/cards/tropical.gif',
+    '../images/cards/midnight.gif',
+    '../images/cards/breezeCard.gif',
+    '../images/cards/palm.gif',
+    '../images/cards/Title_Card_b.png',
+    //
+    '../images/gifs/FILL.gif',
+    '../images/gifs/FIRE.gif',
+    '../images/gifs/FOOTBALL.gif',
+    '../images/gifs/GLOBE.gif',
+    '../images/gifs/HOTEL.gif',
+    '../images/gifs/MILES.gif',
+    '../images/gifs/PANCAKES.gif',
+    '../images/gifs/PASSES.gif',
+    '../images/gifs/PLANE.gif',
+    '../images/gifs/PIXAR.gif',
+    '../images/gifs/RUSSELL.gif'
+  ];
+
+  function loadSpriteSheet(arr) {
+    let loadedImages = 0;
+    let imageArr = arr;
+
+    preloadImages();
+
+    function preloadImages(){
+      for(let i = 0; i<imageArr.length;i++){
+        let tempImage = new Image();
+        tempImage.src = imageArr[i];
+        tempImage.onload = trackProgress();
+      }
+      //console.log('loadedImages ',imageArr);
+    };
+
+    function trackProgress(){
+      loadedImages++;
+      if(loadedImages == imageArr.length){
+        //*RUN FUNCTION HERE*
+        hideColorCards();
+        scrollCards(document.querySelector('.cards-single--init-card'));
+      }
+    };
+
+  }
           
-
   //RUN FUNCTIONS
-  hideColorCards();
-
+  loadSpriteSheet(imArr);
 }
 
