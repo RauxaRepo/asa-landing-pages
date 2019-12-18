@@ -114,8 +114,13 @@ var wrapper = document.querySelector('.confetti-container'),
 
 function random(min, max) {
   return min + Math.random() * (max - min);
-}
+} //resize width for confetti rain
 
+
+window.addEventListener('resize', function () {
+  width = window.innerWidth;
+  height = window.innerHeight;
+}, true);
 var confetti = {
   buildRain: function buildRain() {
     for (var i = 0; i < num; i++) {
@@ -465,9 +470,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        tl.tweenTo("q".concat(questionCount + 1));
+        tl.tweenTo("q".concat(questionCount + 1)); //Confetti Rain if 10 Answers Completed
 
         if (questionCount + 1 == 10) {
+          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
           _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
         }
 
@@ -668,8 +674,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function allEventListeners() {
     sm.addListener(media576Px);
   } //RUN FUNCTIONS
-  //spreadTheCards();//spread color cards
-  //randomizeCards();//randomize question cards
 
 
   dragCards(); //drag question cards
@@ -880,7 +884,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       if (_i == theColorCards.length - 1) {
         setTimeout(function () {
-          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildRain();
           _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildBurst();
         }, 1000);
       }

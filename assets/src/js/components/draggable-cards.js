@@ -162,9 +162,11 @@ export default function () {
 					
 				gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 				gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
-				tl.tweenTo(`q${questionCount+1}`);
-
+        tl.tweenTo(`q${questionCount+1}`);
+        
+        //Confetti Rain if 10 Answers Completed
 				if (questionCount+1 == 10) {
+            confetti.buildRain();
 						confetti.rain();
 					}
            
@@ -175,10 +177,7 @@ export default function () {
 			});
 		});
 
-
-
-
-		
+    
 
 		//COLOR CARDS--SPREAD
 		function spreadTheCards(){
@@ -377,12 +376,9 @@ export default function () {
 
 
 		//RUN FUNCTIONS
-		//spreadTheCards();//spread color cards
-		//randomizeCards();//randomize question cards
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
-		
-        
+		       
 }
 
