@@ -339,7 +339,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
+  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
   //bg animation
 
   tl.to('.cards', 1, {
@@ -443,7 +443,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
       _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
-      counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount; //Next Question
+      counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
+      counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length - counterCurrentCount, " questions to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " questions left!");
+      console.log(bookBtnContainer.classList.contains('active')); //Next Question
 
       nextQuestButton.addEventListener('click', function (e) {
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
@@ -457,13 +459,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        tl.tweenTo("q".concat(questionCount + 1));
-
-        if (!e.target.classList.contains('last')) {
-          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
-        } else {
-          counterRemainCount.innerHTML = 'You did it!';
-        }
+        tl.tweenTo("q".concat(questionCount + 1)); //counterRemainCount.innerHTML = 'You did it!';
 
         if (questionCount + 1 == 10) {
           _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
@@ -698,7 +694,6 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var landingUrl = window.location.href;
   var disctountRibbon = document.querySelector('.main-page-header');
   var discountLegal = document.querySelector('.main-page-footer-slide');
-  var discountBtn = document.querySelector('.book-container');
   var bookBtn = document.querySelector('a[data-discount]'); //Book 15% button
 
   var campaignName = 'Offercode_Email';
@@ -718,9 +713,11 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 
 
   if (urlVars()['utm_campaign'] != undefined) {
+    bookBtn.parentNode.classList.add('active');
+    console.log(bookBtn);
+    console.log(bookBtn.parentNode);
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
-    discountBtn.classList.add('.active');
     bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 

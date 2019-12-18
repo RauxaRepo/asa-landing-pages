@@ -49,7 +49,7 @@ export default function () {
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = '10 questions left!';
+		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!';
 		//countingMe.counterMotion(countingMe.counterPercent(0));
 		
 
@@ -149,6 +149,10 @@ export default function () {
 			counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
         	countingMe.counterMotion(countingMe.counterPercent(questionCount));
 			counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
+
+
+			counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${theCards.length - counterCurrentCount} questions to unlock your 15% discount` : `${theCards.length - counterCurrentCount} questions left!`;
+			console.log(bookBtnContainer.classList.contains('active'));
 				
 
 
@@ -161,11 +165,7 @@ export default function () {
 				gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 				tl.tweenTo(`q${questionCount+1}`);
 
-				if(!e.target.classList.contains('last')) {
-					counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
-				} else {
-					counterRemainCount.innerHTML = 'You did it!';
-				}
+				//counterRemainCount.innerHTML = 'You did it!';
 
 				if (questionCount+1 == 10) {
 						confetti.rain();
