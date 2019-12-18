@@ -141,20 +141,18 @@ export default function () {
         gsap.to(nextQuestion,{ delay: 0.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
         
         //Confetti Burst /Add Book 15% off button
-				if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
-					confetti.burst();//confetti
-					gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
-				}
+			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
+				confetti.burst();//confetti
+				gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
+			}
 					
-				counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-        countingMe.counterMotion(countingMe.counterPercent(questionCount));
-				counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
+			counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+        	countingMe.counterMotion(countingMe.counterPercent(questionCount));
+			counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 				
-				if(!e.target.classList.contains('last')) {
-					counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
-				} else {
-					counterRemainCount.innerHTML = 'You did it!';
-				}
+
+
+
            
         //Next Question
 				nextQuestButton.addEventListener('click', (e) => {
@@ -162,6 +160,12 @@ export default function () {
 				gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 				gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
 				tl.tweenTo(`q${questionCount+1}`);
+
+				if(!e.target.classList.contains('last')) {
+					counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+				} else {
+					counterRemainCount.innerHTML = 'You did it!';
+				}
 
 				if (questionCount+1 == 10) {
 						confetti.rain();
