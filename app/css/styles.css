@@ -1138,6 +1138,7 @@ section {
 
 .next-question {
   padding-top: 15%;
+  opacity: 0;
 }
 
 .next-question .drag-text {
@@ -1601,6 +1602,12 @@ section {
   font-weight: bold;
 }
 
+.next-question,
+.right-answer,
+.wrong-answer {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 768px) {
   .drag-card-holder {
     width: 20%;
@@ -1637,7 +1644,7 @@ section {
     width: 101%;
   }
   .next-question .drag-text {
-    font-size: 0.75rem;
+    font-size: .75rem;
   }
 }
 
@@ -1779,6 +1786,7 @@ svg path {
 @keyframes fallsway {
   0% {
 <<<<<<< HEAD
+<<<<<<< HEAD
     left: 80%;
     opacity: 1;
   }
@@ -1795,20 +1803,27 @@ svg path {
     left: 34%;
 =======
     left: 4%;
+=======
+    left: 50%;
+>>>>>>> e4b2a7396223febe4e425474e230725c3c099273
     opacity: 1;
   }
   25% {
-    left: 16%;
-  }
-  50% {
-    left: 74%;
-  }
-  75% {
     left: 78%;
   }
+  50% {
+    left: 56%;
+  }
+  75% {
+    left: 29%;
+  }
   100% {
+<<<<<<< HEAD
     left: 21%;
 >>>>>>> 9fbf67547df608095d9cc4116b4c94de3c6b42a6
+=======
+    left: 88%;
+>>>>>>> e4b2a7396223febe4e425474e230725c3c099273
   }
 }
 
