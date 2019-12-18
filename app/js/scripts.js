@@ -331,7 +331,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var bookBtnContainer = document.querySelector('.book-container');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
-  totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
+  totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? "/0".concat(theCards.length / 2) : "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
   counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
   //bg animation
@@ -423,13 +423,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
           duration: 1,
-          opacity: 1,
+          autoAlpha: 1,
           ease: 'back.out'
         });
       }
 
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-      _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+
+      if (bookBtnContainer.classList.contains('active')) {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount * 2));
+      } else {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+      }
+
       counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
 
       if (counterCurrentCount < 5) {
@@ -711,8 +717,6 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 
   if (urlVars()['utm_campaign'] != undefined) {
     bookBtn.parentNode.classList.add('active');
-    console.log(bookBtn);
-    console.log(bookBtn.parentNode);
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');

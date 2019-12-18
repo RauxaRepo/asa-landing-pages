@@ -40,8 +40,7 @@ export default function () {
     // checking for customer ID to display discount ribbon
     if(urlVars()['utm_campaign'] != undefined ) {
         bookBtn.parentNode.classList.add('active')
-        console.log(bookBtn);
-        console.log(bookBtn.parentNode);
+
         disctountRibbon.classList.add('active');
         discountLegal.classList.add('active');
         bookBtn.classList.add('active');

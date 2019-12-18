@@ -44,7 +44,7 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
+		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
 		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!';
 		//countingMe.counterMotion(countingMe.counterPercent(0));
@@ -135,15 +135,26 @@ export default function () {
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
 				confetti.burst();//confetti
-				gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
+				gsap.to(bookButton, {duration: 1, autoAlpha: 1, ease: 'back.out'});
 			}
-					
-			counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-        	countingMe.counterMotion(countingMe.counterPercent(questionCount));
+      
+      
+      counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+      if (bookBtnContainer.classList.contains('active')) {
+        countingMe.counterMotion(countingMe.counterPercent(questionCount*2));
+      } else {
+        
+        countingMe.counterMotion(countingMe.counterPercent(questionCount));
+      }
+
+			
+      
 			counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
 
 
-			if(counterCurrentCount < 5) {
+			if(counterCurrentCount < 5 ) {
+
+
 				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} questions to unlock your 15% discount` : `${theCards.length - counterCurrentCount} questions left!`;
 			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
 				counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
