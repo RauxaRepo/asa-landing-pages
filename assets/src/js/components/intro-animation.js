@@ -227,21 +227,35 @@ export default function () {
   }
 
   //PRELOAD SPRITESHEETS | IMAGES
-  function loadSpriteSheet() {
-    var loadedImages = 0;
-    var imageArr = [
-      '../images/cards/tropical.gif',
-      '../images/cards/midnight.gif',
-      '../images/cards/breezeCard.gif',
-      '../images/cards/palm.gif',
-      '../images/cards/Title_Card_b.png'
-    ];
+  let imArr = [
+    '../images/cards/tropical.gif',
+    '../images/cards/midnight.gif',
+    '../images/cards/breezeCard.gif',
+    '../images/cards/palm.gif',
+    '../images/cards/Title_Card_b.png',
+    //
+    '../images/gifs/FILL.gif',
+    '../images/gifs/FIRE.gif',
+    '../images/gifs/FOOTBALL.gif',
+    '../images/gifs/GLOBE.gif',
+    '../images/gifs/HOTEL.gif',
+    '../images/gifs/MILES.gif',
+    '../images/gifs/PANCAKES.gif',
+    '../images/gifs/PASSES.gif',
+    '../images/gifs/PLANE.gif',
+    '../images/gifs/PIXAR.gif',
+    '../images/gifs/RUSSELL.gif'
+  ];
+
+  function loadSpriteSheet(arr) {
+    let loadedImages = 0;
+    let imageArr = arr;
 
     preloadImages();
 
     function preloadImages(){
-      for(var i = 0; i<imageArr.length;i++){
-        var tempImage = new Image();
+      for(let i = 0; i<imageArr.length;i++){
+        let tempImage = new Image();
         tempImage.src = imageArr[i];
         tempImage.onload = trackProgress();
       }
@@ -259,9 +273,7 @@ export default function () {
 
   }
           
-
   //RUN FUNCTIONS
-  loadSpriteSheet();
-
+  loadSpriteSheet(imArr);
 }
 

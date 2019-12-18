@@ -1054,9 +1054,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   } //PRELOAD SPRITESHEETS | IMAGES
 
 
-  function loadSpriteSheet() {
+  var imArr = ['../images/cards/tropical.gif', '../images/cards/midnight.gif', '../images/cards/breezeCard.gif', '../images/cards/palm.gif', '../images/cards/Title_Card_b.png', //
+  '../images/gifs/FILL.gif', '../images/gifs/FIRE.gif', '../images/gifs/FOOTBALL.gif', '../images/gifs/GLOBE.gif', '../images/gifs/HOTEL.gif', '../images/gifs/MILES.gif', '../images/gifs/PANCAKES.gif', '../images/gifs/PASSES.gif', '../images/gifs/PLANE.gif', '../images/gifs/PIXAR.gif', '../images/gifs/RUSSELL.gif'];
+
+  function loadSpriteSheet(arr) {
     var loadedImages = 0;
-    var imageArr = ['../images/cards/tropical.gif', '../images/cards/midnight.gif', '../images/cards/breezeCard.gif', '../images/cards/palm.gif', '../images/cards/Title_Card_b.png'];
+    var imageArr = arr;
     preloadImages();
 
     function preloadImages() {
@@ -1084,7 +1087,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   } //RUN FUNCTIONS
 
 
-  loadSpriteSheet();
+  loadSpriteSheet(imArr);
 });
 
 /***/ }),
