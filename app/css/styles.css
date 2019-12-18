@@ -891,6 +891,18 @@ section {
   }
 }
 
+sub,
+sup {
+  font-size: 50%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -.75em;
+}
+
 .social-test {
   position: fixed;
   top: 0;
@@ -1038,7 +1050,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: #48a9c5;
 }
 
@@ -1779,20 +1791,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 5%;
+    left: 45%;
     opacity: 1;
   }
   25% {
-    left: 53%;
+    left: 46%;
   }
   50% {
-    left: 93%;
+    left: 25%;
   }
   75% {
-    left: 52%;
+    left: 82%;
   }
   100% {
-    left: 81%;
+    left: 23%;
   }
 }
 

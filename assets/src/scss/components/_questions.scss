@@ -24,9 +24,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: $blue;
-
+  
 
   // smaller font only for card 2 answers bc of woody answer
   &.q2 button {
