@@ -1,4 +1,4 @@
-import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
+import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
 
 
     //VARS
@@ -6,11 +6,11 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
         burstWrapper = document.querySelector('.confetti-container--burst'),
         width = window.innerWidth,
         height = window.innerHeight,
-        colorArr = ['#55dded','#5599e0','#516673','#aaccdd','#41bbde','#41bbde','#ffffff','#445567', '#52d521'],
+        colorArr = ['#55dded','#5599e0','#516673','#aaccdd','#41bbde','#41bbde','#ffffff','#445567', '#52d521', '#ff0000', '#FF8000'],
         confettiArr = [],
         confettiArrBurst = [],
         num = 800,
-        tl = gsap.timeline({repeat:0, repeatDelay:0});
+        tl = new TimelineMax({repeat:0, repeatDelay:0});
 
 
     //RANDOM MIN MAX
@@ -45,7 +45,7 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 
       buildBurst: () => {
 
-        for (let i=0; i<300; i++){
+        for (let i=0; i<200; i++){
           let confettib = document.createElement('div');
           burstWrapper.appendChild(confettib);
           confettib.style.transform = 'scale(0)';
@@ -85,21 +85,21 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 
         confettiArrBurst.forEach(function(item, index){
           gsap.to(item, {
-            duration: 0.5,
-            delay: .02 * index, 
+            duration: 1.2,
+            delay: .009 * index, 
             y: Math.floor( random(-150, -200)),
             left: Math.floor( random(200, -200)),
             rotation: Math.floor( random(10, -360)),
-            scale: Math.random() * 1.2,
+            scale: Math.random() * 1.5,
             ease:'sine.in',
             onComplete: function(){
               gsap.to(item, {
-                duration: 0.5, 
+                duration: 3, 
                 delay: .001 * index,
                 rotation: Math.floor( random(10, -360)), 
-                top: '+=200', 
-                opacity: 0, 
-                ease:'sine.in',
+                y: '+=150vh', 
+                //opacity: 0, 
+                ease:'sine.inOut',
                 onComplete: function(){
                   gsap.set(item, {
                     left: 0,
@@ -108,7 +108,6 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
                   });
               }});
           }});
-          //gsap.to(item, {duration:.5, delay:.02 * index,x:'+=100%',yoyo:true});	
         });
 
       },
@@ -116,8 +115,4 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
     };
 
 
-
 export { confetti };
-        
-
-
