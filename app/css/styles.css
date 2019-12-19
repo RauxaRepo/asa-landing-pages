@@ -1170,6 +1170,23 @@ sup {
   height: 100vh;
   overflow: hidden;
   background-size: 120%;
+  transition: height .8s ease;
+}
+
+.cards.height-adjust {
+  height: 132vh;
+}
+
+@media only screen and (min-width: 375px) {
+  .cards.height-adjust {
+    height: 115vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .cards.height-adjust {
+    height: 100vh;
+  }
 }
 
 .cards-lockup {
@@ -1180,7 +1197,7 @@ sup {
   .cards-lockup {
     display: flex;
     opacity: 0;
-    transform: translateY(25%);
+    transform: translateY(0%);
     justify-content: center;
     width: 33%;
     height: 100%;
@@ -1779,6 +1796,18 @@ svg path {
   color: #f1f1f1;
 }
 
+@media (min-width: 768px) {
+  .counter-block {
+    transform: translate(0, -8%);
+  }
+}
+
+@media (min-width: 992px) {
+  .counter-block {
+    transform: translate(0, 0%);
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .cards-progress-container {
     width: 100%;
@@ -1821,6 +1850,7 @@ svg path {
 @media only screen and (max-width: 576px) {
   .counter-block {
     display: block;
+    transform: translate(0, -20%);
   }
   .count-text--box {
     left: auto;
@@ -1895,24 +1925,6 @@ svg path {
   }
 }
 
-<<<<<<< HEAD
-@keyframes fallsway {
-  0% {
-    left: 29%;
-    opacity: 1;
-  }
-  25% {
-    left: 93%;
-  }
-  50% {
-    left: 5%;
-  }
-  75% {
-    left: 66%;
-  }
-  100% {
-    left: 71%;
-=======
 @media only screen and (max-width: 576px) {
   .confetti-container--burst-holder {
     position: absolute;
@@ -1929,7 +1941,6 @@ svg path {
     width: 20px;
     pointer-events: none;
     z-index: 20;
->>>>>>> 416327b9a36972f48aabc8151faab192b5f826c2
   }
 }
 

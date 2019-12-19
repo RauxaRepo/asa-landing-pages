@@ -4,6 +4,22 @@
   height: 100vh;
   overflow: hidden;
   background-size: 120%;
+  transition: height .8s ease;
+
+  &.height-adjust {
+
+    height: 132vh;
+    
+
+    @media only screen and (min-width: 375px) {
+      height: 115vh;
+    }
+
+    @include bp(md){
+      height: 100vh;
+    }
+
+  }
 
   &-lockup {
     display: none;
@@ -11,7 +27,7 @@
     @include bp(md) {
       display: flex;
       opacity: 0;
-      transform: translateY(25%);
+      transform: translateY(0%);
       justify-content: center;
       width: 33%;
       height: 100%;
