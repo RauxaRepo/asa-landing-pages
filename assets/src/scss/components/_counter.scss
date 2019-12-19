@@ -12,7 +12,7 @@
 .count {
 
   &-container {
-    margin: 10% 0 0 0;
+    margin: 10% 0 0;
     right: 100px;
     width: 100%;
   }
@@ -111,7 +111,7 @@ svg path {
 
     &:hover {
       background-color: $darkblue;
-      color:$off-white;
+      color: $off-white;
     }
 
     &:focus {
@@ -120,21 +120,19 @@ svg path {
 
     &.end {
       background-color: $darkblue;
-      color:$off-white;
+      color: $off-white;
     }
   }
 }
 
 .counter-block {
 
-  @include bp(md){
+  @include bp(md) {
     transform: translate(0, -8%);
-  
   }
 
-  @include bp(lg){
+  @include bp(lg) {
     transform: translate(0, -0%);
-  
   }
   
 }
@@ -159,7 +157,7 @@ svg path {
 
   //SVG
   .svg-counter {
-    height: 75px;
+    height: 100%;
     width: 75px;
   }
 
@@ -209,7 +207,7 @@ svg path {
 
   //SVG
   .svg-counter {
-    height: 75px;
+    height: 100%;
     width: 75px;
   }
 

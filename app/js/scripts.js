@@ -189,7 +189,7 @@ var confetti = {
             duration: 0.5,
             delay: .001 * index,
             rotation: Math.floor(random(10, -360)),
-            top: '+=100',
+            top: '+=200',
             opacity: 0,
             ease: 'sine.in',
             onComplete: function onComplete() {
@@ -259,6 +259,10 @@ var countingMe = {
 
       path.style.strokeDashoffset = Math.max(0, to);
     });
+  },
+  counter2xPercent: function counter2xPercent(card) {
+    var percentage = [167, 153, 125, 106, 50];
+    return percentage[card];
   },
   counterPercent: function counterPercent(card) {
     var percentage = [178, 167, 160, 153, 137, 125, 118, 106, 95, 50];
@@ -331,10 +335,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var bookBtnContainer = document.querySelector('.book-container');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
-  totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? "/0".concat(theCards.length / 2) : "/".concat(theCards.length);
+  totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
-  //bg animation
+  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!'; //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
@@ -430,9 +433,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
 
-      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
-        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent((questionCount + 1) * 2));
-      } else if (bookBtnContainer.classList.contains('active') && counterCurrentCount > 4) {
+      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 6) {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counter2xPercent(questionCount));
+      } else if (bookBtnContainer.classList.contains('active') && counterCurrentCount > 6) {
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
       } else {
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
@@ -788,7 +791,8 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
-/* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
+/* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter */ "../assets/src/js/components/counter.js");
+/* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -796,6 +800,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -864,7 +869,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         document.querySelector('.cards').classList.add('height-adjust');
       }
-    }, '-=0');
+    }, '-=0'); // resetting progress bar
+
+    _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(200));
   }; //COLOR CARDS--SPREAD
 
 
@@ -887,8 +894,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       if (_i == theColorCards.length - 1) {
         setTimeout(function () {
           //Build confetti particles
-          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildRain();
-          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildBurst();
+          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
+          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildBurst();
         }, 1000);
       }
     }
@@ -988,7 +995,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cta.querySelector('button'), {
         duration: .8,
-        opacity: 1
+        autoAlpha: 1
       }); //EventListener
 
       cta.querySelector('button').addEventListener('click', function (e) {
