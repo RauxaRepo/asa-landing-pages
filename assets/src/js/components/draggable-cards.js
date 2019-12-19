@@ -134,7 +134,7 @@ export default function () {
         
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
-				confetti.burst();//confetti
+				confetti.burst();//confetti burst
 				gsap.to(bookButton, {duration: 1, autoAlpha: 1, ease: 'back.out'});
 			}
       
@@ -196,7 +196,6 @@ export default function () {
 				if (questionCount+1 == 10) {
 
             setTimeout( () => {
-              confetti.buildRain();
 						  confetti.rain();
             },750);
             
