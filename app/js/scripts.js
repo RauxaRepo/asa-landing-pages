@@ -335,7 +335,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var bookBtnContainer = document.querySelector('.book-container');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
-  totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
+  totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? "/0".concat(theCards.length / 2) : "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
   counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!'; //bg animation
 
@@ -467,7 +467,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         tl.tweenTo("q".concat(questionCount + 1));
 
         if (questionCount + 1 == 5) {
-          counterTotalCount.innerHTML = "/".concat(theCards.length);
+          totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
           _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
         }
 
