@@ -97,7 +97,7 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
                 duration: 0.5, 
                 delay: .001 * index,
                 rotation: Math.floor( random(10, -360)), 
-                top: '+=100', 
+                top: '+=200', 
                 opacity: 0, 
                 ease:'sine.in',
                 onComplete: function(){
