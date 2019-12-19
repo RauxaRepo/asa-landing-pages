@@ -483,7 +483,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           setTimeout(function () {
             _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
             _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
-          }, 1500);
+          }, 750);
         }
 
         questionCount++;

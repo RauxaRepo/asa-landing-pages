@@ -198,7 +198,7 @@ export default function () {
             setTimeout( () => {
               confetti.buildRain();
 						  confetti.rain();
-            },1500);
+            },750);
             
 					}
            
