@@ -228,7 +228,8 @@ export default function () {
     // adding classes to divs
     cardContent.classList.add('cards-single--content');
     // adding class based on array 
-    card.classList.add('cards-single',cardType[cardBgCounter]);
+    card.classList.add('cards-single');
+    card.classList.add(cardType[cardBgCounter]);
     card.appendChild(cardContent);
 
     cardHolder.appendChild(card);

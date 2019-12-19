@@ -1061,7 +1061,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     cardContent.classList.add('cards-single--content'); // adding class based on array 
 
-    card.classList.add('cards-single', cardType[cardBgCounter]);
+    card.classList.add('cards-single');
+    card.classList.add(cardType[cardBgCounter]);
     card.appendChild(cardContent);
     cardHolder.appendChild(card);
     cardBgCounter == 3 ? cardBgCounter = 0 : cardBgCounter++;
