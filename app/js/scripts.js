@@ -468,13 +468,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
         tl.tweenTo("q".concat(questionCount + 1));
 
-        if (questionCount + 1 == 5) {
+        if (questionCount + 1 == 6) {
           counterTotalCount.innerHTML = "/".concat(theCards.length);
           _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
         }
 
         if (e.target.classList.contains('last')) {
           counterRemainCount.innerHTML = 'You did it!';
+          bookBtnContainer.querySelector('button').classList.add('end');
         }
 
         if (questionCount + 1 == 10) {

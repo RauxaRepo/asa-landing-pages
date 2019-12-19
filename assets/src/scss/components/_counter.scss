@@ -94,15 +94,22 @@ svg path {
     transition: .3s;
     background-color: $off-white;
     color: $counterbarblue;
+
+    &:hover {
+      background-color: $darkblue;
+      color:$off-white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.end {
+      background-color: $darkblue;
+      color:$off-white;
+    }
   }
 }
 
-.book-button:hover {
-  background-color: $darkblue;
-  color:$off-white;
-}
-.book-button:focus {
-  outline: none;
-}
 
 

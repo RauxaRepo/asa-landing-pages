@@ -181,14 +181,16 @@ export default function () {
           
          
         
-          if(questionCount+1 == 5) {
+          if(questionCount+1 == 6) {
             counterTotalCount.innerHTML = `/${theCards.length}`;
             countingMe.counterMotion(countingMe.counterPercent(questionCount));
           }
 
 				
 				if(e.target.classList.contains('last')) {
-					counterRemainCount.innerHTML = 'You did it!';
+          counterRemainCount.innerHTML = 'You did it!';
+          bookBtnContainer.querySelector('button').classList.add('end');
+          
 				}
 
 				if (questionCount+1 == 10) {
