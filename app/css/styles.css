@@ -1828,7 +1828,7 @@ svg path {
     margin: 0 auto;
   }
   .svg-counter {
-    height: 75px;
+    height: 100%;
     width: 75px;
   }
   .count-text {
@@ -1863,7 +1863,7 @@ svg path {
     margin: 0 auto;
   }
   .svg-counter {
-    height: 75px;
+    height: 100%;
     width: 75px;
   }
   .count-text {
