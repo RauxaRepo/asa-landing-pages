@@ -134,9 +134,14 @@ svg path {
   @include bp(lg) {
     transform: translate(0, -0%);
   }
-  
+
 }
 
+@media only screen and (max-width: 1024px) {
+  .count-container {
+    margin: 0;
+  }
+}
 
 @media only screen and (max-width: 768px) {
 
@@ -224,7 +229,7 @@ svg path {
   }
 
   .book-button {
-    width: 31%;
+    width: 37%;
     padding: 10px 0;
   }
 

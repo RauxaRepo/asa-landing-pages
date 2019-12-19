@@ -103,11 +103,11 @@ var wrapper = document.querySelector('.confetti-container'),
     burstWrapper = document.querySelector('.confetti-container--burst'),
     width = window.innerWidth,
     height = window.innerHeight,
-    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521'],
+    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521', '#ff0000', '#FF8000'],
     confettiArr = [],
     confettiArrBurst = [],
     num = 800,
-    tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    tl = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
   repeat: 0,
   repeatDelay: 0
 }); //RANDOM MIN MAX
@@ -141,7 +141,7 @@ var confetti = {
     }
   },
   buildBurst: function buildBurst() {
-    for (var i = 0; i < 300; i++) {
+    for (var i = 0; i < 200; i++) {
       var confettib = document.createElement('div');
       burstWrapper.appendChild(confettib);
       confettib.style.transform = 'scale(0)';
@@ -177,21 +177,21 @@ var confetti = {
   burst: function burst() {
     confettiArrBurst.forEach(function (item, index) {
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-        duration: 0.5,
-        delay: .02 * index,
+        duration: 1.2,
+        delay: .009 * index,
         y: Math.floor(random(-150, -200)),
         left: Math.floor(random(200, -200)),
         rotation: Math.floor(random(10, -360)),
-        scale: Math.random() * 1.2,
+        scale: Math.random() * 1.5,
         ease: 'sine.in',
         onComplete: function onComplete() {
           gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-            duration: 0.5,
+            duration: 3,
             delay: .001 * index,
             rotation: Math.floor(random(10, -360)),
-            top: '+=200',
-            opacity: 0,
-            ease: 'sine.in',
+            y: '+=150vh',
+            //opacity: 0, 
+            ease: 'sine.inOut',
             onComplete: function onComplete() {
               gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
                 left: 0,
@@ -201,7 +201,7 @@ var confetti = {
             }
           });
         }
-      }); //gsap.to(item, {duration:.5, delay:.02 * index,x:'+=100%',yoyo:true});	
+      });
     });
   }
 };
