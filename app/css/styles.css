@@ -1678,6 +1678,14 @@ section {
   margin-top: 15px;
   text-align: center;
   width: 100%;
+  height: auto;
+  overflow: hidden;
+  opacity: 1;
+  transition: height .25s ease;
+}
+
+.count-text--quest.end {
+  height: 0;
 }
 
 .count span {
@@ -1784,20 +1792,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 61%;
+    left: 76%;
     opacity: 1;
   }
   25% {
-    left: 68%;
+    left: 89%;
   }
   50% {
-    left: 49%;
+    left: 27%;
   }
   75% {
-    left: 20%;
+    left: 37%;
   }
   100% {
-    left: 14%;
+    left: 11%;
   }
 }
 

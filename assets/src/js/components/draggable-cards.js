@@ -190,7 +190,7 @@ export default function () {
 				if(e.target.classList.contains('last')) {
           counterRemainCount.innerHTML = 'You did it!';
           bookBtnContainer.querySelector('button').classList.add('end');
-          
+          document.querySelector('.count-text--quest').classList.add('end');
 				}
 
 				if (questionCount+1 == 10) {

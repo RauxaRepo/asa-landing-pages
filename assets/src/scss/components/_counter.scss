@@ -42,6 +42,14 @@
     margin-top: 15px;
     text-align: center;
     width: 100%;
+    height: auto;
+    overflow: hidden;
+    opacity: 1;
+    transition: height .25s ease;
+
+    &.end {
+      height: 0;
+    }
   }
 
 
