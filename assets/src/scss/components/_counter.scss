@@ -42,6 +42,14 @@
     margin-top: 15px;
     text-align: center;
     width: 100%;
+    height: auto;
+    overflow: hidden;
+    opacity: 1;
+    transition: height .25s ease;
+
+    &.end {
+      height: 0;
+    }
   }
 
 
@@ -94,15 +102,22 @@ svg path {
     transition: .3s;
     background-color: $off-white;
     color: $counterbarblue;
+
+    &:hover {
+      background-color: $darkblue;
+      color:$off-white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.end {
+      background-color: $darkblue;
+      color:$off-white;
+    }
   }
 }
 
-.book-button:hover {
-  background-color: $darkblue;
-  color:$off-white;
-}
-.book-button:focus {
-  outline: none;
-}
 
 

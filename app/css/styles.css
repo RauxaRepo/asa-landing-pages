@@ -1488,6 +1488,10 @@ sup {
   font-weight: bold;
 }
 
+.main-page-card--results .active-card {
+  justify-content: center;
+}
+
 .q1,
 .q2,
 .q3,
@@ -1694,6 +1698,14 @@ sup {
   margin-top: 15px;
   text-align: center;
   width: 100%;
+  height: auto;
+  overflow: hidden;
+  opacity: 1;
+  transition: height .25s ease;
+}
+
+.count-text--quest.end {
+  height: 0;
 }
 
 .count span {
@@ -1751,6 +1763,11 @@ svg path {
   outline: none;
 }
 
+.book-button.end {
+  background-color: #01426a;
+  color: #f1f1f1;
+}
+
 .confetti-container {
   height: 100vh;
   position: absolute;
@@ -1795,20 +1812,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 93%;
+    left: 66%;
     opacity: 1;
   }
   25% {
-    left: 69%;
+    left: 94%;
   }
   50% {
-    left: 44%;
+    left: 70%;
   }
   75% {
-    left: 38%;
+    left: 62%;
   }
   100% {
-    left: 5%;
+    left: 94%;
   }
 }
 
