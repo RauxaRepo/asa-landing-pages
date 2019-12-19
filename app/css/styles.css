@@ -1605,7 +1605,7 @@ sup {
 
 .results-num {
   color: #2774ae;
-  font-size: 66px;
+  font-size: 46px;
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
@@ -1614,11 +1614,23 @@ sup {
   position: relative;
 }
 
+@media (min-width: 768px) {
+  .results-num {
+    font-size: 66px;
+  }
+}
+
 .correct-text {
-  font-size: 49px;
+  font-size: 23px;
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .correct-text {
+    font-size: 49px;
+  }
 }
 
 .next-question,
@@ -1698,6 +1710,14 @@ sup {
   margin-top: 15px;
   text-align: center;
   width: 100%;
+  height: auto;
+  overflow: hidden;
+  opacity: 1;
+  transition: height .25s ease;
+}
+
+.count-text--quest.end {
+  height: 0;
 }
 
 .count span {
@@ -1755,6 +1775,11 @@ svg path {
   outline: none;
 }
 
+.book-button.end {
+  background-color: #01426a;
+  color: #f1f1f1;
+}
+
 .confetti-container {
   height: 100vh;
   position: absolute;
@@ -1799,20 +1824,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 8%;
+    left: 42%;
     opacity: 1;
   }
   25% {
-    left: 59%;
+    left: 8%;
   }
   50% {
-    left: 53%;
+    left: 77%;
   }
   75% {
-    left: 41%;
+    left: 55%;
   }
   100% {
-    left: 16%;
+    left: 21%;
   }
 }
 
