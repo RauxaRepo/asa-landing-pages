@@ -870,7 +870,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         document.querySelector('.cards').classList.add('height-adjust');
       }
-    }, '-=0');
+    }, '-=0'); // resetting progress bar
+
     _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(200));
   }; //COLOR CARDS--SPREAD
 

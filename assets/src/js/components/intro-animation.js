@@ -85,7 +85,7 @@ export default function () {
           spreadTheCards();//spread color cards
           document.querySelector('.cards').classList.add('height-adjust');
         }},'-=0');
-      
+    // resetting progress bar
     countingMe.counterMotion(countingMe.counterPercent(200));
   }
 
