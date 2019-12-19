@@ -219,11 +219,20 @@ var confetti = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countingMe", function() { return countingMe; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 var sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
 thePercentage = 178; // Get all the Meters from SVG
 
-var meters = document.querySelectorAll('svg[data-value] .meter'); //PROGRESS OF THE COUNTER
+var meters = _toConsumableArray(document.querySelectorAll('svg[data-value] .meter')); //PROGRESS OF THE COUNTER
+
 
 function getPercentage() {
   Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
@@ -819,6 +828,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var isTouch = 'touchstart' in document.documentElement;
   var time = 1;
   var theFooterSlide = document.querySelector('.main-page-footer-slide');
+  var questionsResults = [].concat(_toConsumableArray(document.querySelectorAll('.main-page-card--question ')), [document.querySelector('.main-page-card--results')]);
   var cardNumber = ['one', 'two', 'three', 'four', 'five'];
   var cardType = ['tropical', 'midnight', 'breezecard', 'palm'];
   var cardX = ['-250%', '-150%', '-50%', '50%', '150%'];
@@ -868,6 +878,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         spreadTheCards(); //spread color cards
 
         document.querySelector('.cards').classList.add('height-adjust');
+        questionsResults.forEach(function (q) {
+          q.classList.remove('disable');
+        });
       }
     }, '-=0'); // resetting progress bar
 
@@ -1057,7 +1070,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     cardContent.classList.add('cards-single--content'); // adding class based on array 
 
-    card.classList.add('cards-single', cardType[cardBgCounter]);
+    card.classList.add('cards-single');
+    card.classList.add(cardType[cardBgCounter]);
     card.appendChild(cardContent);
     cardHolder.appendChild(card);
     cardBgCounter == 3 ? cardBgCounter = 0 : cardBgCounter++;
