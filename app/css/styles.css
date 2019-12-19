@@ -1149,7 +1149,7 @@ sup {
 }
 
 .next-question {
-  padding-top: 15%;
+  padding-top: 10%;
 }
 
 .next-question .drag-text {
@@ -1158,6 +1158,10 @@ sup {
   text-align: center;
   padding-top: 12px;
   font-size: 0.875rem;
+}
+
+.next-question--button {
+  margin-top: 0;
 }
 
 .cards {
@@ -1791,20 +1795,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 45%;
+    left: 93%;
     opacity: 1;
   }
   25% {
-    left: 46%;
+    left: 69%;
   }
   50% {
-    left: 25%;
+    left: 44%;
   }
   75% {
-    left: 82%;
+    left: 38%;
   }
   100% {
-    left: 23%;
+    left: 5%;
   }
 }
 

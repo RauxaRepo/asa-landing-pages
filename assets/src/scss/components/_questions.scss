@@ -26,7 +26,8 @@
   align-items: center;
   justify-content: space-between;
   color: $blue;
-  
+
+
 
   // smaller font only for card 2 answers bc of woody answer
   &.q2 button {
@@ -135,7 +136,7 @@
 }
 
 .next-question {
-  padding-top: 15%;
+  padding-top: 10%;
 
   .drag-text {
     color: $footertextcolor;
@@ -144,5 +145,8 @@
     padding-top: 12px;
     @include font-size(14px);
   }
-  //
+
+  &--button {
+    margin-top: 0;
+  }
 }
