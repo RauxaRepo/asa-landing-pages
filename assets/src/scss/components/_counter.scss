@@ -99,10 +99,78 @@ svg path {
 
 .book-button:hover {
   background-color: $darkblue;
-  color:$off-white;
+  color: $off-white;
 }
+
 .book-button:focus {
   outline: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+  .cards-progress-container {
+    width: 100%;
+    align-self: center;
+  }
+  //
+  .counter-block {
+    display: block;
+    width: 100%;
+  }
+
+  .count-text--box {
+    left: auto;
+    margin: 0 auto;
+  }
+
+  //SVG
+  .svg-counter {
+    height: 75px;
+    width: 75px;
+  }
+
+  //Text
+  .count {
+    &-text {
+      font-size: 12px;
+    }
+
+    &-text--box {
+      padding: 0 0 0 8px;
+      top: 57px;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 576px) {
+  .counter-block {
+    display: block;
+  }
+
+  .count-text--box {
+    left: auto;
+    margin: 0 auto;
+  }
+
+  //SVG
+  .svg-counter {
+    height: 75px;
+    width: 75px;
+  }
+
+  //Text
+  .count {
+    &-text {
+      font-size: 12px;
+    }
+
+    &-text--box {
+      padding: 0 0 0 8px;
+      top: 57px;
+    }
+  }
 }
 
 

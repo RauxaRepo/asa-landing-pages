@@ -1735,6 +1735,53 @@ svg path {
   outline: none;
 }
 
+@media only screen and (max-width: 768px) {
+  .cards-progress-container {
+    width: 100%;
+    align-self: center;
+  }
+  .counter-block {
+    display: block;
+    width: 100%;
+  }
+  .count-text--box {
+    left: auto;
+    margin: 0 auto;
+  }
+  .svg-counter {
+    height: 75px;
+    width: 75px;
+  }
+  .count-text {
+    font-size: 12px;
+  }
+  .count-text--box {
+    padding: 0 0 0 8px;
+    top: 57px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .counter-block {
+    display: block;
+  }
+  .count-text--box {
+    left: auto;
+    margin: 0 auto;
+  }
+  .svg-counter {
+    height: 75px;
+    width: 75px;
+  }
+  .count-text {
+    font-size: 12px;
+  }
+  .count-text--box {
+    padding: 0 0 0 8px;
+    top: 57px;
+  }
+}
+
 .confetti-container {
   height: 100vh;
   position: absolute;
@@ -1779,20 +1826,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 5%;
+    left: 21%;
     opacity: 1;
   }
   25% {
-    left: 53%;
+    left: 91%;
   }
   50% {
-    left: 93%;
+    left: 47%;
   }
   75% {
-    left: 52%;
+    left: 77%;
   }
   100% {
-    left: 81%;
+    left: 40%;
   }
 }
 
