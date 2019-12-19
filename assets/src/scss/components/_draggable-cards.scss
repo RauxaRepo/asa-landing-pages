@@ -364,10 +364,6 @@ $opacityblacklight: rgba(0, 0, 0, .25);
 
   .active-card--button {
     margin-top: 10px;
-
-    &.disabled {
-      pointer-events: none;
-    }
     // padding: 7px 0;
   
   }
