@@ -113,7 +113,7 @@ svg path {
     width: 100%;
     align-self: center;
   }
-  //
+
   .counter-block {
     display: block;
     width: 100%;
@@ -140,6 +140,15 @@ svg path {
       padding: 0 0 0 8px;
       top: 57px;
     }
+  }
+
+  .book-button {
+    width: 17%;
+    padding: 10px 0;
+  }
+
+  .hide-book-button--text {
+    display: none;
   }
 
 }
@@ -171,6 +180,16 @@ svg path {
       top: 57px;
     }
   }
+
+  .book-button {
+    width: 31%;
+    padding: 10px 0;
+  }
+
+  .hide-book-button--text {
+    display: none;
+  }
+
 }
 
 
