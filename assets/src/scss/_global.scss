@@ -110,3 +110,16 @@ section {
 }
 
 @include grid-create;
+
+// fix sizing of sup tags
+sub,
+sup {
+  font-size: 50%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -.75em;
+}

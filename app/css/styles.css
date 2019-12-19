@@ -891,6 +891,18 @@ section {
   }
 }
 
+sub,
+sup {
+  font-size: 50%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -.75em;
+}
+
 .social-test {
   position: fixed;
   top: 0;
@@ -1038,7 +1050,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: #48a9c5;
 }
 
@@ -1137,7 +1149,7 @@ section {
 }
 
 .next-question {
-  padding-top: 15%;
+  padding-top: 10%;
 }
 
 .next-question .drag-text {
@@ -1146,6 +1158,10 @@ section {
   text-align: center;
   padding-top: 12px;
   font-size: 0.875rem;
+}
+
+.next-question--button {
+  margin-top: 0;
 }
 
 .cards {
@@ -1826,20 +1842,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 21%;
+    left: 90%;
     opacity: 1;
   }
   25% {
-    left: 91%;
+    left: 26%;
   }
   50% {
-    left: 47%;
+    left: 86%;
   }
   75% {
-    left: 77%;
+    left: 84%;
   }
   100% {
-    left: 40%;
+    left: 92%;
   }
 }
 
