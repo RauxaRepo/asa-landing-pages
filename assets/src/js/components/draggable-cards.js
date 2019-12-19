@@ -181,7 +181,7 @@ export default function () {
           
          
         
-          if(questionCount+1 == 6) {
+          if(questionCount+1 == 5) {
             counterTotalCount.innerHTML = `/${theCards.length}`;
             countingMe.counterMotion(countingMe.counterPercent(questionCount));
           }
@@ -194,8 +194,12 @@ export default function () {
 				}
 
 				if (questionCount+1 == 10) {
-            confetti.buildRain();
-						confetti.rain();
+
+            setTimeout( () => {
+              confetti.buildRain();
+						  confetti.rain();
+            },1500);
+            
 					}
            
 					questionCount++;

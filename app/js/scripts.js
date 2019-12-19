@@ -468,7 +468,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
         tl.tweenTo("q".concat(questionCount + 1));
 
-        if (questionCount + 1 == 6) {
+        if (questionCount + 1 == 5) {
           counterTotalCount.innerHTML = "/".concat(theCards.length);
           _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
         }
@@ -480,8 +480,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         }
 
         if (questionCount + 1 == 10) {
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
+          setTimeout(function () {
+            _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
+            _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
+          }, 1500);
         }
 
         questionCount++;

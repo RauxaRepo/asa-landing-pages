@@ -1808,20 +1808,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 9%;
+    left: 87%;
     opacity: 1;
   }
   25% {
-    left: 75%;
+    left: 58%;
   }
   50% {
-    left: 47%;
+    left: 24%;
   }
   75% {
-    left: 41%;
+    left: 63%;
   }
   100% {
-    left: 95%;
+    left: 9%;
   }
 }
 
@@ -2001,4 +2001,3 @@ main {
 }
 
 /*# sourceMappingURL=styles.css.map */
-
