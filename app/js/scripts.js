@@ -819,6 +819,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var isTouch = 'touchstart' in document.documentElement;
   var time = 1;
   var theFooterSlide = document.querySelector('.main-page-footer-slide');
+  var questionsResults = [].concat(_toConsumableArray(document.querySelectorAll('.main-page-card--question ')), [document.querySelector('.main-page-card--results')]);
   var cardNumber = ['one', 'two', 'three', 'four', 'five'];
   var cardType = ['tropical', 'midnight', 'breezecard', 'palm'];
   var cardX = ['-250%', '-150%', '-50%', '50%', '150%'];
@@ -868,6 +869,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         spreadTheCards(); //spread color cards
 
         document.querySelector('.cards').classList.add('height-adjust');
+        questionsResults.forEach(function (q) {
+          q.classList.remove('disable');
+        });
       }
     }, '-=0'); // resetting progress bar
 

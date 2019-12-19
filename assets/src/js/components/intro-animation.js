@@ -20,6 +20,8 @@ export default function () {
 
   let time = 1;
   let theFooterSlide = document.querySelector('.main-page-footer-slide');
+  let questionsResults = [...document.querySelectorAll('.main-page-card--question '),document.querySelector('.main-page-card--results')];
+
 
 
   let cardNumber = [
@@ -86,6 +88,11 @@ export default function () {
         onComplete: function(){
           spreadTheCards();//spread color cards
           document.querySelector('.cards').classList.add('height-adjust');
+
+          questionsResults.forEach( (q) => {
+            q.classList.remove('disable');
+          });
+
         }},'-=0');
     // resetting progress bar
     countingMe.counterMotion(countingMe.counterPercent(200));
