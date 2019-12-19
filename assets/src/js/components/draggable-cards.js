@@ -44,7 +44,7 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
+		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
 		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!';
 		
@@ -82,6 +82,7 @@ export default function () {
 				let answersBtns = e.target.parentNode;
 
 				let answerSelected = btn.getAttribute('data-res');
+
 
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
@@ -179,7 +180,7 @@ export default function () {
          
         
           if(questionCount+1 == 5) {
-            counterTotalCount.innerHTML = `/${theCards.length}`;
+			totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
             countingMe.counterMotion(countingMe.counterPercent(questionCount));
           }
 
