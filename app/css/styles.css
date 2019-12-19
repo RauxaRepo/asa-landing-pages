@@ -1896,19 +1896,19 @@ svg path {
 }
 
 .confetti-container--burst-holder {
-  position: relative;
-  top: 230px;
-  left: -75px;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  left: 0;
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .confetti-container--burst {
-  right: 17%;
+  right: 15.5%;
   margin: 0 auto;
   position: absolute;
-  top: 44%;
+  top: 49%;
   width: 20px;
   pointer-events: none;
   z-index: 20;
@@ -1919,8 +1919,6 @@ svg path {
     position: absolute;
     top: 15%;
     left: 0;
-    width: 100%;
-    height: 100%;
   }
   .confetti-container--burst {
     margin: 0 auto;
@@ -1938,8 +1936,6 @@ svg path {
     position: absolute;
     top: 42%;
     left: 0;
-    width: 100%;
-    height: 100%;
   }
   .confetti-container--burst {
     margin: 0 auto;

@@ -18,19 +18,19 @@
   }
 
   &-container--burst-holder {
-    position: relative;
-    top: 230px;
-    left: -75px;
-    width: 100%;
-    height: 100%;
+    height: 100vh;
+    left: 0;
     overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 
   &-container--burst {
-    right: 17%;
+    right: 15.5%;
     margin: 0 auto;
     position: absolute;
-    top: 44%;
+    top: 49%;
     width: 20px;
     pointer-events: none;
     z-index: 20;
@@ -44,8 +44,6 @@
       position: absolute;
       top: 15%;
       left: 0;
-      width: 100%;
-      height: 100%;
     }
   
     &-container--burst {
@@ -68,8 +66,6 @@
       position: absolute;
       top: 42%;
       left: 0;
-      width: 100%;
-      height: 100%;
     }
   
     &-container--burst {
@@ -84,4 +80,3 @@
   }
 
 }
-
