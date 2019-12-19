@@ -1488,6 +1488,10 @@ sup {
   font-weight: bold;
 }
 
+.main-page-card--results .active-card {
+  justify-content: center;
+}
+
 .q1,
 .q2,
 .q3,
@@ -1808,20 +1812,20 @@ svg path {
 
 @keyframes fallsway {
   0% {
-    left: 87%;
+    left: 68%;
     opacity: 1;
   }
   25% {
-    left: 58%;
+    left: 18%;
   }
   50% {
-    left: 24%;
+    left: 70%;
   }
   75% {
-    left: 63%;
+    left: 14%;
   }
   100% {
-    left: 9%;
+    left: 53%;
   }
 }
 
