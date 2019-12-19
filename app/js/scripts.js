@@ -189,7 +189,7 @@ var confetti = {
             duration: 0.5,
             delay: .001 * index,
             rotation: Math.floor(random(10, -360)),
-            top: '+=100',
+            top: '+=200',
             opacity: 0,
             ease: 'sine.in',
             onComplete: function onComplete() {
@@ -16668,11 +16668,19 @@ function (_Animation2) {
         }
 
         prevIteration = ~~(this._tTime / cycleDuration);
+<<<<<<< HEAD
 
         if (prevIteration && prevIteration === this._tTime / cycleDuration) {
           prevIteration--;
         }
 
+=======
+
+        if (prevIteration && prevIteration === this._tTime / cycleDuration) {
+          prevIteration--;
+        }
+
+>>>>>>> eb2563375eaa86869ac867bc7e6eb3786bc6a607
         if (time === prevTime && !force) {
           //could be during the repeatDelay part. No need to render and fire callbacks.
           return this;
