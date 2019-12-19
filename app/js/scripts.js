@@ -855,13 +855,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ease: 'sine.in'
     }, '-=1.5').to('.cards-lockup,.cards-progress', .6, {
       opacity: 1,
-      y: 0,
       ease: 'sine.inout'
     }, '-=.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
       autoAlpha: 1,
       ease: 'sine.in',
       onComplete: function onComplete() {
         spreadTheCards(); //spread color cards
+
+        document.querySelector('.cards').classList.add('height-adjust');
       }
     }, '-=0');
   }; //COLOR CARDS--SPREAD

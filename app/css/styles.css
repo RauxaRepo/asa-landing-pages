@@ -1170,6 +1170,23 @@ sup {
   height: 100vh;
   overflow: hidden;
   background-size: 120%;
+  transition: height .8s ease;
+}
+
+.cards.height-adjust {
+  height: 132vh;
+}
+
+@media only screen and (min-width: 375px) {
+  .cards.height-adjust {
+    height: 115vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .cards.height-adjust {
+    height: 100vh;
+  }
 }
 
 .cards-lockup {
@@ -1180,7 +1197,7 @@ sup {
   .cards-lockup {
     display: flex;
     opacity: 0;
-    transform: translateY(25%);
+    transform: translateY(0%);
     justify-content: center;
     width: 33%;
     height: 100%;
@@ -1605,7 +1622,7 @@ sup {
 
 .results-num {
   color: #2774ae;
-  font-size: 66px;
+  font-size: 46px;
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
@@ -1614,11 +1631,23 @@ sup {
   position: relative;
 }
 
+@media (min-width: 768px) {
+  .results-num {
+    font-size: 66px;
+  }
+}
+
 .correct-text {
-  font-size: 49px;
+  font-size: 23px;
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .correct-text {
+    font-size: 49px;
+  }
 }
 
 .next-question,
@@ -1767,6 +1796,18 @@ svg path {
   color: #f1f1f1;
 }
 
+@media (min-width: 768px) {
+  .counter-block {
+    transform: translate(0, -8%);
+  }
+}
+
+@media (min-width: 992px) {
+  .counter-block {
+    transform: translate(0, 0%);
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .cards-progress-container {
     width: 100%;
@@ -1809,6 +1850,7 @@ svg path {
 @media only screen and (max-width: 576px) {
   .counter-block {
     display: block;
+    transform: translate(0, -20%);
   }
   .count-text--box {
     left: auto;
