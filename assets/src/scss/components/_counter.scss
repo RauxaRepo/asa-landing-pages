@@ -12,9 +12,8 @@
 .count {
 
   &-container {
-    height: 167px;
+    margin: 10% 0 0 0;
     right: 100px;
-    top: 38%;
     width: 100%;
   }
 
@@ -67,6 +66,12 @@
   width: 100%;
 }
 
+//.counter-block {
+//  position: absolute;
+//  top: -149px;
+//}
+
+//SVG
 svg path {
   will-change: auto;
   stroke-width: 10px;
@@ -74,6 +79,7 @@ svg path {
   transition: stroke-dashoffset 850ms ease-in-out;
 }
 
+//Book Button
 .book {
 
   &-container {
@@ -119,5 +125,105 @@ svg path {
   }
 }
 
+
+
+@media only screen and (max-width: 768px) {
+
+  .cards-progress-container {
+    width: 100%;
+    align-self: center;
+  }
+
+  .counter-block {
+    display: block;
+    width: 100%;
+  }
+
+  .count-text--box {
+    left: auto;
+    margin: 0 auto;
+  }
+
+  //SVG
+  .svg-counter {
+    height: 75px;
+    width: 75px;
+  }
+
+  //Text
+  .count {
+    &-text {
+      font-size: 12px;
+    }
+
+    &-text--box {
+      padding: 0 0 0 8px;
+      top: 57px;
+    }
+  }
+
+  .book-button {
+    width: 17%;
+    padding: 10px 0;
+  }
+
+  .hide-book-button--text {
+    display: none;
+  }
+
+  //logo
+  .cards-lockup {
+    display: none;
+  }
+
+  //count text
+  .count-text--quest {
+    margin-top: 0;
+  }
+
+}
+
+@media only screen and (max-width: 576px) {
+  .counter-block {
+    display: block;
+  }
+
+  .count-text--box {
+    left: auto;
+    margin: 0 auto;
+  }
+
+  //SVG
+  .svg-counter {
+    height: 75px;
+    width: 75px;
+  }
+
+  //Text
+  .count {
+    &-text {
+      font-size: 12px;
+    }
+
+    &-text--box {
+      padding: 0 0 0 8px;
+      top: 57px;
+    }
+  }
+
+  .book-button {
+    width: 31%;
+    padding: 10px 0;
+  }
+
+  .hide-book-button--text {
+    display: none;
+  }
+
+  //logo
+  .cards-lockup {
+    display: none;
+  }
+}
 
 
