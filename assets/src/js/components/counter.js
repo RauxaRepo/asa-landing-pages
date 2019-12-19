@@ -6,7 +6,7 @@
     //percentage for progress counter
     thePercentage = 178;
     // Get all the Meters from SVG
-    const meters = document.querySelectorAll('svg[data-value] .meter');
+    const meters = [...document.querySelectorAll('svg[data-value] .meter')];
 
     //PROGRESS OF THE COUNTER
     function getPercentage(){

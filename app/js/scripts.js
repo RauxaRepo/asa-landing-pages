@@ -219,11 +219,20 @@ var confetti = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countingMe", function() { return countingMe; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 var sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
 thePercentage = 178; // Get all the Meters from SVG
 
-var meters = document.querySelectorAll('svg[data-value] .meter'); //PROGRESS OF THE COUNTER
+var meters = _toConsumableArray(document.querySelectorAll('svg[data-value] .meter')); //PROGRESS OF THE COUNTER
+
 
 function getPercentage() {
   Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
