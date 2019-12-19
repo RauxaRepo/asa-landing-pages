@@ -1027,6 +1027,12 @@ sup {
   line-height: 14px;
 }
 
+@media only screen and (min-width: 320px) {
+  .main-page-footer p:nth-child(1) {
+    padding-top: 20px;
+  }
+}
+
 .main-page-card--question {
   opacity: 1;
   border-radius: 10px;
