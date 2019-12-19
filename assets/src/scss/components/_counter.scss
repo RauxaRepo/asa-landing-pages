@@ -12,9 +12,8 @@
 .count {
 
   &-container {
-    height: 167px;
+    margin: 10% 0 0 0;
     right: 100px;
-    top: 38%;
     width: 100%;
   }
 
@@ -67,6 +66,12 @@
   width: 100%;
 }
 
+//.counter-block {
+//  position: absolute;
+//  top: -149px;
+//}
+
+//SVG
 svg path {
   will-change: auto;
   stroke-width: 10px;
@@ -74,6 +79,7 @@ svg path {
   transition: stroke-dashoffset 850ms ease-in-out;
 }
 
+//Book Button
 .book {
 
   &-container {
@@ -165,6 +171,16 @@ svg path {
     display: none;
   }
 
+  //logo
+  .cards-lockup {
+    display: none;
+  }
+
+  //count text
+  .count-text--quest {
+    margin-top: 0;
+  }
+
 }
 
 @media only screen and (max-width: 576px) {
@@ -204,6 +220,10 @@ svg path {
     display: none;
   }
 
+  //logo
+  .cards-lockup {
+    display: none;
+  }
 }
 
 

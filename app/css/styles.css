@@ -1668,9 +1668,8 @@ sup {
 }
 
 .count-container {
-  height: 167px;
+  margin: 10% 0 0 0;
   right: 100px;
-  top: 38%;
   width: 100%;
 }
 
@@ -1763,7 +1762,11 @@ svg path {
   outline: none;
 }
 
-<<<<<<< HEAD
+.book-button.end {
+  background-color: #01426a;
+  color: #f1f1f1;
+}
+
 @media only screen and (max-width: 768px) {
   .cards-progress-container {
     width: 100%;
@@ -1795,6 +1798,12 @@ svg path {
   .hide-book-button--text {
     display: none;
   }
+  .cards-lockup {
+    display: none;
+  }
+  .count-text--quest {
+    margin-top: 0;
+  }
 }
 
 @media only screen and (max-width: 576px) {
@@ -1823,11 +1832,9 @@ svg path {
   .hide-book-button--text {
     display: none;
   }
-=======
-.book-button.end {
-  background-color: #01426a;
-  color: #f1f1f1;
->>>>>>> 964d24a62307b0ba0c8200532a6225b5427b686a
+  .cards-lockup {
+    display: none;
+  }
 }
 
 .confetti-container {
@@ -1837,16 +1844,14 @@ svg path {
   pointer-events: none;
   top: 0;
   z-index: 20;
-  overflow: hidden;
 }
 
 .confetti-container--burst-holder {
   position: relative;
-  top: 160px;
-  left: 98px;
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
+  top: 230px;
+  left: -75px;
+  width: 100%;
+  height: 100%;
 }
 
 .confetti-container--burst {
@@ -1862,58 +1867,38 @@ svg path {
 @media only screen and (max-width: 768px) {
   .confetti-container--burst-holder {
     position: absolute;
-    top: 14%;
-    left: 47%;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   .confetti-container--burst {
     margin: 0 auto;
     position: relative;
-    top: 16%;
+    top: 40px;
+    left: 0;
     width: 20px;
     pointer-events: none;
     z-index: 20;
   }
 }
 
-<<<<<<< HEAD
 @media only screen and (max-width: 576px) {
   .confetti-container--burst-holder {
     position: absolute;
-    top: 74%;
-    left: 43%;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
+    top: 42%;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   .confetti-container--burst {
-    left: 0;
     margin: 0 auto;
     position: relative;
-    top: 44%;
+    top: 66px;
+    left: 0;
     width: 20px;
     pointer-events: none;
     z-index: 20;
-=======
-@keyframes fallsway {
-  0% {
-    left: 66%;
-    opacity: 1;
-  }
-  25% {
-    left: 94%;
-  }
-  50% {
-    left: 70%;
-  }
-  75% {
-    left: 62%;
-  }
-  100% {
-    left: 94%;
->>>>>>> 964d24a62307b0ba0c8200532a6225b5427b686a
   }
 }
 

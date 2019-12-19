@@ -419,7 +419,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }); //Confetti Burst /Add Book 15% off button
 
       if (questionCount + 1 == 5 && bookBtnContainer.classList.contains('active')) {
-        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti burst
 
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
           duration: 1,
@@ -476,7 +476,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         if (questionCount + 1 == 10) {
           setTimeout(function () {
-            _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
             _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
           }, 750);
         }
@@ -886,6 +885,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       if (_i == theColorCards.length - 1) {
         setTimeout(function () {
+          //Build confetti particles
+          _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildRain();
           _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildBurst();
         }, 1000);
       }
