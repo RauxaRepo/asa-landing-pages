@@ -103,11 +103,11 @@ var wrapper = document.querySelector('.confetti-container'),
     burstWrapper = document.querySelector('.confetti-container--burst'),
     width = window.innerWidth,
     height = window.innerHeight,
-    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521'],
+    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521', '#ff0000', '#FF8000'],
     confettiArr = [],
     confettiArrBurst = [],
     num = 800,
-    tl = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline({
+    tl = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
   repeat: 0,
   repeatDelay: 0
 }); //RANDOM MIN MAX
@@ -141,7 +141,7 @@ var confetti = {
     }
   },
   buildBurst: function buildBurst() {
-    for (var i = 0; i < 300; i++) {
+    for (var i = 0; i < 200; i++) {
       var confettib = document.createElement('div');
       burstWrapper.appendChild(confettib);
       confettib.style.transform = 'scale(0)';
@@ -177,21 +177,21 @@ var confetti = {
   burst: function burst() {
     confettiArrBurst.forEach(function (item, index) {
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-        duration: 0.5,
-        delay: .02 * index,
+        duration: 1.2,
+        delay: .009 * index,
         y: Math.floor(random(-150, -200)),
         left: Math.floor(random(200, -200)),
         rotation: Math.floor(random(10, -360)),
-        scale: Math.random() * 1.2,
+        scale: Math.random() * 1.5,
         ease: 'sine.in',
         onComplete: function onComplete() {
           gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-            duration: 0.5,
+            duration: 3,
             delay: .001 * index,
             rotation: Math.floor(random(10, -360)),
-            top: '+=200',
-            opacity: 0,
-            ease: 'sine.in',
+            y: '+=150vh',
+            //opacity: 0, 
+            ease: 'sine.inOut',
             onComplete: function onComplete() {
               gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(item, {
                 left: 0,
@@ -201,7 +201,7 @@ var confetti = {
             }
           });
         }
-      }); //gsap.to(item, {duration:.5, delay:.02 * index,x:'+=100%',yoyo:true});	
+      });
     });
   }
 };
@@ -219,11 +219,20 @@ var confetti = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countingMe", function() { return countingMe; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 var sm = window.matchMedia('(max-width: 576px)'),
     //percentage for progress counter
 thePercentage = 178; // Get all the Meters from SVG
 
-var meters = document.querySelectorAll('svg[data-value] .meter'); //PROGRESS OF THE COUNTER
+var meters = _toConsumableArray(document.querySelectorAll('svg[data-value] .meter')); //PROGRESS OF THE COUNTER
+
 
 function getPercentage() {
   Object.keys(percentage).forEach(function (key) {//console.log('percentage ', percentage[key]);
@@ -819,6 +828,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var isTouch = 'touchstart' in document.documentElement;
   var time = 1;
   var theFooterSlide = document.querySelector('.main-page-footer-slide');
+  var questionsResults = [].concat(_toConsumableArray(document.querySelectorAll('.main-page-card--question ')), [document.querySelector('.main-page-card--results')]);
   var cardNumber = ['one', 'two', 'three', 'four', 'five'];
   var cardType = ['tropical', 'midnight', 'breezecard', 'palm'];
   var cardX = ['-250%', '-150%', '-50%', '50%', '150%'];
@@ -868,6 +878,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         spreadTheCards(); //spread color cards
 
         document.querySelector('.cards').classList.add('height-adjust');
+        questionsResults.forEach(function (q) {
+          q.classList.remove('disable');
+        });
       }
     }, '-=0'); // resetting progress bar
 
@@ -1057,7 +1070,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     cardContent.classList.add('cards-single--content'); // adding class based on array 
 
-    card.classList.add('cards-single', cardType[cardBgCounter]);
+    card.classList.add('cards-single');
+    card.classList.add(cardType[cardBgCounter]);
     card.appendChild(cardContent);
     cardHolder.appendChild(card);
     cardBgCounter == 3 ? cardBgCounter = 0 : cardBgCounter++;

@@ -48,6 +48,7 @@ $opacityblacklight: rgba(0, 0, 0, .25);
     width: 360px;
   }
 
+
   &.disable {
     pointer-events: none;
   }
@@ -378,3 +379,29 @@ $opacityblacklight: rgba(0, 0, 0, .25);
   }
 
 }
+
+@media only screen and (max-width: 320px) {
+  .active-card {
+    width: 93%;
+    height: 90%;
+  }
+
+  .main-page-card--color {
+    padding-bottom: 154%;
+    width: 94%;
+  }
+
+  .main-page-card--question, .main-page-card--results {
+    height: 103%;
+    width: 100%;
+  }
+
+  .next-question {
+    padding-top: 0;
+  }
+
+  .active-card p span {
+    margin-bottom: 10px;
+  }
+}
+
