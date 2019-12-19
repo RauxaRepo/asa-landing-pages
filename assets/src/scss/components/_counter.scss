@@ -12,9 +12,8 @@
 .count {
 
   &-container {
-    height: 167px;
+    margin: 10% 0 0 0;
     right: 100px;
-    top: 38%;
     width: 100%;
   }
 
@@ -42,6 +41,14 @@
     margin-top: 15px;
     text-align: center;
     width: 100%;
+    height: auto;
+    overflow: hidden;
+    opacity: 1;
+    transition: height .25s ease;
+
+    &.end {
+      height: 0;
+    }
   }
 
 
@@ -59,6 +66,12 @@
   width: 100%;
 }
 
+//.counter-block {
+//  position: absolute;
+//  top: -149px;
+//}
+
+//SVG
 svg path {
   will-change: auto;
   stroke-width: 10px;
@@ -66,6 +79,7 @@ svg path {
   transition: stroke-dashoffset 850ms ease-in-out;
 }
 
+//Book Button
 .book {
 
   &-container {
@@ -94,15 +108,136 @@ svg path {
     transition: .3s;
     background-color: $off-white;
     color: $counterbarblue;
+
+    &:hover {
+      background-color: $darkblue;
+      color:$off-white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.end {
+      background-color: $darkblue;
+      color:$off-white;
+    }
   }
 }
 
-.book-button:hover {
-  background-color: $darkblue;
-  color:$off-white;
+.counter-block {
+
+  @include bp(md){
+    transform: translate(0, -8%);
+  
+  }
+
+  @include bp(lg){
+    transform: translate(0, -0%);
+  
+  }
+  
 }
-.book-button:focus {
-  outline: none;
+
+
+@media only screen and (max-width: 768px) {
+
+  .cards-progress-container {
+    width: 100%;
+    align-self: center;
+  }
+
+  .counter-block {
+    display: block;
+    width: 100%;
+  }
+
+  .count-text--box {
+    left: auto;
+    margin: 0 auto;
+  }
+
+  //SVG
+  .svg-counter {
+    height: 75px;
+    width: 75px;
+  }
+
+  //Text
+  .count {
+    &-text {
+      font-size: 12px;
+    }
+
+    &-text--box {
+      padding: 0 0 0 8px;
+      top: 57px;
+    }
+  }
+
+  .book-button {
+    width: 17%;
+    padding: 10px 0;
+  }
+
+  .hide-book-button--text {
+    display: none;
+  }
+
+  //logo
+  .cards-lockup {
+    display: none;
+  }
+
+  //count text
+  .count-text--quest {
+    margin-top: 0;
+  }
+
+}
+
+@media only screen and (max-width: 576px) {
+  .counter-block {
+    display: block;
+    transform: translate(0, -20%);
+  }
+
+  .count-text--box {
+    left: auto;
+    margin: 0 auto;
+  }
+
+  //SVG
+  .svg-counter {
+    height: 75px;
+    width: 75px;
+  }
+
+  //Text
+  .count {
+    &-text {
+      font-size: 12px;
+    }
+
+    &-text--box {
+      padding: 0 0 0 8px;
+      top: 57px;
+    }
+  }
+
+  .book-button {
+    width: 31%;
+    padding: 10px 0;
+  }
+
+  .hide-book-button--text {
+    display: none;
+  }
+
+  //logo
+  .cards-lockup {
+    display: none;
+  }
 }
 
 

@@ -114,8 +114,13 @@ var wrapper = document.querySelector('.confetti-container'),
 
 function random(min, max) {
   return min + Math.random() * (max - min);
-}
+} //resize width for confetti rain
 
+
+window.addEventListener('resize', function () {
+  width = window.innerWidth;
+  height = window.innerHeight;
+}, true);
 var confetti = {
   buildRain: function buildRain() {
     for (var i = 0; i < num; i++) {
@@ -136,7 +141,7 @@ var confetti = {
     }
   },
   buildBurst: function buildBurst() {
-    for (var i = 0; i < 150; i++) {
+    for (var i = 0; i < 300; i++) {
       var confettib = document.createElement('div');
       burstWrapper.appendChild(confettib);
       confettib.style.transform = 'scale(0)';
@@ -174,15 +179,16 @@ var confetti = {
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
         duration: 0.5,
         delay: .02 * index,
-        y: '-=150',
+        y: Math.floor(random(-150, -200)),
         left: Math.floor(random(200, -200)),
-        rotation: Math.floor(random(180, -360)),
+        rotation: Math.floor(random(10, -360)),
         scale: Math.random() * 1.2,
         ease: 'sine.in',
         onComplete: function onComplete() {
           gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
             duration: 0.5,
             delay: .001 * index,
+            rotation: Math.floor(random(10, -360)),
             top: '+=100',
             opacity: 0,
             ease: 'sine.in',
@@ -195,13 +201,7 @@ var confetti = {
             }
           });
         }
-      });
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-        duration: .5,
-        delay: .02 * index,
-        x: '+=100%',
-        yoyo: true
-      });
+      }); //gsap.to(item, {duration:.5, delay:.02 * index,x:'+=100%',yoyo:true});	
     });
   }
 };
@@ -328,11 +328,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
   var bookButton = document.querySelector('.book-container'); //book button
 
+  var bookBtnContainer = document.querySelector('.book-container');
   var correctCardMessage = document.querySelector('.correct-text');
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
-  totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
+  totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? "/0".concat(theCards.length / 2) : "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
+  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!'; //countingMe.counterMotion(countingMe.counterPercent(0));
   //bg animation
 
   tl.to('.cards', 1, {
@@ -387,30 +388,64 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         correctCardMessage.innerHTML = correctCardMessageOps[2];
       }
 
-      btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
-      btnHolder.classList.remove('na');
-      question.classList.add('hide');
-      answersBtns.classList.add('hide');
-      nextQuestion.classList.remove('hide'); //Confetti Burst /Add Book 15% off button
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(question, 0.5, {
+        opacity: 0,
+        ease: 'power4.inOut'
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(answersBtns, 0.5, {
+        opacity: 0,
+        ease: 'power4.inOut',
+        onComplete: function onComplete() {
+          btnHolder.classList.remove('na');
+          question.classList.add('hide');
+          answersBtns.classList.add('hide');
+          nextQuestion.classList.remove('hide');
+          btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")), 0.5, {
+        delay: 0.5,
+        opacity: 1,
+        ease: 'power4.inOut',
+        onComplete: function onComplete() {
+          btnHolder.classList.remove('na');
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(nextQuestion, {
+        delay: 0.5,
+        duration: 1,
+        opacity: 1,
+        ease: 'power4.inOut'
+      }); //Confetti Burst /Add Book 15% off button
 
-      if (questionCount + 1 == 5) {
-        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst();
-        bookButton.style.visibility = 'visible';
+      if (questionCount + 1 == 5 && bookBtnContainer.classList.contains('active')) {
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti burst
+
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
           duration: 1,
-          opacity: 1,
+          autoAlpha: 1,
           ease: 'back.out'
         });
       }
 
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-      _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+
+      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent((questionCount + 1) * 2));
+      } else if (bookBtnContainer.classList.contains('active') && counterCurrentCount > 4) {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+      } else {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+      }
+
       counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
 
-      if (!e.target.classList.contains('last')) {
-        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+      if (counterCurrentCount < 5) {
+        counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length / 2 - counterCurrentCount, " questions to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " questions left!");
+      } else if (counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
+        counterRemainCount.innerHTML = "You've unlocked 15% off a flight!";
       } else {
-        counterRemainCount.innerHTML = 'You did it!';
+        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
       } //Next Question
 
 
@@ -428,8 +463,21 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
         tl.tweenTo("q".concat(questionCount + 1));
 
+        if (questionCount + 1 == 5) {
+          counterTotalCount.innerHTML = "/".concat(theCards.length);
+          _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+        }
+
+        if (e.target.classList.contains('last')) {
+          counterRemainCount.innerHTML = 'You did it!';
+          bookBtnContainer.querySelector('button').classList.add('end');
+          document.querySelector('.count-text--quest').classList.add('end');
+        }
+
         if (questionCount + 1 == 10) {
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
+          setTimeout(function () {
+            _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].rain();
+          }, 750);
         }
 
         questionCount++;
@@ -629,8 +677,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function allEventListeners() {
     sm.addListener(media576Px);
   } //RUN FUNCTIONS
-  //spreadTheCards();//spread color cards
-  //randomizeCards();//randomize question cards
 
 
   dragCards(); //drag question cards
@@ -661,9 +707,6 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
   var landingUrl = window.location.href;
   var disctountRibbon = document.querySelector('.main-page-header');
   var discountLegal = document.querySelector('.main-page-footer-slide');
-  var customerId = document.querySelector('input[name="id"]');
-  var offerCode = document.querySelector('input[name="offer"]');
-  var offerAuth = document.querySelector('input[name="auth"]');
   var bookBtn = document.querySelector('a[data-discount]');
   var campaignName = 'Offercode_Email';
   var emailName = 'email';
@@ -682,6 +725,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
 
 
   if (urlVars()['utm_campaign'] != undefined) {
+    bookBtn.parentNode.classList.add('active');
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
@@ -811,13 +855,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       ease: 'sine.in'
     }, '-=1.5').to('.cards-lockup,.cards-progress', .6, {
       opacity: 1,
-      y: 0,
       ease: 'sine.inout'
     }, '-=.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
       autoAlpha: 1,
       ease: 'sine.in',
       onComplete: function onComplete() {
         spreadTheCards(); //spread color cards
+
+        document.querySelector('.cards').classList.add('height-adjust');
       }
     }, '-=0');
   }; //COLOR CARDS--SPREAD
@@ -841,6 +886,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       if (_i == theColorCards.length - 1) {
         setTimeout(function () {
+          //Build confetti particles
           _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildRain();
           _confetti__WEBPACK_IMPORTED_MODULE_1__["confetti"].buildBurst();
         }, 1000);
@@ -908,29 +954,29 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         amount: 1
       }
     }, '+=.1');
-    columnCards.fromTo(column1Cards, 5, {
+    columnCards.fromTo(column1Cards, 15, {
       top: '-140%',
       ease: 'none'
     }, {
       top: '194%',
       ease: 'none'
-    }, 0).fromTo(column2Cards, 5, {
+    }, 0).fromTo(column2Cards, 13, {
       top: '194%',
       ease: 'none'
     }, {
       top: '-140%',
       ease: 'none'
-    }, 0).fromTo(column4Cards, 5, {
+    }, 0).fromTo(column4Cards, 13.5, {
       top: '-125%',
       ease: 'none'
     }, {
       top: '209%',
       ease: 'none'
-    }, 0).fromTo(column5Cards, 5, {
+    }, 0).fromTo(column5Cards, 15, {
       top: '209%',
       ease: 'none'
     }, {
-      top: '-125%',
+      top: '-125',
       ease: 'none'
     }, 0); // timer for footer and animation intro stop
 
@@ -987,10 +1033,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       } else {
         cardYCounter++;
       }
-
-      if (i == allCards.length - 1) {
+      /*if(i == allCards.length - 1) {
         scrollCards(getStartedBtn);
-      }
+      }*/
+
     });
   }; //
   // creates 40 divs ad adds class for background image
@@ -1012,10 +1058,43 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (c == cardCount) {
       addPos();
     }
+  } //PRELOAD SPRITESHEETS | IMAGES
+
+
+  var imArr = ['../images/cards/tropical.gif', '../images/cards/midnight.gif', '../images/cards/breezeCard.gif', '../images/cards/palm.gif', '../images/cards/Title_Card_b.png', //
+  '../images/gifs/FILL.gif', '../images/gifs/FIRE.gif', '../images/gifs/FOOTBALL.gif', '../images/gifs/GLOBE.gif', '../images/gifs/HOTEL.gif', '../images/gifs/MILES.gif', '../images/gifs/PANCAKES.gif', '../images/gifs/PASSES.gif', '../images/gifs/PLANE.gif', '../images/gifs/PIXAR.gif', '../images/gifs/RUSSELL.gif'];
+
+  function loadSpriteSheet(arr) {
+    var loadedImages = 0;
+    var imageArr = arr;
+    preloadImages();
+
+    function preloadImages() {
+      for (var i = 0; i < imageArr.length; i++) {
+        var tempImage = new Image();
+        tempImage.src = imageArr[i];
+        tempImage.onload = trackProgress();
+      } //console.log('loadedImages ',imageArr);
+
+    }
+
+    ;
+
+    function trackProgress() {
+      loadedImages++;
+
+      if (loadedImages == imageArr.length) {
+        //*RUN FUNCTION HERE*
+        hideColorCards();
+        scrollCards(document.querySelector('.cards-single--init-card'));
+      }
+    }
+
+    ;
   } //RUN FUNCTIONS
 
 
-  hideColorCards();
+  loadSpriteSheet(imArr);
 });
 
 /***/ }),

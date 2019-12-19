@@ -160,6 +160,10 @@ $opacityblacklight: rgba(0, 0, 0, .25);
     text-align: center;
     font-weight: bold;
   }
+
+  .active-card {
+    justify-content: center;
+  }
 }
 
 //Display and Zindex
@@ -289,22 +293,35 @@ $opacityblacklight: rgba(0, 0, 0, .25);
 
 .results-num {
   color: $flightblue;
-  font-size: 66px;
+  font-size: 46px;
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
   display: block;
   float: left;
   position: relative;
+
+  @include bp(md) {
+    font-size: 66px;
+  }
 }
 
 .correct-text {
-  font-size: 49px;
+  font-size: 23px;
   line-height: 1.25;
   text-align: center;
   font-weight: bold;
+
+  @include bp(md) {
+    font-size: 49px;
+  }
 }
 
+.next-question,
+.right-answer,
+.wrong-answer {
+  opacity: 0;
+}
 
 
 //MEDIA QUERY

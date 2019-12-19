@@ -35,6 +35,7 @@ export default function () {
 		let counterCurrentCount = '00';
     let counterCurrentCountHolder = document.querySelector('.count-text-num');
     let bookButton = document.querySelector('.book-container');//book button
+    let bookBtnContainer = document.querySelector('.book-container');
 
 		let correctCardMessage = document.querySelector('.correct-text');
 		let correctCardMessageOps = [
@@ -43,9 +44,9 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = counterTotalCount.innerHTML =`/${theCards.length}`;
+		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = '10 questions left!';
+		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!';
 		//countingMe.counterMotion(countingMe.counterPercent(0));
 		
 		
@@ -108,39 +109,96 @@ export default function () {
 				}
 				
 				
-				btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
-				btnHolder.classList.remove('na');
- 
-				question.classList.add('hide');
-				answersBtns.classList.add('hide');
-        nextQuestion.classList.remove('hide');
+
+        gsap.to(question, 0.5,{opacity: 0, ease: 'power4.inOut'})
+        gsap.to(answersBtns, 0.5,{ 
+          opacity: 0, 
+          ease: 'power4.inOut',
+          onComplete: function(){
+            btnHolder.classList.remove('na');
+            question.classList.add('hide');
+            answersBtns.classList.add('hide');
+            nextQuestion.classList.remove('hide');
+            btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
+          }
+        })
+        gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
+          delay: 0.5,
+          opacity: 1, 
+          ease: 'power4.inOut',
+          onComplete: function(){
+            btnHolder.classList.remove('na');
+          }
+        })
+        gsap.to(nextQuestion,{ delay: 0.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
         
-          //Confetti Burst /Add Book 15% off button
-					if( questionCount+1 == 5) {
-            confetti.burst();
-            bookButton.style.visibility = 'visible';
-            gsap.to(bookButton, {duration: 1, opacity: 1, ease: 'back.out'});
-					}
-					
-					counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-          countingMe.counterMotion(countingMe.counterPercent(questionCount));
-					counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
-					
-					if(!e.target.classList.contains('last')) {
-						counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
-					} else {
-						counterRemainCount.innerHTML = 'You did it!';
-					}
+        //Confetti Burst /Add Book 15% off button
+			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
+				confetti.burst();//confetti burst
+				gsap.to(bookButton, {duration: 1, autoAlpha: 1, ease: 'back.out'});
+			}
+      
+      
+      counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
+      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
+        countingMe.counterMotion(countingMe.counterPercent((questionCount+1)*2));
+        
+      } else if(bookBtnContainer.classList.contains('active') && counterCurrentCount > 4){
+        countingMe.counterMotion(countingMe.counterPercent(questionCount));
+      } else {
+        
+        countingMe.counterMotion(countingMe.counterPercent(questionCount));
+      }
+
+			
+      
+			counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? `0${counterCurrentCount}` : counterCurrentCount;
+
+
+			if(counterCurrentCount < 5 ) {
+
+
+				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} questions to unlock your 15% discount` : `${theCards.length - counterCurrentCount} questions left!`;
+			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
+				counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
+			}
+			 else {
+				counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+			}
+			
+
+				
+
+
+
            
         //Next Question
-				nextQuestButton.addEventListener('click', (e) => {
+			nextQuestButton.addEventListener('click', (e) => {
 					
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
-					tl.tweenTo(`q${questionCount+1}`);
+          tl.tweenTo(`q${questionCount+1}`);
+          
+         
+        
+          if(questionCount+1 == 5) {
+            counterTotalCount.innerHTML = `/${theCards.length}`;
+            countingMe.counterMotion(countingMe.counterPercent(questionCount));
+          }
 
-          if (questionCount+1 == 10) {
-						confetti.rain();
+				
+				if(e.target.classList.contains('last')) {
+          counterRemainCount.innerHTML = 'You did it!';
+          bookBtnContainer.querySelector('button').classList.add('end');
+          document.querySelector('.count-text--quest').classList.add('end');
+				}
+
+				if (questionCount+1 == 10) {
+
+            setTimeout( () => {
+						  confetti.rain();
+            },750);
+            
 					}
            
 					questionCount++;
@@ -150,10 +208,7 @@ export default function () {
 			});
 		});
 
-
-
-
-		
+    
 
 		//COLOR CARDS--SPREAD
 		function spreadTheCards(){
@@ -352,12 +407,9 @@ export default function () {
 
 
 		//RUN FUNCTIONS
-		//spreadTheCards();//spread color cards
-		//randomizeCards();//randomize question cards
 		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
-		
-        
+		       
 }
 

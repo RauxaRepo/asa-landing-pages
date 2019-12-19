@@ -1,8 +1,6 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 
 
-
-
     //VARS
     let wrapper = document.querySelector('.confetti-container'),
         burstWrapper = document.querySelector('.confetti-container--burst'),
@@ -18,7 +16,13 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
     //RANDOM MIN MAX
 		function random(min, max) {
 			return min + Math.random() * (max - min);
-		}
+    }
+    
+    //resize width for confetti rain
+    window.addEventListener('resize', function() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+    }, true);
 
 
     const confetti = {
@@ -41,7 +45,7 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 
       buildBurst: () => {
 
-        for (let i=0; i<150; i++){
+        for (let i=0; i<300; i++){
           let confettib = document.createElement('div');
           burstWrapper.appendChild(confettib);
           confettib.style.transform = 'scale(0)';
@@ -51,7 +55,7 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
           confettib.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
           confettib.style.height = Math.random() * 20 + 'px';
           confettib.style.width = Math.random() * 10 + 'px';
-          gsap.set(confettib,{rotation:Math.random() *45});
+          gsap.set(confettib,{rotation:Math.random() * 45});
           confettiArrBurst.push(confettib);
           
         }
@@ -72,8 +76,7 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
               gsap.set(item, {
                 y: Math.random() * height - (height + 50)
               });
-          }})
-             
+          }})  
         });
 
       },
@@ -84,15 +87,16 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
           gsap.to(item, {
             duration: 0.5,
             delay: .02 * index, 
-            y: '-=150',
+            y: Math.floor( random(-150, -200)),
             left: Math.floor( random(200, -200)),
-            rotation: Math.floor( random(180, -360)),
+            rotation: Math.floor( random(10, -360)),
             scale: Math.random() * 1.2,
             ease:'sine.in',
             onComplete: function(){
               gsap.to(item, {
                 duration: 0.5, 
-                delay: .001 * index, 
+                delay: .001 * index,
+                rotation: Math.floor( random(10, -360)), 
                 top: '+=100', 
                 opacity: 0, 
                 ease:'sine.in',
@@ -104,10 +108,10 @@ import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
                   });
               }});
           }});
-          gsap.to(item, {duration:.5, delay:.02 * index,x:'+=100%',yoyo:true});	
+          //gsap.to(item, {duration:.5, delay:.02 * index,x:'+=100%',yoyo:true});	
         });
 
-      }
+      },
 
     };
 
