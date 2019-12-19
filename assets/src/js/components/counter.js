@@ -52,11 +52,11 @@
 
       counter2xPercent: (card) => {
         let percentage = [
-          178,
-          160,
-          137,
-          118,
-          95
+          167,
+          153,
+          125,
+          106,
+          50  
         ];
         
         return percentage[card];

@@ -261,7 +261,7 @@ var countingMe = {
     });
   },
   counter2xPercent: function counter2xPercent(card) {
-    var percentage = [178, 160, 137, 118, 95];
+    var percentage = [167, 153, 125, 106, 50];
     return percentage[card];
   },
   counterPercent: function counterPercent(card) {
@@ -434,9 +434,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
 
-      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
+      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 6) {
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counter2xPercent(questionCount));
-      } else if (bookBtnContainer.classList.contains('active') && counterCurrentCount > 5) {
+      } else if (bookBtnContainer.classList.contains('active') && counterCurrentCount > 6) {
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
       } else {
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
@@ -16668,19 +16668,11 @@ function (_Animation2) {
         }
 
         prevIteration = ~~(this._tTime / cycleDuration);
-<<<<<<< HEAD
 
         if (prevIteration && prevIteration === this._tTime / cycleDuration) {
           prevIteration--;
         }
 
-=======
-
-        if (prevIteration && prevIteration === this._tTime / cycleDuration) {
-          prevIteration--;
-        }
-
->>>>>>> eb2563375eaa86869ac867bc7e6eb3786bc6a607
         if (time === prevTime && !force) {
           //could be during the repeatDelay part. No need to render and fire callbacks.
           return this;
