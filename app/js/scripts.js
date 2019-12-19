@@ -435,8 +435,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
 
       if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
-        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent((questionCount + 1) * 2));
-      } else if (bookBtnContainer.classList.contains('active') && counterCurrentCount > 4) {
+        _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counter2xPercent(questionCount));
+      } else if (bookBtnContainer.classList.contains('active') && counterCurrentCount > 5) {
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
       } else {
         _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));

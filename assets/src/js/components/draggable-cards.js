@@ -141,9 +141,9 @@ export default function () {
       
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
       if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
-        countingMe.counterMotion(countingMe.counterPercent((questionCount+1)*2));
+        countingMe.counterMotion(countingMe.counter2xPercent(questionCount));
         
-      } else if(bookBtnContainer.classList.contains('active') && counterCurrentCount > 4){
+      } else if(bookBtnContainer.classList.contains('active') && counterCurrentCount > 5){
         countingMe.counterMotion(countingMe.counterPercent(questionCount));
       } else {
         
