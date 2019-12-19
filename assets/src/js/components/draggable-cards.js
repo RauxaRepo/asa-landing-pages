@@ -44,12 +44,9 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
+		totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
 		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!';
-		//countingMe.counterMotion(countingMe.counterPercent(0));
-		
-		
 		
 
 		//bg animation
