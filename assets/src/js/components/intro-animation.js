@@ -1,4 +1,5 @@
 import {gsap, TweenMax, TimelineMax, Power, Power2, Linear} from 'gsap';
+import { countingMe } from './counter';
 import { confetti } from './confetti';
 
 export default function () {
@@ -58,10 +59,13 @@ export default function () {
   // function to shuffle cards
   let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5);
 
+
+
   // function to stack cards under cta card
   let stackCards = function(cards) {
 
     let introEnd = gsap.timeline();
+
     introEnd
     .to(cards,.8,{top:'50%',x:'-50%',y:'-50%',ease:'sine.inout',
       stagger:{
@@ -83,6 +87,8 @@ export default function () {
           spreadTheCards();//spread color cards
           document.querySelector('.cards').classList.add('height-adjust');
         }},'-=0');
+    // resetting progress bar
+    countingMe.counterMotion(countingMe.counterPercent(200));
   }
 
   //COLOR CARDS--SPREAD
@@ -159,7 +165,7 @@ export default function () {
     let raiseFooter = function() {
       clearInterval(introStop);
       columnCards.pause();//pause card animation
-      gsap.to(cta.querySelector('button'),{duration:.8, opacity:1});
+      gsap.to(cta.querySelector('button'),{duration:.8, autoAlpha:1});
         //EventListener
         cta.querySelector('button').addEventListener('click', (e) => {
           cta.classList.add('disable');

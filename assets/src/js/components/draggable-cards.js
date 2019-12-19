@@ -44,12 +44,9 @@ export default function () {
 			'AMAZING!'
 		];
 
-		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
+		totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
 		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!';
-		//countingMe.counterMotion(countingMe.counterPercent(0));
-		
-		
 		
 
 		//bg animation
@@ -85,7 +82,6 @@ export default function () {
 				let answersBtns = e.target.parentNode;
 
 				let answerSelected = btn.getAttribute('data-res');
-				
 
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
@@ -140,10 +136,11 @@ export default function () {
       
       
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
-      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 5) {
-        countingMe.counterMotion(countingMe.counterPercent((questionCount+1)*2));
+      if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 6) {
+		countingMe.counterMotion(countingMe.counter2xPercent(questionCount));
         
-      } else if(bookBtnContainer.classList.contains('active') && counterCurrentCount > 4){
+      } else if(bookBtnContainer.classList.contains('active') && counterCurrentCount > 6){
+
         countingMe.counterMotion(countingMe.counterPercent(questionCount));
       } else {
         

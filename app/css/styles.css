@@ -1313,6 +1313,7 @@ sup {
   background-color: #48a9c5;
   border-radius: 6px;
   opacity: 0;
+  visibility: hidden;
   z-index: 45;
   outline: none;
 }
