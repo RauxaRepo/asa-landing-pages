@@ -20,6 +20,7 @@ export default function () {
 
   let time = 1;
   let theFooterSlide = document.querySelector('.main-page-footer-slide');
+  let cardBtns = [...document.querySelectorAll('.active-card--button')];
 
 
   let cardNumber = [
@@ -58,6 +59,12 @@ export default function () {
 
   // function to shuffle cards
   let allCardsshuffle = (array) => array.sort(() => Math.random() - 0.5);
+
+  cardBtns.forEach( (btn) => {
+
+    btn.classList.add('disabled');
+
+  });
 
   // function to stack cards under cta card
   let stackCards = function(cards) {

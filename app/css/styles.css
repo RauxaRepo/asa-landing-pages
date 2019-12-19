@@ -1694,6 +1694,9 @@ sup {
   .active-card--button {
     margin-top: 10px;
   }
+  .active-card--button.disabled {
+    pointer-events: none;
+  }
   .main-page-card--color {
     padding-bottom: 171%;
     width: 101%;

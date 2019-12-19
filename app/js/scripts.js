@@ -819,6 +819,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var isTouch = 'touchstart' in document.documentElement;
   var time = 1;
   var theFooterSlide = document.querySelector('.main-page-footer-slide');
+
+  var cardBtns = _toConsumableArray(document.querySelectorAll('.active-card--button'));
+
   var cardNumber = ['one', 'two', 'three', 'four', 'five'];
   var cardType = ['tropical', 'midnight', 'breezecard', 'palm'];
   var cardX = ['-250%', '-150%', '-50%', '50%', '150%'];
@@ -828,8 +831,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return array.sort(function () {
       return Math.random() - 0.5;
     });
-  }; // function to stack cards under cta card
+  };
 
+  cardBtns.forEach(function (btn) {
+    btn.classList.add('disabled');
+  }); // function to stack cards under cta card
 
   var stackCards = function stackCards(cards) {
     var introEnd = gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].timeline();

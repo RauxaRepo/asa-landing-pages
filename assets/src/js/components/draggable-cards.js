@@ -82,7 +82,6 @@ export default function () {
 				let answersBtns = e.target.parentNode;
 
 				let answerSelected = btn.getAttribute('data-res');
-				
 
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
