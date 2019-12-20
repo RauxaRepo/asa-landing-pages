@@ -458,7 +458,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         counterRemainCount.innerHTML = "You've unlocked 15% off a flight!";
         document.querySelector('.cards').classList.add('with-email');
       } else {
-        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " more left!");
       } //Next Question
 
 

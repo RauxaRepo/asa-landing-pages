@@ -163,7 +163,11 @@ export default function () {
         
 			}
 			 else {
-				counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+        
+
+        counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} more left!`;
+        
+				
 			}
 			
 
