@@ -869,10 +869,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       yoyo: true,
       repeat: 1,
       ease: 'sine.in'
-    }, '-=1.5').to('.cards-lockup,.cards-progress', .6, {
-      opacity: 1,
-      ease: 'sine.inout'
-    }, '-=.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
+    }, '-=1.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
       autoAlpha: 1,
       ease: 'sine.in',
       onComplete: function onComplete() {
@@ -883,7 +880,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           q.classList.remove('disable');
         });
       }
-    }, '-=0'); // resetting progress bar
+    }, '-=0').to('.cards-lockup,.cards-progress', .6, {
+      opacity: 1,
+      ease: 'sine.inout'
+    }, '+=.5'); // resetting progress bar
 
     _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(200));
   }; //COLOR CARDS--SPREAD
