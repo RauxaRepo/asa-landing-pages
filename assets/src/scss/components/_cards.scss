@@ -8,11 +8,14 @@
 
   &.height-adjust {
 
-    height: 132vh;
-    
+    height: 118vh;
+
+    &.with-email {
+      height: 132vh;
+    }
 
     @media only screen and (min-width: 375px) {
-      height: 115vh;
+      height: 100vh;
     }
 
     @include bp(md){

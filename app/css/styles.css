@@ -1180,12 +1180,16 @@ sup {
 }
 
 .cards.height-adjust {
+  height: 118vh;
+}
+
+.cards.height-adjust.with-email {
   height: 132vh;
 }
 
 @media only screen and (min-width: 375px) {
   .cards.height-adjust {
-    height: 115vh;
+    height: 100vh;
   }
 }
 
@@ -1871,14 +1875,17 @@ svg path {
     display: none;
   }
   .count-text--quest {
-    margin-top: 0;
+    margin-top: 10px;
+  }
+  .book-container {
+    top: 0;
   }
 }
 
 @media only screen and (max-width: 576px) {
   .counter-block {
     display: block;
-    transform: translate(0, -20%);
+    transform: translate(0, -5%);
   }
   .count-text--box {
     left: auto;
