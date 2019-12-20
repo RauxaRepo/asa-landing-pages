@@ -158,7 +158,9 @@ export default function () {
 
 				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} questions to unlock your 15% discount` : `${theCards.length - counterCurrentCount} questions left!`;
 			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
-				counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
+        counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
+        document.querySelector('.cards').classList.add('with-email');
+        
 			}
 			 else {
 				counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
@@ -180,7 +182,7 @@ export default function () {
          
         
           if(questionCount+1 == 5) {
-			totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
+			      totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
             countingMe.counterMotion(countingMe.counterPercent(questionCount));
           }
 

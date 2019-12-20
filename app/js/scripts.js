@@ -456,6 +456,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length / 2 - counterCurrentCount, " questions to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " questions left!");
       } else if (counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
         counterRemainCount.innerHTML = "You've unlocked 15% off a flight!";
+        document.querySelector('.cards').classList.add('with-email');
       } else {
         counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
       } //Next Question
