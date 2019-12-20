@@ -180,16 +180,16 @@ var confetti = {
         duration: 1.2,
         delay: .009 * index,
         y: Math.floor(random(-150, -200)),
-        left: Math.floor(random(200, -200)),
+        x: Math.floor(random(200, -200)),
         rotation: Math.floor(random(10, -360)),
-        scale: Math.random() * 1.5,
-        ease: 'sine.in',
+        scale: Math.random() * 1.005,
+        ease: 'sine.inOut',
         onComplete: function onComplete() {
           gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-            duration: 3,
+            duration: 2.5,
             delay: .001 * index,
             rotation: Math.floor(random(10, -360)),
-            y: '+=150vh',
+            y: '+=105vh',
             //opacity: 0, 
             ease: 'sine.inOut',
             onComplete: function onComplete() {
