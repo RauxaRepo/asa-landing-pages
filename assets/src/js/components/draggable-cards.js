@@ -127,7 +127,7 @@ export default function () {
             btnHolder.classList.remove('na');
           }
         })
-        gsap.to(nextQuestion,{ delay: 0.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
+        gsap.to(nextQuestion,{ delay: 1.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
         
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {

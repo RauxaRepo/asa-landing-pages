@@ -175,14 +175,14 @@ export default function () {
       gsap.to(cta.querySelector('button'),{duration:.8, autoAlpha:1});
         //EventListener
         cta.querySelector('button').addEventListener('click', (e) => {
-          cta.classList.add('disable');
-          stackCards(showGroupCards); 
-          gsap.to(topOffer,{duration:.5, top:topOffer.offsetTop - (topOffer.clientHeight + 10)});//hide header
+        cta.classList.add('disable');
+        stackCards(showGroupCards); 
+        gsap.to(topOffer,{duration:.5, top:topOffer.offsetTop - (topOffer.clientHeight + 10)});//hide header
       });
 			
     }
     //SLIDE IN FOOTER & STOP CARD ANIMATION
-    let introStop = setInterval(raiseFooter, 8000);
+    let introStop = setInterval(raiseFooter, 4000);
 
   }
 
