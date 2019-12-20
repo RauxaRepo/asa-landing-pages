@@ -128,11 +128,7 @@ svg path {
 .counter-block {
 
   @include bp(md) {
-    transform: translate(0, -8%);
-  }
-
-  @include bp(lg) {
-    transform: translate(0, -0%);
+    transform: translate(0, 0%);
   }
 
 }

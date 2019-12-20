@@ -1211,8 +1211,8 @@ sup {
   }
   .cards-lockup img {
     align-self: center;
-    width: 90%;
-    max-width: 332px;
+    width: 70%;
+    max-width: 312px;
     height: auto;
   }
 }
@@ -1825,12 +1825,6 @@ svg path {
 }
 
 @media (min-width: 768px) {
-  .counter-block {
-    transform: translate(0, -8%);
-  }
-}
-
-@media (min-width: 992px) {
   .counter-block {
     transform: translate(0, 0%);
   }
