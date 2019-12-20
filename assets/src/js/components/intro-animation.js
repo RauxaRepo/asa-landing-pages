@@ -182,7 +182,7 @@ export default function () {
 			
     }
     //SLIDE IN FOOTER & STOP CARD ANIMATION
-    let introStop = setInterval(raiseFooter, 8000);
+    let introStop = setInterval(raiseFooter, 4000);
 
   }
 

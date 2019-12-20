@@ -1022,7 +1022,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
 
-    var introStop = setInterval(raiseFooter, 8000);
+    var introStop = setInterval(raiseFooter, 4000);
   }; //
   // places all cards in grid based on array coors
   //
