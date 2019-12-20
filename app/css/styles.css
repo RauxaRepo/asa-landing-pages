@@ -1191,6 +1191,9 @@ sup {
   .cards.height-adjust {
     height: 100vh;
   }
+  .cards.height-adjust.with-email {
+    height: 114vh;
+  }
 }
 
 @media (min-width: 768px) {
