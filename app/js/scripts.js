@@ -424,7 +424,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         }
       });
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(nextQuestion, {
-        delay: 0.5,
+        delay: 1.5,
         duration: 1,
         opacity: 1,
         ease: 'power4.inOut'
