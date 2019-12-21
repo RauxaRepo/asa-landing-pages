@@ -343,10 +343,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var bookBtnContainer = document.querySelector('.book-container');
   var correctCardMessage = document.querySelector('.correct-text');
+  var questionsResults = [].concat(_toConsumableArray(document.querySelectorAll('.main-page-card--question ')), [document.querySelector('.main-page-card--results')]);
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? "/0".concat(theCards.length / 2) : "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!'; //bg animation
+  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15% discount' : '10 more left!'; //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
@@ -401,11 +402,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(question, 0.5, {
-        opacity: 0,
+        autoAlpha: 0,
         ease: 'power4.inOut'
       });
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(answersBtns, 0.5, {
-        opacity: 0,
+        autoAlpha: 0,
         ease: 'power4.inOut',
         onComplete: function onComplete() {
           btnHolder.classList.remove('na');
@@ -417,7 +418,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       });
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")), 0.5, {
         delay: 0.5,
-        opacity: 1,
+        autoAlpha: 1,
         ease: 'power4.inOut',
         onComplete: function onComplete() {
           btnHolder.classList.remove('na');
@@ -426,7 +427,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(nextQuestion, {
         delay: 1.5,
         duration: 1,
-        opacity: 1,
+        autoAlpha: 1,
         ease: 'power4.inOut'
       }); //Confetti Burst /Add Book 15% off button
 
@@ -453,7 +454,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       counterCurrentCountHolder.innerHTML = counterCurrentCount < 10 ? "0".concat(counterCurrentCount) : counterCurrentCount;
 
       if (counterCurrentCount < 5) {
-        counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length / 2 - counterCurrentCount, " questions to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " questions left!");
+        counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length / 2 - counterCurrentCount, " more to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " more left!");
       } else if (counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
         counterRemainCount.innerHTML = "You've unlocked 15% off a flight!";
         document.querySelector('.cards').classList.add('with-email');
@@ -463,6 +464,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
       nextQuestButton.addEventListener('click', function (e) {
+        if (!btnHolder.parentNode.classList.contains('disable')) {
+          // transition only is enabled
+          tl.tweenTo("q".concat(questionCount + 1)); // adding delay to enable next question.
+
+          setTimeout(function () {
+            questionsResults[questionCount].classList.remove('disable');
+            console.log(questionCount);
+            console.log(questionsResults[questionCount]);
+          }, 500);
+        }
+
+        nextQuestion.classList.add('disable');
+        btnHolder.parentNode.classList.add('disable');
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
           duration: 1,
           top: '+=100vh',
@@ -474,7 +488,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           yoyo: true,
           ease: 'sine.inout'
         });
-        tl.tweenTo("q".concat(questionCount + 1));
 
         if (questionCount + 1 == 5) {
           totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
@@ -542,7 +555,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (pos.x > ww / 2) {
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
-      if (elmnt.offsetLeft > wrapper.offsetLeft + rightBounds) {
+      if (elmnt.offsetLeft > wrapper.offsetLeft + (rightBounds + 50)) {
         elmnt.classList.add('disable'); //console.log('Right Bounds');
 
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
@@ -560,7 +573,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     } else {
       //element is on left side of viewport
       //console.log('LEFT, ', pos);
-      if (elmnt.offsetLeft < wrapper.offsetLeft - leftBounds) {
+      if (elmnt.offsetLeft < wrapper.offsetLeft - (leftBounds + 50)) {
         elmnt.classList.add('disable'); //console.log('Left Bounds');
 
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
@@ -605,7 +618,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       pos3 = e.clientX;
       pos4 = e.clientY;
-      document.onmouseup = closeDragElement; // call a function whenever the cursor moves:
+      document.onmouseup = closeDragElement(elmnt); // call a function whenever the cursor moves:
 
       document.onmousemove = elementDrag; //rotate 
 
@@ -630,13 +643,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       changeCardPos(elmnt);
     }
 
-    function closeDragElement() {
+    function closeDragElement(el) {
       // stop moving when mouse button is released://
       document.onmouseup = null;
-      document.onmousemove = null; //rotate back
+      document.onmousemove = null;
+      var thebtn = el.querySelector('.next-question button');
 
-      var thebtn = elmnt.querySelector('.next-question button');
-      thebtn.click();
+      if (!el.classList.contains('disable')) {
+        thebtn.click();
+      }
     }
   } //TOUCH CONTROL
 
@@ -876,9 +891,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         spreadTheCards(); //spread color cards
 
         document.querySelector('.cards').classList.add('height-adjust');
-        questionsResults.forEach(function (q) {
-          q.classList.remove('disable');
-        });
+        questionsResults[0].classList.remove('disable');
       }
     }, '-=0').to('.cards-lockup,.cards-progress', .6, {
       opacity: 1,
