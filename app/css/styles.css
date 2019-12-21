@@ -1085,6 +1085,10 @@ sup {
   width: 100%;
 }
 
+.active-card--buttonwrapper .hide-main-buttons.disabled {
+  pointer-events: none;
+}
+
 .active-card--button {
   position: relative;
   display: block;
@@ -1169,6 +1173,10 @@ sup {
 
 .next-question--button {
   margin-top: 0;
+}
+
+.next-question--button.disable {
+  pointer-events: none;
 }
 
 .cards {
@@ -1669,6 +1677,7 @@ sup {
 .right-answer,
 .wrong-answer {
   opacity: 0;
+  visibility: hidden;
 }
 
 @media only screen and (max-width: 768px) {
