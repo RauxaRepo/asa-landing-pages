@@ -83,7 +83,7 @@ export default function () {
       ease: 'sine.in'},'-=.3')
     .to([cardCta,cardQuestionOne], 1.25, {rotationY:'+=180', ease:'sine.inout'},'+=.2')
     .to([cardCta,cardQuestionOne], .625, {z:'+=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5')
-    .to('.cards-lockup,.cards-progress', .6, {opacity:1, ease:'sine.inout'},'-=.5')
+    
     .to(['.main-page-card--question','.main-page-card--results'], .25, {autoAlpha:1, ease:'sine.in',
         onComplete: function(){
           spreadTheCards();//spread color cards
@@ -93,7 +93,8 @@ export default function () {
             q.classList.remove('disable');
           });
 
-        }},'-=0');
+        }},'-=0')
+    .to('.cards-lockup,.cards-progress', .6, {opacity:1, ease:'sine.inout'},'+=.5');
     // resetting progress bar
     countingMe.counterMotion(countingMe.counterPercent(200));
   }
@@ -175,14 +176,14 @@ export default function () {
       gsap.to(cta.querySelector('button'),{duration:.8, autoAlpha:1});
         //EventListener
         cta.querySelector('button').addEventListener('click', (e) => {
-          cta.classList.add('disable');
-          stackCards(showGroupCards); 
-          gsap.to(topOffer,{duration:.5, top:topOffer.offsetTop - (topOffer.clientHeight + 10)});//hide header
+        cta.classList.add('disable');
+        stackCards(showGroupCards); 
+        gsap.to(topOffer,{duration:.5, top:topOffer.offsetTop - (topOffer.clientHeight + 10)});//hide header
       });
 			
     }
     //SLIDE IN FOOTER & STOP CARD ANIMATION
-    let introStop = setInterval(raiseFooter, 8000);
+    let introStop = setInterval(raiseFooter, 4000);
 
   }
 

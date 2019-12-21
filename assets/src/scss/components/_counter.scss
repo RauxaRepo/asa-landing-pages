@@ -128,11 +128,7 @@ svg path {
 .counter-block {
 
   @include bp(md) {
-    transform: translate(0, -8%);
-  }
-
-  @include bp(lg) {
-    transform: translate(0, -0%);
+    transform: translate(0, 0%);
   }
 
 }
@@ -194,7 +190,11 @@ svg path {
 
   //count text
   .count-text--quest {
-    margin-top: 0;
+    margin-top: 10px;
+  }
+
+  .book-container {
+    top: 0;
   }
 
 }
@@ -202,7 +202,7 @@ svg path {
 @media only screen and (max-width: 576px) {
   .counter-block {
     display: block;
-    transform: translate(0, -20%);
+    transform: translate(0, -5%);
   }
 
   .count-text--box {

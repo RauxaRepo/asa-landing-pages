@@ -127,7 +127,7 @@ export default function () {
             btnHolder.classList.remove('na');
           }
         })
-        gsap.to(nextQuestion,{ delay: 0.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
+        gsap.to(nextQuestion,{ delay: 1.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
         
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
@@ -158,10 +158,16 @@ export default function () {
 
 				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} questions to unlock your 15% discount` : `${theCards.length - counterCurrentCount} questions left!`;
 			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
-				counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
+        counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
+        document.querySelector('.cards').classList.add('with-email');
+        
 			}
 			 else {
-				counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} questions left!`;
+        
+
+        counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} more left!`;
+        
+				
 			}
 			
 
@@ -180,7 +186,7 @@ export default function () {
          
         
           if(questionCount+1 == 5) {
-			totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
+			      totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
             countingMe.counterMotion(countingMe.counterPercent(questionCount));
           }
 

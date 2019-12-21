@@ -180,16 +180,16 @@ var confetti = {
         duration: 1.2,
         delay: .009 * index,
         y: Math.floor(random(-150, -200)),
-        left: Math.floor(random(200, -200)),
+        x: Math.floor(random(200, -200)),
         rotation: Math.floor(random(10, -360)),
-        scale: Math.random() * 1.5,
-        ease: 'sine.in',
+        scale: Math.random() * 1.005,
+        ease: 'sine.inOut',
         onComplete: function onComplete() {
           gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-            duration: 3,
+            duration: 2.5,
             delay: .001 * index,
             rotation: Math.floor(random(10, -360)),
-            y: '+=150vh',
+            y: '+=105vh',
             //opacity: 0, 
             ease: 'sine.inOut',
             onComplete: function onComplete() {
@@ -424,7 +424,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         }
       });
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(nextQuestion, {
-        delay: 0.5,
+        delay: 1.5,
         duration: 1,
         opacity: 1,
         ease: 'power4.inOut'
@@ -456,8 +456,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length / 2 - counterCurrentCount, " questions to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " questions left!");
       } else if (counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
         counterRemainCount.innerHTML = "You've unlocked 15% off a flight!";
+        document.querySelector('.cards').classList.add('with-email');
       } else {
-        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " more left!");
       } //Next Question
 
 
@@ -868,10 +869,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       yoyo: true,
       repeat: 1,
       ease: 'sine.in'
-    }, '-=1.5').to('.cards-lockup,.cards-progress', .6, {
-      opacity: 1,
-      ease: 'sine.inout'
-    }, '-=.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
+    }, '-=1.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
       autoAlpha: 1,
       ease: 'sine.in',
       onComplete: function onComplete() {
@@ -882,7 +880,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           q.classList.remove('disable');
         });
       }
-    }, '-=0'); // resetting progress bar
+    }, '-=0').to('.cards-lockup,.cards-progress', .6, {
+      opacity: 1,
+      ease: 'sine.inout'
+    }, '+=.5'); // resetting progress bar
 
     _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(200));
   }; //COLOR CARDS--SPREAD
@@ -1022,7 +1023,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
 
-    var introStop = setInterval(raiseFooter, 8000);
+    var introStop = setInterval(raiseFooter, 4000);
   }; //
   // places all cards in grid based on array coors
   //
