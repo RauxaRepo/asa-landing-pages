@@ -37,7 +37,8 @@ export default function () {
     let bookButton = document.querySelector('.book-container');//book button
     let bookBtnContainer = document.querySelector('.book-container');
 
-		let correctCardMessage = document.querySelector('.correct-text');
+    let correctCardMessage = document.querySelector('.correct-text');
+    let questionsResults = [...document.querySelectorAll('.main-page-card--question '),document.querySelector('.main-page-card--results')];
 		let correctCardMessageOps = [
 			'NICE TRY!',
 			'GOOD WORK!',
@@ -46,7 +47,7 @@ export default function () {
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 questions to unlock your 15% discount' : '10 questions left!';
+		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15% discount' : '10 more left!';
 		
 
 		//bg animation
@@ -107,9 +108,9 @@ export default function () {
 				
 				
 
-        gsap.to(question, 0.5,{opacity: 0, ease: 'power4.inOut'})
+        gsap.to(question, 0.5,{autoAlpha: 0, ease: 'power4.inOut'})
         gsap.to(answersBtns, 0.5,{ 
-          opacity: 0, 
+          autoAlpha: 0, 
           ease: 'power4.inOut',
           onComplete: function(){
             btnHolder.classList.remove('na');
@@ -121,13 +122,13 @@ export default function () {
         })
         gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
           delay: 0.5,
-          opacity: 1, 
+          autoAlpha: 1, 
           ease: 'power4.inOut',
           onComplete: function(){
             btnHolder.classList.remove('na');
           }
         })
-        gsap.to(nextQuestion,{ delay: 1.5, duration: 1, opacity: 1, ease: 'power4.inOut'})
+        gsap.to(nextQuestion,{ delay: 1.5, duration: 1, autoAlpha: 1, ease: 'power4.inOut'})
         
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
@@ -156,7 +157,7 @@ export default function () {
 			if(counterCurrentCount < 5 ) {
 
 
-				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} questions to unlock your 15% discount` : `${theCards.length - counterCurrentCount} questions left!`;
+				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} more to unlock your 15% discount` : `${theCards.length - counterCurrentCount} more left!`;
 			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
         counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
         document.querySelector('.cards').classList.add('with-email');
@@ -178,18 +179,33 @@ export default function () {
            
         //Next Question
 			nextQuestButton.addEventListener('click', (e) => {
-					
+
+
+          if(!btnHolder.parentNode.classList.contains('disable')) {
+            // transition only is enabled
+            tl.tweenTo(`q${questionCount+1}`);
+            // adding delay to enable next question.
+            setTimeout( () => {
+              questionsResults[questionCount].classList.remove('disable');
+              console.log(questionCount);
+              console.log( questionsResults[questionCount] );
+            }, 500 );
+            
+          }
+
+         
+
+          nextQuestion.classList.add('disable');
+          btnHolder.parentNode.classList.add('disable');
+
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
-          tl.tweenTo(`q${questionCount+1}`);
           
-         
         
           if(questionCount+1 == 5) {
 			      totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
             countingMe.counterMotion(countingMe.counterPercent(questionCount));
           }
-
 				
 				if(e.target.classList.contains('last')) {
           counterRemainCount.innerHTML = 'You did it!';
@@ -254,7 +270,7 @@ export default function () {
 
 				
 				//console.log('RIGHT, ', pos);
-				if(elmnt.offsetLeft > (wrapper.offsetLeft + rightBounds)){
+				if(elmnt.offsetLeft > (wrapper.offsetLeft + (rightBounds + 50))){
 					
 					
 					elmnt.classList.add('disable');
@@ -269,7 +285,7 @@ export default function () {
 				
 			} else { //element is on left side of viewport
 				//console.log('LEFT, ', pos);
-				if(elmnt.offsetLeft < (wrapper.offsetLeft - leftBounds)){
+				if(elmnt.offsetLeft < (wrapper.offsetLeft - (leftBounds + 50))){
 					
 					
 					elmnt.classList.add('disable');
@@ -309,7 +325,7 @@ export default function () {
 				// get the mouse cursor position at startup:
 				pos3 = e.clientX;
 				pos4 = e.clientY;
-				document.onmouseup = closeDragElement;
+				document.onmouseup = closeDragElement(elmnt);
 				// call a function whenever the cursor moves:
 				document.onmousemove = elementDrag;
 				//rotate 
@@ -337,15 +353,17 @@ export default function () {
 				
 			}
 		  
-			function closeDragElement() {
+			function closeDragElement(el) {
 				// stop moving when mouse button is released://
 				document.onmouseup = null;
 				document.onmousemove = null;
-				//rotate back
-
-				let thebtn = elmnt.querySelector('.next-question button');
 				
-				thebtn.click();
+        let thebtn = el.querySelector('.next-question button');
+
+        if (!el.classList.contains('disable')) {
+          thebtn.click();
+        }
+
 			}
 		}
 

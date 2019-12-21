@@ -89,9 +89,7 @@ export default function () {
           spreadTheCards();//spread color cards
           document.querySelector('.cards').classList.add('height-adjust');
 
-          questionsResults.forEach( (q) => {
-            q.classList.remove('disable');
-          });
+          questionsResults[0].classList.remove('disable');
 
         }},'-=0')
     .to('.cards-lockup,.cards-progress', .6, {opacity:1, ease:'sine.inout'},'+=.5');
