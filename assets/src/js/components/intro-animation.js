@@ -83,7 +83,7 @@ export default function () {
       ease: 'sine.in'},'-=.3')
     .to([cardCta,cardQuestionOne], 1.25, {rotationY:'+=180', ease:'sine.inout'},'+=.2')
     .to([cardCta,cardQuestionOne], .625, {z:'+=100', yoyo:true, repeat:1, ease:'sine.in'},'-=1.5')
-    .to('.cards-lockup,.cards-progress', .6, {opacity:1, ease:'sine.inout'},'-=.5')
+    
     .to(['.main-page-card--question','.main-page-card--results'], .25, {autoAlpha:1, ease:'sine.in',
         onComplete: function(){
           spreadTheCards();//spread color cards
@@ -93,7 +93,8 @@ export default function () {
             q.classList.remove('disable');
           });
 
-        }},'-=0');
+        }},'-=0')
+    .to('.cards-lockup,.cards-progress', .6, {opacity:1, ease:'sine.inout'},'+=.5');
     // resetting progress bar
     countingMe.counterMotion(countingMe.counterPercent(200));
   }

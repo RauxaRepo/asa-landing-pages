@@ -1181,12 +1181,19 @@ sup {
 }
 
 .cards.height-adjust {
+  height: 118vh;
+}
+
+.cards.height-adjust.with-email {
   height: 132vh;
 }
 
 @media only screen and (min-width: 375px) {
   .cards.height-adjust {
-    height: 115vh;
+    height: 100vh;
+  }
+  .cards.height-adjust.with-email {
+    height: 114vh;
   }
 }
 
@@ -1212,8 +1219,8 @@ sup {
   }
   .cards-lockup img {
     align-self: center;
-    width: 90%;
-    max-width: 332px;
+    width: 70%;
+    max-width: 312px;
     height: auto;
   }
 }
@@ -1827,12 +1834,6 @@ svg path {
 
 @media (min-width: 768px) {
   .counter-block {
-    transform: translate(0, -8%);
-  }
-}
-
-@media (min-width: 992px) {
-  .counter-block {
     transform: translate(0, 0%);
   }
 }
@@ -1878,14 +1879,17 @@ svg path {
     display: none;
   }
   .count-text--quest {
-    margin-top: 0;
+    margin-top: 10px;
+  }
+  .book-container {
+    top: 0;
   }
 }
 
 @media only screen and (max-width: 576px) {
   .counter-block {
     display: block;
-    transform: translate(0, -20%);
+    transform: translate(0, -5%);
   }
   .count-text--box {
     left: auto;

@@ -456,8 +456,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length / 2 - counterCurrentCount, " questions to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " questions left!");
       } else if (counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
         counterRemainCount.innerHTML = "You've unlocked 15% off a flight!";
+        document.querySelector('.cards').classList.add('with-email');
       } else {
-        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " questions left!");
+        counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " more left!");
       } //Next Question
 
 
@@ -868,10 +869,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       yoyo: true,
       repeat: 1,
       ease: 'sine.in'
-    }, '-=1.5').to('.cards-lockup,.cards-progress', .6, {
-      opacity: 1,
-      ease: 'sine.inout'
-    }, '-=.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
+    }, '-=1.5').to(['.main-page-card--question', '.main-page-card--results'], .25, {
       autoAlpha: 1,
       ease: 'sine.in',
       onComplete: function onComplete() {
@@ -882,7 +880,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           q.classList.remove('disable');
         });
       }
-    }, '-=0'); // resetting progress bar
+    }, '-=0').to('.cards-lockup,.cards-progress', .6, {
+      opacity: 1,
+      ease: 'sine.inout'
+    }, '+=.5'); // resetting progress bar
 
     _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(200));
   }; //COLOR CARDS--SPREAD
