@@ -105,10 +105,21 @@ var wrapper = document.querySelector('.confetti-container'),
     height = window.innerHeight,
     confettiArr = [],
     confettiArrBurst = [],
-    num = 600; //RANDOM MIN MAX
+    num = 650,
+    colors = ['red', 'green', 'blue', 'yellow', 'orange', 'pink', 'purple', 'white', 'black', 'white'],
+    finalHex = colors[Math.floor(Math.random() * colors.length)],
+    //ussr agent
+ua = window.navigator.userAgent,
+    msie = ua.indexOf('MSIE'); //RANDOM MIN MAX
 
 function random(min, max) {
   return min + Math.random() * (max - min);
+}
+
+function setAttributes(el, attrs) {
+  Object.keys(attrs).forEach(function (key) {
+    return el.setAttribute(key, attrs[key]);
+  });
 } //resize width for confetti rain
 
 
@@ -119,44 +130,86 @@ window.addEventListener('resize', function () {
 var confetti = {
   buildRain: function buildRain() {
     for (var i = 0; i < num; i++) {
-      var xmlns = "http://www.w3.org/2000/svg",
-          _confetti = document.createElementNS(xmlns, 'svg');
+      //if IE
+      if (Object.hasOwnProperty.call(window, "ActiveXObject") && !window.ActiveXObject) {
+        var _confetti = document.createElement('div');
 
-      wrapper.appendChild(_confetti);
-      _confetti.style.position = 'absolute';
+        _confetti.className += 'confetti-svg';
+        wrapper.appendChild(_confetti);
+        _confetti.style.position = 'absolute';
+        _confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        _confetti.style.height = Math.random() * 20 + 'px';
+        _confetti.style.width = Math.random() * 10 + 'px';
+        _confetti.style.zIndex = Math.floor(Math.random() * 20);
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti, {
+          x: Math.random() * width,
+          y: Math.random() * height - (height + 50),
+          rotation: Math.random() * 45,
+          scale: Math.random() * 1.2
+        });
+        confettiArr.push(_confetti);
+      } else {
+        var xmlns = "http://www.w3.org/2000/svg";
 
-      _confetti.classList.add('confetti-svg');
+        var _confetti2 = document.createElementNS(xmlns, 'svg');
 
-      _confetti.style.backgroundColor = Math.floor(Math.random() * 16777215).toString(16);
-      _confetti.style.height = Math.random() * 20 + 'px';
-      _confetti.style.width = Math.random() * 10 + 'px';
-      _confetti.style.zIndex = Math.floor(Math.random() * 20);
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti, {
-        x: Math.random() * width,
-        y: Math.random() * height - (height + 50),
-        rotation: Math.random() * 45,
-        scale: Math.random() * 1.2
-      });
-      confettiArr.push(_confetti); //console.log(' confetti ', i);
+        _confetti2.classList.add('confetti-svg');
+
+        wrapper.appendChild(_confetti2);
+        _confetti2.style.position = 'absolute';
+        _confetti2.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        _confetti2.style.height = Math.random() * 20 + 'px';
+        _confetti2.style.width = Math.random() * 10 + 'px';
+        _confetti2.style.zIndex = Math.floor(Math.random() * 20);
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti2, {
+          x: Math.random() * width,
+          y: Math.random() * height - (height + 50),
+          rotation: Math.random() * 45,
+          scale: Math.random() * 1.2
+        });
+        confettiArr.push(_confetti2);
+      } //console.log(' confetti ', i);
+
     }
   },
   buildBurst: function buildBurst() {
     for (var i = 0; i < 200; i++) {
-      var xmlns = "http://www.w3.org/2000/svg",
-          confettib = document.createElementNS(xmlns, 'svg');
-      burstWrapper.appendChild(confettib);
-      confettib.classList.add('confetti-svg');
-      confettib.style.position = 'absolute';
-      confettib.style.transform = 'scale(0)';
-      confettib.style.transformOrigin = '50% 50%';
-      confettib.style.zIndex = Math.floor(Math.random() * 2);
-      confettib.style.backgroundColor = Math.floor(Math.random() * 16777215).toString(16);
-      confettib.style.height = Math.random() * 20 + 'px';
-      confettib.style.width = Math.random() * 10 + 'px';
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confettib, {
-        rotation: Math.random() * 45
-      });
-      confettiArrBurst.push(confettib);
+      //if IE
+      if (Object.hasOwnProperty.call(window, "ActiveXObject") && !window.ActiveXObject) {
+        var confettib = document.createElement('div');
+        confettib.className += 'confetti-svg';
+        burstWrapper.appendChild(confettib);
+        confettib.style.position = 'absolute';
+        confettib.style.transform = 'scale(0)';
+        confettib.style.transformOrigin = '50% 50%';
+        confettib.style.zIndex = Math.floor(Math.random() * 2);
+        confettib.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confettib.style.height = Math.random() * 20 + 'px';
+        confettib.style.width = Math.random() * 10 + 'px';
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confettib, {
+          rotation: Math.random() * 45
+        });
+        confettiArrBurst.push(confettib);
+      } else {
+        var xmlns = "http://www.w3.org/2000/svg";
+
+        var _confettib = document.createElementNS(xmlns, 'svg');
+
+        _confettib.classList.add('confetti-svg');
+
+        burstWrapper.appendChild(_confettib);
+        _confettib.style.position = 'absolute';
+        _confettib.style.transform = 'scale(0)';
+        _confettib.style.transformOrigin = '50% 50%';
+        _confettib.style.zIndex = Math.floor(Math.random() * 2);
+        _confettib.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        _confettib.style.height = Math.random() * 20 + 'px';
+        _confettib.style.width = Math.random() * 10 + 'px';
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confettib, {
+          rotation: Math.random() * 45
+        });
+        confettiArrBurst.push(_confettib);
+      }
     }
   },
   rain: function rain() {
@@ -191,7 +244,7 @@ var confetti = {
             duration: 2.5,
             delay: .001 * index,
             rotation: Math.floor(random(10, -360)),
-            y: '+=105vh',
+            y: '+=185vh',
             //opacity: 0, 
             ease: 'sine.inOut',
             onComplete: function onComplete() {
