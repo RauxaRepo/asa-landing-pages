@@ -103,14 +103,9 @@ var wrapper = document.querySelector('.confetti-container'),
     burstWrapper = document.querySelector('.confetti-container--burst'),
     width = window.innerWidth,
     height = window.innerHeight,
-    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521', '#ff0000', '#FF8000'],
     confettiArr = [],
     confettiArrBurst = [],
-    num = 800,
-    tl = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
-  repeat: 0,
-  repeatDelay: 0
-}); //RANDOM MIN MAX
+    num = 600; //RANDOM MIN MAX
 
 function random(min, max) {
   return min + Math.random() * (max - min);
@@ -124,13 +119,18 @@ window.addEventListener('resize', function () {
 var confetti = {
   buildRain: function buildRain() {
     for (var i = 0; i < num; i++) {
-      var _confetti = document.createElement('div');
+      var xmlns = "http://www.w3.org/2000/svg",
+          _confetti = document.createElementNS(xmlns, 'svg');
 
       wrapper.appendChild(_confetti);
       _confetti.style.position = 'absolute';
-      _confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+
+      _confetti.classList.add('confetti-svg');
+
+      _confetti.style.backgroundColor = Math.floor(Math.random() * 16777215).toString(16);
       _confetti.style.height = Math.random() * 20 + 'px';
       _confetti.style.width = Math.random() * 10 + 'px';
+      _confetti.style.zIndex = Math.floor(Math.random() * 20);
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti, {
         x: Math.random() * width,
         y: Math.random() * height - (height + 50),
@@ -142,13 +142,15 @@ var confetti = {
   },
   buildBurst: function buildBurst() {
     for (var i = 0; i < 200; i++) {
-      var confettib = document.createElement('div');
+      var xmlns = "http://www.w3.org/2000/svg",
+          confettib = document.createElementNS(xmlns, 'svg');
       burstWrapper.appendChild(confettib);
+      confettib.classList.add('confetti-svg');
+      confettib.style.position = 'absolute';
       confettib.style.transform = 'scale(0)';
       confettib.style.transformOrigin = '50% 50%';
-      confettib.style.position = 'absolute';
       confettib.style.zIndex = Math.floor(Math.random() * 2);
-      confettib.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+      confettib.style.backgroundColor = Math.floor(Math.random() * 16777215).toString(16);
       confettib.style.height = Math.random() * 20 + 'px';
       confettib.style.width = Math.random() * 10 + 'px';
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confettib, {
@@ -177,7 +179,7 @@ var confetti = {
   burst: function burst() {
     confettiArrBurst.forEach(function (item, index) {
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-        duration: 1.2,
+        duration: 0.6,
         delay: .009 * index,
         y: Math.floor(random(-150, -200)),
         x: Math.floor(random(200, -200)),
