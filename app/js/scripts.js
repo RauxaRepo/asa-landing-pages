@@ -555,7 +555,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           x: '-=100%',
           yoyo: true,
           ease: 'sine.inout'
-        }); //Rewind Counter
+        }); //Rewind Counter when reaching 5
 
         if (questionCount + 1 == 5) {
           totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
@@ -569,7 +569,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             onComplete: function onComplete() {
               bookButtonText.style.display = 'none';
             }
-          });
+          }); //5 more left!
+
+          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " more left!");
           console.log('FADE OUT TEXT');
         }
 

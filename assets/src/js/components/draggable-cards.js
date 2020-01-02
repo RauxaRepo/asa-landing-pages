@@ -207,7 +207,7 @@ export default function () {
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
           
-          //Rewind Counter
+          //Rewind Counter when reaching 5
           if(questionCount+1 == 5) {
 			      totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
             countingMe.counterMotion(countingMe.counterPercent(questionCount));
@@ -215,6 +215,8 @@ export default function () {
             gsap.to(bookButtonText, {delay: 0, duration: 0.5, autoAlpha: 0, ease: 'back.out', onComplete: function(){
               bookButtonText.style.display = 'none';
             }});
+            //5 more left!
+            counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} more left!`;
             console.log('FADE OUT TEXT');
           }
 				
