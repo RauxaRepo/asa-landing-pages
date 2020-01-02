@@ -1374,6 +1374,18 @@ sup {
     width: 160px;
     font-size: 12px;
   }
+  .main-page-card--color {
+    padding-bottom: 149%;
+    width: 98%;
+  }
+  .main-page-card--question, .main-page-card--results {
+    height: 90%;
+    width: 100%;
+  }
+  .cards-single {
+    left: 50%;
+    top: 53%;
+  }
 }
 
 .main-page-card-center {

@@ -555,11 +555,22 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           x: '-=100%',
           yoyo: true,
           ease: 'sine.inout'
-        });
+        }); //Rewind Counter
 
         if (questionCount + 1 == 5) {
           totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
-          _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+          _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount)); //Hide 'Keep answering questions to learn more about what we did in 2019'
+
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButtonText, {
+            delay: 0,
+            duration: 0.5,
+            autoAlpha: 0,
+            ease: 'back.out',
+            onComplete: function onComplete() {
+              bookButtonText.style.display = 'none';
+            }
+          });
+          console.log('FADE OUT TEXT');
         }
 
         if (e.target.classList.contains('last')) {

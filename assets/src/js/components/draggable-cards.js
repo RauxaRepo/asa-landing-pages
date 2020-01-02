@@ -131,22 +131,24 @@ export default function () {
         })
         gsap.to(nextQuestion,{ delay: 1.5, duration: 1, autoAlpha: 1, ease: 'power4.inOut'})
         
-        //Confetti Burst /Add Book 15% off button
+      //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
         confetti.burst();//confetti burst
         gsap.set(bookButtonText, {opacity:0});//book button text
         gsap.to(bookBtnContainer, {duration: 1, autoAlpha: 1, ease: 'back.out', });
         gsap.to(bookButtonText, {delay: 3.5, duration: 1, autoAlpha: 1, ease: 'back.out'});
-			}
-      
+      }
+    
       
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
       if (bookBtnContainer.classList.contains('active') && counterCurrentCount < 6) {
-		countingMe.counterMotion(countingMe.counter2xPercent(questionCount));
-        
-      } else if(bookBtnContainer.classList.contains('active') && counterCurrentCount > 6){
 
+        countingMe.counterMotion(countingMe.counter2xPercent(questionCount));
+
+      } else if(bookBtnContainer.classList.contains('active') && counterCurrentCount > 6){
+  
         countingMe.counterMotion(countingMe.counterPercent(questionCount));
+
       } else {
         
         countingMe.counterMotion(countingMe.counterPercent(questionCount));
@@ -164,6 +166,7 @@ export default function () {
 			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
         counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
         document.querySelector('.cards').classList.add('with-email');
+
         
 			}
 			 else {
@@ -204,10 +207,15 @@ export default function () {
 					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
 					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
           
-        
+          //Rewind Counter
           if(questionCount+1 == 5) {
 			      totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
             countingMe.counterMotion(countingMe.counterPercent(questionCount));
+            //Hide 'Keep answering questions to learn more about what we did in 2019'
+            gsap.to(bookButtonText, {delay: 0, duration: 0.5, autoAlpha: 0, ease: 'back.out', onComplete: function(){
+              bookButtonText.style.display = 'none';
+            }});
+            console.log('FADE OUT TEXT');
           }
 				
 				if(e.target.classList.contains('last')) {

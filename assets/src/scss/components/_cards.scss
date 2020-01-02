@@ -209,9 +209,24 @@
 }
 
 @media only screen and (max-width: 576px) {
-  .cards-single.cta .cards-single--init-card button { 
+  .cards-single.cta .cards-single--init-card button {
     bottom: 16px;
     width: 160px;
-    font-size: 12px;  
+    font-size: 12px;
+  }
+
+  .main-page-card--color {
+    padding-bottom: 149%;
+    width: 98%;
+  }
+
+  .main-page-card--question, .main-page-card--results {
+    height: 90%;
+    width: 100%;
+  }
+
+  .cards-single {
+    left: 50%;
+    top: 53%;
   }
 }
