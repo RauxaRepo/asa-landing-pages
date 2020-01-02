@@ -394,9 +394,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var counterRemainCount = document.querySelector('.dynamic-count');
   var counterCurrentCount = '00';
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
-  var bookButton = document.querySelector('.book-container'); //book button
+  var bookBtnContainer = document.querySelector('.book-container'); //book button container
 
-  var bookBtnContainer = document.querySelector('.book-container');
+  var bookButton = document.querySelector('.book-button'); //book button
+
+  var bookButtonText = document.querySelector('.book-button--text'); //book button text
+
   var correctCardMessage = document.querySelector('.correct-text');
   var questionsResults = [].concat(_toConsumableArray(document.querySelectorAll('.main-page-card--question ')), [document.querySelector('.main-page-card--results')]);
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
@@ -489,7 +492,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       if (questionCount + 1 == 5 && bookBtnContainer.classList.contains('active')) {
         _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti burst
 
-        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(bookButtonText, {
+          opacity: 0
+        }); //book button text
+
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookBtnContainer, {
+          duration: 1,
+          autoAlpha: 1,
+          ease: 'back.out'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButtonText, {
+          delay: 3.5,
           duration: 1,
           autoAlpha: 1,
           ease: 'back.out'

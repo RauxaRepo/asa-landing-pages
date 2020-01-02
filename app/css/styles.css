@@ -1729,7 +1729,8 @@ sup {
     padding-bottom: 154%;
     width: 94%;
   }
-  .main-page-card--question, .main-page-card--results {
+  .main-page-card--question,
+  .main-page-card--results {
     height: 103%;
     width: 100%;
   }

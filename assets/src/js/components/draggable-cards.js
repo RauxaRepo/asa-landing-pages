@@ -34,8 +34,9 @@ export default function () {
 
 		let counterCurrentCount = '00';
     let counterCurrentCountHolder = document.querySelector('.count-text-num');
-    let bookButton = document.querySelector('.book-container');//book button
-    let bookBtnContainer = document.querySelector('.book-container');
+    let bookBtnContainer = document.querySelector('.book-container');//book button container
+    let bookButton = document.querySelector('.book-button');//book button
+    let bookButtonText = document.querySelector('.book-button--text');//book button text
 
     let correctCardMessage = document.querySelector('.correct-text');
     let questionsResults = [...document.querySelectorAll('.main-page-card--question '),document.querySelector('.main-page-card--results')];
@@ -132,8 +133,10 @@ export default function () {
         
         //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
-				confetti.burst();//confetti burst
-				gsap.to(bookButton, {duration: 1, autoAlpha: 1, ease: 'back.out'});
+        confetti.burst();//confetti burst
+        gsap.set(bookButtonText, {opacity:0});//book button text
+        gsap.to(bookBtnContainer, {duration: 1, autoAlpha: 1, ease: 'back.out', });
+        gsap.to(bookButtonText, {delay: 3.5, duration: 1, autoAlpha: 1, ease: 'back.out'});
 			}
       
       
