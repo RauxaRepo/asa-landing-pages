@@ -980,7 +980,7 @@ sup {
   bottom: 0;
   color: #656565;
   font-size: 10px;
-  height: 141px;
+  height: auto;
   padding-bottom: 20px;
   position: relative;
   text-align: center;
@@ -1012,6 +1012,8 @@ sup {
   opacity: 0;
   pointer-events: none;
   z-index: 17;
+  left: 0;
+  bottom: 0;
 }
 
 .main-page-footer-slide.active {
@@ -1030,9 +1032,6 @@ sup {
 }
 
 @media only screen and (min-width: 320px) {
-  .main-page-footer {
-    height: 250px;
-  }
   .main-page-footer p:nth-child(1) {
     padding-top: 20px;
   }

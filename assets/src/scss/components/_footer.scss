@@ -4,7 +4,7 @@
   bottom: 0;
   color: $footertextcolor;
   font-size: 10px;
-  height: $footerheight;
+  height: auto;//$footerheight;
   padding-bottom: 20px;
   position: relative;
   text-align: center;
@@ -37,6 +37,10 @@
   opacity: 0;
   pointer-events: none;
   z-index: 17;
+
+  left: 0;
+  bottom: 0;
+
   &.active {
     display: block;
     pointer-events: auto;
@@ -54,13 +58,14 @@
   }
 }
 
+
 @media only screen and (min-width: 320px) {
   .main-page-footer {
-    height: 250px;
-
     p:nth-child(1) {
       padding-top: 20px;
     }
 
   }
 }
+
+
