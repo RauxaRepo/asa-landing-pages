@@ -906,6 +906,13 @@ sup {
   vertical-align: top;
 }
 
+.tm {
+  font-size: 45%;
+  line-height: normal;
+  line-height: 2.75;
+  vertical-align: top;
+}
+
 .social-test {
   position: fixed;
   top: 0;
