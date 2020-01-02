@@ -1198,7 +1198,7 @@ sup {
 
 @media only screen and (min-width: 375px) {
   .cards.height-adjust {
-    height: 100vh;
+    height: 108vh;
   }
   .cards.height-adjust.with-email {
     height: 114vh;
