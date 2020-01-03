@@ -131,7 +131,7 @@ var confetti = {
   buildRain: function buildRain() {
     for (var i = 0; i < num; i++) {
       //if IE
-      if (Object.hasOwnProperty.call(window, "ActiveXObject") && !window.ActiveXObject) {
+      if (Object.hasOwnProperty.call(window, 'ActiveXObject') && !window.ActiveXObject) {
         var _confetti = document.createElement('div');
 
         _confetti.className += 'confetti-svg';
@@ -149,7 +149,7 @@ var confetti = {
         });
         confettiArr.push(_confetti);
       } else {
-        var xmlns = "http://www.w3.org/2000/svg";
+        var xmlns = 'http://www.w3.org/2000/svg';
 
         var _confetti2 = document.createElementNS(xmlns, 'svg');
 
@@ -175,7 +175,7 @@ var confetti = {
   buildBurst: function buildBurst() {
     for (var i = 0; i < 200; i++) {
       //if IE
-      if (Object.hasOwnProperty.call(window, "ActiveXObject") && !window.ActiveXObject) {
+      if (Object.hasOwnProperty.call(window, 'ActiveXObject') && !window.ActiveXObject) {
         var confettib = document.createElement('div');
         confettib.className += 'confetti-svg';
         burstWrapper.appendChild(confettib);
@@ -191,7 +191,7 @@ var confetti = {
         });
         confettiArrBurst.push(confettib);
       } else {
-        var xmlns = "http://www.w3.org/2000/svg";
+        var xmlns = 'http://www.w3.org/2000/svg';
 
         var _confettib = document.createElementNS(xmlns, 'svg');
 

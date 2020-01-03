@@ -38,7 +38,7 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
 
         for (let i=0; i<num; i++){
           //if IE
-          if (Object.hasOwnProperty.call(window, "ActiveXObject") && !window.ActiveXObject) {
+          if (Object.hasOwnProperty.call(window, 'ActiveXObject') && !window.ActiveXObject) {
             let confetti = document.createElement('div');
             confetti.className += 'confetti-svg';
             wrapper.appendChild(confetti);
@@ -56,7 +56,7 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
             confettiArr.push(confetti);
           }
           else {
-            let xmlns = "http://www.w3.org/2000/svg";
+            let xmlns = 'http://www.w3.org/2000/svg';
             let confetti = document.createElementNS(xmlns, 'svg');
             confetti.classList.add('confetti-svg');
             wrapper.appendChild(confetti);
@@ -84,7 +84,7 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
 
         for (let i=0; i<200; i++){
           //if IE
-          if (Object.hasOwnProperty.call(window, "ActiveXObject") && !window.ActiveXObject) {
+          if (Object.hasOwnProperty.call(window, 'ActiveXObject') && !window.ActiveXObject) {
             let confettib = document.createElement('div');
             confettib.className += 'confetti-svg';
             burstWrapper.appendChild(confettib);
@@ -99,7 +99,7 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
             confettiArrBurst.push(confettib);
           }
           else {
-            let xmlns = "http://www.w3.org/2000/svg";
+            let xmlns = 'http://www.w3.org/2000/svg';
             let confettib = document.createElementNS(xmlns, 'svg');
             confettib.classList.add('confetti-svg');
             burstWrapper.appendChild(confettib);
