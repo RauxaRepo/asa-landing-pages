@@ -178,8 +178,9 @@ export default function () {
 
            
         //Next Question
-			nextQuestButton.addEventListener('click', (e) => {
+		nextQuestButton.addEventListener('click', (e) => {
 
+		  e.target.classList.add('clicked');
 
           if(!btnHolder.parentNode.classList.contains('disable')) {
             // transition only is enabled
@@ -187,8 +188,6 @@ export default function () {
             // adding delay to enable next question.
             setTimeout( () => {
               questionsResults[questionCount].classList.remove('disable');
-              console.log(questionCount);
-              console.log( questionsResults[questionCount] );
             }, 500 );
             
           }
@@ -270,7 +269,7 @@ export default function () {
 
 				
 				//console.log('RIGHT, ', pos);
-				if(elmnt.offsetLeft > (wrapper.offsetLeft + (rightBounds + 50))){
+				if(elmnt.offsetLeft > (wrapper.offsetLeft + 380)){
 					
 					
 					elmnt.classList.add('disable');
@@ -285,7 +284,7 @@ export default function () {
 				
 			} else { //element is on left side of viewport
 				//console.log('LEFT, ', pos);
-				if(elmnt.offsetLeft < (wrapper.offsetLeft - (leftBounds + 50))){
+				if(elmnt.offsetLeft < (wrapper.offsetLeft - 380)){
 					
 					
 					elmnt.classList.add('disable');
@@ -358,11 +357,11 @@ export default function () {
 				document.onmouseup = null;
 				document.onmousemove = null;
 				
-        let thebtn = el.querySelector('.next-question button');
+				let thebtn = el.querySelector('.next-question button');
 
-        if (!el.classList.contains('disable')) {
-          thebtn.click();
-        }
+				if (!el.classList.contains('disable') && !thebtn.classList.contains('clicked')) {
+					thebtn.click();
+				}
 
 			}
 		}
