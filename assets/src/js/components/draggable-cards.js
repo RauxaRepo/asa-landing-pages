@@ -108,7 +108,7 @@ export default function () {
 				}
 				
 				
-
+        //Question/Answer fade IN/OUT
         gsap.to(question, 0.5,{autoAlpha: 0, ease: 'power4.inOut'})
         gsap.to(answersBtns, 0.5,{ 
           autoAlpha: 0, 
@@ -161,7 +161,6 @@ export default function () {
 
 			if(counterCurrentCount < 5 ) {
 
-
 				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} more to unlock your 15% discount` : `${theCards.length - counterCurrentCount} more left!`;
 			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
         counterRemainCount.innerHTML = `You've unlocked 15% off a flight!`;
@@ -183,41 +182,40 @@ export default function () {
 
 
            
-        //Next Question
+    //Next Question
 		nextQuestButton.addEventListener('click', (e) => {
 
 		  e.target.classList.add('clicked');
 
-          if(!btnHolder.parentNode.classList.contains('disable')) {
-            // transition only is enabled
-            tl.tweenTo(`q${questionCount+1}`);
-            // adding delay to enable next question.
-            setTimeout( () => {
-              questionsResults[questionCount].classList.remove('disable');
-            }, 500 );
-            
-          }
-
-         
-
-          nextQuestion.classList.add('disable');
-          btnHolder.parentNode.classList.add('disable');
-
-					gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
-					gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+        if(!btnHolder.parentNode.classList.contains('disable')) {
+          // transition only is enabled
+          tl.tweenTo(`q${questionCount+1}`);
+          // adding delay to enable next question.
+          setTimeout( () => {
+            questionsResults[questionCount].classList.remove('disable');
+          }, 500 );
           
-          //Rewind Counter when reaching 5
-          if(questionCount+1 == 5) {
-			      totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
-            countingMe.counterMotion(countingMe.counterPercent(questionCount));
-            //Hide 'Keep answering questions to learn more about what we did in 2019'
-            gsap.to(bookButtonText, {delay: 0, duration: 0.5, autoAlpha: 0, ease: 'back.out', onComplete: function(){
-              bookButtonText.style.display = 'none';
-            }});
-            //5 more left!
-            counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} more left!`;
-            console.log('FADE OUT TEXT');
-          }
+        }
+        
+
+        nextQuestion.classList.add('disable');
+        btnHolder.parentNode.classList.add('disable');
+
+        gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
+        gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
+        
+        //Rewind Counter when reaching 5 if coming from email
+        if(questionCount+1 == 5) {
+          totalCardCount.innerHTML = counterTotalCount.innerHTML = `/${theCards.length}`;
+          countingMe.counterMotion(countingMe.counterPercent(questionCount));
+          //Hide 'Keep answering questions to learn more about what we did in 2019'
+          gsap.to(bookButtonText, {delay: 0, duration: 0.5, autoAlpha: 0, ease: 'back.out', onComplete: function(){
+            bookButtonText.style.display = 'none';
+          }});
+          //5 more left!
+          counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} more left!`;
+          console.log('FADE OUT TEXT');
+        }
 				
 				if(e.target.classList.contains('last')) {
           counterRemainCount.innerHTML = 'You did it!';
@@ -240,16 +238,6 @@ export default function () {
 			});
 		});
 
-    
-
-		//COLOR CARDS--SPREAD
-		function spreadTheCards(){
-			let i = 0;
-			for (let i = 0;i<theColorCards.length; i++){
-				//rotation
-				gsap.to(theColorCards[i], 1, {rotation: - 2.2 * i});
-			}
-		}
 
 		//RANDOM MIN MAX
 		function random(min, max) {

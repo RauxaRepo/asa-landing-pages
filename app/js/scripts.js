@@ -457,7 +457,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         correctCardMessage.innerHTML = correctCardMessageOps[1];
       } else if (answeredCorrect.length > 7) {
         correctCardMessage.innerHTML = correctCardMessageOps[2];
-      }
+      } //Question/Answer fade IN/OUT
+
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(question, 0.5, {
         autoAlpha: 0,
@@ -555,7 +556,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           x: '-=100%',
           yoyo: true,
           ease: 'sine.inout'
-        }); //Rewind Counter when reaching 5
+        }); //Rewind Counter when reaching 5 if coming from email
 
         if (questionCount + 1 == 5) {
           totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
@@ -590,19 +591,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         questionCount++;
       });
     });
-  }); //COLOR CARDS--SPREAD
-
-  function spreadTheCards() {
-    var i = 0;
-
-    for (var _i = 0; _i < theColorCards.length; _i++) {
-      //rotation
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
-        rotation: -2.2 * _i
-      });
-    }
-  } //RANDOM MIN MAX
-
+  }); //RANDOM MIN MAX
 
   function random(min, max) {
     return min + Math.random() * (max - min);

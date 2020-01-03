@@ -1205,16 +1205,30 @@ sup {
   height: 118vh;
 }
 
-.cards.height-adjust.with-email {
-  height: 132vh;
+@media only screen and (min-width: 320px) {
+  .cards.height-adjust.with-email {
+    height: 132vh;
+  }
 }
 
-@media only screen and (min-width: 375px) {
+@media only screen and (min-width: 360px) {
   .cards.height-adjust {
     height: 108vh;
   }
   .cards.height-adjust.with-email {
-    height: 114vh;
+    height: 124vh;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .cards.height-adjust.with-email {
+    height: 132vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .cards.height-adjust.with-email {
+    height: 100vh;
   }
 }
 
@@ -1386,18 +1400,6 @@ sup {
     bottom: 16px;
     width: 160px;
     font-size: 12px;
-  }
-  .main-page-card--color {
-    padding-bottom: 149%;
-    width: 98%;
-  }
-  .main-page-card--question, .main-page-card--results {
-    height: 90%;
-    width: 100%;
-  }
-  .cards-single {
-    left: 50%;
-    top: 53%;
   }
 }
 

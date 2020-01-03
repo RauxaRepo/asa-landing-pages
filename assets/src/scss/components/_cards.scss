@@ -1,3 +1,11 @@
+//div,
+//img,
+//p,
+//span,
+//svg {
+//  outline: 1px solid $red;
+//}
+
 .cards {
   position: relative;
   width: 100%;
@@ -10,15 +18,35 @@
 
     height: 118vh;
 
-    &.with-email {
-      height: 132vh;
+    @media only screen and (min-width: 320px) {
+
+      //If coming from the EMAIL
+      &.with-email {
+        height: 132vh;
+      }
     }
 
-    @media only screen and (min-width: 375px) {
+    @media only screen and (min-width: 360px) {
       height: 108vh;
 
+      //If coming from the EMAIL
       &.with-email {
-        height: 114vh;
+        height: 124vh;
+      }
+    }
+
+    @media only screen and (min-width: 576px) {
+
+      //If coming from the EMAIL
+      &.with-email {
+        height: 132vh;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      //If coming from the EMAIL
+      &.with-email {
+        height: 100vh;
       }
     }
 
@@ -209,24 +237,9 @@
 }
 
 @media only screen and (max-width: 576px) {
-  .cards-single.cta .cards-single--init-card button {
+  .cards-single.cta .cards-single--init-card button { 
     bottom: 16px;
     width: 160px;
-    font-size: 12px;
-  }
-
-  .main-page-card--color {
-    padding-bottom: 149%;
-    width: 98%;
-  }
-
-  .main-page-card--question, .main-page-card--results {
-    height: 90%;
-    width: 100%;
-  }
-
-  .cards-single {
-    left: 50%;
-    top: 53%;
+    font-size: 12px;  
   }
 }
