@@ -38,6 +38,17 @@
 
 }
 
+@media only screen and (max-width: 865px) {
+  //contanier burst
+  .confetti {
+    &-container--burst {
+      right: 0;
+      top: 99px;
+      left: 0;
+    }
+  }
+}
+
 @media only screen and (max-width: 768px) {
 
   .confetti {
