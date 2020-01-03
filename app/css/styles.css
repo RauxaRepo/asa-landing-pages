@@ -900,7 +900,17 @@ sup {
 }
 
 sup {
-  top: -.75em;
+  font-size: 36%;
+  line-height: normal;
+  line-height: 2.75;
+  vertical-align: top;
+}
+
+.tm {
+  font-size: 45%;
+  line-height: normal;
+  line-height: 2.75;
+  vertical-align: top;
 }
 
 .social-test {

@@ -532,14 +532,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
       nextQuestButton.addEventListener('click', function (e) {
+        e.target.classList.add('clicked');
+
         if (!btnHolder.parentNode.classList.contains('disable')) {
           // transition only is enabled
           tl.tweenTo("q".concat(questionCount + 1)); // adding delay to enable next question.
 
           setTimeout(function () {
             questionsResults[questionCount].classList.remove('disable');
-            console.log(questionCount);
-            console.log(questionsResults[questionCount]);
           }, 500);
         }
 
@@ -636,7 +636,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     if (pos.x > ww / 2) {
       //element is on right side of viewport
       //console.log('RIGHT, ', pos);
-      if (elmnt.offsetLeft > wrapper.offsetLeft + (rightBounds + 50)) {
+      if (elmnt.offsetLeft > wrapper.offsetLeft + 380) {
         elmnt.classList.add('disable'); //console.log('Right Bounds');
 
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
@@ -654,7 +654,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     } else {
       //element is on left side of viewport
       //console.log('LEFT, ', pos);
-      if (elmnt.offsetLeft < wrapper.offsetLeft - (leftBounds + 50)) {
+      if (elmnt.offsetLeft < wrapper.offsetLeft - 380) {
         elmnt.classList.add('disable'); //console.log('Left Bounds');
 
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(elmnt, {
@@ -730,7 +730,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       document.onmousemove = null;
       var thebtn = el.querySelector('.next-question button');
 
-      if (!el.classList.contains('disable')) {
+      if (!el.classList.contains('disable') && !thebtn.classList.contains('clicked')) {
         thebtn.click();
       }
     }
