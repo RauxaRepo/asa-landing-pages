@@ -103,17 +103,23 @@ var wrapper = document.querySelector('.confetti-container'),
     burstWrapper = document.querySelector('.confetti-container--burst'),
     width = window.innerWidth,
     height = window.innerHeight,
-    colorArr = ['#55dded', '#5599e0', '#516673', '#aaccdd', '#41bbde', '#41bbde', '#ffffff', '#445567', '#52d521', '#ff0000', '#FF8000'],
     confettiArr = [],
     confettiArrBurst = [],
-    num = 800,
-    tl = new gsap__WEBPACK_IMPORTED_MODULE_0__["TimelineMax"]({
-  repeat: 0,
-  repeatDelay: 0
-}); //RANDOM MIN MAX
+    num = 650,
+    colors = ['red', 'green', 'blue', 'yellow', 'orange', 'pink', 'purple', 'white', 'black', 'white'],
+    finalHex = colors[Math.floor(Math.random() * colors.length)],
+    //ussr agent
+ua = window.navigator.userAgent,
+    msie = ua.indexOf('MSIE'); //RANDOM MIN MAX
 
 function random(min, max) {
   return min + Math.random() * (max - min);
+}
+
+function setAttributes(el, attrs) {
+  Object.keys(attrs).forEach(function (key) {
+    return el.setAttribute(key, attrs[key]);
+  });
 } //resize width for confetti rain
 
 
@@ -124,37 +130,86 @@ window.addEventListener('resize', function () {
 var confetti = {
   buildRain: function buildRain() {
     for (var i = 0; i < num; i++) {
-      var _confetti = document.createElement('div');
+      //if IE
+      if (Object.hasOwnProperty.call(window, 'ActiveXObject') && !window.ActiveXObject) {
+        var _confetti = document.createElement('div');
 
-      wrapper.appendChild(_confetti);
-      _confetti.style.position = 'absolute';
-      _confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
-      _confetti.style.height = Math.random() * 20 + 'px';
-      _confetti.style.width = Math.random() * 10 + 'px';
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti, {
-        x: Math.random() * width,
-        y: Math.random() * height - (height + 50),
-        rotation: Math.random() * 45,
-        scale: Math.random() * 1.2
-      });
-      confettiArr.push(_confetti); //console.log(' confetti ', i);
+        _confetti.className += 'confetti-svg';
+        wrapper.appendChild(_confetti);
+        _confetti.style.position = 'absolute';
+        _confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        _confetti.style.height = Math.random() * 20 + 'px';
+        _confetti.style.width = Math.random() * 10 + 'px';
+        _confetti.style.zIndex = Math.floor(Math.random() * 20);
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti, {
+          x: Math.random() * width,
+          y: Math.random() * height - (height + 50),
+          rotation: Math.random() * 45,
+          scale: Math.random() * 1.2
+        });
+        confettiArr.push(_confetti);
+      } else {
+        var xmlns = 'http://www.w3.org/2000/svg';
+
+        var _confetti2 = document.createElementNS(xmlns, 'svg');
+
+        _confetti2.classList.add('confetti-svg');
+
+        wrapper.appendChild(_confetti2);
+        _confetti2.style.position = 'absolute';
+        _confetti2.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        _confetti2.style.height = Math.random() * 20 + 'px';
+        _confetti2.style.width = Math.random() * 10 + 'px';
+        _confetti2.style.zIndex = Math.floor(Math.random() * 20);
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confetti2, {
+          x: Math.random() * width,
+          y: Math.random() * height - (height + 50),
+          rotation: Math.random() * 45,
+          scale: Math.random() * 1.2
+        });
+        confettiArr.push(_confetti2);
+      } //console.log(' confetti ', i);
+
     }
   },
   buildBurst: function buildBurst() {
     for (var i = 0; i < 200; i++) {
-      var confettib = document.createElement('div');
-      burstWrapper.appendChild(confettib);
-      confettib.style.transform = 'scale(0)';
-      confettib.style.transformOrigin = '50% 50%';
-      confettib.style.position = 'absolute';
-      confettib.style.zIndex = Math.floor(Math.random() * 2);
-      confettib.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
-      confettib.style.height = Math.random() * 20 + 'px';
-      confettib.style.width = Math.random() * 10 + 'px';
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confettib, {
-        rotation: Math.random() * 45
-      });
-      confettiArrBurst.push(confettib);
+      //if IE
+      if (Object.hasOwnProperty.call(window, 'ActiveXObject') && !window.ActiveXObject) {
+        var confettib = document.createElement('div');
+        confettib.className += 'confetti-svg';
+        burstWrapper.appendChild(confettib);
+        confettib.style.position = 'absolute';
+        confettib.style.transform = 'scale(0)';
+        confettib.style.transformOrigin = '50% 50%';
+        confettib.style.zIndex = Math.floor(Math.random() * 2);
+        confettib.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confettib.style.height = Math.random() * 20 + 'px';
+        confettib.style.width = Math.random() * 10 + 'px';
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(confettib, {
+          rotation: Math.random() * 45
+        });
+        confettiArrBurst.push(confettib);
+      } else {
+        var xmlns = 'http://www.w3.org/2000/svg';
+
+        var _confettib = document.createElementNS(xmlns, 'svg');
+
+        _confettib.classList.add('confetti-svg');
+
+        burstWrapper.appendChild(_confettib);
+        _confettib.style.position = 'absolute';
+        _confettib.style.transform = 'scale(0)';
+        _confettib.style.transformOrigin = '50% 50%';
+        _confettib.style.zIndex = Math.floor(Math.random() * 2);
+        _confettib.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        _confettib.style.height = Math.random() * 20 + 'px';
+        _confettib.style.width = Math.random() * 10 + 'px';
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(_confettib, {
+          rotation: Math.random() * 45
+        });
+        confettiArrBurst.push(_confettib);
+      }
     }
   },
   rain: function rain() {
@@ -177,7 +232,7 @@ var confetti = {
   burst: function burst() {
     confettiArrBurst.forEach(function (item, index) {
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(item, {
-        duration: 1.2,
+        duration: 0.6,
         delay: .009 * index,
         y: Math.floor(random(-150, -200)),
         x: Math.floor(random(200, -200)),
@@ -189,7 +244,7 @@ var confetti = {
             duration: 2.5,
             delay: .001 * index,
             rotation: Math.floor(random(10, -360)),
-            y: '+=105vh',
+            y: '+=185vh',
             //opacity: 0, 
             ease: 'sine.inOut',
             onComplete: function onComplete() {
@@ -339,9 +394,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var counterRemainCount = document.querySelector('.dynamic-count');
   var counterCurrentCount = '00';
   var counterCurrentCountHolder = document.querySelector('.count-text-num');
-  var bookButton = document.querySelector('.book-container'); //book button
+  var bookBtnContainer = document.querySelector('.book-container'); //book button container
 
-  var bookBtnContainer = document.querySelector('.book-container');
+  var bookButton = document.querySelector('.book-button'); //book button
+
+  var bookButtonText = document.querySelector('.book-button--text'); //book button text
+
   var correctCardMessage = document.querySelector('.correct-text');
   var questionsResults = [].concat(_toConsumableArray(document.querySelectorAll('.main-page-card--question ')), [document.querySelector('.main-page-card--results')]);
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
@@ -399,7 +457,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         correctCardMessage.innerHTML = correctCardMessageOps[1];
       } else if (answeredCorrect.length > 7) {
         correctCardMessage.innerHTML = correctCardMessageOps[2];
-      }
+      } //Question/Answer fade IN/OUT
+
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(question, 0.5, {
         autoAlpha: 0,
@@ -434,7 +493,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       if (questionCount + 1 == 5 && bookBtnContainer.classList.contains('active')) {
         _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti burst
 
-        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButton, {
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(bookButtonText, {
+          opacity: 0
+        }); //book button text
+
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookBtnContainer, {
+          duration: 1,
+          autoAlpha: 1,
+          ease: 'back.out'
+        });
+        gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButtonText, {
+          delay: 3.5,
           duration: 1,
           autoAlpha: 1,
           ease: 'back.out'
@@ -487,11 +556,24 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           x: '-=100%',
           yoyo: true,
           ease: 'sine.inout'
-        });
+        }); //Rewind Counter when reaching 5 if coming from email
 
         if (questionCount + 1 == 5) {
           totalCardCount.innerHTML = counterTotalCount.innerHTML = "/".concat(theCards.length);
-          _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount));
+          _counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterMotion(_counter__WEBPACK_IMPORTED_MODULE_1__["countingMe"].counterPercent(questionCount)); //Hide 'Keep answering questions to learn more about what we did in 2019'
+
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookButtonText, {
+            delay: 0,
+            duration: 0.5,
+            autoAlpha: 0,
+            ease: 'back.out',
+            onComplete: function onComplete() {
+              bookButtonText.style.display = 'none';
+            }
+          }); //5 more left!
+
+          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " more left!");
+          console.log('FADE OUT TEXT');
         }
 
         if (e.target.classList.contains('last')) {
@@ -509,19 +591,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         questionCount++;
       });
     });
-  }); //COLOR CARDS--SPREAD
-
-  function spreadTheCards() {
-    var i = 0;
-
-    for (var _i = 0; _i < theColorCards.length; _i++) {
-      //rotation
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(theColorCards[_i], 1, {
-        rotation: -2.2 * _i
-      });
-    }
-  } //RANDOM MIN MAX
-
+  }); //RANDOM MIN MAX
 
   function random(min, max) {
     return min + Math.random() * (max - min);

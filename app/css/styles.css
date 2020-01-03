@@ -990,7 +990,8 @@ sup {
   bottom: 0;
   color: #656565;
   font-size: 10px;
-  height: 141px;
+  height: auto;
+  padding-bottom: 20px;
   position: relative;
   text-align: center;
   width: 100%;
@@ -1021,6 +1022,8 @@ sup {
   opacity: 0;
   pointer-events: none;
   z-index: 17;
+  left: 0;
+  bottom: 0;
 }
 
 .main-page-footer-slide.active {
@@ -1202,16 +1205,30 @@ sup {
   height: 118vh;
 }
 
-.cards.height-adjust.with-email {
-  height: 132vh;
+@media only screen and (min-width: 320px) {
+  .cards.height-adjust.with-email {
+    height: 132vh;
+  }
 }
 
-@media only screen and (min-width: 375px) {
+@media only screen and (min-width: 360px) {
   .cards.height-adjust {
     height: 108vh;
   }
   .cards.height-adjust.with-email {
-    height: 114vh;
+    height: 124vh;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .cards.height-adjust.with-email {
+    height: 132vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .cards.height-adjust.with-email {
+    height: 100vh;
   }
 }
 
@@ -1739,7 +1756,8 @@ sup {
     padding-bottom: 154%;
     width: 94%;
   }
-  .main-page-card--question, .main-page-card--results {
+  .main-page-card--question,
+  .main-page-card--results {
     height: 103%;
     width: 100%;
   }

@@ -6,16 +6,23 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
         burstWrapper = document.querySelector('.confetti-container--burst'),
         width = window.innerWidth,
         height = window.innerHeight,
-        colorArr = ['#55dded','#5599e0','#516673','#aaccdd','#41bbde','#41bbde','#ffffff','#445567', '#52d521', '#ff0000', '#FF8000'],
         confettiArr = [],
         confettiArrBurst = [],
-        num = 800,
-        tl = new TimelineMax({repeat:0, repeatDelay:0});
+        num = 650,
+        colors = ['red','green','blue','yellow','orange','pink','purple','white','black','white'],
+        finalHex = colors[Math.floor(Math.random() * colors.length)],
+        //ussr agent
+        ua = window.navigator.userAgent,
+        msie = ua.indexOf('MSIE');
 
 
     //RANDOM MIN MAX
 		function random(min, max) {
 			return min + Math.random() * (max - min);
+    }
+
+    function setAttributes(el, attrs) {
+      Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
     }
     
     //resize width for confetti rain
@@ -30,14 +37,44 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
       buildRain: () => {
 
         for (let i=0; i<num; i++){
-          let confetti = document.createElement('div');
-          wrapper.appendChild(confetti);
-          confetti.style.position = 'absolute';
-          confetti.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
-          confetti.style.height = Math.random() * 20 + 'px';
-          confetti.style.width = Math.random() * 10 + 'px';
-          gsap.set(confetti,{x:Math.random() * width, y:Math.random() * height - (height + 50), rotation:Math.random() *45, scale: Math.random() * 1.2});
-          confettiArr.push(confetti);
+          //if IE
+          if (Object.hasOwnProperty.call(window, 'ActiveXObject') && !window.ActiveXObject) {
+            let confetti = document.createElement('div');
+            confetti.className += 'confetti-svg';
+            wrapper.appendChild(confetti);
+            confetti.style.position = 'absolute';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.height = Math.random() * 20 + 'px';
+            confetti.style.width = Math.random()  * 10 + 'px';
+            confetti.style.zIndex = Math.floor( Math.random() * 20 );
+            gsap.set(confetti,{
+              x:Math.random() * width, 
+              y:Math.random() * height - (height + 50), 
+              rotation:Math.random() *45, 
+              scale: Math.random() * 1.2
+            });
+            confettiArr.push(confetti);
+          }
+          else {
+            let xmlns = 'http://www.w3.org/2000/svg';
+            let confetti = document.createElementNS(xmlns, 'svg');
+            confetti.classList.add('confetti-svg');
+            wrapper.appendChild(confetti);
+            confetti.style.position = 'absolute';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.height = Math.random() * 20 + 'px';
+            confetti.style.width = Math.random()  * 10 + 'px';
+            confetti.style.zIndex = Math.floor( Math.random() * 20 );
+            gsap.set(confetti,{
+              x:Math.random() * width, 
+              y:Math.random() * height - (height + 50), 
+              rotation:Math.random() *45, 
+              scale: Math.random() * 1.2
+            });
+            confettiArr.push(confetti);
+          }
+
+          
           //console.log(' confetti ', i);
         }
 
@@ -46,17 +83,37 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
       buildBurst: () => {
 
         for (let i=0; i<200; i++){
-          let confettib = document.createElement('div');
-          burstWrapper.appendChild(confettib);
-          confettib.style.transform = 'scale(0)';
-          confettib.style.transformOrigin = '50% 50%';
-          confettib.style.position = 'absolute';
-          confettib.style.zIndex = Math.floor( Math.random() * 2 );
-          confettib.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
-          confettib.style.height = Math.random() * 20 + 'px';
-          confettib.style.width = Math.random() * 10 + 'px';
-          gsap.set(confettib,{rotation:Math.random() * 45});
-          confettiArrBurst.push(confettib);
+          //if IE
+          if (Object.hasOwnProperty.call(window, 'ActiveXObject') && !window.ActiveXObject) {
+            let confettib = document.createElement('div');
+            confettib.className += 'confetti-svg';
+            burstWrapper.appendChild(confettib);
+            confettib.style.position = 'absolute';
+            confettib.style.transform = 'scale(0)';
+            confettib.style.transformOrigin = '50% 50%';
+            confettib.style.zIndex = Math.floor( Math.random() * 2 );
+            confettib.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confettib.style.height = Math.random() * 20 + 'px';
+            confettib.style.width = Math.random() * 10 + 'px';
+            gsap.set(confettib,{rotation:Math.random() * 45});
+            confettiArrBurst.push(confettib);
+          }
+          else {
+            let xmlns = 'http://www.w3.org/2000/svg';
+            let confettib = document.createElementNS(xmlns, 'svg');
+            confettib.classList.add('confetti-svg');
+            burstWrapper.appendChild(confettib);
+            confettib.style.position = 'absolute';
+            confettib.style.transform = 'scale(0)';
+            confettib.style.transformOrigin = '50% 50%';
+            confettib.style.zIndex = Math.floor( Math.random() * 2 );
+            confettib.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confettib.style.height = Math.random() * 20 + 'px';
+            confettib.style.width = Math.random() * 10 + 'px';
+            gsap.set(confettib,{rotation:Math.random() * 45});
+            confettiArrBurst.push(confettib);
+          }
+        
           
         }
 
@@ -84,7 +141,7 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
       burst: () => {
         confettiArrBurst.forEach(function(item, index){
           gsap.to(item, {
-            duration: 1.2,
+            duration: 0.6,
             delay: .009 * index, 
             y: Math.floor( random(-150, -200)),
             x: Math.floor( random(200, -200)),
@@ -96,7 +153,7 @@ import {gsap, TweenMax, TimelineMax, Power, Power4, Linear, Quad} from 'gsap';
                 duration: 2.5, 
                 delay: .001 * index,
                 rotation: Math.floor( random(10, -360)), 
-                y: '+=105vh', 
+                y: '+=185vh', 
                 //opacity: 0, 
                 ease:'sine.inOut',
                 onComplete: function(){

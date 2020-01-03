@@ -1,3 +1,11 @@
+//div,
+//img,
+//p,
+//span,
+//svg {
+//  outline: 1px solid $red;
+//}
+
 .cards {
   position: relative;
   width: 100%;
@@ -10,15 +18,35 @@
 
     height: 118vh;
 
-    &.with-email {
-      height: 132vh;
+    @media only screen and (min-width: 320px) {
+
+      //If coming from the EMAIL
+      &.with-email {
+        height: 132vh;
+      }
     }
 
-    @media only screen and (min-width: 375px) {
+    @media only screen and (min-width: 360px) {
       height: 108vh;
 
+      //If coming from the EMAIL
       &.with-email {
-        height: 114vh;
+        height: 124vh;
+      }
+    }
+
+    @media only screen and (min-width: 576px) {
+
+      //If coming from the EMAIL
+      &.with-email {
+        height: 132vh;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      //If coming from the EMAIL
+      &.with-email {
+        height: 100vh;
       }
     }
 
