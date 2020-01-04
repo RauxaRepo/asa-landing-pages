@@ -1881,7 +1881,7 @@ svg path {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 865px) {
   .cards-progress-container {
     width: 100%;
     align-self: center;
@@ -1982,6 +1982,14 @@ svg path {
   width: 20px;
   pointer-events: none;
   z-index: 20;
+}
+
+@media only screen and (max-width: 865px) {
+  .confetti-container--burst {
+    right: 0;
+    top: 99px;
+    left: 0;
+  }
 }
 
 @media only screen and (max-width: 768px) {

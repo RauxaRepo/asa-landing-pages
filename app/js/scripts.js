@@ -987,14 +987,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         rotation: -2.2 * _i,
         ease: 'back.out'
       });
-
-      if (_i == theColorCards.length - 1) {
-        setTimeout(function () {
+      /*if( i == theColorCards.length - 1 ) {
+         setTimeout( ()=> {
           //Build confetti particles
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildBurst();
-        }, 1000);
-      }
+          confetti.buildRain();
+          confetti.buildBurst();
+        }, 1000)
+      }*/
     }
   } //HIDE COLOR CARDS
 
@@ -1189,8 +1188,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       loadedImages++;
 
       if (loadedImages == imageArr.length) {
-        //*RUN FUNCTION HERE*
-        hideColorCards();
+        //*RUN FUNCTION HERE*//
+        hideColorCards(); //build confetti particles
+
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildBurst(); //scroll cards
+
         scrollCards(document.querySelector('.cards-single--init-card'));
       }
     }
