@@ -48,7 +48,7 @@ export default function () {
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15%* discount' : '10 more left!';
+		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15% discount' : '10 more left!';
 		
 
 		//bg animation
@@ -76,12 +76,6 @@ export default function () {
 
 
 		questionBtns.forEach((btn) => {
-      /*//disable all buttons
-      btn.disabled = true;
-      let disableTime = setInterval(function(){
-        btn.disabled = false;
-        clearInterval(disableTime);
-      },2000)*/
 
 			btn.addEventListener('click', (e) => {
 
@@ -95,7 +89,7 @@ export default function () {
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
-        //Disable buttons
+        //disable buttons
         btn.disabled = true;
         nextQuestButton.disabled = true;
 
@@ -134,7 +128,6 @@ export default function () {
           autoAlpha: 0, 
           ease: 'power4.inOut',
           onComplete: function(){
-            //Enable buttons
             nextQuestButton.disabled = false;
           }
         })
