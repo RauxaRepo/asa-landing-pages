@@ -109,14 +109,14 @@ export default function () {
       //rotation
       gsap.to(theColorCards[i], 1, {rotation: - 2.2 * i, ease: 'back.out'});
 
-      if( i == theColorCards.length - 1 ) {
+      /*if( i == theColorCards.length - 1 ) {
 
         setTimeout( ()=> {
           //Build confetti particles
           confetti.buildRain();
           confetti.buildBurst();
         }, 1000)
-      }
+      }*/
 
     }
   }
@@ -280,8 +280,12 @@ export default function () {
     function trackProgress(){
       loadedImages++;
       if(loadedImages == imageArr.length){
-        //*RUN FUNCTION HERE*
+        //*RUN FUNCTION HERE*//
         hideColorCards();
+        //build confetti particles
+        confetti.buildRain();
+        confetti.buildBurst();
+        //scroll cards
         scrollCards(document.querySelector('.cards-single--init-card'));
       }
     };

@@ -525,7 +525,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       if (counterCurrentCount < 5) {
         counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? "Answer ".concat(theCards.length / 2 - counterCurrentCount, " more to unlock your 15% discount") : "".concat(theCards.length - counterCurrentCount, " more left!");
       } else if (counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
-        counterRemainCount.innerHTML = "You've unlocked 15% off a flight!";
+        counterRemainCount.innerHTML = "You've unlocked 15% off* a flight!";
         document.querySelector('.cards').classList.add('with-email');
       } else {
         counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " more left!");
@@ -987,14 +987,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         rotation: -2.2 * _i,
         ease: 'back.out'
       });
-
-      if (_i == theColorCards.length - 1) {
-        setTimeout(function () {
+      /*if( i == theColorCards.length - 1 ) {
+         setTimeout( ()=> {
           //Build confetti particles
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
-          _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildBurst();
-        }, 1000);
-      }
+          confetti.buildRain();
+          confetti.buildBurst();
+        }, 1000)
+      }*/
     }
   } //HIDE COLOR CARDS
 
@@ -1189,8 +1188,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       loadedImages++;
 
       if (loadedImages == imageArr.length) {
-        //*RUN FUNCTION HERE*
-        hideColorCards();
+        //*RUN FUNCTION HERE*//
+        hideColorCards(); //build confetti particles
+
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildRain();
+        _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].buildBurst(); //scroll cards
+
         scrollCards(document.querySelector('.cards-single--init-card'));
       }
     }
