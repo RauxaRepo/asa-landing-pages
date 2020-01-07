@@ -134,7 +134,7 @@ export default function () {
       //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
         confetti.burst();//confetti burst
-        gsap.set(bookButtonText, {opacity:0});//book button text
+        gsap.set(bookButtonText, {autoAlpha: 0});//book button text
         gsap.to(bookBtnContainer, {duration: 1, autoAlpha: 1, ease: 'back.out', });
         gsap.to(bookButtonText, {delay: 3.5, duration: 1, autoAlpha: 1, ease: 'back.out'});
       }
