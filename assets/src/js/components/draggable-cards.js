@@ -439,7 +439,7 @@ export default function () {
 
 
 		//RUN FUNCTIONS
-		//dragCards();//drag question cards
+		dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
 		       

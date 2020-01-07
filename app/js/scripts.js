@@ -405,7 +405,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? "/0".concat(theCards.length / 2) : "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15%* discount' : '10 more left!'; //bg animation
+  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15% discount' : '10 more left!'; //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
@@ -436,19 +436,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     ease: 'sine.out'
   }).addLabel('q9');
   questionBtns.forEach(function (btn) {
-    /*//disable all buttons
-    btn.disabled = true;
-    let disableTime = setInterval(function(){
-      btn.disabled = false;
-      clearInterval(disableTime);
-    },2000)*/
     btn.addEventListener('click', function (e) {
       var btnHolder = e.target.parentNode.parentNode.parentNode;
       var question = btnHolder.querySelector('.quest');
       var answersBtns = e.target.parentNode;
       var answerSelected = btn.getAttribute('data-res');
       var nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
-      var nextQuestButton = nextQuestion.querySelector('.next-question--button'); //Disable buttons
+      var nextQuestButton = nextQuestion.querySelector('.next-question--button'); //disable buttons
 
       btn.disabled = true;
       nextQuestButton.disabled = true;
@@ -484,7 +478,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         autoAlpha: 0,
         ease: 'power4.inOut',
         onComplete: function onComplete() {
-          //Enable buttons
           nextQuestButton.disabled = false;
         }
       });
@@ -788,8 +781,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function allEventListeners() {
     sm.addListener(media576Px);
   } //RUN FUNCTIONS
-  //dragCards();//drag question cards
 
+
+  dragCards(); //drag question cards
 
   init(); //start touch controls
 
