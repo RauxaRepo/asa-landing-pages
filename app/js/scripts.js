@@ -405,7 +405,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? "/0".concat(theCards.length / 2) : "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15% discount' : '10 more left!'; //bg animation
+  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15%* discount' : '10 more left!'; //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
