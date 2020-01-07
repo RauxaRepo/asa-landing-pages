@@ -436,13 +436,22 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     ease: 'sine.out'
   }).addLabel('q9');
   questionBtns.forEach(function (btn) {
+    /*//disable all buttons
+    btn.disabled = true;
+    let disableTime = setInterval(function(){
+      btn.disabled = false;
+      clearInterval(disableTime);
+    },2000)*/
     btn.addEventListener('click', function (e) {
       var btnHolder = e.target.parentNode.parentNode.parentNode;
       var question = btnHolder.querySelector('.quest');
       var answersBtns = e.target.parentNode;
       var answerSelected = btn.getAttribute('data-res');
       var nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
-      var nextQuestButton = nextQuestion.querySelector('.next-question--button');
+      var nextQuestButton = nextQuestion.querySelector('.next-question--button'); //Disable buttons
+
+      btn.disabled = true;
+      nextQuestButton.disabled = true;
 
       if (e.target.classList.contains('right-answer-bttn')) {
         answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
@@ -462,10 +471,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(question, 0.5, {
         autoAlpha: 0,
-        ease: 'power4.inOut'
-      });
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(answersBtns, 0.5, {
-        autoAlpha: 0,
         ease: 'power4.inOut',
         onComplete: function onComplete() {
           btnHolder.classList.remove('na');
@@ -473,6 +478,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           answersBtns.classList.add('hide');
           nextQuestion.classList.remove('hide');
           btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(answersBtns, 0.5, {
+        autoAlpha: 0,
+        ease: 'power4.inOut',
+        onComplete: function onComplete() {
+          //Enable buttons
+          nextQuestButton.disabled = false;
         }
       });
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")), 0.5, {
@@ -775,9 +788,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   function allEventListeners() {
     sm.addListener(media576Px);
   } //RUN FUNCTIONS
+  //dragCards();//drag question cards
 
-
-  dragCards(); //drag question cards
 
   init(); //start touch controls
 

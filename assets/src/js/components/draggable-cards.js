@@ -76,6 +76,12 @@ export default function () {
 
 
 		questionBtns.forEach((btn) => {
+      /*//disable all buttons
+      btn.disabled = true;
+      let disableTime = setInterval(function(){
+        btn.disabled = false;
+        clearInterval(disableTime);
+      },2000)*/
 
 			btn.addEventListener('click', (e) => {
 
@@ -88,6 +94,10 @@ export default function () {
 
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
+
+        //Disable buttons
+        btn.disabled = true;
+        nextQuestButton.disabled = true;
 
 				if(e.target.classList.contains('right-answer-bttn')) {
 					
@@ -109,9 +119,8 @@ export default function () {
 				
 				
         //Question/Answer fade IN/OUT
-        gsap.to(question, 0.5,{autoAlpha: 0, ease: 'power4.inOut'})
-        gsap.to(answersBtns, 0.5,{ 
-          autoAlpha: 0, 
+        gsap.to(question, 0.5,{
+          autoAlpha: 0,
           ease: 'power4.inOut',
           onComplete: function(){
             btnHolder.classList.remove('na');
@@ -119,6 +128,14 @@ export default function () {
             answersBtns.classList.add('hide');
             nextQuestion.classList.remove('hide');
             btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
+          }
+        })
+        gsap.to(answersBtns, 0.5,{ 
+          autoAlpha: 0, 
+          ease: 'power4.inOut',
+          onComplete: function(){
+            //Enable buttons
+            nextQuestButton.disabled = false;
           }
         })
         gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
@@ -429,7 +446,7 @@ export default function () {
 
 
 		//RUN FUNCTIONS
-		dragCards();//drag question cards
+		//dragCards();//drag question cards
 		init();//start touch controls
 		allEventListeners()//eventlisteners
 		       
