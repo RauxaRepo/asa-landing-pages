@@ -48,7 +48,7 @@ export default function () {
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15%* discount' : '10 more left!';
+		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15% discount' : '10 more left!';
 		
 
 		//bg animation
@@ -89,6 +89,10 @@ export default function () {
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
+        //disable buttons
+        btn.disabled = true;
+        nextQuestButton.disabled = true;
+
 				if(e.target.classList.contains('right-answer-bttn')) {
 					
 					answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
@@ -109,9 +113,8 @@ export default function () {
 				
 				
         //Question/Answer fade IN/OUT
-        gsap.to(question, 0.5,{autoAlpha: 0, ease: 'power4.inOut'})
-        gsap.to(answersBtns, 0.5,{ 
-          autoAlpha: 0, 
+        gsap.to(question, 0.5,{
+          autoAlpha: 0,
           ease: 'power4.inOut',
           onComplete: function(){
             btnHolder.classList.remove('na');
@@ -119,6 +122,13 @@ export default function () {
             answersBtns.classList.add('hide');
             nextQuestion.classList.remove('hide');
             btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
+          }
+        })
+        gsap.to(answersBtns, 0.5,{ 
+          autoAlpha: 0, 
+          ease: 'power4.inOut',
+          onComplete: function(){
+            nextQuestButton.disabled = false;
           }
         })
         gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
@@ -134,7 +144,7 @@ export default function () {
       //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
         confetti.burst();//confetti burst
-        gsap.set(bookButtonText, {opacity:0});//book button text
+        gsap.set(bookButtonText, {autoAlpha: 0});//book button text
         gsap.to(bookBtnContainer, {duration: 1, autoAlpha: 1, ease: 'back.out', });
         gsap.to(bookButtonText, {delay: 3.5, duration: 1, autoAlpha: 1, ease: 'back.out'});
       }

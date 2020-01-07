@@ -74,7 +74,7 @@ export default function () {
         amount: 1.5,
         onComplete: function(e) {
  
-            gsap.to(e._targets,{duration:.25,autoAlpha:0});
+            gsap.to(cards,{delay:2, duration:.25,autoAlpha:0});
           
         }
     }})

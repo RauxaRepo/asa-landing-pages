@@ -10,11 +10,13 @@
   width: 100%;
   z-index: 9;
   transform: translateY(-100%);
-  transition: transform 0.7s ease;
+  transition: transform .7s ease;
   transition-delay: 1.5s;
+
   &.active {
     transform: translateY(0%);
   }
+
   p {
     padding: 10px 0 0;
     width: 100%;

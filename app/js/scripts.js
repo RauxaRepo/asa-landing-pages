@@ -405,7 +405,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
   totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? "/0".concat(theCards.length / 2) : "/".concat(theCards.length);
   counterCurrentCountHolder.innerHTML = counterCurrentCount;
-  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15%* discount' : '10 more left!'; //bg animation
+  counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15% discount' : '10 more left!'; //bg animation
 
   tl.to('.cards', 1, {
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
@@ -442,7 +442,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var answersBtns = e.target.parentNode;
       var answerSelected = btn.getAttribute('data-res');
       var nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
-      var nextQuestButton = nextQuestion.querySelector('.next-question--button');
+      var nextQuestButton = nextQuestion.querySelector('.next-question--button'); //disable buttons
+
+      btn.disabled = true;
+      nextQuestButton.disabled = true;
 
       if (e.target.classList.contains('right-answer-bttn')) {
         answeredCorrect.push(e.target.parentNode.parentNode.parentNode);
@@ -462,10 +465,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(question, 0.5, {
         autoAlpha: 0,
-        ease: 'power4.inOut'
-      });
-      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(answersBtns, 0.5, {
-        autoAlpha: 0,
         ease: 'power4.inOut',
         onComplete: function onComplete() {
           btnHolder.classList.remove('na');
@@ -473,6 +472,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           answersBtns.classList.add('hide');
           nextQuestion.classList.remove('hide');
           btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.remove('hide');
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(answersBtns, 0.5, {
+        autoAlpha: 0,
+        ease: 'power4.inOut',
+        onComplete: function onComplete() {
+          nextQuestButton.disabled = false;
         }
       });
       gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")), 0.5, {
@@ -494,7 +500,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _confetti__WEBPACK_IMPORTED_MODULE_2__["confetti"].burst(); //confetti burst
 
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].set(bookButtonText, {
-          opacity: 0
+          autoAlpha: 0
         }); //book button text
 
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(bookBtnContainer, {
@@ -937,7 +943,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       stagger: {
         amount: 1.5,
         onComplete: function onComplete(e) {
-          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(e._targets, {
+          gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(cards, {
+            delay: 2,
             duration: .25,
             autoAlpha: 0
           });
