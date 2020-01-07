@@ -48,7 +48,7 @@ export default function () {
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15% discount' : '10 more left!';
+		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15%* discount' : '10 more left!';
 		
 
 		//bg animation
