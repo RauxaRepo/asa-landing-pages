@@ -212,7 +212,7 @@ export default function () {
         btnHolder.parentNode.classList.add('disable');
 
         gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in', onComplete: function(){
-          //hide card after animation
+          //hide cards after drop down animation
           btnHolder.parentNode.style.display = 'none';
         }});
         gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});

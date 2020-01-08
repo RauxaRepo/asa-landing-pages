@@ -557,7 +557,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           top: '+=100vh',
           ease: 'sine.in',
           onComplete: function onComplete() {
-            //hide card after animation
+            //hide cards after drop down animation
             btnHolder.parentNode.style.display = 'none';
           }
         });
