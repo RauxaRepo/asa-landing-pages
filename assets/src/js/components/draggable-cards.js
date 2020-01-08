@@ -211,7 +211,10 @@ export default function () {
         nextQuestion.classList.add('disable');
         btnHolder.parentNode.classList.add('disable');
 
-        gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in'});
+        gsap.to(btnHolder.parentNode,  {duration:1, top: '+=100vh', ease:'sine.in', onComplete: function(){
+          //hide card after animation
+          btnHolder.parentNode.style.display = 'none';
+        }});
         gsap.to(btnHolder.parentNode,  {duration:1, x: '-=100%', yoyo: true, ease:'sine.inout'});
         
         //Rewind Counter when reaching 5 if coming from email
@@ -224,7 +227,7 @@ export default function () {
           }});
           //5 more left!
           counterRemainCount.innerHTML = `${theCards.length - counterCurrentCount} more left!`;
-          console.log('FADE OUT TEXT');
+          //console.log('FADE OUT TEXT');
         }
 				
 				if(e.target.classList.contains('last')) {
