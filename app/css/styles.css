@@ -1393,6 +1393,12 @@ sup {
   background-repeat: no-repeat;
 }
 
+@media only screen and (max-width: 320px) {
+  .cards.height-adjust {
+    height: 127vh;
+  }
+}
+
 @media only screen and (max-width: 576px) {
   .cards-single.cta .cards-single--init-card button {
     bottom: 16px;
