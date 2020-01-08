@@ -555,7 +555,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
           duration: 1,
           top: '+=100vh',
-          ease: 'sine.in'
+          ease: 'sine.in',
+          onComplete: function onComplete() {
+            //hide cards after drop down animation
+            btnHolder.parentNode.style.display = 'none';
+          }
         });
         gsap__WEBPACK_IMPORTED_MODULE_0__["gsap"].to(btnHolder.parentNode, {
           duration: 1,
@@ -578,8 +582,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             }
           }); //5 more left!
 
-          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " more left!");
-          console.log('FADE OUT TEXT');
+          counterRemainCount.innerHTML = "".concat(theCards.length - counterCurrentCount, " more left!"); //console.log('FADE OUT TEXT');
         }
 
         if (e.target.classList.contains('last')) {
