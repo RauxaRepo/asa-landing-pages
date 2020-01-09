@@ -50,7 +50,7 @@ export default function () {
 
 		totalCardCount.innerHTML = counterTotalCount.innerHTML = bookBtnContainer.classList.contains('active') ? `/0${theCards.length/2}` : `/${theCards.length}`;
 		counterCurrentCountHolder.innerHTML = counterCurrentCount;
-		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15%* discount' : '10 more left!';
+		counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? 'Answer 5 more to unlock your 15%* discount.' : '10 more left!';
 		
 
 		//bg animation
@@ -183,7 +183,7 @@ export default function () {
 
 			if(counterCurrentCount < 5 ) {
 
-				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} more to unlock your 15%* discount` : `${theCards.length - counterCurrentCount} more left!`;
+				counterRemainCount.innerHTML = bookBtnContainer.classList.contains('active') ? `Answer ${(theCards.length / 2) - counterCurrentCount} more to unlock your 15%* discount.` : `${theCards.length - counterCurrentCount} more left!`;
 			} else if(counterCurrentCount == 5 && bookBtnContainer.classList.contains('active')) {
         counterRemainCount.innerHTML = `You've unlocked 15% off* a flight!`;
         document.querySelector('.cards').classList.add('with-email');
