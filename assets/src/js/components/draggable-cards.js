@@ -241,6 +241,10 @@ export default function () {
 				counterRemainCount.innerHTML = 'You did it!';
 				bookBtnContainer.querySelector('button').classList.add('end');
 				document.querySelector('.count-text--quest').classList.add('end');
+
+				// tracking:
+				// question and answer.
+				track.seeResults();
 			} else {
 				// tracking:
 				// question and answer.

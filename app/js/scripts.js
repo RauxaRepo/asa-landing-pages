@@ -593,7 +593,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         if (e.target.classList.contains('last')) {
           counterRemainCount.innerHTML = 'You did it!';
           bookBtnContainer.querySelector('button').classList.add('end');
-          document.querySelector('.count-text--quest').classList.add('end');
+          document.querySelector('.count-text--quest').classList.add('end'); // tracking:
+          // question and answer.
+
+          _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].seeResults();
         } else {
           // tracking:
           // question and answer.
@@ -845,7 +848,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
-    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
+    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source'], "&int=AS_year-in-review-quiz_book5||20200115_QUIZ||-prodID:Loyalty"));
   } // 
 
 
