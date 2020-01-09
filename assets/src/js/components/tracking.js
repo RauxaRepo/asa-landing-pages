@@ -32,6 +32,14 @@
                 'next_question' : question,
                 'channel': 'loyalty'
             });
+        },
+        seeResults: () => {
+            utag.link({
+                'page_name' : 'loyalty:2019-year-in-review-quiz:results',
+                'events' : 'event106',
+                'Text': 'See Results',
+                 'channel': 'loyalty'
+            });
         }
 
     }
