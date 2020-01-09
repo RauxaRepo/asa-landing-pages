@@ -1296,7 +1296,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "track", function() { return track; });
 var track = {
   getStarted: function getStarted() {
-    utag.link({
+    utag.view({
       'page_name': 'loyalty:2019-year-in-review-quiz:home',
       'events': 'event105',
       'Text': 'Get-Started',
@@ -1304,7 +1304,7 @@ var track = {
     });
   },
   questionAnswer: function questionAnswer(question, answer) {
-    utag.link({
+    utag.view({
       'page_name': "loyalty:2019-year-in-review-quiz:".concat(question),
       'events': 'click',
       'question': question,
@@ -1314,7 +1314,7 @@ var track = {
     });
   },
   nextQuestion: function nextQuestion(question) {
-    utag.link({
+    utag.view({
       'page_name': "loyalty:2019-year-in-review-quiz:".concat(question),
       'events': 'click',
       'Text': 'Next Question',
@@ -1323,7 +1323,7 @@ var track = {
     });
   },
   seeResults: function seeResults() {
-    utag.link({
+    utag.view({
       'page_name': 'loyalty:2019-year-in-review-quiz:results',
       'events': 'event106',
       'Text': 'See Results',
