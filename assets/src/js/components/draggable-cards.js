@@ -37,7 +37,8 @@ export default function () {
     let counterCurrentCountHolder = document.querySelector('.count-text-num');
     let bookBtnContainer = document.querySelector('.book-container');//book button container
     let bookButton = document.querySelector('.book-button');//book button
-    let bookButtonText = document.querySelector('.book-button--text');//book button text
+	let bookButtonText = document.querySelector('.book-button--text');//book button text
+	let bookBtnExit = document.querySelector('a[data-discount]');
 
     let correctCardMessage = document.querySelector('.correct-text');
     let questionsResults = [...document.querySelectorAll('.main-page-card--question '),document.querySelector('.main-page-card--results')];
@@ -74,7 +75,13 @@ export default function () {
 		.addLabel('q9');
 		
 
-
+		bookBtnExit.addEventListener('click', (e) => {
+			e.preventDefault();
+			let baseUrl = e.target.parentNode.getAttribute('href');
+			let trackParam = `${baseUrl}&int=AS_year-in-review-quiz_book${questionCount+1}||20200115_QUIZ||-prodID:Loyalty`;
+			window.location.href = baseUrl+trackParam;
+		});
+		
 
 		questionBtns.forEach((btn) => {
 

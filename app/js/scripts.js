@@ -402,6 +402,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var bookButtonText = document.querySelector('.book-button--text'); //book button text
 
+  var bookBtnExit = document.querySelector('a[data-discount]');
   var correctCardMessage = document.querySelector('.correct-text');
   var questionsResults = [].concat(_toConsumableArray(document.querySelectorAll('.main-page-card--question ')), [document.querySelector('.main-page-card--results')]);
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
@@ -437,6 +438,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q9');
+  bookBtnExit.addEventListener('click', function (e) {
+    e.preventDefault();
+    var baseUrl = e.target.parentNode.getAttribute('href');
+    var trackParam = "".concat(baseUrl, "&int=AS_year-in-review-quiz_book").concat(questionCount + 1, "||20200115_QUIZ||-prodID:Loyalty");
+    window.location.href = baseUrl + trackParam;
+  });
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       // tracking:
@@ -848,7 +855,7 @@ var base64 = __webpack_require__(/*! base-64 */ "../node_modules/base-64/base64.
     disctountRibbon.classList.add('active');
     discountLegal.classList.add('active');
     bookBtn.classList.add('active');
-    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source'], "&int=AS_year-in-review-quiz_book5||20200115_QUIZ||-prodID:Loyalty"));
+    bookBtn.setAttribute('href', "https://www.alaskaair.com/planbook/?ODAI=".concat(urlVars()['ODAI'], "&offid=").concat(urlVars()['offid'], "&eml=").concat(urlVars()['eml'], "&utm_campaign=").concat(urlVars()['utm_campaign'], "&utm_medium=").concat(urlVars()['utm_medium'], "&utm_source=").concat(urlVars()['utm_source']));
   } // 
 
 

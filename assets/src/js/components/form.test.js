@@ -44,7 +44,7 @@ export default function () {
         disctountRibbon.classList.add('active');
         discountLegal.classList.add('active');
         bookBtn.classList.add('active');
-        bookBtn.setAttribute('href',`https://www.alaskaair.com/planbook/?ODAI=${urlVars()['ODAI']}&offid=${urlVars()['offid']}&eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}&int=AS_year-in-review-quiz_book5||20200115_QUIZ||-prodID:Loyalty`);
+        bookBtn.setAttribute('href',`https://www.alaskaair.com/planbook/?ODAI=${urlVars()['ODAI']}&offid=${urlVars()['offid']}&eml=${urlVars()['eml']}&utm_campaign=${urlVars()['utm_campaign']}&utm_medium=${urlVars()['utm_medium']}&utm_source=${urlVars()['utm_source']}`);
     }
 
     // 
