@@ -349,6 +349,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
 /* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter */ "../assets/src/js/components/counter.js");
 /* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
+/* harmony import */ var _tracking__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tracking */ "../assets/src/js/components/tracking.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -356,6 +357,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -400,6 +402,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var bookButtonText = document.querySelector('.book-button--text'); //book button text
 
+  var bookBtnExit = document.querySelector('a[data-discount]');
   var correctCardMessage = document.querySelector('.correct-text');
   var questionsResults = [].concat(_toConsumableArray(document.querySelectorAll('.main-page-card--question ')), [document.querySelector('.main-page-card--results')]);
   var correctCardMessageOps = ['NICE TRY!', 'GOOD WORK!', 'AMAZING!'];
@@ -435,8 +438,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q9');
+  bookBtnExit.addEventListener('click', function (e) {
+    e.preventDefault();
+    var baseUrl = e.target.parentNode.getAttribute('href');
+    var trackParam = "".concat(baseUrl, "&int=AS_year-in-review-quiz_book").concat(questionCount + 1, "||20200115_QUIZ||-prodID:Loyalty");
+    window.location.href = baseUrl + trackParam;
+  });
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
+      // tracking:
+      // question and answer.
+      _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].questionAnswer(questionCount + 1, btn.textContent);
       var btnHolder = e.target.parentNode.parentNode.parentNode;
       var question = btnHolder.querySelector('.quest');
       var answersBtns = e.target.parentNode;
@@ -588,7 +600,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         if (e.target.classList.contains('last')) {
           counterRemainCount.innerHTML = 'You did it!';
           bookBtnContainer.querySelector('button').classList.add('end');
-          document.querySelector('.count-text--quest').classList.add('end');
+          document.querySelector('.count-text--quest').classList.add('end'); // tracking:
+          // question and answer.
+
+          _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].seeResults();
+        } else {
+          // tracking:
+          // question and answer.
+          _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].nextQuestion(questionCount + 2);
         }
 
         if (questionCount + 1 == 10) {
@@ -897,6 +916,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
 /* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter */ "../assets/src/js/components/counter.js");
 /* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
+/* harmony import */ var _tracking__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tracking */ "../assets/src/js/components/tracking.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -904,6 +924,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -1111,6 +1132,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           duration: .5,
           top: topOffer.offsetTop - (topOffer.clientHeight + 10)
         }); //hide header
+        //* Get Started  */
+
+        _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].getStarted();
       });
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
@@ -1257,6 +1281,57 @@ __webpack_require__.r(__webpack_exports__);
     fbButtonAnchor.setAttribute('href', "https://www.facebook.com/sharer/sharer.php?u=".concat(siteHost, "&amp;src=sdkpreparse"));
   }
 });
+
+/***/ }),
+
+/***/ "../assets/src/js/components/tracking.js":
+/*!***********************************************!*\
+  !*** ../assets/src/js/components/tracking.js ***!
+  \***********************************************/
+/*! exports provided: track */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "track", function() { return track; });
+var track = {
+  getStarted: function getStarted() {
+    utag.link({
+      'page_name': 'loyalty:2019-year-in-review-quiz:home',
+      'events': 'event105',
+      'Text': 'Get-Started',
+      'channel': 'loyalty'
+    });
+  },
+  questionAnswer: function questionAnswer(question, answer) {
+    utag.link({
+      'page_name': "loyalty:2019-year-in-review-quiz:".concat(question),
+      'events': 'click',
+      'question': question,
+      'answer_selected': answer,
+      'correct': 'true',
+      'channel': 'loyalty'
+    });
+  },
+  nextQuestion: function nextQuestion(question) {
+    utag.link({
+      'page_name': "loyalty:2019-year-in-review-quiz:".concat(question),
+      'events': 'click',
+      'Text': 'Next Question',
+      'next_question': question,
+      'channel': 'loyalty'
+    });
+  },
+  seeResults: function seeResults() {
+    utag.link({
+      'page_name': 'loyalty:2019-year-in-review-quiz:results',
+      'events': 'event106',
+      'Text': 'See Results',
+      'channel': 'loyalty'
+    });
+  }
+};
+
 
 /***/ }),
 

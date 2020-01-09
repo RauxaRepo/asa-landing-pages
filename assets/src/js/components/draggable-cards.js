@@ -1,6 +1,7 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 import { countingMe } from './counter';
 import { confetti } from './confetti';
+import { track } from './tracking';
 
 export default function () {
 
@@ -36,7 +37,8 @@ export default function () {
     let counterCurrentCountHolder = document.querySelector('.count-text-num');
     let bookBtnContainer = document.querySelector('.book-container');//book button container
     let bookButton = document.querySelector('.book-button');//book button
-    let bookButtonText = document.querySelector('.book-button--text');//book button text
+	let bookButtonText = document.querySelector('.book-button--text');//book button text
+	let bookBtnExit = document.querySelector('a[data-discount]');
 
     let correctCardMessage = document.querySelector('.correct-text');
     let questionsResults = [...document.querySelectorAll('.main-page-card--question '),document.querySelector('.main-page-card--results')];
@@ -73,11 +75,21 @@ export default function () {
 		.addLabel('q9');
 		
 
-
+		bookBtnExit.addEventListener('click', (e) => {
+			e.preventDefault();
+			let baseUrl = e.target.parentNode.getAttribute('href');
+			let trackParam = `${baseUrl}&int=AS_year-in-review-quiz_book${questionCount+1}||20200115_QUIZ||-prodID:Loyalty`;
+			window.location.href = baseUrl+trackParam;
+		});
+		
 
 		questionBtns.forEach((btn) => {
 
 			btn.addEventListener('click', (e) => {
+
+				// tracking:
+				// question and answer.
+				track.questionAnswer(questionCount+1,btn.textContent);
 
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
 				let question = btnHolder.querySelector('.quest');
@@ -89,9 +101,9 @@ export default function () {
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
-        //disable buttons
-        btn.disabled = true;
-        nextQuestButton.disabled = true;
+				//disable buttons
+				btn.disabled = true;
+				nextQuestButton.disabled = true;
 
 				if(e.target.classList.contains('right-answer-bttn')) {
 					
@@ -112,42 +124,42 @@ export default function () {
 				}
 				
 				
-        //Question/Answer fade IN/OUT
-        gsap.to(question, 0.5,{
-          autoAlpha: 0,
-          ease: 'power4.inOut',
-          onComplete: function(){
-            btnHolder.classList.remove('na');
-            question.classList.add('hide');
-            answersBtns.classList.add('hide');
-            nextQuestion.classList.remove('hide');
-            btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
-          }
-        })
-        gsap.to(answersBtns, 0.5,{ 
-          autoAlpha: 0, 
-          ease: 'power4.inOut',
-          onComplete: function(){
-            nextQuestButton.disabled = false;
-          }
-        })
-        gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
-          delay: 0.5,
-          autoAlpha: 1, 
-          ease: 'power4.inOut',
-          onComplete: function(){
-            btnHolder.classList.remove('na');
-          }
-        })
-        gsap.to(nextQuestion,{ delay: 1.5, duration: 1, autoAlpha: 1, ease: 'power4.inOut'})
+				//Question/Answer fade IN/OUT
+				gsap.to(question, 0.5,{
+				autoAlpha: 0,
+				ease: 'power4.inOut',
+				onComplete: function(){
+					btnHolder.classList.remove('na');
+					question.classList.add('hide');
+					answersBtns.classList.add('hide');
+					nextQuestion.classList.remove('hide');
+					btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
+				}
+				})
+				gsap.to(answersBtns, 0.5,{ 
+				autoAlpha: 0, 
+				ease: 'power4.inOut',
+				onComplete: function(){
+					nextQuestButton.disabled = false;
+				}
+				})
+				gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
+				delay: 0.5,
+				autoAlpha: 1, 
+				ease: 'power4.inOut',
+				onComplete: function(){
+					btnHolder.classList.remove('na');
+				}
+				})
+				gsap.to(nextQuestion,{ delay: 1.5, duration: 1, autoAlpha: 1, ease: 'power4.inOut'})
         
       //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
-        confetti.burst();//confetti burst
-        gsap.set(bookButtonText, {autoAlpha: 0});//book button text
-        gsap.to(bookBtnContainer, {duration: 1, autoAlpha: 1, ease: 'back.out', });
-        gsap.to(bookButtonText, {delay: 3.5, duration: 1, autoAlpha: 1, ease: 'back.out'});
-      }
+				confetti.burst();//confetti burst
+				gsap.set(bookButtonText, {autoAlpha: 0});//book button text
+				gsap.to(bookBtnContainer, {duration: 1, autoAlpha: 1, ease: 'back.out', });
+				gsap.to(bookButtonText, {delay: 3.5, duration: 1, autoAlpha: 1, ease: 'back.out'});
+			}
     
       
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
@@ -197,6 +209,8 @@ export default function () {
 
 		  e.target.classList.add('clicked');
 
+
+
         if(!btnHolder.parentNode.classList.contains('disable')) {
           // transition only is enabled
           tl.tweenTo(`q${questionCount+1}`);
@@ -230,11 +244,20 @@ export default function () {
           //console.log('FADE OUT TEXT');
         }
 				
-				if(e.target.classList.contains('last')) {
-          counterRemainCount.innerHTML = 'You did it!';
-          bookBtnContainer.querySelector('button').classList.add('end');
-          document.querySelector('.count-text--quest').classList.add('end');
-				}
+			if(e.target.classList.contains('last')) {
+				counterRemainCount.innerHTML = 'You did it!';
+				bookBtnContainer.querySelector('button').classList.add('end');
+				document.querySelector('.count-text--quest').classList.add('end');
+
+				// tracking:
+				// question and answer.
+				track.seeResults();
+			} else {
+				// tracking:
+				// question and answer.
+				track.nextQuestion(questionCount+2);
+				
+			}
 
 				if (questionCount+1 == 10) {
 
