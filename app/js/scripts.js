@@ -439,6 +439,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }).addLabel('q9');
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
+      // tracking:
+      // question and answer.
       _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].questionAnswer(questionCount + 1, btn.textContent);
       var btnHolder = e.target.parentNode.parentNode.parentNode;
       var question = btnHolder.querySelector('.quest');
@@ -592,6 +594,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           counterRemainCount.innerHTML = 'You did it!';
           bookBtnContainer.querySelector('button').classList.add('end');
           document.querySelector('.count-text--quest').classList.add('end');
+        } else {
+          // tracking:
+          // question and answer.
+          _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].nextQuestion(questionCount + 2);
         }
 
         if (questionCount + 1 == 10) {
@@ -1294,6 +1300,15 @@ var track = {
       'question': question,
       'answer_selected': answer,
       'correct': 'true',
+      'channel': 'loyalty'
+    });
+  },
+  nextQuestion: function nextQuestion(question) {
+    utag.link({
+      'page_name': "loyalty:2019-year-in-review-quiz:".concat(question),
+      'events': 'click',
+      'Text': 'Next Question',
+      'next_question': question,
       'channel': 'loyalty'
     });
   }

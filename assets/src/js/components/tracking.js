@@ -23,6 +23,15 @@
             });
 
 
+        },
+        nextQuestion: (question) => {
+            utag.link({
+                'page_name' : `loyalty:2019-year-in-review-quiz:${question}`,
+                'events' : 'click',
+                'Text': 'Next Question',
+                'next_question' : question,
+                'channel': 'loyalty'
+            });
         }
 
     }

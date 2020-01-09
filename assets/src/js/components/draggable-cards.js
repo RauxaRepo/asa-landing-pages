@@ -80,6 +80,8 @@ export default function () {
 
 			btn.addEventListener('click', (e) => {
 
+				// tracking:
+				// question and answer.
 				track.questionAnswer(questionCount+1,btn.textContent);
 
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
@@ -200,6 +202,8 @@ export default function () {
 
 		  e.target.classList.add('clicked');
 
+
+
         if(!btnHolder.parentNode.classList.contains('disable')) {
           // transition only is enabled
           tl.tweenTo(`q${questionCount+1}`);
@@ -233,11 +237,16 @@ export default function () {
           //console.log('FADE OUT TEXT');
         }
 				
-				if(e.target.classList.contains('last')) {
-          counterRemainCount.innerHTML = 'You did it!';
-          bookBtnContainer.querySelector('button').classList.add('end');
-          document.querySelector('.count-text--quest').classList.add('end');
-				}
+			if(e.target.classList.contains('last')) {
+				counterRemainCount.innerHTML = 'You did it!';
+				bookBtnContainer.querySelector('button').classList.add('end');
+				document.querySelector('.count-text--quest').classList.add('end');
+			} else {
+				// tracking:
+				// question and answer.
+				track.nextQuestion(questionCount+2);
+				
+			}
 
 				if (questionCount+1 == 10) {
 
