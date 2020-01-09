@@ -3,7 +3,7 @@
     const track = {
 
         getStarted: () => {
-            utag.link({
+            utag.view({
                 'page_name' : 'loyalty:2019-year-in-review-quiz:home',
                 'events' : 'event105',
                 'Text': 'Get-Started',
@@ -13,7 +13,7 @@
         },
         questionAnswer: (question, answer) => {
 
-            utag.link({
+            utag.view({
                 'page_name' : `loyalty:2019-year-in-review-quiz:${question}`, 
                 'events' : 'click',
                 'question': question,
@@ -25,7 +25,7 @@
 
         },
         nextQuestion: (question) => {
-            utag.link({
+            utag.view({
                 'page_name' : `loyalty:2019-year-in-review-quiz:${question}`,
                 'events' : 'click',
                 'Text': 'Next Question',
@@ -34,7 +34,7 @@
             });
         },
         seeResults: () => {
-            utag.link({
+            utag.view({
                 'page_name' : 'loyalty:2019-year-in-review-quiz:results',
                 'events' : 'event106',
                 'Text': 'See Results',
