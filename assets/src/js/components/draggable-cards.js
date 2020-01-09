@@ -1,6 +1,7 @@
 import {gsap, TweenMax, TimelineMax, Power, Linear, Quad} from 'gsap';
 import { countingMe } from './counter';
 import { confetti } from './confetti';
+import { track } from './tracking';
 
 export default function () {
 
@@ -79,6 +80,8 @@ export default function () {
 
 			btn.addEventListener('click', (e) => {
 
+				track.questionAnswer(questionCount+1,btn.textContent);
+
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
 				let question = btnHolder.querySelector('.quest');
 				let answersBtns = e.target.parentNode;
@@ -89,9 +92,9 @@ export default function () {
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
 				let nextQuestButton = nextQuestion.querySelector('.next-question--button');
 
-        //disable buttons
-        btn.disabled = true;
-        nextQuestButton.disabled = true;
+				//disable buttons
+				btn.disabled = true;
+				nextQuestButton.disabled = true;
 
 				if(e.target.classList.contains('right-answer-bttn')) {
 					
@@ -112,42 +115,42 @@ export default function () {
 				}
 				
 				
-        //Question/Answer fade IN/OUT
-        gsap.to(question, 0.5,{
-          autoAlpha: 0,
-          ease: 'power4.inOut',
-          onComplete: function(){
-            btnHolder.classList.remove('na');
-            question.classList.add('hide');
-            answersBtns.classList.add('hide');
-            nextQuestion.classList.remove('hide');
-            btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
-          }
-        })
-        gsap.to(answersBtns, 0.5,{ 
-          autoAlpha: 0, 
-          ease: 'power4.inOut',
-          onComplete: function(){
-            nextQuestButton.disabled = false;
-          }
-        })
-        gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
-          delay: 0.5,
-          autoAlpha: 1, 
-          ease: 'power4.inOut',
-          onComplete: function(){
-            btnHolder.classList.remove('na');
-          }
-        })
-        gsap.to(nextQuestion,{ delay: 1.5, duration: 1, autoAlpha: 1, ease: 'power4.inOut'})
+				//Question/Answer fade IN/OUT
+				gsap.to(question, 0.5,{
+				autoAlpha: 0,
+				ease: 'power4.inOut',
+				onComplete: function(){
+					btnHolder.classList.remove('na');
+					question.classList.add('hide');
+					answersBtns.classList.add('hide');
+					nextQuestion.classList.remove('hide');
+					btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.remove('hide');
+				}
+				})
+				gsap.to(answersBtns, 0.5,{ 
+				autoAlpha: 0, 
+				ease: 'power4.inOut',
+				onComplete: function(){
+					nextQuestButton.disabled = false;
+				}
+				})
+				gsap.to(btnHolder.querySelector(`p[data-res="${answerSelected}"]`), 0.5,{
+				delay: 0.5,
+				autoAlpha: 1, 
+				ease: 'power4.inOut',
+				onComplete: function(){
+					btnHolder.classList.remove('na');
+				}
+				})
+				gsap.to(nextQuestion,{ delay: 1.5, duration: 1, autoAlpha: 1, ease: 'power4.inOut'})
         
       //Confetti Burst /Add Book 15% off button
 			if( questionCount+1 == 5 && bookBtnContainer.classList.contains('active')) {
-        confetti.burst();//confetti burst
-        gsap.set(bookButtonText, {autoAlpha: 0});//book button text
-        gsap.to(bookBtnContainer, {duration: 1, autoAlpha: 1, ease: 'back.out', });
-        gsap.to(bookButtonText, {delay: 3.5, duration: 1, autoAlpha: 1, ease: 'back.out'});
-      }
+				confetti.burst();//confetti burst
+				gsap.set(bookButtonText, {autoAlpha: 0});//book button text
+				gsap.to(bookBtnContainer, {duration: 1, autoAlpha: 1, ease: 'back.out', });
+				gsap.to(bookButtonText, {delay: 3.5, duration: 1, autoAlpha: 1, ease: 'back.out'});
+			}
     
       
       counterCurrentCount < 10 ? counterCurrentCount++ : counterCurrentCount = 10;
