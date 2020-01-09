@@ -897,6 +897,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "../node_modules/gsap/index.js");
 /* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter */ "../assets/src/js/components/counter.js");
 /* harmony import */ var _confetti__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confetti */ "../assets/src/js/components/confetti.js");
+/* harmony import */ var _tracking__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tracking */ "../assets/src/js/components/tracking.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -904,6 +905,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 
@@ -1111,6 +1113,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           duration: .5,
           top: topOffer.offsetTop - (topOffer.clientHeight + 10)
         }); //hide header
+        //* Get Started  */
+
+        _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].getStarted();
       });
     }; //SLIDE IN FOOTER & STOP CARD ANIMATION
 
@@ -1257,6 +1262,40 @@ __webpack_require__.r(__webpack_exports__);
     fbButtonAnchor.setAttribute('href', "https://www.facebook.com/sharer/sharer.php?u=".concat(siteHost, "&amp;src=sdkpreparse"));
   }
 });
+
+/***/ }),
+
+/***/ "../assets/src/js/components/tracking.js":
+/*!***********************************************!*\
+  !*** ../assets/src/js/components/tracking.js ***!
+  \***********************************************/
+/*! exports provided: track */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "track", function() { return track; });
+var track = {
+  getStarted: function getStarted() {
+    utag.link({
+      'page_name': 'loyalty:2019-year-in-review-quiz:home',
+      'events': 'event105',
+      'Text': 'Get-Started',
+      'channel': 'loyalty'
+    });
+  },
+  questionAnswer: function questionAnswer(question, answer) {
+    utag.link({
+      'page_name': "loyalty:2019-year-in-review-quiz:".concat(question),
+      'events': 'click',
+      'question': question,
+      'answer_selected': answer,
+      'correct': 'true',
+      'channel': 'loyalty'
+    });
+  }
+};
+
 
 /***/ }),
 
