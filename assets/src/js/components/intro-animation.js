@@ -1,6 +1,7 @@
 import {gsap, TweenMax, TimelineMax, Power, Power2, Linear} from 'gsap';
 import { countingMe } from './counter';
 import { confetti } from './confetti';
+import { track } from './tracking';
 
 export default function () {
 
@@ -177,6 +178,13 @@ export default function () {
         cta.classList.add('disable');
         stackCards(showGroupCards); 
         gsap.to(topOffer,{duration:.5, top:topOffer.offsetTop - (topOffer.clientHeight + 10)});//hide header
+
+
+        //* Get Started  */
+        track.getStarted();
+
+
+        
       });
 			
     }
