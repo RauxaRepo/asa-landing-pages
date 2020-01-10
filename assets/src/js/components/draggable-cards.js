@@ -74,17 +74,6 @@ export default function () {
 		.to('.cards', 1 ,{ backgroundImage:'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)', ease:'sine.out'})
 		.addLabel('q9');
 		
-
-		bookBtnExit.addEventListener('click', (e) => {
-			e.preventDefault();
-			let baseUrl = e.target.parentNode.getAttribute('href');
-			let trackParam = `${baseUrl}&int=AS_year-in-review-quiz_book${questionCount+1}||20200115_QUIZ||-prodID:Loyalty`;
-
-			window.open(
-				baseUrl+trackParam,
-				'_blank'
-			  );
-		});
 		
 
 		questionBtns.forEach((btn) => {

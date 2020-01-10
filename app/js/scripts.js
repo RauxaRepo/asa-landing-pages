@@ -438,12 +438,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     backgroundImage: 'linear-gradient(to left, #2774ae 100%,  #48a9c5 102%)',
     ease: 'sine.out'
   }).addLabel('q9');
-  bookBtnExit.addEventListener('click', function (e) {
-    e.preventDefault();
-    var baseUrl = e.target.parentNode.getAttribute('href');
-    var trackParam = "".concat(baseUrl, "&int=AS_year-in-review-quiz_book").concat(questionCount + 1, "||20200115_QUIZ||-prodID:Loyalty");
-    window.open(baseUrl + trackParam, '_blank');
-  });
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       var btnHolder = e.target.parentNode.parentNode.parentNode;
