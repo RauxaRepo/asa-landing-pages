@@ -11,14 +11,13 @@
             });
 
         },
-        questionAnswer: (question, answer) => {
+        questionAnswer: (question, answer, isthisCorrect) => {
 
             utag.view({
-                'page_name' : `loyalty:2019-year-in-review-quiz:${question}`, 
+                'page_name' : `loyalty:2019-year-in-review-quiz:${question}-${isthisCorrect}`, 
                 'events' : 'click',
                 'question': question,
                 'answer_selected': answer,
-                'correct' : 'true',
                 'channel': 'loyalty'
             });
 
