@@ -442,17 +442,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     e.preventDefault();
     var baseUrl = e.target.parentNode.getAttribute('href');
     var trackParam = "".concat(baseUrl, "&int=AS_year-in-review-quiz_book").concat(questionCount + 1, "||20200115_QUIZ||-prodID:Loyalty");
-    window.location.href = baseUrl + trackParam;
+    window.open(baseUrl + trackParam, '_blank');
   });
   questionBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
-      // tracking:
-      // question and answer.
-      _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].questionAnswer(questionCount + 1, btn.textContent);
       var btnHolder = e.target.parentNode.parentNode.parentNode;
       var question = btnHolder.querySelector('.quest');
       var answersBtns = e.target.parentNode;
       var answerSelected = btn.getAttribute('data-res');
+      var isthisCorrect = btnHolder.querySelector("p[data-res=\"".concat(answerSelected, "\"]")).classList.contains('right-answer') ? 'correct' : 'incorrect'; // tracking:
+      // question and answer.
+
+      _tracking__WEBPACK_IMPORTED_MODULE_3__["track"].questionAnswer(questionCount + 1, btn.textContent, isthisCorrect);
       var nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
       var nextQuestButton = nextQuestion.querySelector('.next-question--button'); //disable buttons
 
@@ -1303,13 +1304,12 @@ var track = {
       'channel': 'loyalty'
     });
   },
-  questionAnswer: function questionAnswer(question, answer) {
+  questionAnswer: function questionAnswer(question, answer, isthisCorrect) {
     utag.view({
-      'page_name': "loyalty:2019-year-in-review-quiz:".concat(question),
+      'page_name': "loyalty:2019-year-in-review-quiz:".concat(question, "-").concat(isthisCorrect),
       'events': 'click',
       'question': question,
       'answer_selected': answer,
-      'correct': 'true',
       'channel': 'loyalty'
     });
   },

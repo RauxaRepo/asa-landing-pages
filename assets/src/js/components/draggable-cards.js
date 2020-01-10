@@ -79,7 +79,11 @@ export default function () {
 			e.preventDefault();
 			let baseUrl = e.target.parentNode.getAttribute('href');
 			let trackParam = `${baseUrl}&int=AS_year-in-review-quiz_book${questionCount+1}||20200115_QUIZ||-prodID:Loyalty`;
-			window.location.href = baseUrl+trackParam;
+
+			window.open(
+				baseUrl+trackParam,
+				'_blank'
+			  );
 		});
 		
 
@@ -87,15 +91,20 @@ export default function () {
 
 			btn.addEventListener('click', (e) => {
 
-				// tracking:
-				// question and answer.
-				track.questionAnswer(questionCount+1,btn.textContent);
+
 
 				let btnHolder = e.target.parentNode.parentNode.parentNode;
 				let question = btnHolder.querySelector('.quest');
 				let answersBtns = e.target.parentNode;
 
 				let answerSelected = btn.getAttribute('data-res');
+
+
+				let isthisCorrect = btnHolder.querySelector(`p[data-res="${answerSelected}"]`).classList.contains('right-answer') ? 'correct' : 'incorrect';
+
+				// tracking:
+				// question and answer.
+				track.questionAnswer(questionCount+1,btn.textContent,isthisCorrect);
 
 
 				let nextQuestion = e.target.parentNode.parentNode.querySelector('.next-question');
