@@ -4,9 +4,7 @@
 
         getStarted: () => {
             utag.view({
-                'page_name' : 'loyalty:2019-year-in-review-quiz:home',
-                'events' : 'event105',
-                'Text': 'Get-Started',
+                'page_name' : 'loyalty:canadian-cc-acquisition:home',
                 'channel': 'loyalty'
             });
 
