@@ -671,7 +671,7 @@ module.exports = function (it) {
 /***/ (function(module, exports) {
 
 var core = module.exports = {
-  version: '2.6.10'
+  version: '2.6.11'
 };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
@@ -939,7 +939,7 @@ module.exports = !__webpack_require__(/*! ./_descriptors */ "../node_modules/cor
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 module.exports = function (it) {
   return _typeof(it) === 'object' ? it !== null : typeof it === 'function';
@@ -1960,7 +1960,7 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 /***/ (function(module, exports) {
 
 var core = module.exports = {
-  version: '2.6.10'
+  version: '2.6.11'
 };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
@@ -2779,7 +2779,7 @@ module.exports = function isInteger(it) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 module.exports = function (it) {
   return _typeof(it) === 'object' ? it !== null : typeof it === 'function';
@@ -3156,7 +3156,7 @@ module.exports = Math.sign || function sign(x) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var META = __webpack_require__(/*! ./_uid */ "../node_modules/core-js/modules/_uid.js")('meta');
 
@@ -3582,7 +3582,7 @@ exports.f = __webpack_require__(/*! ./_descriptors */ "../node_modules/core-js/m
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = __webpack_require__(/*! ./_to-iobject */ "../node_modules/core-js/modules/_to-iobject.js");
@@ -3998,7 +3998,7 @@ __webpack_require__(/*! ./_core */ "../node_modules/core-js/modules/_core.js").i
 "use strict";
 
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var classof = __webpack_require__(/*! ./_classof */ "../node_modules/core-js/modules/_classof.js");
 
@@ -4730,7 +4730,7 @@ module.exports = function (it, S) {
 "use strict";
 
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 if (__webpack_require__(/*! ./_descriptors */ "../node_modules/core-js/modules/_descriptors.js")) {
   var LIBRARY = __webpack_require__(/*! ./_library */ "../node_modules/core-js/modules/_library.js");
@@ -7094,7 +7094,7 @@ var Base = $Number;
 var proto = $Number.prototype; // Opera ~12 has broken Object#toString
 
 var BROKEN_COF = cof(__webpack_require__(/*! ./_object-create */ "../node_modules/core-js/modules/_object-create.js")(proto)) == NUMBER;
-var TRIM = 'trim' in String.prototype; // 7.1.3 ToNumber(argument)
+var TRIM = ('trim' in String.prototype); // 7.1.3 ToNumber(argument)
 
 var toNumber = function toNumber(argument) {
   var it = toPrimitive(argument, false);
@@ -9761,7 +9761,7 @@ __webpack_require__(/*! ./_string-trim */ "../node_modules/core-js/modules/_stri
 "use strict";
  // ECMAScript 6 symbols shim
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var global = __webpack_require__(/*! ./_global */ "../node_modules/core-js/modules/_global.js");
 
@@ -10861,7 +10861,7 @@ module.exports = __webpack_require__(/*! ../modules/_core */ "../node_modules/co
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/* WEBPACK VAR INJECTION */(function(module) {function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -10997,7 +10997,7 @@ var runtime = function (exports) {
     };
   };
 
-  function AsyncIterator(generator) {
+  function AsyncIterator(generator, PromiseImpl) {
     function invoke(method, arg, resolve, reject) {
       var record = tryCatch(generator[method], generator, arg);
 
@@ -11008,14 +11008,14 @@ var runtime = function (exports) {
         var value = result.value;
 
         if (value && _typeof(value) === "object" && hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function (value) {
+          return PromiseImpl.resolve(value.__await).then(function (value) {
             invoke("next", value, resolve, reject);
           }, function (err) {
             invoke("throw", err, resolve, reject);
           });
         }
 
-        return Promise.resolve(value).then(function (unwrapped) {
+        return PromiseImpl.resolve(value).then(function (unwrapped) {
           // When a yielded Promise is resolved, its final value becomes
           // the .value of the Promise<{value,done}> result for the
           // current iteration.
@@ -11033,7 +11033,7 @@ var runtime = function (exports) {
 
     function enqueue(method, arg) {
       function callInvokeWithMethodAndArg() {
-        return new Promise(function (resolve, reject) {
+        return new PromiseImpl(function (resolve, reject) {
           invoke(method, arg, resolve, reject);
         });
       }
@@ -11070,8 +11070,9 @@ var runtime = function (exports) {
   // AsyncIterator objects; they just return a Promise for the value of
   // the final result produced by the iterator.
 
-  exports.async = function (innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList));
+  exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    if (PromiseImpl === void 0) PromiseImpl = Promise;
+    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
     return exports.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
     : iter.next().then(function (result) {
       return result.done ? result.value : iter.next();
@@ -11620,10 +11621,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Response", function() { return Response; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOMException", function() { return DOMException; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetch", function() { return fetch; });
+var global = function (self) {
+  return self; // eslint-disable-next-line no-invalid-this
+}(typeof self !== 'undefined' ? self : undefined);
+
 var support = {
-  searchParams: 'URLSearchParams' in self,
-  iterable: 'Symbol' in self && 'iterator' in Symbol,
-  blob: 'FileReader' in self && 'Blob' in self && function () {
+  searchParams: 'URLSearchParams' in global,
+  iterable: 'Symbol' in global && 'iterator' in Symbol,
+  blob: 'FileReader' in global && 'Blob' in global && function () {
     try {
       new Blob();
       return true;
@@ -11631,8 +11636,8 @@ var support = {
       return false;
     }
   }(),
-  formData: 'FormData' in self,
-  arrayBuffer: 'ArrayBuffer' in self
+  formData: 'FormData' in global,
+  arrayBuffer: 'ArrayBuffer' in global
 };
 
 function isDataView(obj) {
@@ -11652,7 +11657,7 @@ function normalizeName(name) {
     name = String(name);
   }
 
-  if (/[^a-z0-9\-#$%&'*+.^_`|~]/i.test(name)) {
+  if (/[^a-z0-9\-#$%&'*+.^_`|~!]/i.test(name) || name === '') {
     throw new TypeError('Invalid character in header field name');
   }
 
@@ -11825,6 +11830,17 @@ function Body() {
   this.bodyUsed = false;
 
   this._initBody = function (body) {
+    /*
+      fetch-mock wraps the Response object in an ES6 Proxy to
+      provide useful test harness features such as flush. However, on
+      ES5 browsers without fetch or Proxy support pollyfills must be used;
+      the proxy-pollyfill is unable to proxy an attribute unless it exists
+      on the object before the Proxy is created. This change ensures
+      Response.bodyUsed exists on the instance, while maintaining the
+      semantic of setting Request.bodyUsed in the constructor before
+      _initBody is called.
+    */
+    this.bodyUsed = this.bodyUsed;
     this._bodyInit = body;
 
     if (!body) {
@@ -11969,6 +11985,22 @@ function Request(input, options) {
   }
 
   this._initBody(body);
+
+  if (this.method === 'GET' || this.method === 'HEAD') {
+    if (options.cache === 'no-store' || options.cache === 'no-cache') {
+      // Search for a '_' parameter in the query string
+      var reParamSearch = /([?&])_=[^&]*/;
+
+      if (reParamSearch.test(this.url)) {
+        // If it already exists then set the value with the current time
+        this.url = this.url.replace(reParamSearch, '$1_=' + new Date().getTime());
+      } else {
+        // Otherwise add a new '_' parameter to the end with the current time
+        var reQueryString = /\?/;
+        this.url += (reQueryString.test(this.url) ? '&' : '?') + '_=' + new Date().getTime();
+      }
+    }
+  }
 }
 
 Request.prototype.clone = function () {
@@ -12016,7 +12048,7 @@ function Response(bodyInit, options) {
   this.type = 'default';
   this.status = options.status === undefined ? 200 : options.status;
   this.ok = this.status >= 200 && this.status < 300;
-  this.statusText = 'statusText' in options ? options.statusText : 'OK';
+  this.statusText = 'statusText' in options ? options.statusText : '';
   this.headers = new Headers(options.headers);
   this.url = options.url || '';
 
@@ -12057,11 +12089,9 @@ Response.redirect = function (url, status) {
   });
 };
 
-var DOMException = self.DOMException;
+var DOMException = global.DOMException;
 
-try {
-  new DOMException();
-} catch (err) {
+if (typeof DOMException !== 'function') {
   DOMException = function DOMException(message, name) {
     this.message = message;
     this.name = name;
@@ -12095,22 +12125,38 @@ function fetch(input, init) {
       };
       options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL');
       var body = 'response' in xhr ? xhr.response : xhr.responseText;
-      resolve(new Response(body, options));
+      setTimeout(function () {
+        resolve(new Response(body, options));
+      }, 0);
     };
 
     xhr.onerror = function () {
-      reject(new TypeError('Network request failed'));
+      setTimeout(function () {
+        reject(new TypeError('Network request failed'));
+      }, 0);
     };
 
     xhr.ontimeout = function () {
-      reject(new TypeError('Network request failed'));
+      setTimeout(function () {
+        reject(new TypeError('Network request failed'));
+      }, 0);
     };
 
     xhr.onabort = function () {
-      reject(new DOMException('Aborted', 'AbortError'));
+      setTimeout(function () {
+        reject(new DOMException('Aborted', 'AbortError'));
+      }, 0);
     };
 
-    xhr.open(request.method, request.url, true);
+    function fixUrl(url) {
+      try {
+        return url === '' && global.location.href ? global.location.href : url;
+      } catch (e) {
+        return url;
+      }
+    }
+
+    xhr.open(request.method, fixUrl(request.url), true);
 
     if (request.credentials === 'include') {
       xhr.withCredentials = true;
@@ -12118,8 +12164,12 @@ function fetch(input, init) {
       xhr.withCredentials = false;
     }
 
-    if ('responseType' in xhr && support.blob) {
-      xhr.responseType = 'blob';
+    if ('responseType' in xhr) {
+      if (support.blob) {
+        xhr.responseType = 'blob';
+      } else if (support.arrayBuffer && request.headers.get('Content-Type') && request.headers.get('Content-Type').indexOf('application/octet-stream') !== -1) {
+        xhr.responseType = 'arraybuffer';
+      }
     }
 
     request.headers.forEach(function (value, name) {
@@ -12142,11 +12192,11 @@ function fetch(input, init) {
 }
 fetch.polyfill = true;
 
-if (!self.fetch) {
-  self.fetch = fetch;
-  self.Headers = Headers;
-  self.Request = Request;
-  self.Response = Response;
+if (!global.fetch) {
+  global.fetch = fetch;
+  global.Headers = Headers;
+  global.Request = Request;
+  global.Response = Response;
 }
 
 /***/ })
