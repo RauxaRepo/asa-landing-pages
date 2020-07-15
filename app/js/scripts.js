@@ -86,6 +86,40 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../assets/src/js/components/tracking.js":
+/*!***********************************************!*\
+  !*** ../assets/src/js/components/tracking.js ***!
+  \***********************************************/
+/*! exports provided: track */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "track", function() { return track; });
+var track = {
+  pageInit: function pageInit() {
+    utag.view({
+      'page_name': 'loyalty:canadian-cc-acquisition:home',
+      'channel': 'loyalty'
+    });
+  },
+  applyNowBtnWorldElite: function applyNowBtnWorldElite() {
+    utag.view({
+      'link_tracking': "credit-card : mastercard-ca-worldelite : acquisition",
+      'events': 'event23'
+    });
+  },
+  applyNowBtnPlatinum: function applyNowBtnPlatinum() {
+    utag.view({
+      'link_tracking': "credit-card : mastercard-ca-platinumplus : acquisition",
+      'events': 'event23'
+    });
+  }
+};
+
+
+/***/ }),
+
 /***/ "../assets/src/js/main.js":
 /*!********************************!*\
   !*** ../assets/src/js/main.js ***!
@@ -98,8 +132,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/polyfill */ "../node_modules/@babel/polyfill/lib/index.js");
 /* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_polyfill__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! whatwg-fetch */ "../node_modules/whatwg-fetch/fetch.js");
+/* harmony import */ var _components_tracking__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/tracking */ "../assets/src/js/components/tracking.js");
 
  //import sampleJs from './components/sample.component';
+
+
 
 function documentReady(fn) {
   if (document.readyState != 'loading') {
@@ -113,7 +150,9 @@ function documentReady(fn) {
   }
 }
 
-documentReady(function () {});
+documentReady(function () {
+  Object(_components_tracking__WEBPACK_IMPORTED_MODULE_2__["default"])();
+});
 
 /***/ }),
 

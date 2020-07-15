@@ -2,6 +2,7 @@ import '@babel/polyfill';
 import 'whatwg-fetch';
 
 //import sampleJs from './components/sample.component';
+import pageTracking from './components/tracking';
 
 function documentReady(fn) {
   if (document.readyState != 'loading') {
@@ -17,5 +18,7 @@ function documentReady(fn) {
 }
 
 documentReady( function() {
+
+  pageTracking();
 
 });
