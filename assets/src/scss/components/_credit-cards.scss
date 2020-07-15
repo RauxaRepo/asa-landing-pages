@@ -1,0 +1,13 @@
+
+.credit-cards {
+
+  position: relative;
+
+  .column {
+    background-color: $off-white;
+    border-left: 1px solid transparent-color($black, .25);
+    border-top: 1px solid transparent-color($black, .25);
+    height: 50vh;
+  }
+
+}
