@@ -23,12 +23,6 @@ html {
   box-sizing: inherit;
 }
 
-img {
-  display: block;
-  height: auto;
-  width: 100%;
-}
-
 /*! normalize-scss | MIT/GPLv2 License | bit.ly/normalize-scss */
 /* Document
        ========================================================================== */
@@ -505,6 +499,13 @@ p {
   margin-bottom: 0;
 }
 
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+  align-self: flex-start;
+}
+
 .background-color-black {
   background-color: #000;
 }
@@ -527,25 +528,6 @@ section {
   max-width: 1440px;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-  width: 100%;
-}
-
-.row::before {
-  content: ' ';
-  display: table;
-}
-
-.row::after {
-  content: ' ';
-  display: table;
-}
-
 .hide {
   display: none;
   visibility: hidden;
@@ -554,6 +536,26 @@ section {
 .show {
   display: block;
   visibility: visible;
+}
+
+sub,
+sup {
+  font-size: 50%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  font-size: 36%;
+  line-height: 2.75;
+  vertical-align: top;
+}
+
+.tm {
+  font-size: 45%;
+  line-height: 2.75;
+  vertical-align: top;
 }
 
 .row {
@@ -891,26 +893,6 @@ section {
   }
 }
 
-sub,
-sup {
-  font-size: 50%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sup {
-  font-size: 36%;
-  line-height: 2.75;
-  vertical-align: top;
-}
-
-.tm {
-  font-size: 45%;
-  line-height: 2.75;
-  vertical-align: top;
-}
-
 .social-test {
   position: fixed;
   top: 0;
@@ -941,6 +923,11 @@ sup {
 
 .as-book:hover {
   background-color: #2774ae;
+}
+
+.top-bar {
+  position: relative;
+  height: 120px;
 }
 
 .main-page-header {

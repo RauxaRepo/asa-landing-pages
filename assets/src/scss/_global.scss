@@ -17,12 +17,6 @@ html {
   box-sizing: inherit;
 }
 
-img {
-  display: block;
-  height: auto;
-  width: 100%;
-}
-
 @include normalize;
 
 * {
@@ -30,6 +24,10 @@ img {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+// Base Elements
+// ==========
 
 body {
   background-color: transparent;
@@ -48,6 +46,12 @@ p {
   margin-bottom: 0;
 }
 
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+  align-self: flex-start;
+}
 
 
 .background-color-black {
@@ -77,25 +81,9 @@ section {
   max-width: $layout-max-width;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-  width: 100%;
 
-  &::before {
-    content: ' ';
-    display: table;
-  }
-
-  &::after {
-    content: ' ';
-    display: table;
-  }
-
-}
+// UTILITIES
+// ==========
 
 //Hide 
 .hide {
@@ -108,8 +96,6 @@ section {
   display: block;
   visibility: visible;
 }
-
-@include grid-create;
 
 // fix sizing of sup tags
 sub,
@@ -128,10 +114,13 @@ sup {
   // mso-text-raise: 30%;
 }
 
-
 .tm {
   font-size: 45%;
   //line-height: normal;
   line-height: 2.75;
   vertical-align: top;
 }
+
+// GRID
+// ==========
+@include grid-create;
