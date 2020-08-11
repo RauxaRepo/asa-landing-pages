@@ -893,38 +893,6 @@ sup {
   }
 }
 
-.social-test {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9;
-  border: 1px solid #000;
-}
-
-.as-book {
-  border-radius: 6px;
-  background-color: #01426a;
-  color: #fff;
-  text-transform: uppercase;
-  padding: 14px;
-  position: relative;
-  width: 200px;
-  text-align: center;
-  font-weight: 700;
-  margin: 33px auto 0;
-  display: none;
-  pointer-events: none;
-}
-
-.as-book.active {
-  display: block;
-  pointer-events: auto;
-}
-
-.as-book:hover {
-  background-color: #2774ae;
-}
-
 .top-bar {
   position: relative;
   height: 120px;
@@ -935,68 +903,6 @@ sup {
   position: relative;
   height: 50vh;
   background-color: #fff;
-}
-
-.main-page-footer {
-  background-color: #e9e9e9;
-  bottom: 0;
-  color: #656565;
-  font-size: 10px;
-  height: auto;
-  padding-bottom: 20px;
-  position: relative;
-  text-align: center;
-  width: 100%;
-}
-
-.main-page-footer p {
-  line-height: 17px;
-  margin: 0;
-  padding: 0 24px;
-}
-
-.main-page-footer a {
-  text-decoration: underline;
-  color: #656565;
-}
-
-.main-page-footer p:nth-child(1) {
-  padding-top: 40px;
-}
-
-.main-page-footer p:nth-child(:last-child) {
-  padding-bottom: 40px;
-}
-
-.main-page-footer-slide {
-  width: 100%;
-  display: none;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 17;
-  left: 0;
-  bottom: 0;
-}
-
-.main-page-footer-slide.active {
-  display: block;
-  pointer-events: auto;
-  opacity: 1;
-  z-index: 6;
-}
-
-.main-page-footer-mobile p:nth-child(1) {
-  padding-top: 8%;
-}
-
-.main-page-footer-mobile p {
-  line-height: 14px;
-}
-
-@media only screen and (min-width: 320px) {
-  .main-page-footer p:nth-child(1) {
-    padding-top: 20px;
-  }
 }
 
 .credit-cards {

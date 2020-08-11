@@ -3,7 +3,7 @@
 
 ## getting started
 i prefer Yarn but you can also use NPM  
-'yarn install' or 'npm install'.  These will install all dependencies. 
+'yarn install'.  These will install all dependencies. 
 
 
 ### we have four envinronments:
@@ -21,7 +21,7 @@ stage/prod => `yarn run prodbuild` or `npm run prodbuild`
 
 ### Run Locally
 *only local will launch browser  
-`yarn run localbuild` or `npm run localbuild`  
+`yarn run localbuild` 
 this will launch browswer http://127.0.0.1:8081/  
 this will serve files from 'app' directory.
 
@@ -36,7 +36,17 @@ assets/src/scss => holds all sass files, sass has been seperated into components
 
 
 ## Flex grid system
-```html
+Example of grid usage: 
+this is a two column layouy on medium up, and single column on mobile 
 
+```html
+  <section class="container">
+    <div class="row">
+      <div class="column xs-12 md-6">
+      </div>
+      <div class="column xs-12 md-6">
+      </div>
+    </div>
+  </section>
 ```
 
