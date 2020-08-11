@@ -1,16 +1,17 @@
 .section__travel-benefits {
-    background: rgb(72,169,197);
-    background: linear-gradient(90deg, rgba(72,169,197,0.8) 0%, 
-    rgba(72,169,197,1) 50%,
-    rgba(72,169,197,0.8) 100%);
+    background-color: $blue;
 
-    color: #ffffff;
+    color: $white;
     padding: 65px 0 65px 0;
 
     &--headline {
         text-align: center;
-        font-size: 40px;
+        font-size: @include font-size(40px);
         line-height: 45px;
         font-weight: 700;
+    }
+
+    &--container {
+        text-align: center;
     }
 }

@@ -927,9 +927,8 @@ sup {
 }
 
 .section__travel-benefits {
-  background: #48a9c5;
-  background: linear-gradient(90deg, rgba(72, 169, 197, 0.8) 0%, #48a9c5 50%, rgba(72, 169, 197, 0.8) 100%);
-  color: #ffffff;
+  background-color: #48a9c5;
+  color: #fff;
   padding: 65px 0 65px 0;
 }
 
@@ -938,6 +937,10 @@ sup {
   font-size: 40px;
   line-height: 45px;
   font-weight: 700;
+}
+
+.section__travel-benefits--container {
+  text-align: center;
 }
 
 /*# sourceMappingURL=styles.css.map */
