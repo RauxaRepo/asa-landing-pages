@@ -37,7 +37,7 @@ assets/src/scss => holds all sass files, sass has been seperated into components
 
 ## Flex grid system
 Example of grid usage: 
-this is a two column layouy on medium up, and single column on mobile 
+this is a two column layout on medium up, and single column on mobile 
 
 ```html
   <section class="container">
