@@ -36,7 +36,6 @@ assets/src/scss => holds all sass files, sass has been seperated into components
 
 
 ## Flex grid system
-Example of grid usage: 
 
 Breakpoints are part of the grid.scss, we can easily pass new object with breakpoint if needed but will fallback to default if nothing is passed. 
 
@@ -61,6 +60,7 @@ the `.container` class is meant to be used as main container for content, it has
 the `.row` class defines the area which we will use columns for our layout/content, the container width is set to 100%, which means is the width id dictated by parent with class `.container`. 
 
 the `.column` class defines element as a column, this also requires the additional class which determing the width of column. The width class is a combination of breakpoint( xs, sm, md, lg, xl ) and number of columns ( 1-12 ): 
+
 `xs-12 md-8` => this is 12 columns in `xs` and 8 columns on `md` and up. 
 
 Breakdown on column width by column number: 
@@ -84,14 +84,15 @@ Breakdown on column width by column number:
 
 
 
-this is a two column layout on medium up, and single column on mobile 
+this is a 4 column layout; on `xs` is 12 columns (100%), on `md` is 6 columns (50%), and on `lg` is 3 columns (25%).
+
 ```html
   <section class="container">
     <div class="row">
-      <div class="column xs-12 md-6">
-      </div>
-      <div class="column xs-12 md-6">
-      </div>
+      <div class="column xs-12 md-6 lg-3"></div>
+      <div class="column xs-12 md-6 lg-3"></div>
+      <div class="column xs-12 md-6 lg-3"></div>
+      <div class="column xs-12 md-6 lg-3"></div>
     </div>
   </section>
 ```
