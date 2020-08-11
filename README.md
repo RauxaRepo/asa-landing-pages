@@ -38,6 +38,7 @@ assets/src/scss => holds all sass files, sass has been seperated into components
 ## Flex grid system
 
 Breakpoints are part of the grid.scss, we can easily pass new object with breakpoint if needed but will fallback to default if nothing is passed. 
+*Would love to use Grid CSS but is not fully supported ( Edge & IE11 ), once supported we will updated accordingly.
 
 default breakpoints: 
 ```scss
