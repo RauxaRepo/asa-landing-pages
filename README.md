@@ -37,8 +37,30 @@ assets/src/scss => holds all sass files, sass has been seperated into components
 
 ## Flex grid system
 Example of grid usage: 
-this is a two column layout on medium up, and single column on mobile 
 
+Breakpoints are part of the grid.scss, we can easily pass new object with breakpoint if needed but will fallback to default if nothing is passed. 
+
+default breakpoints: 
+```scss
+$breakpoints: (
+  xs: 320px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+```
+
+Content(s) Container: 
+the `.container` class is meant to be used as main container for content, it has width of 100% with max-width of 1440px, this can be globally updated by using the `$layout-max-width` variable. 
+
+```html
+  <section class="container"></section>
+```
+
+
+
+this is a two column layout on medium up, and single column on mobile 
 ```html
   <section class="container">
     <div class="row">
