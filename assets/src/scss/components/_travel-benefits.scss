@@ -1,17 +1,30 @@
 .section__travel-benefits {
-    background-color: $blue;
+  background-color: $blue;
 
-    color: $white;
-    padding: 65px 0 65px 0;
+  color: $white;
+  padding: 65px 32px;
 
-    &--headline {
-        text-align: center;
-        font-size: @include font-size(40px);
-        line-height: 45px;
-        font-weight: 700;
-    }
+  &--headline {
+    text-align: center;
+    @include font-size(40px);
+    line-height: calculate-rem(45px);
+    font-weight: 700;
+  }
 
-    &--container {
-        text-align: center;
-    }
+  &--container {
+    text-align: center;
+    margin: 0 25px;
+  }
+
+  &--subhead {
+    @include font-size(20px);
+    line-height: calculate-rem(26px);
+    font-weight: 700;
+  }
+
+  &--text {
+    @include font-size(16px);
+    line-height: calculate-rem(24px);
+    font-weight: 400;
+  }
 }

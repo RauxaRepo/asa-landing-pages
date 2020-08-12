@@ -929,18 +929,31 @@ sup {
 .section__travel-benefits {
   background-color: #48a9c5;
   color: #fff;
-  padding: 65px 0 65px 0;
+  padding: 65px 32px;
 }
 
 .section__travel-benefits--headline {
   text-align: center;
-  font-size: 40px;
-  line-height: 45px;
+  font-size: 2.5rem;
+  line-height: 2.8125rem;
   font-weight: 700;
 }
 
 .section__travel-benefits--container {
   text-align: center;
+  margin: 0 25px;
+}
+
+.section__travel-benefits--subhead {
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 700;
+}
+
+.section__travel-benefits--text {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
 }
 
 /*# sourceMappingURL=styles.css.map */
