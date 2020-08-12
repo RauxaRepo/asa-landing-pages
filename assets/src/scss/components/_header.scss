@@ -1,8 +1,23 @@
 
-.header {
+header {
   position: relative;
-  height: 50vh;
-  background-color: $white;
-}
+  height: 55px;
+  background-color: $darkblue;
+  border-bottom: 1px solid $darkerblue;
+  display: flex;
+  justify-content: flex-start;
 
-  
+  @include bp(md) {
+    height: 95px;
+  }
+
+  img {
+    height: 55px;
+    width: auto;
+
+    @include bp(md) {
+      height: 95px;
+    }
+  }
+
+}
