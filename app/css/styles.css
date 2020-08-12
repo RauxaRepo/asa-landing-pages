@@ -901,11 +901,15 @@ sup {
 }
 
 .icon use.icon--white {
-  fill: white;
+  fill: #fff;
 }
 
 .icon use.icon--red {
-  fill: red;
+  fill: #fc0404;
+}
+
+.icon use.icon--atlas-blue {
+  fill: #2774ae;
 }
 
 .top-bar {
