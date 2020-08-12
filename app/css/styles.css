@@ -893,6 +893,21 @@ sup {
   }
 }
 
+.icon {
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
+
+.icon use.icon--white {
+  fill: white;
+}
+
+.icon use.icon--red {
+  fill: red;
+}
+
 .top-bar {
   position: relative;
   height: 120px;
