@@ -9,11 +9,11 @@ $breakpoints: (
 );
 
 $column-padding: (
-  xs: ('col-padding': 12px),
-  sm: ('col-padding': 12px),
-  md: ('col-padding': 12px),
-  lg: ('col-padding': 12px),
-  xl: ('col-padding': 12px)
+  xs: ('col-padding': 30px),
+  sm: ('col-padding': 30px),
+  md: ('col-padding': 30px),
+  lg: ('col-padding': 30px),
+  xl: ('col-padding': 30px)
 );
 
 @mixin grid-create($new-break-points: $breakpoints) {
@@ -139,11 +139,13 @@ $column-padding: (
       flex-direction: column;
       justify-content: flex-start; // vert
       align-items: flex-start; // hori
-      padding: 0 map-deep-get($column-padding, sm, 'col-padding');
+      padding-left: map-deep-get($column-padding, sm, 'col-padding');
+      padding-right: map-deep-get($column-padding, sm, 'col-padding');
       position: relative;
 
       @include bp(md) {
-        padding: 0 map-deep-get($column-padding, md, 'col-padding');
+        padding-left: map-deep-get($column-padding, md, 'col-padding');
+        padding-right: map-deep-get($column-padding, md, 'col-padding');
       }
 
 

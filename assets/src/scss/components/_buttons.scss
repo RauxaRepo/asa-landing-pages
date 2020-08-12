@@ -1,0 +1,9 @@
+.cta {
+  background-color: $cta-blue;
+  color: $white;
+  border-radius: 3px;
+  padding: 17px 50px 14px;
+  line-height: 1;
+  font-size: calculate-rem(16px);
+  font-weight: 700;
+}
