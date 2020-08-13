@@ -1177,6 +1177,11 @@ header img {
   max-width: 90vw;
 }
 
+.partners__block--content .icon--plane {
+  width: 42px;
+  height: 44px;
+}
+
 .partners__background {
   object-fit: contain;
   width: 100%;
@@ -1248,6 +1253,10 @@ header img {
 @media (min-width: 768px) {
   .partners__block--content h4 {
     max-width: 900px;
+  }
+  .partners__block--content .icon--plane {
+    width: 45px;
+    height: 45px;
   }
   .partners__block--background {
     display: block;
