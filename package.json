@@ -53,6 +53,7 @@
     "merge-stream": "^2.0.0",
     "normalize-scss": "^7.0.1",
     "postcss-discard-comments": "^4.0.2",
+    "vanilla-lazyload": "^17.1.0",
     "webpack": "^4.35.0",
     "webpack-stream": "^5.2.1",
     "whatwg-fetch": "^3.0.0",
