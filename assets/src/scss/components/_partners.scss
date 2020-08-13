@@ -36,11 +36,11 @@ $partners-bg: #dff1fd;
       h2 {
         margin-top: 0;
         margin-bottom: 30px;
+      }
 
-        & + * {
-          margin-top: 0;
-          max-width: 90vw;
-        }
+      h4 {
+        margin-top: 0;
+        max-width: 90vw;
       }
     }
   }
@@ -120,10 +120,8 @@ $partners-bg: #dff1fd;
   .partners {
     &__block {
       &--content {
-        h2 {
-          & + * {
-            max-width: 900px;
-          }
+        h4 {
+          max-width: 900px;
         }
       }
 
