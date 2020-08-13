@@ -1,3 +1,5 @@
+// sass-lint:disable no-important, no-color-literals
+
 .cta {
   background-color: $cta-blue;
   color: $white;
@@ -6,4 +8,11 @@
   line-height: 1;
   font-size: calculate-rem(16px);
   font-weight: 700;
+  transition: background-color .3s ease-out, box-shadow .3s ease-out;
+
+
+  &:hover {
+    box-shadow: 0 0 1rem rgba(1, 66, 106, .4);
+    background-color: $cta-blue-hover;
+  }
 }

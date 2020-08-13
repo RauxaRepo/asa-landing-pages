@@ -963,6 +963,12 @@ small,
   line-height: 1;
   font-size: 1rem;
   font-weight: 700;
+  transition: background-color .3s ease-out, box-shadow .3s ease-out;
+}
+
+.cta:hover {
+  box-shadow: 0 0 1rem rgba(1, 66, 106, 0.4);
+  background-color: #176cff;
 }
 
 .lazy {
@@ -983,6 +989,14 @@ header {
   justify-content: flex-start;
 }
 
+header .container {
+  max-width: 100%;
+}
+
+header .container .column {
+  padding: 0;
+}
+
 @media (min-width: 768px) {
   header {
     height: 95px;
@@ -992,6 +1006,7 @@ header {
 header img {
   height: 55px;
   width: auto;
+  pointer-events: none;
 }
 
 @media (min-width: 768px) {
@@ -1007,7 +1022,8 @@ header img {
 }
 
 .main-page-footer {
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 50px;
   max-width: 948px;
   color: #656565;
 }
@@ -1042,7 +1058,7 @@ header img {
 .section__travel-benefits {
   background-color: #48a9c5;
   color: #fff;
-  padding: 65px 32px;
+  padding: 75px 32px;
 }
 
 .section__travel-benefits--headline {
@@ -1051,6 +1067,7 @@ header img {
   line-height: 2.8125rem;
   font-weight: 700;
   margin-bottom: 36px;
+  margin-top: 0;
 }
 
 .section__travel-benefits--container {
@@ -1150,6 +1167,7 @@ header img {
 .compare__img {
   max-width: 311px;
   align-self: auto;
+  pointer-events: none;
 }
 
 .compare__stats {
@@ -1338,6 +1356,9 @@ header img {
 }
 
 @media (min-width: 768px) {
+  .partners__container {
+    padding-bottom: 34vw;
+  }
   .partners__block--content h4 {
     max-width: 900px;
   }
