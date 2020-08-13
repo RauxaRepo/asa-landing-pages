@@ -980,6 +980,18 @@ header img {
   background-color: #fff;
 }
 
+.main-page-footer {
+  margin-top: 20px;
+  max-width: 948px;
+  color: #656565;
+}
+
+.main-page-footer p {
+  text-align: left;
+  font-size: 0.625rem;
+  line-height: 0.875rem;
+}
+
 .credit-cards {
   position: relative;
 }
