@@ -124,6 +124,10 @@ $partners-bg: #dff1fd;
 
 @include bp(md) {
   .partners {
+    &__container {
+      padding-bottom: 34vw;
+    }
+
     &__block {
       &--content {
         h4 {
