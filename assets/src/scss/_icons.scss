@@ -1,0 +1,20 @@
+
+.icon {
+  position: relative;
+  display: inline-block;
+
+  use {
+    &.icon--white {
+      fill: $white;
+    }
+
+    &.icon--red {
+      fill: $red;
+    }
+
+    &.icon--atlas-blue {
+      fill: $atlasblue;
+    }
+
+  }
+}

@@ -86,37 +86,85 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../assets/src/js/components/tracking.js":
-/*!***********************************************!*\
-  !*** ../assets/src/js/components/tracking.js ***!
-  \***********************************************/
-/*! exports provided: track */
+/***/ "../assets/src/js/components/accordion.js":
+/*!************************************************!*\
+  !*** ../assets/src/js/components/accordion.js ***!
+  \************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "track", function() { return track; });
-var track = {
-  pageInit: function pageInit() {
-    utag.view({
-      'page_name': 'loyalty:canadian-cc-acquisition:home',
-      'channel': 'loyalty'
+/* harmony import */ var badger_accordion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! badger-accordion */ "../node_modules/badger-accordion/dist/badger-accordion.esm.js");
+
+var accordionInstance;
+var accordion = {
+  jsClass: '.js-accordion',
+  constructor: function constructor() {
+    var accordions = Array.from(document.querySelectorAll("".concat(accordion.jsClass)));
+    accordions.forEach(function (acc) {
+      accordionInstance = new badger_accordion__WEBPACK_IMPORTED_MODULE_0__["default"](acc, {
+        headerClass: "".concat(accordion.jsClass, "-header"),
+        panelClass: "".concat(accordion.jsClass, "-panel"),
+        panelInnerClass: "".concat(accordion.jsClass, "-panel-inner"),
+        initializedClass: 'accordion--initialized'
+      });
     });
   },
-  applyNowBtnWorldElite: function applyNowBtnWorldElite() {
-    utag.view({
-      'link_tracking': "credit-card : mastercard-ca-worldelite : acquisition",
-      'events': 'event23'
-    });
+  onResize: function onResize() {
+    window.addEventListener('resize', accordionInstance.calculateAllPanelsHeight());
   },
-  applyNowBtnPlatinum: function applyNowBtnPlatinum() {
-    utag.view({
-      'link_tracking': "credit-card : mastercard-ca-platinumplus : acquisition",
-      'events': 'event23'
-    });
+  init: function init() {
+    if (document.querySelector("".concat(accordion.jsClass))) {
+      accordion.constructor();
+      window.addEventListener('load', function () {
+        // calculating panel height after all images are loaded
+        accordionInstance.calculateAllPanelsHeight();
+        accordion.onResize();
+      });
+    }
   }
 };
+/* harmony default export */ __webpack_exports__["default"] = (accordion);
 
+/***/ }),
+
+/***/ "../assets/src/js/components/lazyload.js":
+/*!***********************************************!*\
+  !*** ../assets/src/js/components/lazyload.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vanilla-lazyload/dist/lazyload.min */ "../node_modules/vanilla-lazyload/dist/lazyload.min.js");
+/* harmony import */ var vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var lazyLoadConstructor = function lazyLoadConstructor() {
+  /* eslint-disable no-unused-vars */
+  var lazyLoadImages = new vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0___default.a({
+    elements_selector: '[data-lazy-src]',
+    class_loaded: 'lazy--loaded',
+    class_loading: 'lazy--loading',
+    data_src: 'lazy-src',
+    data_srcset: 'lazy-srcset'
+  });
+  var lazyLoadBackgrounds = new vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0___default.a({
+    elements_selector: '[data-lazy-bg]',
+    class_loaded: 'bg-lazy--loaded',
+    class_loading: 'bg-lazy--loading',
+    data_src: 'lazy-bg'
+  });
+  /* eslint-enable no-unused-vars */
+};
+
+var lazyloadInit = function lazyloadInit() {
+  lazyLoadConstructor();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (lazyloadInit);
 
 /***/ }),
 
@@ -132,9 +180,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/polyfill */ "../node_modules/@babel/polyfill/lib/index.js");
 /* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_polyfill__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! whatwg-fetch */ "../node_modules/whatwg-fetch/fetch.js");
-/* harmony import */ var _components_tracking__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/tracking */ "../assets/src/js/components/tracking.js");
+/* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/accordion */ "../assets/src/js/components/accordion.js");
+/* harmony import */ var _components_lazyload__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/lazyload */ "../assets/src/js/components/lazyload.js");
 
  //import sampleJs from './components/sample.component';
+// import track from './components/tracking';
+
 
 
 
@@ -151,7 +202,8 @@ function documentReady(fn) {
 }
 
 documentReady(function () {
-  Object(_components_tracking__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  _components_accordion__WEBPACK_IMPORTED_MODULE_2__["default"].init();
+  Object(_components_lazyload__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
 
 /***/ }),
@@ -221,6 +273,821 @@ __webpack_require__(/*! core-js/fn/promise/finally */ "../node_modules/core-js/f
 __webpack_require__(/*! core-js/web */ "../node_modules/core-js/web/index.js");
 
 __webpack_require__(/*! regenerator-runtime/runtime */ "../node_modules/regenerator-runtime/runtime.js");
+
+/***/ }),
+
+/***/ "../node_modules/badger-accordion/dist/badger-accordion.esm.js":
+/*!*********************************************************************!*\
+  !*** ../node_modules/badger-accordion/dist/badger-accordion.esm.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+if (!Array.from) {
+  Array.from = function () {
+    var toStr = Object.prototype.toString;
+
+    var isCallable = function isCallable(fn) {
+      return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+    };
+
+    var toInteger = function toInteger(value) {
+      var number = Number(value);
+
+      if (isNaN(number)) {
+        return 0;
+      }
+
+      if (number === 0 || !isFinite(number)) {
+        return number;
+      }
+
+      return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+    };
+
+    var maxSafeInteger = Math.pow(2, 53) - 1;
+
+    var toLength = function toLength(value) {
+      var len = toInteger(value);
+      return Math.min(Math.max(len, 0), maxSafeInteger);
+    }; // The length property of the from method is 1.
+
+
+    return function from(arrayLike
+    /* , mapFn, thisArg */
+    ) {
+      // 1. Let C be the this value.
+      var C = this; // 2. Let items be ToObject(arrayLike).
+
+      var items = Object(arrayLike); // 3. ReturnIfAbrupt(items).
+
+      if (arrayLike == null) {
+        throw new TypeError('Array.from requires an array-like object - not null or undefined');
+      } // 4. If mapfn is undefined, then let mapping be false.
+
+
+      var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+      var T;
+
+      if (typeof mapFn !== 'undefined') {
+        // 5. else
+        // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+        if (!isCallable(mapFn)) {
+          throw new TypeError('Array.from: when provided, the second argument must be a function');
+        } // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+
+
+        if (arguments.length > 2) {
+          T = arguments[2];
+        }
+      } // 10. Let lenValue be Get(items, "length").
+      // 11. Let len be ToLength(lenValue).
+
+
+      var len = toLength(items.length); // 13. If IsConstructor(C) is true, then
+      // 13. a. Let A be the result of calling the [[Construct]] internal method
+      // of C with an argument list containing the single item len.
+      // 14. a. Else, Let A be ArrayCreate(len).
+
+      var A = isCallable(C) ? Object(new C(len)) : new Array(len); // 16. Let k be 0.
+
+      var k = 0; // 17. Repeat, while k < len… (also steps a - h)
+
+      var kValue;
+
+      while (k < len) {
+        kValue = items[k];
+
+        if (mapFn) {
+          A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+        } else {
+          A[k] = kValue;
+        }
+
+        k += 1;
+      } // 18. Let putStatus be Put(A, "length", len, true).
+
+
+      A.length = len; // 20. Return A.
+
+      return A;
+    };
+  }();
+}
+/*
+	By Osvaldas Valutis, www.osvaldas.info
+	Available for use under the MIT License
+*/
+
+/* eslint-disable no-unused-vars */
+
+
+(function (document, window) {
+  var el = document.body || document.documentElement,
+      s = el.style,
+      prefixAnimation = '',
+      prefixTransition = '';
+  if (s.WebkitAnimation == '') prefixAnimation = '-webkit-';
+  if (s.MozAnimation == '') prefixAnimation = '-moz-';
+  if (s.OAnimation == '') prefixAnimation = '-o-';
+  if (s.WebkitTransition == '') prefixTransition = '-webkit-';
+  if (s.MozTransition == '') prefixTransition = '-moz-';
+  if (s.OTransition == '') prefixTransition = '-o-';
+  Object.defineProperty(Object.prototype, 'onCSSAnimationEnd', {
+    value: function value(callback) {
+      var runOnce = function runOnce(e) {
+        callback();
+        e.target.removeEventListener(e.type, runOnce);
+      };
+
+      this.addEventListener('webkitAnimationEnd', runOnce);
+      this.addEventListener('mozAnimationEnd', runOnce);
+      this.addEventListener('oAnimationEnd', runOnce);
+      this.addEventListener('oanimationend', runOnce);
+      this.addEventListener('animationend', runOnce);
+      if (prefixAnimation == '' && !('animation' in s) || getComputedStyle(this)[prefixAnimation + 'animation-duration'] == '0s') callback();
+      return this;
+    },
+    enumerable: false,
+    writable: true
+  });
+  Object.defineProperty(Object.prototype, 'onCSSTransitionEnd', {
+    value: function value(callback) {
+      var runOnce = function runOnce(e) {
+        callback();
+        e.target.removeEventListener(e.type, runOnce);
+      };
+
+      this.addEventListener('webkitTransitionEnd', runOnce);
+      this.addEventListener('mozTransitionEnd', runOnce);
+      this.addEventListener('oTransitionEnd', runOnce);
+      this.addEventListener('transitionend', runOnce);
+      this.addEventListener('transitionend', runOnce);
+      if (prefixTransition == '' && !('transition' in s) || getComputedStyle(this)[prefixTransition + 'transition-duration'] == '0s') callback();
+      return this;
+    },
+    enumerable: false,
+    writable: true
+  });
+})(document, window, 0);
+/**
+ *  ACCORDION
+ *
+ * A lightwight vanilla JS accordion with an exstensible API
+ */
+// import uuid from 'uuid/v4';
+// const uuidV4 = uuid;
+
+/* eslint-disable no-unused-vars */
+
+/**
+ * CONSTRUCTOR
+ * Initializes the object
+ */
+
+
+var BadgerAccordion = /*#__PURE__*/function () {
+  function BadgerAccordion(el, options) {
+    var _this2 = this;
+
+    _classCallCheck(this, BadgerAccordion);
+
+    var container = typeof el === 'string' ? document.querySelector(el) : el; // If el is not defined
+
+    if (container == null) {
+      return;
+    }
+
+    var defaults = {
+      headerClass: '.js-badger-accordion-header',
+      panelClass: '.js-badger-accordion-panel',
+      panelInnerClass: '.js-badger-accordion-panel-inner',
+      hiddenClass: '-ba-is-hidden',
+      activeClass: '-ba-is-active',
+
+      get hidenClass() {
+        return this.hiddenClass;
+      },
+
+      initializedClass: 'badger-accordion--initialized',
+
+      get initalisedClass() {
+        return this.initializedClass;
+      },
+
+      headerDataAttr: 'data-badger-accordion-header-id',
+      openMultiplePanels: false,
+      openHeadersOnLoad: [],
+      addListenersOnInit: true,
+      headerOpenLabel: '',
+      headerCloseLabel: '',
+      roles: true // toggleEl:            // If you want to use a different element to trigger the accordion
+
+    }; // Options
+
+    this.settings = _extends({}, defaults, options); // Setting getting elements
+
+    this.container = container; // Selecting children of the current accordion instance
+
+    var children = Array.from(this.container.children); // Since the Accordions header button is nested inside an element with class
+    // of `badger-accordion__header` it is a grandchild of the accordion instance.
+    // In order to have nested accordions we need each to only get all the button
+    // elements for this instance. Here an array is created to show all the children
+    // of the element `badger-accordion__header`.
+
+    var headerParent = children.filter(function (header) {
+      return !header.classList.contains(_this2.settings.panelClass.substr(1));
+    }); // Creating an array of all DOM nodes that are Accordion headers
+
+    this.headers = headerParent.reduce(function (acc, header) {
+      var _ref; // Gets all the elements that have the headerClass
+
+
+      var a = Array.from(header.children).filter(function (child) {
+        return child.classList.contains(_this2.settings.headerClass.substr(1));
+      }); // Merges the current `badger-accordion__header` accordion triggers
+      // with all the others.
+
+      acc = (_ref = []).concat.apply(_ref, _toConsumableArray(acc).concat([a]));
+      return acc;
+    }, []); // Creates an array of all panel elements for this instance of the accordion
+
+    this.panels = children.filter(function (panel) {
+      return panel.classList.contains(_this2.settings.panelClass.substr(1));
+    });
+    this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers; // This is for managing state of the accordion. It by default sets
+    // all accordion panels to be closed
+
+    this.states = [].map.call(this.headers, function () {
+      return {
+        state: 'closed'
+      };
+    });
+    this.ids = [].map.call(this.headers, function () {
+      return {
+        id: Math.floor(Math.random() * 1000000 + 1)
+      };
+    }); // This is to ensure that once an open/close event has been fired
+    // another cannot start until the first event has finished.
+    // @TODO - get this working...
+
+    this.toggling = false; // Initiating the accordion
+
+    if (this.container) {
+      this.init();
+    } else {
+      /* eslint-disable no-console */
+      console.log('Something is wrong with you markup...');
+    }
+  }
+  /**
+   *  INIT
+   *
+   *  Initalises the accordion
+   */
+
+
+  _createClass(BadgerAccordion, [{
+    key: "init",
+    value: function init() {
+      // Sets up ID, aria attrs & data-attrs
+      this._setupAttributes(); // Setting up the inital view of the accordion
+
+
+      this._initalState(); // Setting the height of each panel
+
+
+      this.calculateAllPanelsHeight(); // Inserting data-attribute onto each `header`
+
+      this._insertDataAttrs(); // Adding listeners to headers
+
+
+      this._addListeners(); // Adds class to accordion for initalisation
+
+
+      this._finishInitialization();
+    }
+    /**
+     * CHECK ROLES ETTING
+     * @return {[boolean]}
+     * Checks roles setting for all roles or a single role.
+     * First checks if a `boolean` has been used to set all
+     * roles to either true or false. If the setting is an
+     * object it will only set the attribute where each
+     * attribute has explicitly been set as true, eg;
+     * ```
+     * roles: {
+     *     region: true
+     * }
+     * ```
+     */
+
+  }, {
+    key: "_setRole",
+    value: function _setRole(role, el) {
+      if (typeof this.settings.roles === 'boolean' && this.settings.roles || this.settings.roles[role] !== undefined && this.settings.roles[role] !== false) {
+        el.setAttribute('role', role);
+      }
+    }
+    /**
+     *  INSERT DATA ATTRS
+     *
+     *  Updates state object for inital loading of the accordion
+     */
+
+  }, {
+    key: "_initalState",
+    value: function _initalState() {
+      // Sets state object as per `this.settings.openHeadersOnLoad`
+      var headersToOpen = this.settings.openHeadersOnLoad;
+
+      if (headersToOpen.length) {
+        this._openHeadersOnLoad(headersToOpen);
+      } // Render DOM as per the updates `this.states` object
+
+
+      this._renderDom();
+    }
+    /**
+     *  INSERT DATA ATTRS
+     *
+     *  Adds `headerDataAttr` to all headers
+     */
+
+  }, {
+    key: "_insertDataAttrs",
+    value: function _insertDataAttrs() {
+      var _this3 = this;
+
+      this.headers.forEach(function (header, index) {
+        header.setAttribute(_this3.settings.headerDataAttr, index);
+      });
+    }
+    /**
+     *  FINISH INITALISATION
+     *
+     *  Adds in `initializedClass` to accordion
+     */
+
+  }, {
+    key: "_finishInitialization",
+    value: function _finishInitialization() {
+      this.container.classList.add(this.settings.initializedClass);
+
+      this._setRole('presentation', this.container);
+    }
+    /**
+     *  ADD LISTENERS
+     *
+     *  Adds click event to each header
+     */
+
+  }, {
+    key: "_addListeners",
+    value: function _addListeners() {
+      if (!this.settings.addListenersOnInit) return; // So we can reference the badger-accordion object inside out eventListener
+
+      var _this = this; // Adding click event to accordion
+
+
+      this.headers.forEach(function (header, index) {
+        header.addEventListener('click', function () {
+          // Getting the target of the click
+          // const clickedEl = event.target;
+          _this.handleClick(header, index);
+        });
+      });
+    }
+    /**
+     *  HANDLE CLICK
+     *
+     *  Handles click and checks if click was on an header element
+     *  @param {object} targetHeader - The header node you want to open
+     */
+
+  }, {
+    key: "handleClick",
+    value: function handleClick(targetHeader, headerIndex) {
+      // Removing current `.` from `this.settings.headerClass` class so it can
+      // be checked against the `targetHeader` classList
+      var targetHeaderClass = this.settings.headerClass.substr(1); // Checking that the thing that was clicked on was the accordions header
+
+      if (targetHeader.classList.contains(targetHeaderClass) && this.toggling === false) {
+        this.toggling = true; // Updating states
+
+        this.setState(headerIndex); // Render DOM as per the updates `this.states` object
+
+        this._renderDom();
+      }
+    }
+    /**
+     *  SET STATES
+     *
+     *  Sets the state for all headers. The 'target header' will have its state toggeled
+     *  @param {object} targetHeaderId - The header node you want to open
+     */
+
+  }, {
+    key: "setState",
+    value: function setState(targetHeaderId) {
+      var _this4 = this;
+
+      var states = this.getState(); // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
+      // be can open at once. If it is false then all panels state APART from the one that
+      // has just been clicked needs to be set to 'closed'.
+
+      if (!this.settings.openMultiplePanels) {
+        states.filter(function (state, index) {
+          if (index != targetHeaderId) {
+            state.state = 'closed';
+          }
+        });
+      } // Toggles the state value of the target header. This was `array.find` but `find`
+      // isnt supported in IE11
+
+
+      states.filter(function (state, index) {
+        if (index == targetHeaderId) {
+          var newState = _this4.toggleState(state.state);
+
+          return state.state = newState;
+        }
+      });
+    }
+    /**
+     *  RENDER DOM
+     *
+     *  Renders the accordion in the DOM using the `this.states` object
+     */
+
+  }, {
+    key: "_renderDom",
+    value: function _renderDom() {
+      var _this5 = this; // Filter through all open headers and open them
+
+
+      this.states.filter(function (state, index) {
+        if (state.state === 'open') {
+          // Opening the current panel but _NOT_ updating the state
+          _this5.open(index, false);
+        }
+      }); // Filter through all closed headers and closes them
+
+      this.states.filter(function (state, index) {
+        if (state.state === 'closed') {
+          // Closing the current panel but _NOT_ updating the state
+          _this5.close(index, false);
+        }
+      });
+    }
+    /**
+     *  OPEN
+     *
+     *  Closes a specific panel
+     *  @param {integer} headerIndex - The header node index you want to open
+     */
+
+  }, {
+    key: "open",
+    value: function open(headerIndex) {
+      var setState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true; // 1. If being fired directly the state needs to be updated.
+
+      if (setState) {
+        this.setState(headerIndex);
+      }
+
+      this.togglePanel('open', headerIndex);
+    }
+    /**
+     *  CLOSE
+     *
+     *  Closes a specific panel
+     *  @param {integer} headerIndex - The header node index you want to close
+     */
+
+  }, {
+    key: "close",
+    value: function close(headerIndex) {
+      var setState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true; // 1. If being fired directly the state needs to be updated.
+
+      if (setState) {
+        this.setState(headerIndex);
+      }
+
+      this.togglePanel('closed', headerIndex);
+    }
+    /**
+     *  OPEN ALL
+     *
+     *  Opens all panels
+     */
+
+  }, {
+    key: "openAll",
+    value: function openAll() {
+      var _this6 = this;
+
+      this.headers.forEach(function (header, headerIndex) {
+        _this6.togglePanel('open', headerIndex);
+      });
+    }
+    /**
+     *  CLOSE ALL
+     *
+     *  Closes all panels
+     */
+
+  }, {
+    key: "closeAll",
+    value: function closeAll() {
+      var _this7 = this;
+
+      this.headers.forEach(function (header, headerIndex) {
+        _this7.togglePanel('closed', headerIndex);
+      });
+    }
+    /**
+     *  GET STATE
+     *
+     *  Getting state of headers. By default gets state of all headers
+     *  @param {string} animationAction - The animation you want to invoke
+     *  @param {integer} headerIndex    - The header node index you want to animate
+     */
+
+  }, {
+    key: "togglePanel",
+    value: function togglePanel(animationAction, headerIndex) {
+      var _this8 = this;
+
+      if (animationAction !== undefined && headerIndex !== undefined) {
+        if (animationAction === 'closed') {
+          // 1. Getting ID of panel that we want to close
+          var header = this.headers[headerIndex];
+          var panelToClose = this.panels[headerIndex]; // 2. Closeing panel
+
+          panelToClose.classList.add(this.settings.hiddenClass); // 3. Removing active classes
+
+          panelToClose.classList.remove(this.settings.activeClass);
+          header.classList.remove(this.settings.activeClass); // 4. Set aria attrs
+
+          header.setAttribute('aria-expanded', false); // 5. Resetting toggling so a new event can be fired
+
+          panelToClose.onCSSTransitionEnd(function () {
+            return _this8.toggling = false;
+          });
+        } else if (animationAction === 'open') {
+          // 1. Getting ID of panel that we want to open
+          var _header = this.headers[headerIndex];
+          var panelToOpen = this.panels[headerIndex]; // 2. Opening panel
+
+          panelToOpen.classList.remove(this.settings.hiddenClass); // 3. Adding active classes
+
+          panelToOpen.classList.add(this.settings.activeClass);
+
+          _header.classList.add(this.settings.activeClass); // 4. Set aria attrs
+
+
+          _header.setAttribute('aria-expanded', true); // 5. Resetting toggling so a new event can be fired
+
+
+          panelToOpen.onCSSTransitionEnd(function () {
+            return _this8.toggling = false;
+          });
+        }
+      }
+    } // @TODO - is this needed anymore?
+    // checkState(headerId) {
+    //     let state = this.states[headerId].state;
+    //
+    //     if(state === 'closed') {
+    //         return state;
+    //     } else if(state === 'open') {
+    //         return state;
+    //     }
+    // }
+
+    /**
+     *  GET STATE
+     *
+     *  Getting state of headers. By default gets state of all headers
+     *  @param {array} headerIds - Id/'s of the headers you want to check
+     */
+
+  }, {
+    key: "getState",
+    value: function getState() {
+      var _this9 = this;
+
+      var headerIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      if (headerIds.length && Array.isArray(headerIds)) {
+        var states = headerIds.map(function (header) {
+          return _this9.states[header];
+        });
+        return states;
+      } else {
+        return this.states;
+      }
+    }
+    /**
+     *  TOGGLE STATE
+     *
+     *  Toggling the state value
+     *  @param {string} currentState - Current state value for a header
+     */
+
+  }, {
+    key: "toggleState",
+    value: function toggleState(currentState) {
+      if (currentState !== undefined) {
+        return currentState === 'closed' ? 'open' : 'closed';
+      }
+    }
+    /**
+     *  HEADERS TO OPEN
+     *
+     *  Setting which headers should be open when accordion is initalised
+     *  @param {array} headersToOpen - Array of ID's for the headers to be open
+     */
+
+  }, {
+    key: "_openHeadersOnLoad",
+    value: function _openHeadersOnLoad() {
+      var _this10 = this;
+
+      var headersToOpen = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      if (headersToOpen.length && Array.isArray(headersToOpen)) {
+        var headers = headersToOpen.filter(function (header) {
+          return header != undefined;
+        });
+        headers.forEach(function (header) {
+          _this10.setState(header);
+        });
+      }
+    }
+    /**
+     *  SET UP ATTRIBUTES
+     *
+     *  Initalises accordion attribute methods
+     */
+
+  }, {
+    key: "_setupAttributes",
+    value: function _setupAttributes() {
+      // Adding ID & aria-controls
+      this._setupHeaders(); // Adding ID & aria-labelledby
+
+
+      this._setupPanels(); // Inserting data-attribute onto each `header`
+
+
+      this._insertDataAttrs();
+    }
+    /**
+     *  SET PANEL HEIGHT - ** DEPRICATED **
+     *
+     *  Depreicated as this method is becoming public and
+     *  I want to name it something that lets devs know
+     *  it's not just for using inside the `init()` method.
+     */
+
+  }, {
+    key: "_setPanelHeight",
+    value: function _setPanelHeight() {
+      this.calculateAllPanelsHeight();
+    }
+    /**
+     *  CALCULATE PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+
+  }, {
+    key: "calculatePanelHeight",
+    value: function calculatePanelHeight(panel) {
+      var panelInner = panel.querySelector(this.settings.panelInnerClass);
+      var activeHeight = panelInner.offsetHeight;
+      return panel.style.maxHeight = "".concat(activeHeight, "px");
+    }
+    /**
+     *  CALCULATE PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+
+  }, {
+    key: "calculateAllPanelsHeight",
+    value: function calculateAllPanelsHeight() {
+      var _this11 = this;
+
+      this.panels.forEach(function (panel) {
+        _this11.calculatePanelHeight(panel);
+      });
+    }
+    /**
+     * SET UP HEADERS
+     */
+
+  }, {
+    key: "_setupHeaders",
+    value: function _setupHeaders() {
+      var _this12 = this;
+
+      this.headers.forEach(function (header, index) {
+        header.setAttribute('id', "badger-accordion-header-".concat(_this12.ids[index].id));
+        header.setAttribute('aria-controls', "badger-accordion-panel-".concat(_this12.ids[index].id));
+      });
+    }
+    /**
+     * SET UP PANELS
+     */
+
+  }, {
+    key: "_setupPanels",
+    value: function _setupPanels() {
+      var _this13 = this;
+
+      this.panels.forEach(function (panel, index) {
+        panel.setAttribute('id', "badger-accordion-panel-".concat(_this13.ids[index].id));
+        panel.setAttribute('aria-labelledby', "badger-accordion-header-".concat(_this13.ids[index].id));
+
+        if (_this13.settings.roles === true || _this13.settings.roles.region !== false) {
+          _this13._setRole('region', panel);
+        }
+      });
+    }
+  }]);
+
+  return BadgerAccordion;
+}(); // Export
+
+
+/* harmony default export */ __webpack_exports__["default"] = (BadgerAccordion);
 
 /***/ }),
 
@@ -11609,6 +12476,422 @@ try {
   Function("r", "regeneratorRuntime = r")(runtime);
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "../node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-lazyload/dist/lazyload.min.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/vanilla-lazyload/dist/lazyload.min.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+!function (n, t) {
+  "object" == ( false ? undefined : _typeof(exports)) && "undefined" != typeof module ? module.exports = t() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined;
+}(this, function () {
+  "use strict";
+
+  function n() {
+    return (n = Object.assign || function (n) {
+      for (var t = 1; t < arguments.length; t++) {
+        var e = arguments[t];
+
+        for (var i in e) {
+          Object.prototype.hasOwnProperty.call(e, i) && (n[i] = e[i]);
+        }
+      }
+
+      return n;
+    }).apply(this, arguments);
+  }
+
+  var t = "undefined" != typeof window,
+      e = t && !("onscroll" in window) || "undefined" != typeof navigator && /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent),
+      i = t && "IntersectionObserver" in window,
+      a = t && "classList" in document.createElement("p"),
+      o = t && window.devicePixelRatio > 1,
+      r = {
+    elements_selector: ".lazy",
+    container: e || t ? document : null,
+    threshold: 300,
+    thresholds: null,
+    data_src: "src",
+    data_srcset: "srcset",
+    data_sizes: "sizes",
+    data_bg: "bg",
+    data_bg_hidpi: "bg-hidpi",
+    data_bg_multi: "bg-multi",
+    data_bg_multi_hidpi: "bg-multi-hidpi",
+    data_poster: "poster",
+    class_applied: "applied",
+    class_loading: "loading",
+    class_loaded: "loaded",
+    class_error: "error",
+    unobserve_completed: !0,
+    unobserve_entered: !1,
+    cancel_on_exit: !0,
+    callback_enter: null,
+    callback_exit: null,
+    callback_applied: null,
+    callback_loading: null,
+    callback_loaded: null,
+    callback_error: null,
+    callback_finish: null,
+    callback_cancel: null,
+    use_native: !1
+  },
+      c = function c(t) {
+    return n({}, r, t);
+  },
+      l = function l(n, t) {
+    var e,
+        i = new n(t);
+
+    try {
+      e = new CustomEvent("LazyLoad::Initialized", {
+        detail: {
+          instance: i
+        }
+      });
+    } catch (n) {
+      (e = document.createEvent("CustomEvent")).initCustomEvent("LazyLoad::Initialized", !1, !1, {
+        instance: i
+      });
+    }
+
+    window.dispatchEvent(e);
+  },
+      s = function s(n, t) {
+    return n.getAttribute("data-" + t);
+  },
+      u = function u(n, t, e) {
+    var i = "data-" + t;
+    null !== e ? n.setAttribute(i, e) : n.removeAttribute(i);
+  },
+      d = function d(n) {
+    return s(n, "ll-status");
+  },
+      f = function f(n, t) {
+    return u(n, "ll-status", t);
+  },
+      _ = function _(n) {
+    return f(n, null);
+  },
+      g = function g(n) {
+    return null === d(n);
+  },
+      v = function v(n) {
+    return "native" === d(n);
+  },
+      p = ["loading", "loaded", "applied", "error"],
+      b = function b(n, t, e, i) {
+    n && (void 0 === i ? void 0 === e ? n(t) : n(t, e) : n(t, e, i));
+  },
+      h = function h(n, t) {
+    a ? n.classList.add(t) : n.className += (n.className ? " " : "") + t;
+  },
+      m = function m(n, t) {
+    a ? n.classList.remove(t) : n.className = n.className.replace(new RegExp("(^|\\s+)" + t + "(\\s+|$)"), " ").replace(/^\s+/, "").replace(/\s+$/, "");
+  },
+      E = function E(n) {
+    return n.llTempImage;
+  },
+      I = function I(n, t) {
+    if (t) {
+      var e = t._observer;
+      e && e.unobserve(n);
+    }
+  },
+      y = function y(n, t) {
+    n && (n.loadingCount += t);
+  },
+      A = function A(n, t) {
+    n && (n.toLoadCount = t);
+  },
+      L = function L(n) {
+    for (var t, e = [], i = 0; t = n.children[i]; i += 1) {
+      "SOURCE" === t.tagName && e.push(t);
+    }
+
+    return e;
+  },
+      w = function w(n, t, e) {
+    e && n.setAttribute(t, e);
+  },
+      z = function z(n, t) {
+    n.removeAttribute(t);
+  },
+      k = function k(n) {
+    return !!n.llOriginalAttrs;
+  },
+      O = function O(n) {
+    if (!k(n)) {
+      var t = {};
+      t.src = n.getAttribute("src"), t.srcset = n.getAttribute("srcset"), t.sizes = n.getAttribute("sizes"), n.llOriginalAttrs = t;
+    }
+  },
+      C = function C(n) {
+    if (k(n)) {
+      var t = n.llOriginalAttrs;
+      w(n, "src", t.src), w(n, "srcset", t.srcset), w(n, "sizes", t.sizes);
+    }
+  },
+      N = function N(n, t) {
+    w(n, "sizes", s(n, t.data_sizes)), w(n, "srcset", s(n, t.data_srcset)), w(n, "src", s(n, t.data_src));
+  },
+      x = function x(n) {
+    z(n, "src"), z(n, "srcset"), z(n, "sizes");
+  },
+      M = function M(n, t) {
+    var e = n.parentNode;
+    e && "PICTURE" === e.tagName && L(e).forEach(t);
+  },
+      R = function R(n, t) {
+    L(n).forEach(t);
+  },
+      G = {
+    IMG: function IMG(n, t) {
+      M(n, function (n) {
+        O(n), N(n, t);
+      }), O(n), N(n, t);
+    },
+    IFRAME: function IFRAME(n, t) {
+      w(n, "src", s(n, t.data_src));
+    },
+    VIDEO: function VIDEO(n, t) {
+      R(n, function (n) {
+        w(n, "src", s(n, t.data_src));
+      }), w(n, "poster", s(n, t.data_poster)), w(n, "src", s(n, t.data_src)), n.load();
+    }
+  },
+      T = function T(n, t) {
+    var e = G[n.tagName];
+    e && e(n, t);
+  },
+      D = function D(n, t, e) {
+    y(e, 1), h(n, t.class_loading), f(n, "loading"), b(t.callback_loading, n, e);
+  },
+      F = {
+    IMG: function IMG(n, t) {
+      u(n, t.data_src, null), u(n, t.data_srcset, null), u(n, t.data_sizes, null), M(n, function (n) {
+        u(n, t.data_srcset, null), u(n, t.data_sizes, null);
+      });
+    },
+    IFRAME: function IFRAME(n, t) {
+      u(n, t.data_src, null);
+    },
+    VIDEO: function VIDEO(n, t) {
+      u(n, t.data_src, null), u(n, t.data_poster, null), R(n, function (n) {
+        u(n, t.data_src, null);
+      });
+    }
+  },
+      V = function V(n, t) {
+    u(n, t.data_bg_multi, null), u(n, t.data_bg_multi_hidpi, null);
+  },
+      j = function j(n, t) {
+    var e = F[n.tagName];
+    e ? e(n, t) : function (n, t) {
+      u(n, t.data_bg, null), u(n, t.data_bg_hidpi, null);
+    }(n, t);
+  },
+      P = ["IMG", "IFRAME", "VIDEO"],
+      S = function S(n, t) {
+    !t || function (n) {
+      return n.loadingCount > 0;
+    }(t) || function (n) {
+      return n.toLoadCount > 0;
+    }(t) || b(n.callback_finish, t);
+  },
+      U = function U(n, t, e) {
+    n.addEventListener(t, e), n.llEvLisnrs[t] = e;
+  },
+      $ = function $(n, t, e) {
+    n.removeEventListener(t, e);
+  },
+      q = function q(n) {
+    return !!n.llEvLisnrs;
+  },
+      H = function H(n) {
+    if (q(n)) {
+      var t = n.llEvLisnrs;
+
+      for (var e in t) {
+        var i = t[e];
+        $(n, e, i);
+      }
+
+      delete n.llEvLisnrs;
+    }
+  },
+      B = function B(n, t, e) {
+    !function (n) {
+      delete n.llTempImage;
+    }(n), y(e, -1), function (n) {
+      n && (n.toLoadCount -= 1);
+    }(e), m(n, t.class_loading), t.unobserve_completed && I(n, e);
+  },
+      J = function J(n, t, e) {
+    var i = E(n) || n;
+    q(i) || function (n, t, e) {
+      q(n) || (n.llEvLisnrs = {});
+      var i = "VIDEO" === n.tagName ? "loadeddata" : "load";
+      U(n, i, t), U(n, "error", e);
+    }(i, function (a) {
+      !function (n, t, e, i) {
+        var a = v(t);
+        B(t, e, i), h(t, e.class_loaded), f(t, "loaded"), j(t, e), b(e.callback_loaded, t, i), a || S(e, i);
+      }(0, n, t, e), H(i);
+    }, function (a) {
+      !function (n, t, e, i) {
+        var a = v(t);
+        B(t, e, i), h(t, e.class_error), f(t, "error"), b(e.callback_error, t, i), a || S(e, i);
+      }(0, n, t, e), H(i);
+    });
+  },
+      K = function K(n, t, e) {
+    !function (n) {
+      n.llTempImage = document.createElement("IMG");
+    }(n), J(n, t, e), function (n, t, e) {
+      var i = s(n, t.data_bg),
+          a = s(n, t.data_bg_hidpi),
+          r = o && a ? a : i;
+      r && (n.style.backgroundImage = 'url("'.concat(r, '")'), E(n).setAttribute("src", r), D(n, t, e));
+    }(n, t, e), function (n, t, e) {
+      var i = s(n, t.data_bg_multi),
+          a = s(n, t.data_bg_multi_hidpi),
+          r = o && a ? a : i;
+      r && (n.style.backgroundImage = r, function (n, t, e) {
+        h(n, t.class_applied), f(n, "applied"), V(n, t), t.unobserve_completed && I(n, t), b(t.callback_applied, n, e);
+      }(n, t, e));
+    }(n, t, e);
+  },
+      Q = function Q(n, t, e) {
+    !function (n) {
+      return P.indexOf(n.tagName) > -1;
+    }(n) ? K(n, t, e) : function (n, t, e) {
+      J(n, t, e), T(n, t), D(n, t, e);
+    }(n, t, e);
+  },
+      W = ["IMG", "IFRAME"],
+      X = function X(n) {
+    return n.use_native && "loading" in HTMLImageElement.prototype;
+  },
+      Y = function Y(n, t, e) {
+    n.forEach(function (n) {
+      return function (n) {
+        return n.isIntersecting || n.intersectionRatio > 0;
+      }(n) ? function (n, t, e, i) {
+        f(n, "entered"), function (n, t, e) {
+          t.unobserve_entered && I(n, e);
+        }(n, e, i), b(e.callback_enter, n, t, i), function (n) {
+          return p.indexOf(d(n)) >= 0;
+        }(n) || Q(n, e, i);
+      }(n.target, n, t, e) : function (n, t, e, i) {
+        g(n) || (function (n, t, e, i) {
+          e.cancel_on_exit && function (n) {
+            return "loading" === d(n);
+          }(n) && "IMG" === n.tagName && (H(n), function (n) {
+            M(n, function (n) {
+              x(n);
+            }), x(n);
+          }(n), function (n) {
+            M(n, function (n) {
+              C(n);
+            }), C(n);
+          }(n), m(n, e.class_loading), y(i, -1), _(n), b(e.callback_cancel, n, t, i));
+        }(n, t, e, i), b(e.callback_exit, n, t, i));
+      }(n.target, n, t, e);
+    });
+  },
+      Z = function Z(n) {
+    return Array.prototype.slice.call(n);
+  },
+      nn = function nn(n) {
+    return n.container.querySelectorAll(n.elements_selector);
+  },
+      tn = function tn(n) {
+    return function (n) {
+      return "error" === d(n);
+    }(n);
+  },
+      en = function en(n, t) {
+    return function (n) {
+      return Z(n).filter(g);
+    }(n || nn(t));
+  },
+      an = function an(n, e) {
+    var a = c(n);
+    this._settings = a, this.loadingCount = 0, function (n, t) {
+      i && !X(n) && (t._observer = new IntersectionObserver(function (e) {
+        Y(e, n, t);
+      }, function (n) {
+        return {
+          root: n.container === document ? null : n.container,
+          rootMargin: n.thresholds || n.threshold + "px"
+        };
+      }(n)));
+    }(a, this), function (n, e) {
+      t && window.addEventListener("online", function () {
+        !function (n, t) {
+          var e;
+          (e = nn(n), Z(e).filter(tn)).forEach(function (t) {
+            m(t, n.class_error), _(t);
+          }), t.update();
+        }(n, e);
+      });
+    }(a, this), this.update(e);
+  };
+
+  return an.prototype = {
+    update: function update(n) {
+      var t,
+          a,
+          o = this._settings,
+          r = en(n, o);
+      A(this, r.length), !e && i ? X(o) ? function (n, t, e) {
+        n.forEach(function (n) {
+          -1 !== W.indexOf(n.tagName) && (n.setAttribute("loading", "lazy"), function (n, t, e) {
+            J(n, t, e), T(n, t), j(n, t), f(n, "native");
+          }(n, t, e));
+        }), A(e, 0);
+      }(r, o, this) : (a = r, function (n) {
+        n.disconnect();
+      }(t = this._observer), function (n, t) {
+        t.forEach(function (t) {
+          n.observe(t);
+        });
+      }(t, a)) : this.loadAll(r);
+    },
+    destroy: function destroy() {
+      this._observer && this._observer.disconnect(), nn(this._settings).forEach(function (n) {
+        delete n.llOriginalAttrs;
+      }), delete this._observer, delete this._settings, delete this.loadingCount, delete this.toLoadCount;
+    },
+    loadAll: function loadAll(n) {
+      var t = this,
+          e = this._settings;
+      en(n, e).forEach(function (n) {
+        I(n, t), Q(n, e, t);
+      });
+    }
+  }, an.load = function (n, t) {
+    var e = c(t);
+    Q(n, e);
+  }, an.resetStatus = function (n) {
+    _(n);
+  }, t && function (n, t) {
+    if (t) if (t.length) for (var e, i = 0; e = t[i]; i += 1) {
+      l(n, e);
+    } else l(n, t);
+  }(an, window.lazyLoadOptions), an;
+});
 
 /***/ }),
 

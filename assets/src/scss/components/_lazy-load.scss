@@ -1,0 +1,10 @@
+.lazy {
+  opacity: 0;
+  transition: opacity 300ms ease;
+
+  &.bg-lazy--loaded,
+  &.lazy--loaded {
+    opacity: 1;
+  }
+}
+
