@@ -1017,32 +1017,47 @@ header img {
 
 .herobg {
   position: relative;
-  height: 120vw;
+  height: 400px;
   width: 100%;
   background-color: #fff;
   background-image: url("../images/hero_bg_img_mob.jpg");
   text-align: center;
   background-repeat: no-repeat;
-  background-position: center top;
-  background-size: 100%;
-  padding-top: 10vw;
+  background-position: center bottom;
+  background-size: cover;
+  padding-top: 30px;
 }
 
-.herobg h1 {
+.herobg__content {
+  align-self: center;
+  max-width: 612px;
+}
+
+.herobg__content h1 {
   margin: 0;
-  padding: 0 8vw 0 8vw;
   color: #fff;
   font-size: 40px;
   line-height: 45px;
 }
 
-@media (min-width: 768px) {
+.herobg .row .column {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+@media (min-width: 576px) {
   .herobg {
     padding-top: 30px;
-    height: 400px;
+    min-height: 400px;
     background-image: url("../images/hero_bg_img.jpg");
     background-size: cover;
     background-position: center top;
+  }
+}
+
+@media (min-width: 1200px) {
+  .herobg {
+    background-position-y: 70%;
   }
 }
 
