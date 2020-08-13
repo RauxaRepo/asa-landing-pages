@@ -962,7 +962,22 @@ header img {
 .hero {
   position: relative;
   height: 50vh;
+  width: 100%;
   background-color: #fff;
+  background-image: url("../images/hero_bg_img.jpg");
+  text-align: center;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100vw;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    height: 400px;
+    padding-top: 43px;
+    background-size: contain;
+  }
 }
 
 .credit-cards {

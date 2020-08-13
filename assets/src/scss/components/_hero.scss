@@ -2,7 +2,21 @@
 .hero {
   position: relative;
   height: 50vh;
+  width: 100%;
   background-color: $white;
+  background-image: url('../images/hero_bg_img.jpg');
+  text-align: center;
+  color: $white;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100vw;
+  
+
+  @include bp(md) {
+    height: 400px;
+    padding-top: 43px;
+    background-size: contain;
+  }
 }
 
   
