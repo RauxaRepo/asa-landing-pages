@@ -15,8 +15,17 @@ h2,
 // h3,
 // .h3 {}
 
-// h4,
-// .h4 {}
+h4,
+.h4 {
+  font-weight: 400;
+  font-size: calculate-rem(20px);
+  line-height: calculate-rem(30px);
+
+  @include bp(md) {
+    font-size: calculate-rem(24px);
+    line-height: calculate-rem(36px);
+  }
+}
 
 // h5,
 // .h5 {}
