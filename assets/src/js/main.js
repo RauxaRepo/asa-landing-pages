@@ -2,7 +2,8 @@ import '@babel/polyfill';
 import 'whatwg-fetch';
 
 //import sampleJs from './components/sample.component';
-import track from './components/tracking';
+// import track from './components/tracking';
+import accordion from './components/accordion';
 
 function documentReady(fn) {
   if (document.readyState != 'loading') {
@@ -17,8 +18,6 @@ function documentReady(fn) {
   }
 }
 
-documentReady( function() {
-
-  track();
-
+documentReady(() => {
+  accordion.init();
 });
