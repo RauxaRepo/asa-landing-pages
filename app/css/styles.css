@@ -895,6 +895,23 @@ sup {
   }
 }
 
+.icon {
+  position: relative;
+  display: inline-block;
+}
+
+.icon use.icon--white {
+  fill: #fff;
+}
+
+.icon use.icon--red {
+  fill: #fc0404;
+}
+
+.icon use.icon--atlas-blue {
+  fill: #2774ae;
+}
+
 h1,
 .h1 {
   font-weight: 700;
@@ -1011,6 +1028,54 @@ header img {
   border-left: 1px solid rgba(0, 0, 0, 0.25);
   border-top: 1px solid rgba(0, 0, 0, 0.25);
   height: 50vh;
+}
+
+.section__travel-benefits {
+  background-color: #48a9c5;
+  color: #fff;
+  padding: 65px 32px;
+}
+
+.section__travel-benefits--headline {
+  text-align: center;
+  font-size: 2.5rem;
+  line-height: 2.8125rem;
+  font-weight: 700;
+  margin-bottom: 36px;
+}
+
+.section__travel-benefits--container {
+  text-align: center;
+  margin: 0 25px;
+}
+
+.section__travel-benefits--subhead {
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 700;
+}
+
+.section__travel-benefits--text {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+}
+
+.icon-companionfare {
+  width: 74px;
+  height: 59px;
+}
+
+.icon-1x {
+  margin-top: 21px;
+  width: 41px;
+  height: 38px;
+}
+
+.icon-3x {
+  margin-top: 20px;
+  width: 54px;
+  height: 39px;
 }
 
 .compare {
