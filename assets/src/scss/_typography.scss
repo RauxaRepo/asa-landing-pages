@@ -1,0 +1,48 @@
+h1,
+.h1 {
+  font-weight: 700;
+  font-size: calculate-rem(40px);
+  line-height: calculate-rem(45px);
+}
+
+h2,
+.h2 {
+  font-weight: 700;
+  font-size: calculate-rem(40px);
+  line-height: calculate-rem(45px);
+}
+
+// h3,
+// .h3 {}
+
+h4,
+.h4 {
+  font-weight: 400;
+  font-size: calculate-rem(20px);
+  line-height: calculate-rem(30px);
+
+  @include bp(md) {
+    font-size: calculate-rem(24px);
+    line-height: calculate-rem(36px);
+  }
+}
+
+// h5,
+// .h5 {}
+
+// h6,
+// .h6 {}
+
+p,
+.p {
+  font-size: calculate-rem(16px);
+  line-height: calculate-rem(24px);
+}
+
+small,
+.small {
+  font-size: calculate-rem(10px);
+  line-height: calculate-rem(13px);
+  font-weight: 400;
+  color: $gray-dark;
+}
