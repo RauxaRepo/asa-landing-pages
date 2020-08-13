@@ -948,13 +948,33 @@ small,
   font-weight: 700;
 }
 
-.top-bar {
+header {
   position: relative;
-  height: 120px;
-  background-color: #f1f1f1;
+  height: 55px;
+  background-color: #01426a;
+  border-bottom: 1px solid #356788;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.header {
+@media (min-width: 768px) {
+  header {
+    height: 95px;
+  }
+}
+
+header img {
+  height: 55px;
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  header img {
+    height: 95px;
+  }
+}
+
+.hero {
   position: relative;
   height: 50vh;
   background-color: #fff;
