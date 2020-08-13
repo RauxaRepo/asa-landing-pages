@@ -129,6 +129,45 @@ var accordion = {
 
 /***/ }),
 
+/***/ "../assets/src/js/components/lazyload.js":
+/*!***********************************************!*\
+  !*** ../assets/src/js/components/lazyload.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vanilla-lazyload/dist/lazyload.min */ "../node_modules/vanilla-lazyload/dist/lazyload.min.js");
+/* harmony import */ var vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var lazyLoadConstructor = function lazyLoadConstructor() {
+  /* eslint-disable no-unused-vars */
+  var lazyLoadImages = new vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0___default.a({
+    elements_selector: '[data-lazy-src]',
+    class_loaded: 'lazy--loaded',
+    class_loading: 'lazy--loading',
+    data_src: 'lazy-src',
+    data_srcset: 'lazy-srcset'
+  });
+  var lazyLoadBackgrounds = new vanilla_lazyload_dist_lazyload_min__WEBPACK_IMPORTED_MODULE_0___default.a({
+    elements_selector: '[data-lazy-bg]',
+    class_loaded: 'bg-lazy--loaded',
+    class_loading: 'bg-lazy--loading',
+    data_src: 'lazy-bg'
+  });
+  /* eslint-enable no-unused-vars */
+};
+
+var lazyloadInit = function lazyloadInit() {
+  lazyLoadConstructor();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (lazyloadInit);
+
+/***/ }),
+
 /***/ "../assets/src/js/main.js":
 /*!********************************!*\
   !*** ../assets/src/js/main.js ***!
@@ -142,9 +181,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_polyfill__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! whatwg-fetch */ "../node_modules/whatwg-fetch/fetch.js");
 /* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/accordion */ "../assets/src/js/components/accordion.js");
+/* harmony import */ var _components_lazyload__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/lazyload */ "../assets/src/js/components/lazyload.js");
 
  //import sampleJs from './components/sample.component';
 // import track from './components/tracking';
+
 
 
 
@@ -162,6 +203,7 @@ function documentReady(fn) {
 
 documentReady(function () {
   _components_accordion__WEBPACK_IMPORTED_MODULE_2__["default"].init();
+  Object(_components_lazyload__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
 
 /***/ }),
@@ -12434,6 +12476,422 @@ try {
   Function("r", "regeneratorRuntime = r")(runtime);
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "../node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-lazyload/dist/lazyload.min.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/vanilla-lazyload/dist/lazyload.min.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+!function (n, t) {
+  "object" == ( false ? undefined : _typeof(exports)) && "undefined" != typeof module ? module.exports = t() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined;
+}(this, function () {
+  "use strict";
+
+  function n() {
+    return (n = Object.assign || function (n) {
+      for (var t = 1; t < arguments.length; t++) {
+        var e = arguments[t];
+
+        for (var i in e) {
+          Object.prototype.hasOwnProperty.call(e, i) && (n[i] = e[i]);
+        }
+      }
+
+      return n;
+    }).apply(this, arguments);
+  }
+
+  var t = "undefined" != typeof window,
+      e = t && !("onscroll" in window) || "undefined" != typeof navigator && /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent),
+      i = t && "IntersectionObserver" in window,
+      a = t && "classList" in document.createElement("p"),
+      o = t && window.devicePixelRatio > 1,
+      r = {
+    elements_selector: ".lazy",
+    container: e || t ? document : null,
+    threshold: 300,
+    thresholds: null,
+    data_src: "src",
+    data_srcset: "srcset",
+    data_sizes: "sizes",
+    data_bg: "bg",
+    data_bg_hidpi: "bg-hidpi",
+    data_bg_multi: "bg-multi",
+    data_bg_multi_hidpi: "bg-multi-hidpi",
+    data_poster: "poster",
+    class_applied: "applied",
+    class_loading: "loading",
+    class_loaded: "loaded",
+    class_error: "error",
+    unobserve_completed: !0,
+    unobserve_entered: !1,
+    cancel_on_exit: !0,
+    callback_enter: null,
+    callback_exit: null,
+    callback_applied: null,
+    callback_loading: null,
+    callback_loaded: null,
+    callback_error: null,
+    callback_finish: null,
+    callback_cancel: null,
+    use_native: !1
+  },
+      c = function c(t) {
+    return n({}, r, t);
+  },
+      l = function l(n, t) {
+    var e,
+        i = new n(t);
+
+    try {
+      e = new CustomEvent("LazyLoad::Initialized", {
+        detail: {
+          instance: i
+        }
+      });
+    } catch (n) {
+      (e = document.createEvent("CustomEvent")).initCustomEvent("LazyLoad::Initialized", !1, !1, {
+        instance: i
+      });
+    }
+
+    window.dispatchEvent(e);
+  },
+      s = function s(n, t) {
+    return n.getAttribute("data-" + t);
+  },
+      u = function u(n, t, e) {
+    var i = "data-" + t;
+    null !== e ? n.setAttribute(i, e) : n.removeAttribute(i);
+  },
+      d = function d(n) {
+    return s(n, "ll-status");
+  },
+      f = function f(n, t) {
+    return u(n, "ll-status", t);
+  },
+      _ = function _(n) {
+    return f(n, null);
+  },
+      g = function g(n) {
+    return null === d(n);
+  },
+      v = function v(n) {
+    return "native" === d(n);
+  },
+      p = ["loading", "loaded", "applied", "error"],
+      b = function b(n, t, e, i) {
+    n && (void 0 === i ? void 0 === e ? n(t) : n(t, e) : n(t, e, i));
+  },
+      h = function h(n, t) {
+    a ? n.classList.add(t) : n.className += (n.className ? " " : "") + t;
+  },
+      m = function m(n, t) {
+    a ? n.classList.remove(t) : n.className = n.className.replace(new RegExp("(^|\\s+)" + t + "(\\s+|$)"), " ").replace(/^\s+/, "").replace(/\s+$/, "");
+  },
+      E = function E(n) {
+    return n.llTempImage;
+  },
+      I = function I(n, t) {
+    if (t) {
+      var e = t._observer;
+      e && e.unobserve(n);
+    }
+  },
+      y = function y(n, t) {
+    n && (n.loadingCount += t);
+  },
+      A = function A(n, t) {
+    n && (n.toLoadCount = t);
+  },
+      L = function L(n) {
+    for (var t, e = [], i = 0; t = n.children[i]; i += 1) {
+      "SOURCE" === t.tagName && e.push(t);
+    }
+
+    return e;
+  },
+      w = function w(n, t, e) {
+    e && n.setAttribute(t, e);
+  },
+      z = function z(n, t) {
+    n.removeAttribute(t);
+  },
+      k = function k(n) {
+    return !!n.llOriginalAttrs;
+  },
+      O = function O(n) {
+    if (!k(n)) {
+      var t = {};
+      t.src = n.getAttribute("src"), t.srcset = n.getAttribute("srcset"), t.sizes = n.getAttribute("sizes"), n.llOriginalAttrs = t;
+    }
+  },
+      C = function C(n) {
+    if (k(n)) {
+      var t = n.llOriginalAttrs;
+      w(n, "src", t.src), w(n, "srcset", t.srcset), w(n, "sizes", t.sizes);
+    }
+  },
+      N = function N(n, t) {
+    w(n, "sizes", s(n, t.data_sizes)), w(n, "srcset", s(n, t.data_srcset)), w(n, "src", s(n, t.data_src));
+  },
+      x = function x(n) {
+    z(n, "src"), z(n, "srcset"), z(n, "sizes");
+  },
+      M = function M(n, t) {
+    var e = n.parentNode;
+    e && "PICTURE" === e.tagName && L(e).forEach(t);
+  },
+      R = function R(n, t) {
+    L(n).forEach(t);
+  },
+      G = {
+    IMG: function IMG(n, t) {
+      M(n, function (n) {
+        O(n), N(n, t);
+      }), O(n), N(n, t);
+    },
+    IFRAME: function IFRAME(n, t) {
+      w(n, "src", s(n, t.data_src));
+    },
+    VIDEO: function VIDEO(n, t) {
+      R(n, function (n) {
+        w(n, "src", s(n, t.data_src));
+      }), w(n, "poster", s(n, t.data_poster)), w(n, "src", s(n, t.data_src)), n.load();
+    }
+  },
+      T = function T(n, t) {
+    var e = G[n.tagName];
+    e && e(n, t);
+  },
+      D = function D(n, t, e) {
+    y(e, 1), h(n, t.class_loading), f(n, "loading"), b(t.callback_loading, n, e);
+  },
+      F = {
+    IMG: function IMG(n, t) {
+      u(n, t.data_src, null), u(n, t.data_srcset, null), u(n, t.data_sizes, null), M(n, function (n) {
+        u(n, t.data_srcset, null), u(n, t.data_sizes, null);
+      });
+    },
+    IFRAME: function IFRAME(n, t) {
+      u(n, t.data_src, null);
+    },
+    VIDEO: function VIDEO(n, t) {
+      u(n, t.data_src, null), u(n, t.data_poster, null), R(n, function (n) {
+        u(n, t.data_src, null);
+      });
+    }
+  },
+      V = function V(n, t) {
+    u(n, t.data_bg_multi, null), u(n, t.data_bg_multi_hidpi, null);
+  },
+      j = function j(n, t) {
+    var e = F[n.tagName];
+    e ? e(n, t) : function (n, t) {
+      u(n, t.data_bg, null), u(n, t.data_bg_hidpi, null);
+    }(n, t);
+  },
+      P = ["IMG", "IFRAME", "VIDEO"],
+      S = function S(n, t) {
+    !t || function (n) {
+      return n.loadingCount > 0;
+    }(t) || function (n) {
+      return n.toLoadCount > 0;
+    }(t) || b(n.callback_finish, t);
+  },
+      U = function U(n, t, e) {
+    n.addEventListener(t, e), n.llEvLisnrs[t] = e;
+  },
+      $ = function $(n, t, e) {
+    n.removeEventListener(t, e);
+  },
+      q = function q(n) {
+    return !!n.llEvLisnrs;
+  },
+      H = function H(n) {
+    if (q(n)) {
+      var t = n.llEvLisnrs;
+
+      for (var e in t) {
+        var i = t[e];
+        $(n, e, i);
+      }
+
+      delete n.llEvLisnrs;
+    }
+  },
+      B = function B(n, t, e) {
+    !function (n) {
+      delete n.llTempImage;
+    }(n), y(e, -1), function (n) {
+      n && (n.toLoadCount -= 1);
+    }(e), m(n, t.class_loading), t.unobserve_completed && I(n, e);
+  },
+      J = function J(n, t, e) {
+    var i = E(n) || n;
+    q(i) || function (n, t, e) {
+      q(n) || (n.llEvLisnrs = {});
+      var i = "VIDEO" === n.tagName ? "loadeddata" : "load";
+      U(n, i, t), U(n, "error", e);
+    }(i, function (a) {
+      !function (n, t, e, i) {
+        var a = v(t);
+        B(t, e, i), h(t, e.class_loaded), f(t, "loaded"), j(t, e), b(e.callback_loaded, t, i), a || S(e, i);
+      }(0, n, t, e), H(i);
+    }, function (a) {
+      !function (n, t, e, i) {
+        var a = v(t);
+        B(t, e, i), h(t, e.class_error), f(t, "error"), b(e.callback_error, t, i), a || S(e, i);
+      }(0, n, t, e), H(i);
+    });
+  },
+      K = function K(n, t, e) {
+    !function (n) {
+      n.llTempImage = document.createElement("IMG");
+    }(n), J(n, t, e), function (n, t, e) {
+      var i = s(n, t.data_bg),
+          a = s(n, t.data_bg_hidpi),
+          r = o && a ? a : i;
+      r && (n.style.backgroundImage = 'url("'.concat(r, '")'), E(n).setAttribute("src", r), D(n, t, e));
+    }(n, t, e), function (n, t, e) {
+      var i = s(n, t.data_bg_multi),
+          a = s(n, t.data_bg_multi_hidpi),
+          r = o && a ? a : i;
+      r && (n.style.backgroundImage = r, function (n, t, e) {
+        h(n, t.class_applied), f(n, "applied"), V(n, t), t.unobserve_completed && I(n, t), b(t.callback_applied, n, e);
+      }(n, t, e));
+    }(n, t, e);
+  },
+      Q = function Q(n, t, e) {
+    !function (n) {
+      return P.indexOf(n.tagName) > -1;
+    }(n) ? K(n, t, e) : function (n, t, e) {
+      J(n, t, e), T(n, t), D(n, t, e);
+    }(n, t, e);
+  },
+      W = ["IMG", "IFRAME"],
+      X = function X(n) {
+    return n.use_native && "loading" in HTMLImageElement.prototype;
+  },
+      Y = function Y(n, t, e) {
+    n.forEach(function (n) {
+      return function (n) {
+        return n.isIntersecting || n.intersectionRatio > 0;
+      }(n) ? function (n, t, e, i) {
+        f(n, "entered"), function (n, t, e) {
+          t.unobserve_entered && I(n, e);
+        }(n, e, i), b(e.callback_enter, n, t, i), function (n) {
+          return p.indexOf(d(n)) >= 0;
+        }(n) || Q(n, e, i);
+      }(n.target, n, t, e) : function (n, t, e, i) {
+        g(n) || (function (n, t, e, i) {
+          e.cancel_on_exit && function (n) {
+            return "loading" === d(n);
+          }(n) && "IMG" === n.tagName && (H(n), function (n) {
+            M(n, function (n) {
+              x(n);
+            }), x(n);
+          }(n), function (n) {
+            M(n, function (n) {
+              C(n);
+            }), C(n);
+          }(n), m(n, e.class_loading), y(i, -1), _(n), b(e.callback_cancel, n, t, i));
+        }(n, t, e, i), b(e.callback_exit, n, t, i));
+      }(n.target, n, t, e);
+    });
+  },
+      Z = function Z(n) {
+    return Array.prototype.slice.call(n);
+  },
+      nn = function nn(n) {
+    return n.container.querySelectorAll(n.elements_selector);
+  },
+      tn = function tn(n) {
+    return function (n) {
+      return "error" === d(n);
+    }(n);
+  },
+      en = function en(n, t) {
+    return function (n) {
+      return Z(n).filter(g);
+    }(n || nn(t));
+  },
+      an = function an(n, e) {
+    var a = c(n);
+    this._settings = a, this.loadingCount = 0, function (n, t) {
+      i && !X(n) && (t._observer = new IntersectionObserver(function (e) {
+        Y(e, n, t);
+      }, function (n) {
+        return {
+          root: n.container === document ? null : n.container,
+          rootMargin: n.thresholds || n.threshold + "px"
+        };
+      }(n)));
+    }(a, this), function (n, e) {
+      t && window.addEventListener("online", function () {
+        !function (n, t) {
+          var e;
+          (e = nn(n), Z(e).filter(tn)).forEach(function (t) {
+            m(t, n.class_error), _(t);
+          }), t.update();
+        }(n, e);
+      });
+    }(a, this), this.update(e);
+  };
+
+  return an.prototype = {
+    update: function update(n) {
+      var t,
+          a,
+          o = this._settings,
+          r = en(n, o);
+      A(this, r.length), !e && i ? X(o) ? function (n, t, e) {
+        n.forEach(function (n) {
+          -1 !== W.indexOf(n.tagName) && (n.setAttribute("loading", "lazy"), function (n, t, e) {
+            J(n, t, e), T(n, t), j(n, t), f(n, "native");
+          }(n, t, e));
+        }), A(e, 0);
+      }(r, o, this) : (a = r, function (n) {
+        n.disconnect();
+      }(t = this._observer), function (n, t) {
+        t.forEach(function (t) {
+          n.observe(t);
+        });
+      }(t, a)) : this.loadAll(r);
+    },
+    destroy: function destroy() {
+      this._observer && this._observer.disconnect(), nn(this._settings).forEach(function (n) {
+        delete n.llOriginalAttrs;
+      }), delete this._observer, delete this._settings, delete this.loadingCount, delete this.toLoadCount;
+    },
+    loadAll: function loadAll(n) {
+      var t = this,
+          e = this._settings;
+      en(n, e).forEach(function (n) {
+        I(n, t), Q(n, e, t);
+      });
+    }
+  }, an.load = function (n, t) {
+    var e = c(t);
+    Q(n, e);
+  }, an.resetStatus = function (n) {
+    _(n);
+  }, t && function (n, t) {
+    if (t) if (t.length) for (var e, i = 0; e = t[i]; i += 1) {
+      l(n, e);
+    } else l(n, t);
+  }(an, window.lazyLoadOptions), an;
+});
 
 /***/ }),
 

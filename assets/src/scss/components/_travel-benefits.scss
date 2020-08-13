@@ -1,0 +1,50 @@
+.section__travel-benefits {
+  background-color: $blue;
+
+  color: $white;
+  padding: 75px 32px;
+
+  &--headline {
+    text-align: center;
+    @include font-size(40px);
+    line-height: calculate-rem(45px);
+    font-weight: 700;
+    margin-bottom: 36px;
+    margin-top: 0;
+  }
+
+  &--container {
+    text-align: center;
+    margin: 0 25px;
+  }
+
+  &--subhead {
+    @include font-size(20px);
+    line-height: calculate-rem(26px);
+    font-weight: 700;
+  }
+
+  &--text {
+    @include font-size(16px);
+    line-height: calculate-rem(24px);
+    font-weight: 400;
+  }
+}
+
+.icon-companionfare {
+  width: 74px;
+  height: 59px;
+
+}
+
+.icon-1x {
+  margin-top: 21px;
+  width: 41px;
+  height: 38px;
+}
+
+.icon-3x {
+  margin-top: 20px;
+  width: 54px;
+  height: 39px;
+}

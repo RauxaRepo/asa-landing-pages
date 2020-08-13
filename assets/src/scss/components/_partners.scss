@@ -46,6 +46,7 @@ $partners-bg: #dff1fd;
       .icon--plane {
         width: 42px;
         height: 44px;
+        margin-bottom: 30px;
       }
     }
   }
@@ -56,7 +57,7 @@ $partners-bg: #dff1fd;
     height: auto;
     object-position: bottom;
     align-self: auto;
-    display: initial;
+    display: block;
   }
 
   &__logo-grid {
@@ -123,6 +124,10 @@ $partners-bg: #dff1fd;
 
 @include bp(md) {
   .partners {
+    &__container {
+      padding-bottom: 34vw;
+    }
+
     &__block {
       &--content {
         h4 {
@@ -145,6 +150,7 @@ $partners-bg: #dff1fd;
       object-fit: cover;
       width: 100%;
       height: 100%;
+      display: initial;
     }
 
     &__accordion {
