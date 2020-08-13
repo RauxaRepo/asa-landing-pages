@@ -974,24 +974,34 @@ header img {
   }
 }
 
-.hero {
+.herobg {
   position: relative;
-  height: 50vh;
+  height: 120vw;
   width: 100%;
   background-color: #fff;
-  background-image: url("../images/hero_bg_img.jpg");
+  background-image: url("../images/hero_bg_img_mob.jpg");
   text-align: center;
-  color: #fff;
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: 100vw;
+  background-size: 100%;
+  padding-top: 10vw;
+}
+
+.herobg h1 {
+  margin: 0;
+  padding: 0 8vw 0 8vw;
+  color: #fff;
+  font-size: 40px;
+  line-height: 45px;
 }
 
 @media (min-width: 768px) {
-  .hero {
+  .herobg {
+    padding-top: 30px;
     height: 400px;
-    padding-top: 43px;
-    background-size: contain;
+    background-image: url("../images/hero_bg_img.jpg");
+    background-size: cover;
+    background-position: center top;
   }
 }
 
