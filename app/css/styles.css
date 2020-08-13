@@ -965,6 +965,15 @@ small,
   font-weight: 700;
 }
 
+.lazy {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.lazy.bg-lazy--loaded, .lazy.lazy--loaded {
+  opacity: 1;
+}
+
 header {
   position: relative;
   height: 55px;
