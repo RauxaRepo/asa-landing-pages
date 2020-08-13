@@ -1015,10 +1015,50 @@ header img {
   }
 }
 
-.hero {
+.herobg {
   position: relative;
-  height: 50vh;
+  height: 400px;
+  width: 100%;
   background-color: #fff;
+  background-image: url("../images/hero_bg_img_mob.jpg");
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  padding-top: 30px;
+}
+
+.herobg__content {
+  align-self: center;
+  max-width: 612px;
+}
+
+.herobg__content h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 40px;
+  line-height: 45px;
+}
+
+.herobg .row .column {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+@media (min-width: 576px) {
+  .herobg {
+    padding-top: 30px;
+    min-height: 400px;
+    background-image: url("../images/hero_bg_img.jpg");
+    background-size: cover;
+    background-position: center top;
+  }
+}
+
+@media (min-width: 1200px) {
+  .herobg {
+    background-position-y: 70%;
+  }
 }
 
 .main-page-footer {
