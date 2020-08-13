@@ -1172,7 +1172,7 @@ header img {
   margin-bottom: 30px;
 }
 
-.partners__block--content h2 + * {
+.partners__block--content h4 {
   margin-top: 0;
   max-width: 90vw;
 }
@@ -1246,7 +1246,7 @@ header img {
 }
 
 @media (min-width: 768px) {
-  .partners__block--content h2 + * {
+  .partners__block--content h4 {
     max-width: 900px;
   }
   .partners__block--background {
