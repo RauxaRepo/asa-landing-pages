@@ -4,6 +4,7 @@ import 'whatwg-fetch';
 //import sampleJs from './components/sample.component';
 // import track from './components/tracking';
 import accordion from './components/accordion';
+import lazyloadInit from './components/lazyload';
 
 function documentReady(fn) {
   if (document.readyState != 'loading') {
@@ -20,4 +21,5 @@ function documentReady(fn) {
 
 documentReady(() => {
   accordion.init();
+  lazyloadInit();
 });
