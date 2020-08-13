@@ -896,8 +896,6 @@ sup {
 .icon {
   position: relative;
   display: inline-block;
-  width: 32px;
-  height: 32px;
 }
 
 .icon use.icon--white {
@@ -956,6 +954,7 @@ sup {
   font-size: 2.5rem;
   line-height: 2.8125rem;
   font-weight: 700;
+  margin-bottom: 36px;
 }
 
 .section__travel-benefits--container {
@@ -973,6 +972,23 @@ sup {
   font-size: 1rem;
   line-height: 1.5rem;
   font-weight: 400;
+}
+
+.icon-companionfare {
+  width: 74px;
+  height: 59px;
+}
+
+.icon-1x {
+  margin-top: 21px;
+  width: 41px;
+  height: 38px;
+}
+
+.icon-3x {
+  margin-top: 20px;
+  width: 54px;
+  height: 39px;
 }
 
 /*# sourceMappingURL=styles.css.map */
