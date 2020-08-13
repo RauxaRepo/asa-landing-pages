@@ -11745,6 +11745,25 @@ var runtime = function (exports) {
   var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
   var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
 
+  function define(obj, key, value) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+    return obj[key];
+  }
+
+  try {
+    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+    define({}, "");
+  } catch (err) {
+    define = function define(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+
   function wrap(innerFn, outerFn, self, tryLocsList) {
     // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
     var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
@@ -11818,14 +11837,14 @@ var runtime = function (exports) {
   var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction"; // Helper for defining the .next, .throw, and .return methods of the
+  GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"); // Helper for defining the .next, .throw, and .return methods of the
   // Iterator interface in terms of a single ._invoke method.
 
   function defineIteratorMethods(prototype) {
     ["next", "throw", "return"].forEach(function (method) {
-      prototype[method] = function (arg) {
+      define(prototype, method, function (arg) {
         return this._invoke(method, arg);
-      };
+      });
     });
   }
 
@@ -11841,10 +11860,7 @@ var runtime = function (exports) {
       Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
     } else {
       genFun.__proto__ = GeneratorFunctionPrototype;
-
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
+      define(genFun, toStringTagSymbol, "GeneratorFunction");
     }
 
     genFun.prototype = Object.create(Gp);
@@ -12100,7 +12116,7 @@ var runtime = function (exports) {
 
 
   defineIteratorMethods(Gp);
-  Gp[toStringTagSymbol] = "Generator"; // A Generator should always return itself as the iterator object when the
+  define(Gp, toStringTagSymbol, "Generator"); // A Generator should always return itself as the iterator object when the
   // @@iterator function is called on it. Some browsers' implementations of the
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
@@ -12485,10 +12501,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Response", function() { return Response; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOMException", function() { return DOMException; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetch", function() { return fetch; });
-var global = function (self) {
-  return self; // eslint-disable-next-line no-invalid-this
-}(typeof self !== 'undefined' ? self : undefined);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+var global = typeof globalThis !== 'undefined' && globalThis || typeof self !== 'undefined' && self || typeof global !== 'undefined' && global;
 var support = {
   searchParams: 'URLSearchParams' in global,
   iterable: 'Symbol' in global && 'iterator' in Symbol,
@@ -12759,7 +12774,17 @@ function Body() {
 
     this.arrayBuffer = function () {
       if (this._bodyArrayBuffer) {
-        return consumed(this) || Promise.resolve(this._bodyArrayBuffer);
+        var isConsumed = consumed(this);
+
+        if (isConsumed) {
+          return isConsumed;
+        }
+
+        if (ArrayBuffer.isView(this._bodyArrayBuffer)) {
+          return Promise.resolve(this._bodyArrayBuffer.buffer.slice(this._bodyArrayBuffer.byteOffset, this._bodyArrayBuffer.byteOffset + this._bodyArrayBuffer.byteLength));
+        } else {
+          return Promise.resolve(this._bodyArrayBuffer);
+        }
       } else {
         return this.blob().then(readBlobAsArrayBuffer);
       }
@@ -12806,6 +12831,10 @@ function normalizeMethod(method) {
 }
 
 function Request(input, options) {
+  if (!(this instanceof Request)) {
+    throw new TypeError('Please use the "new" operator, this DOM object constructor cannot be called as a function.');
+  }
+
   options = options || {};
   var body = options.body;
 
@@ -12905,6 +12934,10 @@ function parseHeaders(rawHeaders) {
 
 Body.call(Request.prototype);
 function Response(bodyInit, options) {
+  if (!(this instanceof Response)) {
+    throw new TypeError('Please use the "new" operator, this DOM object constructor cannot be called as a function.');
+  }
+
   if (!options) {
     options = {};
   }
@@ -12955,7 +12988,9 @@ Response.redirect = function (url, status) {
 
 var DOMException = global.DOMException;
 
-if (typeof DOMException !== 'function') {
+try {
+  new DOMException();
+} catch (err) {
   DOMException = function DOMException(message, name) {
     this.message = message;
     this.name = name;
@@ -13036,9 +13071,15 @@ function fetch(input, init) {
       }
     }
 
-    request.headers.forEach(function (value, name) {
-      xhr.setRequestHeader(name, value);
-    });
+    if (init && _typeof(init.headers) === 'object' && !(init.headers instanceof Headers)) {
+      Object.getOwnPropertyNames(init.headers).forEach(function (name) {
+        xhr.setRequestHeader(name, normalizeValue(init.headers[name]));
+      });
+    } else {
+      request.headers.forEach(function (value, name) {
+        xhr.setRequestHeader(name, value);
+      });
+    }
 
     if (request.signal) {
       request.signal.addEventListener('abort', abortXhr);
