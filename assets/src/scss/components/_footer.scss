@@ -1,12 +1,11 @@
-
 .main-page-footer {
-    margin-top: 20px;
-    max-width: 948px;
-    color: $gray-dark;    
+  margin-top: 20px;
+  max-width: 948px;
+  color: $gray-dark;
 
-    & p {
-        text-align: left;
-        @include font-size(10px);
-        line-height: calculate-rem(14px);
-    }
+  & p {
+    text-align: left;
+    @include font-size(10px);
+    line-height: calculate-rem(14px);
+  }
 }
