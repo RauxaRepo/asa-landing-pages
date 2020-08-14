@@ -1261,6 +1261,9 @@ header img {
     margin-right: auto;
     right: 0;
   }
+  .compare__column p {
+    max-width: 325px;
+  }
   .compare__stats {
     display: flex;
     flex-direction: row;
