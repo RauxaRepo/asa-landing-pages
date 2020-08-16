@@ -94,6 +94,7 @@ $partners-bg: #dff1fd;
       background: transparent;
       appearance: none;
       border: 0;
+      font-family: $font-standard;
 
       &::after {
         content: '';
