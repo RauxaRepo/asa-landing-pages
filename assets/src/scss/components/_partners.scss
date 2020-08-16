@@ -2,6 +2,7 @@ $partners-bg: #dff1fd;
 
 .partners {
   position: relative;
+  overflow: hidden;
 
   &__container {
     padding-top: 55px;
