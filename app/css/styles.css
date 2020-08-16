@@ -1287,6 +1287,7 @@ header img {
 
 .partners {
   position: relative;
+  overflow: hidden;
 }
 
 .partners__container {
