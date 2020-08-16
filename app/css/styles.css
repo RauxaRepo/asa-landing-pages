@@ -950,9 +950,21 @@ p,
 small,
 .small {
   font-size: 0.625rem;
-  line-height: 0.8125rem;
+  line-height: 0.875rem;
   font-weight: 400;
   color: #656565;
+}
+
+small a,
+.small a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+small sup,
+.small sup {
+  font-size: 25%;
+  vertical-align: super;
 }
 
 .cta {
