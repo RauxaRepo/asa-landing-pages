@@ -950,9 +950,21 @@ p,
 small,
 .small {
   font-size: 0.625rem;
-  line-height: 0.8125rem;
+  line-height: 0.875rem;
   font-weight: 400;
   color: #656565;
+}
+
+small a,
+.small a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+small sup,
+.small sup {
+  font-size: 25%;
+  vertical-align: super;
 }
 
 .cta {
@@ -1111,6 +1123,7 @@ header img {
 }
 
 .section__travel-benefits--container {
+  align-self: center;
   text-align: center;
   margin: 0 25px;
 }
@@ -1286,6 +1299,7 @@ header img {
 
 .partners {
   position: relative;
+  overflow: hidden;
 }
 
 .partners__container {
@@ -1366,11 +1380,12 @@ header img {
 
 .partners__accordion-button {
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: 1.25rem;
   font-weight: 400;
   background: transparent;
   appearance: none;
   border: 0;
+  font-family: Circular, Helvetica, Arial, sans-serif;
 }
 
 .partners__accordion-button::after {
