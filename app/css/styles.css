@@ -1111,6 +1111,7 @@ header img {
 }
 
 .section__travel-benefits--container {
+  align-self: center;
   text-align: center;
   margin: 0 25px;
 }
