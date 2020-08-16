@@ -1,0 +1,44 @@
+
+.herobg {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  background-color: $white;
+  background-image: url('../images/hero_bg_img_mob.jpg');
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  padding-top: 30px;
+
+  &__content {
+    align-self: center;
+    max-width: 612px;
+
+    h1 {
+      margin: 0;
+      color: $white;
+      font-size: 40px;
+      line-height: 45px;
+    }
+  }
+
+  .row .column {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  @include bp(sm) {
+    padding-top: 30px;
+    min-height: 400px;
+    background-image: url('../images/hero_bg_img.jpg');
+    background-size: cover;
+    background-position: center top;
+  }
+
+  @include bp(xl) {
+    background-position-y: 70%;
+  }
+}
+
+  
