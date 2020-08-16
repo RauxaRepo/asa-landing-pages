@@ -45,4 +45,14 @@ small,
   line-height: calculate-rem(13px);
   font-weight: 400;
   color: $gray-dark;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  sup {
+    font-size: 25%;
+    vertical-align: super;
+  }
 }
