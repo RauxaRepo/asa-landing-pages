@@ -39,10 +39,24 @@ p,
   line-height: calculate-rem(24px);
 }
 
+sup {
+  font-size: 50%;
+}
+
 small,
 .small {
   font-size: calculate-rem(10px);
-  line-height: calculate-rem(13px);
+  line-height: calculate-rem(14px);
   font-weight: 400;
   color: $gray-dark;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  sup {
+    // font-size: 25%;
+    vertical-align: super;
+  }
 }
