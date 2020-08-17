@@ -39,6 +39,10 @@ p,
   line-height: calculate-rem(24px);
 }
 
+sup {
+  font-size: 50%;
+}
+
 small,
 .small {
   font-size: calculate-rem(10px);
