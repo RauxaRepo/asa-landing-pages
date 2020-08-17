@@ -947,6 +947,10 @@ p,
   line-height: 1.5rem;
 }
 
+sup {
+  font-size: 50%;
+}
+
 small,
 .small {
   font-size: 0.625rem;
@@ -963,7 +967,6 @@ small a,
 
 small sup,
 .small sup {
-  font-size: 25%;
   vertical-align: super;
 }
 
@@ -1073,10 +1076,14 @@ header img {
   }
 }
 
+.footer {
+  background-color: #fff;
+}
+
 .main-page-footer {
-  margin-top: 40px;
-  margin-bottom: 50px;
-  max-width: 948px;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  max-width: 936px;
   color: #656565;
 }
 
@@ -1120,6 +1127,9 @@ header img {
   font-weight: 700;
   margin-bottom: 36px;
   margin-top: 0;
+  max-width: 515px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .section__travel-benefits--container {
