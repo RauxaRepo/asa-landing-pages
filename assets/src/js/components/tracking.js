@@ -24,4 +24,4 @@
 
     }
 
-export { track };
+export default track;

@@ -91,6 +91,7 @@ exports.prodbuild = series(
     localViews,
     localImages,
   ),
+  localServe,
   sassCompile,
   jsCompileMin
 );
