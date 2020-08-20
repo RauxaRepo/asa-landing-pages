@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import 'whatwg-fetch';
 
 //import sampleJs from './components/sample.component';
-// import track from './components/tracking';
+import track from './components/tracking';
 import accordion from './components/accordion';
 import lazyloadInit from './components/lazyload';
 
@@ -22,4 +22,11 @@ function documentReady(fn) {
 documentReady(() => {
   accordion.init();
   lazyloadInit();
+
+  track.pageInit();
+
+  const platinumPlusCTA = document.getElementById('platinumPlusCTA');
+  const worldEliteCTA = document.getElementById('worldEliteCTA');
+  platinumPlusCTA.addEventListener('click', track.applyNowBtnPlatinum);
+  worldEliteCTA.addEventListener('click', track.applyNowBtnWorldElite);
 });
