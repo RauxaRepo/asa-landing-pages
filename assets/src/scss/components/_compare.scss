@@ -5,9 +5,10 @@
     padding-top: 65px;
     padding-bottom: 40px;
 
-    small {
+    > p {
       display: block;
       text-align: center;
+      color: $darkblue;
     }
   }
 
