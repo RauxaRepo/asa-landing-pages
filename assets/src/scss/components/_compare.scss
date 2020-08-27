@@ -5,9 +5,10 @@
     padding-top: 65px;
     padding-bottom: 40px;
 
-    small {
+    > p {
       display: block;
       text-align: center;
+      color: $darkblue;
     }
   }
 
@@ -65,6 +66,7 @@
   &__img {
     max-width: 311px;
     align-self: auto;
+    pointer-events: none;
   }
 
   &__stats {
@@ -126,6 +128,10 @@
           margin-right: auto;
           right: 0;
         }
+      }
+
+      p {
+        max-width: 325px;
       }
     }
 

@@ -15,8 +15,17 @@ h2,
 // h3,
 // .h3 {}
 
-// h4,
-// .h4 {}
+h4,
+.h4 {
+  font-weight: 400;
+  font-size: calculate-rem(20px);
+  line-height: calculate-rem(30px);
+
+  @include bp(md) {
+    font-size: calculate-rem(24px);
+    line-height: calculate-rem(36px);
+  }
+}
 
 // h5,
 // .h5 {}
@@ -30,10 +39,24 @@ p,
   line-height: calculate-rem(24px);
 }
 
+sup {
+  font-size: 50%;
+}
+
 small,
 .small {
   font-size: calculate-rem(10px);
-  line-height: calculate-rem(13px);
+  line-height: calculate-rem(14px);
   font-weight: 400;
   color: $gray-dark;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  sup {
+    // font-size: 25%;
+    vertical-align: super;
+  }
 }
