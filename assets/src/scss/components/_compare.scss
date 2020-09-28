@@ -1,0 +1,160 @@
+.compare {
+  background-color: $white;
+
+  &__container {
+    padding-top: 65px;
+    padding-bottom: 40px;
+
+    > p {
+      display: block;
+      text-align: center;
+      color: $darkblue;
+    }
+  }
+
+  &__row {
+    padding-bottom: 45px;
+  }
+
+  &__column {
+    // forcing grid overrides
+    &.column {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      align-items: center;
+      text-align: center;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    &:not(:last-child) {
+      &::after {
+        content: '';
+        width: calc(100% - 60px);
+        height: 1px;
+        background-color: $gray-light;
+        position: absolute;
+        bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    h2 {
+      color: $darkblue;
+      line-height: calculate-rem(53px);
+      margin-top: 43px;
+      margin-bottom: 21px;
+    }
+
+    p {
+      max-width: 311px;
+      color: $darkblue;
+    }
+
+    .cta {
+      margin-top: 30px;
+    }
+  }
+
+  &__img {
+    max-width: 311px;
+    align-self: auto;
+    pointer-events: none;
+  }
+
+  &__stats {
+    padding-top: 25px;
+
+    & + p {
+      padding-top: 20px;
+    }
+  }
+
+  &__stat {
+    &:first-child:not(:last-child) {
+      padding-bottom: 20px;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: calculate-rem(64px);
+      line-height: calculate-rem(64px);
+      color: $cta-blue;
+      margin: 0;
+
+      & + p {
+        position: relative;
+        bottom: 10px;
+      }
+    }
+
+    p {
+      font-size: calculate-rem(20px);
+      line-height: calculate-rem(26px);
+      color: $cta-blue;
+      font-weight: 700;
+    }
+  }
+}
+
+@include bp(md) {
+  .compare {
+    &__container {
+      padding-bottom: 20px;
+    }
+
+    &__column {
+      &.column {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      &:not(:last-child) {
+        &::after {
+          content: '';
+          width: 1px;
+          height: 100%;
+          background-color: $gray-light;
+          position: absolute;
+          top: 0;
+          margin-left: auto;
+          margin-right: auto;
+          right: 0;
+        }
+      }
+
+      p {
+        max-width: 325px;
+      }
+    }
+
+    &__stats {
+      display: flex;
+      flex-direction: row;
+
+      & + p {
+        max-width: 407px;
+      }
+    }
+
+    &__stat {
+      display: flex;
+      flex-direction: column;
+      align-content: flex-end;
+      justify-content: flex-end;
+      padding-left: 20px;
+      padding-right: 20px;
+
+      &:first-child:not(:last-child) {
+        padding-bottom: 0;
+      }
+    }
+  }
+}

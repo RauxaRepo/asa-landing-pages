@@ -1,34 +1,18 @@
+// sass-lint:disable no-important, no-color-literals
 
-
-
-.social-test {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9;
-  border: 1px solid $black;
-}
-
-.as-book {
-  border-radius: 6px;
-  background-color: $darkblue;
+.cta {
+  background-color: $cta-blue;
   color: $white;
-  text-transform: uppercase;
-  padding: 14px;
-  position: relative;
-  width: 200px;
-  text-align: center;
+  border-radius: 3px;
+  padding: 17px 50px 14px;
+  line-height: 1;
+  font-size: calculate-rem(16px);
   font-weight: 700;
-  margin: 33px auto 0;
-  display: none;
-  pointer-events: none;
+  transition: background-color .3s ease-out, box-shadow .3s ease-out;
 
-  &.active {
-    display: block;
-    pointer-events: auto;
-  }
 
   &:hover {
-    background-color: $flightblue;
+    box-shadow: 0 0 1rem rgba(1, 66, 106, .4);
+    background-color: $cta-blue-hover;
   }
 }
