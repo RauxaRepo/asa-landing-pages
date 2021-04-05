@@ -7,6 +7,7 @@
   background-image: url('../images/hero_bg_img_mob.jpg');
   background-repeat: no-repeat;
   background-position: center bottom;
+<<<<<<< HEAD
   background-size: 100%;
   padding-top: 30px;
 
@@ -21,9 +22,38 @@
   }
 
   @include bp(sm) {
+=======
+  background-size: cover;
+  padding-top: 30px;
+
+  &__content {
+    align-self: center;
+    max-width: 612px;
+
+    h1 {
+      margin: 0;
+      color: $white;
+      font-size: 40px;
+      line-height: 45px;
+    }
+  }
+
+  .row .column {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  @include bp(sm) {
+    padding-top: 30px;
+    min-height: 400px;
+>>>>>>> 66aee006ee70103c425782703972fb0035937bd0
     background-image: url('../images/hero_bg_img.jpg');
     background-size: cover;
     background-position: center top;
+  }
+
+  @include bp(xl) {
+    background-position-y: 70%;
   }
 }
 

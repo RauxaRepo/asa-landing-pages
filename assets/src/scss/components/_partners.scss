@@ -2,6 +2,7 @@ $partners-bg: #dff1fd;
 
 .partners {
   position: relative;
+  overflow: hidden;
 
   &__container {
     padding-top: 55px;
@@ -88,11 +89,12 @@ $partners-bg: #dff1fd;
   &__accordion {
     &-button {
       font-size: calculate-rem(16px);
-      line-height: calculate-rem(24px);
+      line-height: calculate-rem(20px);
       font-weight: 400;
       background: transparent;
       appearance: none;
       border: 0;
+      font-family: $font-standard;
 
       &::after {
         content: '';
