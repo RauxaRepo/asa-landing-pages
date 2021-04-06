@@ -568,12 +568,12 @@ sup {
 }
 
 .row::before {
-  content: ' ';
+  content: " ";
   display: none;
 }
 
 .row::after {
-  content: ' ';
+  content: " ";
   display: none;
 }
 
