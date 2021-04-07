@@ -1035,7 +1035,7 @@ header img {
   height: 400px;
   width: 100%;
   background-color: #fff;
-  background-image: url("../images/hero_bg_img_mob.jpg");
+  background-image: url("../images/Alaska_Bali_Beach_4804_750px_800px.jpg");
   text-align: center;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -1050,9 +1050,9 @@ header img {
 
 .herobg__content h1 {
   margin: 0;
-  color: #fff;
-  font-size: 40px;
-  line-height: 45px;
+  color: #2774ae;
+  font-size: 35px;
+  line-height: 40px;
 }
 
 .herobg__content h1 br {
@@ -1076,15 +1076,27 @@ header img {
   .herobg {
     padding-top: 30px;
     min-height: 400px;
-    background-image: url("../images/hero_bg_img.jpg");
+    background-image: url("../images/Alaska_Bali_Beach_4804_2800px_800px.jpg");
     background-size: cover;
-    background-position: center top;
+    background-position: 60% top;
+  }
+}
+
+@media (min-width: 768px) {
+  .herobg {
+    background-position: 60% top;
+  }
+}
+
+@media (min-width: 992px) {
+  .herobg {
+    background-position: 67% top;
   }
 }
 
 @media (min-width: 1200px) {
   .herobg {
-    background-position-y: 70%;
+    background-position: 100% top;
   }
 }
 
