@@ -1,10 +1,9 @@
-
 .herobg {
   position: relative;
   height: 400px;
   width: 100%;
   background-color: $white;
-  background-image: url('../images/hero_bg_img_mob.jpg');
+  background-image: url("../images/hero_bg_img_mob.jpg");
   text-align: center;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -20,6 +19,14 @@
       color: $white;
       font-size: 40px;
       line-height: 45px;
+      br {
+        display: none;
+        visibility: hidden;
+        @include bp(sm) {
+          display: inline;
+          visibility: visible;
+        }
+      }
     }
   }
 
@@ -31,7 +38,7 @@
   @include bp(sm) {
     padding-top: 30px;
     min-height: 400px;
-    background-image: url('../images/hero_bg_img.jpg');
+    background-image: url("../images/hero_bg_img.jpg");
     background-size: cover;
     background-position: center top;
   }
@@ -40,5 +47,3 @@
     background-position-y: 70%;
   }
 }
-
-  

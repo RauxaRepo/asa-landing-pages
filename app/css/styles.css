@@ -1055,6 +1055,18 @@ header img {
   line-height: 45px;
 }
 
+.herobg__content h1 br {
+  display: none;
+  visibility: hidden;
+}
+
+@media (min-width: 576px) {
+  .herobg__content h1 br {
+    display: inline;
+    visibility: visible;
+  }
+}
+
 .herobg .row .column {
   padding-left: 25px;
   padding-right: 25px;
