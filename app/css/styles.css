@@ -1082,12 +1082,6 @@ header img {
   }
 }
 
-@media (min-width: 768px) {
-  .herobg {
-    background-position: 60% top;
-  }
-}
-
 @media (min-width: 992px) {
   .herobg {
     background-position: 67% top;

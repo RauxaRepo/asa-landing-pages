@@ -46,9 +46,9 @@
     background-position: 60% top;
   }
 
-  @include bp(md) {
-    background-position: 60% top;
-  }
+  // @include bp(md) {
+  //   background-position: 60% top;
+  // }
 
   @include bp(lg) {
     background-position: 67% top;
