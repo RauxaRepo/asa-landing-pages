@@ -1,10 +1,9 @@
-
 .herobg {
   position: relative;
   height: 400px;
   width: 100%;
   background-color: $white;
-  background-image: url('../images/hero_bg_img_mob.jpg');
+  background-image: url('../images/Alaska_Bali_Beach_4804_750px_800px.jpg');
   text-align: center;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -17,9 +16,18 @@
 
     h1 {
       margin: 0;
-      color: $white;
-      font-size: 40px;
-      line-height: 45px;
+      color: $atlasblue;
+      font-size: 35px;
+      line-height: 40px;
+
+      br {
+        display: none;
+        visibility: hidden;
+        @include bp(sm) {
+          display: inline;
+          visibility: visible;
+        }
+      }
     }
   }
 
@@ -31,14 +39,16 @@
   @include bp(sm) {
     padding-top: 30px;
     min-height: 400px;
-    background-image: url('../images/hero_bg_img.jpg');
+    background-image: url('../images/Alaska_Bali_Beach_4804_2800px_800px.jpg');
     background-size: cover;
-    background-position: center top;
+    background-position: 60% top;
+  }
+
+  @include bp(lg) {
+    background-position: 67% top;
   }
 
   @include bp(xl) {
-    background-position-y: 70%;
+    background-position: center bottom;
   }
 }
-
-  
