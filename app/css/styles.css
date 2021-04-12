@@ -1090,7 +1090,7 @@ header img {
 
 @media (min-width: 1200px) {
   .herobg {
-    background-position: 100% top;
+    background-position: center bottom;
   }
 }
 
